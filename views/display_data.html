@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<title>印刷画面</title>
+</head>
+<style type="text/css">
+	h1{
+		font-weight: bold;
+		text-align: center;
+	}
+	table{
+		border-collapse: collapse;
+		width: 1000px;
+		margin: 0 auto;
+	}
+	th {
+	    border: solid 1px;  
+	    text-align: left;
+	    background: skyblue;  
+	    color: white;       
+	}
+	td {
+	    border: white solid 1px;  
+	    background: lightgray;  
+	}
+	label {
+	    font-size: 1rem;
+	    padding-right: 10px;
+	}
+
+	select {
+	    font-size: .9rem;
+	    padding: 2px 5px;
+	}
+	.prints{
+		background: green;
+		color: white;
+	}
+	.exportData{
+		background: blue;
+		color: white;
+		cursor: pointer;
+	}
+	.exportDataSE{
+		background: #14af60;
+		color: white;
+		cursor: pointer;
+	}
+	.select{
+		background: red;
+		color: white;
+	}
+	form{
+		text-align: center;
+	}
+</style>
+<body>
+	<button type="button" onclick="location.href='/fukushisystem/activeRecord'">利用者管理</button>
+	<h1>印刷画面</h1>
+	<table>
+		<tr>
+			<th>受給者証番号</th>
+			<th>曜日</th>
+			<th>日付</th>
+			<th>出欠</th>
+		</tr>
+		<?foreach ($listItem as $item) {?>
+		<tr>
+			<td><?php echo $item['Recipient_number'];?></td>
+			<td><?php echo $item['Day'];?></td>
+			<td><?php echo $item['Date'];?></td>
+			<td>
+				<?php 
+					if($item['Tsusho']==1){
+						echo "出席";
+					}else{
+						echo "欠席";
+					}
+					
+				?>
+			</td>
+		</tr>
+		<?}?>
+	</table>
+
+	<form method="post" action="/fukushisystem/display_data/exportData">
+		<h1>SV EXPORT</h1>
+		<label class="select" for="pet-select">年間を選択：</label>
+		<select name="year" required>
+		    <option value="">--選択してください--</option>
+		    <option value="2022">2022</option>
+		    <option value="2023">2023</option>
+		    <option value="2024">2024</option>
+		    <option value="2025">2025</option>
+		</select>
+		<br>
+		<br>
+		<label class="select" for="pet-select">月間を選択：</label>
+		<select name="month" required>
+		    <option value="">--選択してください--</option>
+		    <option value="01">01</option>
+		    <option value="02">02</option>
+		    <option value="03">03</option>
+		    <option value="04">04</option>
+		    <option value="05">05</option>
+		    <option value="06">06</option>
+		    <option value="07">07</option>
+		    <option value="08">08</option>
+		    <option value="09">09</option>
+		    <option value="10">10</option>
+		    <option value="11">11</option>
+		    <option value="12">12</option>
+		</select>
+		<br>
+		<br>
+
+		<!-- <button onclick="location.href='/fukushisystem/display_data/exportData'" class="prints">CSVファイルエクスポート</button> -->
+		<input class="exportData" name="btn_activeRecord" type="submit" value="SVファイルエクスポート"/>
+	</form>
+<hr>
+	<form method="post" action="/fukushisystem/display_data/exportDataSE">
+		<h1>SE EXPORT</h1>
+		<label class="select" for="pet-select">年間を選択：</label>
+		<select name="year" required>
+		    <option value="">--選択してください--</option>
+		    <option value="2022">2022</option>
+		    <option value="2023">2023</option>
+		    <option value="2024">2024</option>
+		    <option value="2025">2025</option>
+		</select>
+		<br>
+		<br>
+		<label class="select" for="pet-select">月間を選択：</label>
+		<select name="month" required>
+		    <option value="">--選択してください--</option>
+		    <option value="01">01</option>
+		    <option value="02">02</option>
+		    <option value="03">03</option>
+		    <option value="04">04</option>
+		    <option value="05">05</option>
+		    <option value="06">06</option>
+		    <option value="07">07</option>
+		    <option value="08">08</option>
+		    <option value="09">09</option>
+		    <option value="10">10</option>
+		    <option value="11">11</option>
+		    <option value="12">12</option>
+		</select>
+		<br>
+		<br>
+		<input class="exportDataSE" name="btn_activeRecordSE" type="submit" value="SEファイルエクスポート"/>
+	</form>
+</body>
+</html>
+
+<!-- <script type="text/javascript">
+	$('select').on('change', function() {
+	  alert( this.value );
+	});
+</script> -->
+

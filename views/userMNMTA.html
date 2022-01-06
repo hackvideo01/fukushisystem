@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A 利用者管理</title>
+</head>
+<body>
+    <style>
+        table{
+            margin: 0 auto;
+        }
+        table td{
+            padding: 5px 10px;
+        }
+        input, textarea{
+            border: solid 1px #ddd;
+            padding: 5px 20px;
+            width: 100%;
+        }
+        input[type="submit"]{
+            width: auto;
+            background: red;
+            color:#fff;
+        }
+        h1{
+            text-align: center;
+        }
+        .logout{
+            background: red;
+            color: white;
+            font-weight: bold;
+        }
+        .important{
+            background: red;
+            color: white;
+        }
+        .unit{
+            background: green;
+            color: white;
+        }
+    </style>
+
+<button type="button" class="logout" onclick="location.href='/fukushisystem/logout'">ログアウト</button>
+<button type="button" onclick="location.href='/fukushisystem/userMNMT/migration'">移行</button>
+<!-- <button type="button" onclick="location.href='userMNMT/A'">A</button> -->
+<button type="button" onclick="location.href='/fukushisystem/userMNMT/B'">B</button>
+<button type="button" onclick="location.href='/fukushisystem/activeRecord'">活動記録</button>
+<button type="button" onclick="location.href='/fukushisystem/business'">事業所マスタ</button>
+<button type="button" onclick="location.href='/fukushisystem/display_data'">印刷画面</button>
+<button type="button" class="unit" onclick="location.href='/fukushisystem/unit'">単位</button>
+
+<h1>A 利用者管理</h1>
+<form method="post">
+    <table>
+        <tr>
+            <td>氏名</td>
+            <td>
+                <input type="text" name="Name_hira" required="required"/>
+            </td>
+        </tr>
+        <tr>
+            <td>氏名カナ</td>
+            <td>
+                <input type="text" name="Name_kana" required="required"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="important">受給者証番号</td>
+            <td>
+                <input type="text" name="Recipient_number" maxlength="10" required />
+            </td>
+        </tr>
+        <tr>
+            <td class="important">支給市町村</td>
+            <td>
+                <input type="text" value="" name="Supply_municipalitie" maxlength="6" required />
+            </td>
+        </tr>
+        <tr>
+            <td>障害支援区分</td>
+            <td>
+                <input type="text" value="" name="Disability_support_type"/>
+            </td>
+        </tr>
+        <tr>
+            <td>利用者負担上限額</td>
+            <td>
+                <input type="text" value="" name="Business_up_limit"/>
+            </td>
+        </tr>
+        <tr>
+            <td>事業者減免額</td>
+            <td>
+                <input type="text" value="" name="Business_exemption_amount"/>
+            </td>
+        </tr>
+        <tr>
+            <td>サービス開始日(支給決定開始日）</td>
+            <td>
+                <input type="date" value="" name="Service_start_date"/>
+            </td>
+        </tr>
+        <tr>
+            <td>サービス終了日（支給決定終了日）</td>
+            <td>
+                <input type="date" value="" name="Service_end_date"/>
+            </td>
+        </tr>
+        <tr>
+            <td>契約記入欄番号(事業者記入欄番号）</td>
+            <td>
+                <input type="text" value="" name="Contract_field_number"/>
+            </td>
+        </tr>
+        <tr>
+            <td>契約日</td>
+            <td>
+                <input type="date" value="" name="Contract_date"/>
+            </td>
+        </tr>
+        <tr>
+            <td>契約終了日（終了日は空欄でもかまわない）</td>
+            <td>
+                <input type="date" value="" name="Contract_end_date"/>
+            </td>
+        </tr>
+        <tr>
+            <td>契約支給量(決定支給量）該当月の日数から8日を控除した日数</td>
+            <td>
+                <input type="text" value="" name="Contract_payment_amount"/>
+            </td>
+        </tr>
+        <tr>
+            <td>初期加算(日付が入る）</td>
+            <td>
+                <input type="text" value="" name="Initial_addition"/>
+            </td>
+        </tr>
+        <tr>
+            <td>介護計画未作成</td>
+            <td>
+                <input type="text" value="" name="Nursing_plan_notcreated"/>
+            </td>
+        </tr>
+        <tr>
+            <td>送迎同一敷地</td>
+            <td>
+                <input type="text" value="" name="Pick_drop_same_site"/>
+            </td>
+        </tr>
+        <tr>
+            <td>上限額管理事業所番号</td>
+            <td>
+                <input type="text" value="" name="Max_mgmt_office_number"/>
+            </td>
+        </tr>
+        <tr>
+            <td>上限額管理事業所名</td>
+            <td>
+                <input type="text" value="" name="Max_mgmt_office_name"/>
+            </td>
+        </tr>
+        <tr>
+            <td>上限額管理結果</td>
+            <td>
+                <input type="text" value="" name="Max_mgmt_result"/>
+            </td>
+        </tr>
+        <tr>
+            <td>上限額管理後利用者負担額</td>
+            <td>
+                <input type="text" value="" name="Max_mgmt_after_user_burden"/>
+            </td>
+        </tr>
+        <tr>
+            <td>上限額管理加算</td>
+            <td>
+                <input type="text" value="" name="Max_mgmt_addition"/>
+            </td>
+        </tr>
+        <tr>
+            <td>特例利用開始年月</td>
+            <td>
+                <input type="date" value="" name="Special_use_start_date"/>
+            </td>
+        </tr>
+        <tr>
+            <td>特例利用終了年月</td>
+            <td>
+                <input type="date" value="" name="Special_use_end_date"/>
+            </td>
+        </tr>
+        <tr>
+            <td>特例利用年間原則日数</td>
+            <td>
+                <input type="text" value="" name="Special_use_year_principle"/>
+            </td>
+        </tr>
+        <tr>
+            <td>特例利用当月利用日数</td>
+            <td>
+                <input type="text" value="" name="Special_use_month_day"/>
+            </td>
+        </tr>
+        <tr>
+            <td>特例利用各月日数</td>
+            <td>
+                <input type="text" value="" name="Special_use_each_month"/>
+            </td>
+        </tr>
+        <tr>
+            <td>施設外支援累計</td>
+            <td>
+                <input type="text" value="" name="Structout_support_cumulative"/>
+            </td>
+        </tr>
+        <tr>
+            <td>再請求対象</td>
+            <td>
+                <input type="text" value="" name="Rechargeable"/>
+            </td>
+        </tr>
+        <tr>
+            <td>自社が上限額管理をする場合の、他社の利用状況</td>
+            <td>
+                <input type="text" value="" name="Other_compay_use_status"/>
+            </td>
+        </tr>
+        <tr>
+            <td>事業所名</td>
+            <td>
+                <input type="text" value="" name="Office_name"/>
+            </td>
+        </tr>
+        <tr>
+            <td>利用者負担上限額開始日</td>
+            <td>
+                <input type="date" value="" name="User_burden_limit_start"/>
+            </td>
+        </tr>
+        <tr>
+            <td>利用者負担上限額終了日</td>
+            <td>
+                <input type="date" value="" name="User_burden_limit_end"/>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input name="btn_userMNMT" type="submit" value="登録"/>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>移行 事業所マスタ</title>
+</head>
+<body>
+    <style>
+        table{
+            margin: 0 auto;
+        }
+        table td{
+            padding: 5px 10px;
+        }
+        input, textarea{
+            border: solid 1px #ddd;
+            padding: 5px 20px;
+            width: 100%;
+        }
+        input[type="submit"]{
+            width: auto;
+            background: red;
+            color:#fff;
+        }
+        h1{
+            text-align: center;
+        }
+        .logout{
+            background: red;
+            color: white;
+            font-weight: bold;
+        }
+        .important{
+            background: red;
+            color: white;
+        }
+        .unit{
+            background: green;
+            color: white;
+        }
+    </style>
+
+<button type="button" class="logout" onclick="location.href='/fukushisystem/logout'">ログアウト</button>
+<button type="button" onclick="location.href='/fukushisystem/business/B'">B</button>
+<button type="button" onclick="location.href='/fukushisystem/business/A'">A</button>
+<!-- <button type="button" onclick="location.href='/fukushisystem/activeRecord/B'">B</button> -->
+<button type="button" onclick="location.href='/fukushisystem/userMNMT'">利用者管理</button>
+<button type="button" onclick="location.href='/fukushisystem/activeRecord'">活動記録</button>
+<button type="button" onclick="location.href='/fukushisystem/display_data'">印刷画面</button>
+<button type="button" class="unit" onclick="location.href='/fukushisystem/unit'">単位</button>
+
+<h1>移行 事業所マスタ</h1>
+<form method="post">
+    <table>
+        <tr>
+            <td>形式番号</td>
+            <td>
+                <input type="text" name="Model_number" required="required"/>
+            </td>
+        </tr>
+        <tr>
+            <td>形式記号</td>
+            <td>
+                <input type="text" name="Model_symbol" required="required"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="important">サービス提供年月</td>
+            <td>
+                <input type="month" name="Service_offer_date"/>
+            </td>
+        </tr>
+        <tr>
+            <td>法人名</td>
+            <td>
+                <input type="text" value="" name="Corporate_name"/>
+            </td>
+        </tr>
+        <tr>
+            <td>代表者</td>
+            <td>
+                <input type="text" value="" name="Representative"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="important">事業者名</td>
+            <td>
+                <input type="text" value="" name="Businesser_name" required/>
+            </td>
+        </tr>
+        <tr>
+            <td>略称</td>
+            <td>
+                <input type="text" value="" name="Abbreviation"/>
+            </td>
+        </tr>
+        <tr>
+            <td>管理者</td>
+            <td>
+                <input type="text" value="" name="Administrator"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="important">事業者番号</td>
+            <td>
+                <input type="text" value="" name="Businesser_number" maxlength="10" required/>
+            </td>
+        </tr>
+        <tr>
+            <td>郵便番号</td>
+            <td>
+                <input type="text" value="" name="Businesser_postal_code"/>
+            </td>
+        </tr>
+        <tr>
+            <td>住所</td>
+            <td>
+                <input type="text" value="" name="Businesser_address"/>
+            </td>
+        </tr>
+        <tr>
+            <td>電話番号</td>
+            <td>
+                <input type="text" value="" name="Businesser_phone"/>
+            </td>
+        </tr>
+        <tr>
+            <td>種別</td>
+            <td>
+                <input type="text" value="" name="Kind"/>
+            </td>
+        </tr>
+        <tr>
+            <td>就労定着率区分</td>
+            <td>
+                <input type="text" value="" name="Work_settlement_type"/>
+            </td>
+        </tr>
+        <tr>
+            <td>公立</td>
+            <td>
+                <input type="text" value="" name="Public"/>
+            </td>
+        </tr>
+        <tr>
+            <td>地域区分</td>
+            <td>
+                <input type="text" value="" name="Area_type"/>
+            </td>
+        </tr>
+        <tr>
+            <td>定員</td>
+            <td>
+                <input type="text" value="" name="Capacity"/>
+            </td>
+        </tr>
+        <tr>
+            <td>種類別定員</td>
+            <td>
+                <input type="text" value="" name="Capacity_type"/>
+            </td>
+        </tr>
+        <tr>
+            <td>視覚聴覚支援体制加算</td>
+            <td>
+                <input type="text" value="" name="Vison_hear_support"/>
+            </td>
+        </tr>
+        <tr>
+            <td>福祉専門職員配置等加算</td>
+            <td>
+                <input type="text" value="" name="Welfare_pro_staff_add"/>
+            </td>
+        </tr>
+        <tr>
+            <td>就労支援関係研修修了加算</td>
+            <td>
+                <input type="text" value="" name="Work_support_add"/>
+            </td>
+        </tr>
+        <tr>
+            <td>医療連携看護職員</td>
+            <td>
+                <input type="text" value="" name="Care_link_nurse_staff"/>
+            </td>
+        </tr>
+        <tr>
+            <td>送迎加算種類</td>
+            <td>
+                <input type="text" value="" name="Pick_drop_kind_add"/>
+            </td>
+        </tr>
+        <tr>
+            <td>身体拘束廃止未実施減算</td>
+            <td>
+                <input type="text" value="" name="Body_not_abolition"/>
+            </td>
+        </tr>
+        <tr>
+            <td>地域生活支援拠点等</td>
+            <td>
+                <input type="text" value="" name="Area_life_support"/>
+            </td>
+        </tr>
+        <tr>
+            <td>定員超過</td>
+            <td>
+                <input type="text" value="" name="Overcapacity"/>
+            </td>
+        </tr>
+        <tr>
+            <td>従業員欠員</td>
+            <td>
+                <input type="text" value="" name="Employee_vacancy"/>
+            </td>
+        </tr>
+        <tr>
+            <td>サービス管理責任者欠員</td>
+            <td>
+                <input type="text" value="" name="Service_admin_vacancy"/>
+            </td>
+        </tr>
+        <tr>
+            <td>標準利用期間超過</td>
+            <td>
+                <input type="text" value="" name="Standard_use_time"/>
+            </td>
+        </tr>
+        <tr>
+            <td>処遇改善都道府県</td>
+            <td>
+                <input type="text" value="" name="Treatment_improve"/>
+            </td>
+        </tr>
+        <tr>
+            <td>処遇改善都道府県番号</td>
+            <td>
+                <input type="text" value="" name="Treatment_improve_num"/>
+            </td>
+        </tr>
+        <tr>
+            <td>処遇改善キャリアパス区分</td>
+            <td>
+                <input type="text" value="" name="Treatment_career_improve"/>
+            </td>
+        </tr>
+        <tr>
+            <td>特定処遇改善加算</td>
+            <td>
+                <input type="text" value="" name="Special_treatment_improve_add"/>
+            </td>
+        </tr>
+        <tr>
+            <td>処遇改善特別加算</td>
+            <td>
+                <input type="text" value="" name="Treatment_improve_add"/>
+            </td>
+        </tr>
+        <tr>
+            <td>請求書役職</td>
+            <td>
+                <input type="text" value="" name="Invoice_title"/>
+            </td>
+        </tr>
+        <tr>
+            <td>請求書氏名</td>
+            <td>
+                <input type="text" value="" name="Invoice_name"/>
+            </td>
+        </tr>
+        <tr>
+            <td>利用者請求書備考</td>
+            <td>
+                <input type="text" value="" name="User_invoice_remark"/>
+            </td>
+        </tr>
+        <tr>
+            <td>実費１</td>
+            <td>
+                <input type="text" value="" name="Actual_cost1"/>
+            </td>
+        </tr>
+        <tr>
+            <td>実費２</td>
+            <td>
+                <input type="text" value="" name="Actual_cost2"/>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input name="btn_business" type="submit" value="登録"/>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

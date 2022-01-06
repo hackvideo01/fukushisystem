@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>事業所マスタ</title>
+</head>
+<body>
+	<style type="text/css">
+		.logout{
+            background: red;
+            color: white;
+            font-weight: bold;
+        }
+        .unit{
+            background: green;
+            color: white;
+        }
+    </style>
+
+	<button type="button" class="logout" onclick="location.href='/fukushisystem/logout'">ログアウト</button>
+	<button type="button" onclick="location.href='/fukushisystem/business/migration'">移行</button>
+	<button type="button" onclick="location.href='/fukushisystem/business/A'">A</button>
+	<button type="button" onclick="location.href='/fukushisystem/business/B'">B</button>
+	<button type="button" onclick="location.href='/fukushisystem/activeRecord'">活動記録</button>
+	<button type="button" onclick="location.href='/fukushisystem/userMNMT'">利用者管理</button>
+	<button type="button" onclick="location.href='/fukushisystem/display_data'">印刷画面</button>
+	<button type="button" class="unit" onclick="location.href='/fukushisystem/unit'">単位</button>
+</body>
+</html>

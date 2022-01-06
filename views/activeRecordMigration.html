@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <title>移行 活動記録</title>
+</head>
+<body>
+    <style>
+        table{
+            margin: 0 auto;
+        }
+        table td{
+            padding: 5px 10px;
+        }
+        input, textarea{
+            border: solid 1px #ddd;
+            padding: 5px 20px;
+            width: 100%;
+        }
+        input[type="submit"]{
+            width: auto;
+            background: red;
+            color:#fff;
+        }
+        h1{
+            text-align: center;
+        }
+        .logout{
+            background: red;
+            color: white;
+            font-weight: bold;
+        }
+        .important{
+            background: red;
+            color: white;
+        }
+        .Day{
+            font-weight: bold;
+            color: black;
+        }
+        .unit{
+            background: green;
+            color: white;
+        }
+    </style>
+
+    <button type="button" class="logout" onclick="location.href='/fukushisystem/logout'">ログアウト</button>
+<!-- <button type="button" onclick="location.href='/fukushisystem/activeRecord/migration'">移行</button> -->
+    <button type="button" onclick="location.href='/fukushisystem/activeRecord/A'">A</button>
+    <button type="button" onclick="location.href='/fukushisystem/activeRecord/B'">B</button>
+    <button type="button" onclick="location.href='/fukushisystem/userMNMT'">利用者管理</button>
+    <button type="button" onclick="location.href='/fukushisystem/business'">事業所マスタ</button>
+    <button type="button" onclick="location.href='/fukushisystem/display_data'">印刷画面</button>
+    <button type="button" class="unit" onclick="location.href='/fukushisystem/unit'">単位</button>
+
+<h1>移行 活動記録</h1>
+<form method="post">
+    <table>
+        <tr>
+            <td class="important">受給者証番号</td>
+            <td>
+                <input type="text" name="Recipient_number" maxlength="10" required />
+            </td>
+        </tr>
+        <tr>
+            <td>日</td>
+            <td>
+                <input type="date" name="Date" required="required"/>
+            </td>
+        </tr>
+        <tr>
+            <td>曜日</td>
+            <td>
+                <input class="Day" type="date" name="Day" required="required"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="important">通所</td>
+            <td>
+                <!-- <input type="text" name="Tsusho"/> -->
+                <select name="Tsusho" onchange="outputSelectedValueAndText(this);">
+                    <option value="attendance">出席</option>
+                    <option value="absence">欠席</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="important">開始時刻</td>
+            <td>
+                <select name="Start_time" id="Start_time">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="important">終了時刻</td>
+            <td>
+               <select name="End_time" id="End_time">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>食事加算</td>
+            <td>
+                <input type="text" value="" name="Meal_addition"/>
+            </td>
+        </tr>
+        <tr>
+            <td>送迎</td>
+            <td>
+                <input type="text" value="" name="Pick_drop"/>
+            </td>
+        </tr>
+        <tr>
+            <td>体験利用</td>
+            <td>
+                <input type="text" value="" name="Experience_use"/>
+            </td>
+        </tr>
+        <tr>
+            <td>訪問支援</td>
+            <td>
+                <input type="text" value="" name="Visit_support"/>
+            </td>
+        </tr>
+        <tr>
+            <td>移行準備</td>
+            <td>
+                <input type="text" value="" name="Prepare_migration"/>
+            </td>
+        </tr>
+        <tr>
+            <td>社会生活</td>
+            <td>
+                <input type="text" value="" name="Social_life"/>
+            </td>
+        </tr>
+        <tr>
+            <td>通勤訓練</td>
+            <td>
+                <input type="text" value="" name="Work_training"/>
+            </td>
+        </tr>
+        <tr>
+            <td>在宅時生活</td>
+            <td>
+                <input type="text" value="" name="Life_home"/>
+            </td>
+        </tr>
+        <tr>
+            <td>精神施設</td>
+            <td>
+                <input type="text" value="" name="Mental_institution"/>
+            </td>
+        </tr>
+        <tr>
+            <td>医療連携</td>
+            <td>
+                <input type="text" value="" name="Medical_cooperation"/>
+            </td>
+        </tr>
+        <tr>
+            <td>備考</td>
+            <td>
+                <input type="text" value="" name="Remark"/>
+            </td>
+        </tr>
+        <tr>
+            <td>実費１</td>
+            <td>
+                <input type="text" value="" name="Actual_cost1"/>
+            </td>
+        </tr>
+        <tr>
+            <td>実費２</td>
+            <td>
+                <input type="text" value="" name="Actual_cost2"/>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input name="btn_activeRecord" type="submit" value="登録"/>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
+<script type="text/javascript">
+    $('input[type="date"]').on('change', function() {
+        var days = ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'];
+        var d = new Date(document.getElementById("Date").value);
+        var dayName = days[d.getDay()];
+        document.getElementById('Day').value = dayName;
+    });
+
+     $(document).ready(function () {
+        $('#bt').click(function () {
+            $('#Start_time').prop('disabled', function (index, value) {   // Passing "function()" as parameter to .prop().
+                // if (value) {
+                //     $('#msg').html('dropdown list <b>enabled</b>');
+                // }
+                // else {
+                //     $('#msg').html('dropdown list <b>disabled</b>');
+                // }
+
+                return !value;  // return true or false
+            });
+            $('#End_time').prop('disabled', function (index, value) {   // Passing "function()" as parameter to .prop().
+                // if (value) {
+                //     $('#msg').html('dropdown list <b>enabled</b>');
+                // }
+                // else {
+                //     $('#msg').html('dropdown list <b>disabled</b>');
+                // }
+
+                return !value;  // return true or false
+            });
+        });
+    });
+
+    function outputSelectedValueAndText(obj)
+    {
+        /* 
+         * obj は select タグであり、selectedIndex プロパティには
+         * 変更後の選択項目のインデックスが格納されています
+         */
+        var idx = obj.selectedIndex;
+        var value = obj.options[idx].value; // 値
+        var text  = obj.options[idx].text;  // 表示テキスト
+        if (text=="欠席") {
+            $('#Start_time').prop('disabled', function (index, value) {   // Passing "function()" as parameter to .prop().
+                // if (value) {
+                //     $('#msg').html('dropdown list <b>enabled</b>');
+                // }
+                // else {
+                //     $('#msg').html('dropdown list <b>disabled</b>');
+                // }
+
+                return !value;  // return true or false
+            });
+            $('#End_time').prop('disabled', function (index, value) {   // Passing "function()" as parameter to .prop().
+                // if (value) {
+                //     $('#msg').html('dropdown list <b>enabled</b>');
+                // }
+                // else {
+                //     $('#msg').html('dropdown list <b>disabled</b>');
+                // }
+
+                return !value;  // return true or false
+            });
+        }
+        // 値とテキストをコンソールに出力
+        // console.log('value = ' + value + ', ' + 'text = ' + text);
+    }
+</script>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <title>単位</title>
+</head>
+<body>
+    <style>
+        table{
+            margin: 0 auto;
+        }
+        table td{
+            padding: 5px 10px;
+        }
+        input, textarea{
+            border: solid 1px #ddd;
+            padding: 5px 20px;
+            width: 100%;
+        }
+        input[type="submit"]{
+            width: auto;
+            background: red;
+            color:#fff;
+        }
+        h1{
+            text-align: center;
+        }
+        .logout{
+            background: red;
+            color: white;
+            font-weight: bold;
+        }
+        .important{
+            background: red;
+            color: white;
+        }
+        .Day{
+            font-weight: bold;
+            color: black;
+        }
+    </style>
+
+<button type="button" class="logout" onclick="location.href='/fukushisystem/logout'">ログアウト</button>
+<button type="button" onclick="location.href='/fukushisystem/activeRecord/migration'">移行</button>
+<!-- <button type="button" onclick="location.href='/fukushisystem/activeRecord/A'">A</button> -->
+<button type="button" onclick="location.href='/fukushisystem/activeRecord/B'">B</button>
+<button type="button" onclick="location.href='/fukushisystem/activeRecord'">利用者管理</button>
+<button type="button" onclick="location.href='/fukushisystem/business'">事業所マスタ</button>
+<button type="button" onclick="location.href='/fukushisystem/display_data'">印刷画面</button>
+
+<h1>単位</h1>
+<form method="post">
+    <table>
+        <tr>
+            <td>サービス内容</td>
+            <td>
+                <input type="text" name="Recipient_number" required />
+            </td>
+        </tr>
+        <tr>
+            <td>単位数</td>
+            <td>
+                <input type="text" id="Date" name="Date" maxlength="6" required="required"/>
+            </td>
+        </tr>
+        <tr>
+            <td>回数</td>
+            <td>
+                <input class="Day" type="text" id="Day" name="Day" maxlength="3" required="required"/>
+            </td>
+        </tr>
+        <tr>
+            <td>サービス単位</td>
+            <td>
+                <input type="text" value="" name="Meal_addition" maxlength="9"/>
+            </td>
+        </tr>
+        <tr>
+            <td>適用</td>
+            <td>
+                <input type="text" value="" name="Pick_drop"/>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input name="btn_unit" type="submit" value="登録"/>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
+<script type="text/javascript">
+    $('input[type="date"]').on('change', function() {
+        var days = ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'];
+        var d = new Date(document.getElementById("Date").value);
+        var dayName = days[d.getDay()];
+        document.getElementById('Day').value = dayName;
+    });
+
+     $(document).ready(function () {
+        $('#bt').click(function () {
+            $('#Start_time').prop('disabled', function (index, value) {   // Passing "function()" as parameter to .prop().
+                // if (value) {
+                //     $('#msg').html('dropdown list <b>enabled</b>');
+                // }
+                // else {
+                //     $('#msg').html('dropdown list <b>disabled</b>');
+                // }
+
+                return !value;  // return true or false
+            });
+            $('#End_time').prop('disabled', function (index, value) {   // Passing "function()" as parameter to .prop().
+                // if (value) {
+                //     $('#msg').html('dropdown list <b>enabled</b>');
+                // }
+                // else {
+                //     $('#msg').html('dropdown list <b>disabled</b>');
+                // }
+
+                return !value;  // return true or false
+            });
+        });
+    });
+
+    function outputSelectedValueAndText(obj)
+    {
+        /* 
+         * obj は select タグであり、selectedIndex プロパティには
+         * 変更後の選択項目のインデックスが格納されています
+         */
+        var idx = obj.selectedIndex;
+        var value = obj.options[idx].value; // 値
+        var text  = obj.options[idx].text;  // 表示テキスト
+        if (text=="欠席") {
+            $('#Start_time').prop('disabled', function (index, value) {   // Passing "function()" as parameter to .prop().
+                // if (value) {
+                //     $('#msg').html('dropdown list <b>enabled</b>');
+                // }
+                // else {
+                //     $('#msg').html('dropdown list <b>disabled</b>');
+                // }
+
+                return !value;  // return true or false
+            });
+            $('#End_time').prop('disabled', function (index, value) {   // Passing "function()" as parameter to .prop().
+                // if (value) {
+                //     $('#msg').html('dropdown list <b>enabled</b>');
+                // }
+                // else {
+                //     $('#msg').html('dropdown list <b>disabled</b>');
+                // }
+
+                return !value;  // return true or false
+            });
+        }
+        // 値とテキストをコンソールに出力
+        // console.log('value = ' + value + ', ' + 'text = ' + text);
+    }
+</script>
