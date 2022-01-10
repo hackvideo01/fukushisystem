@@ -39,19 +39,24 @@
             background: green;
             color: white;
         }
+        .userMNMT{
+            text-align: center;
+        }
     </style>
 
 <button type="button" class="logout" onclick="location.href='/fukushisystem/logout'">ログアウト</button>
 
-<button type="button" onclick="location.href='/fukushisystem/userMNMT/migration'">移行</button>
-<button type="button" onclick="location.href='/fukushisystem/userMNMT/A'">A</button>
-<!-- <button type="button" onclick="location.href='B'">B</button> -->
 <button type="button" onclick="location.href='/fukushisystem/activeRecord'">活動記録</button>
 <button type="button" onclick="location.href='/fukushisystem/business'">事業所マスタ</button>
 <button type="button" onclick="location.href='/fukushisystem/display_data'">印刷画面</button>
-<button type="button" class="unit" onclick="location.href='/fukushisystem/unit'">単位</button>
+<!-- <button type="button" class="unit" onclick="location.href='/fukushisystem/unit'">単位</button> -->
 
 <h1>B 利用者管理</h1>
+<div class="userMNMT">
+    <button type="button" onclick="location.href='/fukushisystem/userMNMT/A'">A</button>
+    <button type="button" onclick="location.href='/fukushisystem/userMNMT/migration'">移行</button>
+    <!-- <button type="button" onclick="location.href='B'">B</button> -->
+</div>
 <form method="post">
     <table>
         <tr>

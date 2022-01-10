@@ -56,9 +56,17 @@
 	form{
 		text-align: center;
 	}
+	.logout{
+            background: red;
+            color: white;
+            font-weight: bold;
+        }
 </style>
 <body>
-	<button type="button" onclick="location.href='/fukushisystem/activeRecord'">利用者管理</button>
+	<button type="button" class="logout" onclick="location.href='/fukushisystem/logout'">ログアウト</button>
+	<button type="button" onclick="location.href='/fukushisystem/activeRecord'">活動記録</button>
+	<button type="button" onclick="location.href='/fukushisystem/userMNMT'">利用者管理</button>
+	<button type="button" onclick="location.href='/fukushisystem/business'">事業所マスタ</button>
 	<h1>印刷画面</h1>
 	<table>
 		<tr>

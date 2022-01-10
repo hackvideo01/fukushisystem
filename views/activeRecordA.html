@@ -44,18 +44,23 @@
             background: green;
             color: white;
         }
+        .activeRecord{
+            text-align: center;
+        }
     </style>
 
 <button type="button" class="logout" onclick="location.href='/fukushisystem/logout'">ログアウト</button>
-<button type="button" onclick="location.href='/fukushisystem/activeRecord/migration'">移行</button>
-<!-- <button type="button" onclick="location.href='/fukushisystem/activeRecord/A'">A</button> -->
-<button type="button" onclick="location.href='/fukushisystem/activeRecord/B'">B</button>
-<button type="button" onclick="location.href='/fukushisystem/activeRecord'">利用者管理</button>
+<button type="button" onclick="location.href='/fukushisystem/userMNMT'">利用者管理</button>
 <button type="button" onclick="location.href='/fukushisystem/business'">事業所マスタ</button>
 <button type="button" onclick="location.href='/fukushisystem/display_data'">印刷画面</button>
-<button type="button" class="unit" onclick="location.href='/fukushisystem/unit'">単位</button>
+<!-- <button type="button" class="unit" onclick="location.href='/fukushisystem/unit'">単位</button> -->
 
 <h1>A 活動記録</h1>
+<div class="activeRecord">
+    <!-- <button type="button" onclick="location.href='/fukushisystem/activeRecord/A'">A</button> -->
+    <button type="button" onclick="location.href='/fukushisystem/activeRecord/B'">B</button>
+    <button type="button" onclick="location.href='/fukushisystem/activeRecord/migration'">移行</button>
+</div>
 <form method="post">
     <table>
         <tr>
