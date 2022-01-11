@@ -1,0 +1,350 @@
+
+.introduce-content{
+	/*max-width: 1140px;*/
+	margin: 0 auto;
+	padding: 0 0.5em;
+	font-family: adobe-garamond-pro,source-han-serif-japanese,"ヒラギノ明朝 Pro W3","Hiragino Mincho Pro","游明朝体",YuMincho,"Yu Mincho","ＭＳ Ｐ明朝","MS PMincho",serif;
+}
+
+.introduce-head{
+	margin-top: 1.9em;
+}
+
+.introduce-head-img{
+	height: 23em;
+	background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;	
+}
+
+.gaiyo{
+	max-width: 1140px;
+	margin: 0 auto;
+}
+
+.gaiyo-title{
+	color: white;
+	text-align: center;
+	font-size: 2em;
+	margin-bottom: .2em;
+}
+
+.gaiyo table{
+	color: white;
+	border-collapse: collapse;
+	/*border: 1px solid black;*/
+	width: 100%;
+	/*font-size: 22px;*/
+	font-family: adobe-garamond-pro,source-han-serif-japanese,"ヒラギノ明朝 Pro W3","Hiragino Mincho Pro","游明朝体",YuMincho,"Yu Mincho","ＭＳ Ｐ明朝","MS PMincho",serif;
+}
+
+.gaiyo th ,.gaiyo td{
+	border: 1px solid #E5E5E5;
+	padding: .5em;
+}
+
+.gaiyo th{
+	width: 20%;
+	text-align: left;
+}
+
+.gaiyo td{
+	width: 80%;
+
+}
+
+.gyoumu{
+	/*background-color: #F7F7F2;*/
+    font-family: adobe-garamond-pro,source-han-serif-japanese,"ヒラギノ明朝 Pro W3","Hiragino Mincho Pro","游明朝体",YuMincho,"Yu Mincho","ＭＳ Ｐ明朝","MS PMincho",serif;
+	/*font-size: 22px;*/
+}
+
+.gyomu-margin{
+	margin: 0 auto;
+	max-width: 1140px;
+}
+
+.gyo-content{
+	color: white;
+}
+
+.gyo-content ul li,.guest{
+    /*font-size: 22px;*/
+    line-height: 1.9;
+    margin-bottom: 1.2em;
+    text-align: left;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    font-family: adobe-garamond-pro,source-han-serif-japanese,"ヒラギノ明朝 Pro W3","Hiragino Mincho Pro","游明朝体",YuMincho,"Yu Mincho","ＭＳ Ｐ明朝","MS PMincho",serif;
+}
+
+.guest{
+	margin: 0;
+}
+
+.gyoumu-title{
+	color: white;
+	font-size: 2em;
+	margin-top: 1em;
+	margin-bottom: .2em;
+	text-align: center;
+}
+
+.google-map{
+	/*width: 100%;*/
+	max-width: 1140px;
+	display: flex;
+	margin: 1em auto 0 auto ;
+}
+
+.google-map iframe{
+	width: 50%;
+	height: auto;
+	/*border-radius: 1em;*/
+}
+
+.google-map .local-img{
+	width: 50%;
+	;
+}
+
+.local-img img{
+	width: 100%;
+	height: 100%;
+	/*border-radius: 1em;*/
+}
+
+.history{
+	color: white;
+	position: relative;
+	max-width: 1140px;
+	margin: 0 auto;
+	padding: 0 0.5em;
+    font-family: adobe-garamond-pro,source-han-serif-japanese,"ヒラギノ明朝 Pro W3","Hiragino Mincho Pro","游明朝体",YuMincho,"Yu Mincho","ＭＳ Ｐ明朝","MS PMincho",serif;
+}
+
+.history-title{
+	text-align: center;
+	color: white;
+	font-size: 2em;
+	margin-top: 1em;
+	margin-bottom: .2em;
+}
+
+.history table{
+	border-collapse: collapse;
+	width: 80%;
+	/*margin: 1em 0;*/
+}
+
+.history td{
+	border: 1px dashed #E5E5E5;
+	padding:0 0 1em 0;
+	width: 80%;
+	border-right: none;
+	border-left: none;
+	border-top: none;
+}
+
+.history th{
+	padding: 1em 0 .5em 0;
+	width: 20%;
+	text-align: left;
+}
+
+.background-business-bottom{
+	background-color:#cccccc ;
+}
+
+.max-width-background-business-bottom{
+	max-width: 1140px;
+	margin: 0 auto;
+}
+
+@media (max-width: 1100px){
+	.img-A{
+		top: 0%!important;
+	}
+	.img-B{
+		top: 68%!important;
+	}
+	.img-C{
+	    top: 18%!important;
+	}
+	.img-D{
+		top: 86.3%!important;
+	}
+}
+
+@media (min-width: 1024px){
+	.introduce-head-img{
+		height: 42.5em;
+	}
+}
+
+@media (max-width: 1024px){
+	.introduce-head-img{
+		height: 38em;
+	}
+	.img-A{
+		top: 0%!important;
+	}
+	.img-B{
+		top: 49%!important;
+	}
+	.img-C{
+	    top: 18%!important;
+	}
+	.img-D{
+		top: 86.3%!important;
+	}
+}
+
+@media (max-width: 945px){
+	.history table{
+		width: 79%;
+	}
+}
+
+@media (max-width: 910px){
+	.history table{
+		width: 77%;
+	}
+}
+
+@media (max-width: 830px){
+	.history table{
+		width: 75%;
+	}
+}
+
+@media (max-width: 772px){
+	.history table{
+		width: 72%;
+	}
+}
+
+@media (min-width: 768px){
+	.history-content img{
+		display: none;
+	}
+}
+
+@media (max-width: 768px){
+	.introduce-head-img{
+		height: 28em;
+	}
+	.img-A{
+		top: 0%!important;
+	}
+	.img-B{
+		top: 57%!important;
+	}
+	.img-C{
+	    top: 27.5%!important;
+	}
+	.img-D{
+		top: 86.3%!important;
+	}
+	.history table{
+        width: 73%;
+    }
+}
+
+@media (max-width: 767px){
+	.img-A,.img-B,.img-C,.img-D{
+		display: none;
+	}
+	.history table{
+		width: 100%;
+	}
+}
+
+@media (max-width: 414px){
+	.gaiyo table ,.guest{
+		font-size: 14px;
+	}
+	.gaiyo-title,.history-title,.gyoumu-title{
+		font-size: 1.5em;
+	}
+	.gyo-content ul li{
+		font-size: 14px;
+	}
+	.introduce-head-img{
+		height: 14.5em;
+		width: 100%;
+	}
+	.google-map{
+		display: block;
+	}
+	.google-map iframe{
+		width: 100%;
+		height: 18em;
+	}
+	.google-map .local-img{
+		width: 100%;
+	}
+	.history table{
+        width: 100%;
+    }
+}
+
+@media (max-width: 375px){
+	.introduce-head-img{
+		height: 13em;
+		width: 100%;
+	}
+}
+
+@media (max-width: 320px){
+	.introduce-head-img{
+		height: 11em;
+		width: 100%;
+	}
+	.gaiyo-title{
+		font-size: 1.5em;
+	}
+	.gaiyo th, .gaiyo td{
+		padding: .2em;
+		font-size: 13px;
+	}
+	.gaiyo th{
+		width: 22%;
+		border-left: none;
+	}
+	.gaiyo td {
+		width: 78;
+		border-right: none;
+	}
+	.gyoumu{
+		font-size: 13px;
+	}
+	.gyoumu-title{
+		font-size: 1.5em;
+	}
+	.gyo-content ul li{
+    	font-size: 13px;
+	}
+	.google-map{
+		display: block;
+	}
+	.google-map iframe{
+		width: 100%;
+		height: 15em;
+	}
+	.google-map .local-img{
+		width: 100%;
+	}
+	.history{
+		font-size: 13px;
+	}
+	.history-title{
+		font-size: 1.5em;
+	}
+	.history table{
+        width: 100%;
+    }
+
+}

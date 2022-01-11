@@ -1,0 +1,152 @@
+
+/*Contact Form 7カスタマイズ*/
+/*スマホContact Form 7カスタマイズ*/
+.inquiry{
+  margin: 0 auto;
+}
+
+
+
+@media(max-width:718px){
+    form input,textarea{
+      width: 100%;
+    }
+
+    .inquiry{
+      width: 99%;
+    }
+}
+
+
+@media(max-width:500px){
+.inquiry th,.inquiry td {
+ display:block!important;
+ width:100%!important;
+ border-top:none!important;
+ -webkit-box-sizing:border-box!important;
+ -moz-box-sizing:border-box!important;
+ box-sizing:border-box!important;
+}
+.inquiry tr:first-child th{
+ border-top:1px solid #d7d7d7!important;
+}
+/* 必須・任意のサイズ調整 */	
+.inquiry .haveto,.inquiry .any {	
+font-size:10px;
+}}
+
+/*見出し欄*/
+.inquiry th{
+ text-align:left;
+ font-size:14px;
+ color:#444;
+ /*padding-right:5px;*/
+ padding: 2em;
+ width:30%;
+ background:#f7f7f7;
+ border:solid 1px #d7d7d7;
+}
+/*通常欄*/
+.inquiry td{
+background:#f7f7f7;
+font-size:16px;
+border:solid 1px #d7d7d7;	
+}
+/*横の行とテーブル全体*/
+.entry-content .inquiry tr,.entry-content table{
+ border:solid 1px #d7d7d7;	
+}
+/*必須の調整*/
+.haveto{
+ font-size:7px;
+ padding:5px;
+ background:#ff9393;
+ color:#fff;
+ border-radius:2px;
+ margin-right:5px;
+ position:relative;
+ bottom:1px;
+}
+/*任意の調整*/
+.any{
+ font-size:7px;
+ padding:5px;
+ background:#93c9ff;
+ color:#fff;
+ border-radius:2px;
+ margin-right:5px;
+ position:relative;
+ bottom:1px;
+}
+/*ラジオボタンを縦並び指定*/
+.verticallist .wpcf7-list-item{
+ display:block;
+}
+/*送信ボタンのデザイン変更*/
+
+.button-margin{
+	margin-top: 3em;
+}
+
+#formbtn{
+  font-family: adobe-garamond-pro, source-han-serif-japanese, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", 游明朝体, YuMincho, "Yu Mincho", "ＭＳ Ｐ明朝", "MS PMincho", serif;
+  display: block;
+  padding:1em 0;
+  margin-top:30px;
+  width:13em;
+  margin: 0 auto;
+  background:#006400;
+  color:#fff;
+  font-size:18px;
+  font-weight:bold;	 
+  border-radius:2em;
+  border: none;
+}
+/*送信ボタンマウスホバー時*/
+#formbtn:hover{
+  background:rgba(13,137,197,0.97);
+  color:#fff;
+  border-radius: 2em;
+}
+
+#wpcf7-f47-o1-ve-your-name-kana{
+	display: none;
+}
+
+#wpcf7-f47-o1-ve-your-name{
+	display: none;
+}
+
+#wpcf7-f47-o1-ve-your-email{
+	display: none;
+}
+
+#wpcf7-f47-o1-ve-your-message{
+	display: none;
+}
+
+.screen-reader-response{
+	text-align: center;
+  color: white;
+}
+
+.wpcf7-response-output{
+  padding-top: 3em;
+	text-align: center;
+  color: white;
+}
+
+.check-margin{
+    text-align: center;
+    margin: 3em 0 0 0;
+    color: white;
+}
+
+.check-margin input{
+  /*transform: scale(1.5);*/
+  margin-right: 1em;
+}
+
+.delete-file, .button-primary{
+  display: none!important;
+}

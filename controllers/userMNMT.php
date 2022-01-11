@@ -3,6 +3,20 @@
 class userMNMT extends controller{
 	function welcome(){
 		if (isset($_SESSION['usernameSS1'])){
+			// Load the database configuration file 
+			$db = $this->model("database");
+			$database = new Database();
+			// $database->setTable("usermanagement");
+			// Fetch records from database 
+			$queryList[] = "SELECT * FROM usermanagement ORDER BY Recipient_number ASC";
+
+			$queryList = implode(" ", $queryList);
+
+			$listItem = $database->fetchAll($queryList);
+			// foreach ($listItem as $item) {
+			// 	// print_r($item);
+
+			// }
 			require_once("./views/userMNMTDirector.html");
 		}else{
 			// echo "<script>alert('unit');</script>";

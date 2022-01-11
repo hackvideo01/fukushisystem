@@ -2,6 +2,20 @@
 class business extends controller{
 	function welcome(){
 		if (isset($_SESSION['usernameSS1'])){
+			// Load the database configuration file 
+			$db = $this->model("database");
+			$database = new Database();
+			// $database->setTable("usermanagement");
+			// Fetch records from database 
+			$queryList[] = "SELECT * FROM business ORDER BY Model_number ASC";
+
+			$queryList = implode(" ", $queryList);
+
+			$listItem = $database->fetchAll($queryList);
+			// foreach ($listItem as $item) {
+			// 	// print_r($item);
+
+			// }
 			require_once("./views/businessDirector.html");
 		}else{
 			// echo "<script>alert('unit');</script>";
@@ -191,5 +205,63 @@ class business extends controller{
 			header("Location: /fukushisystem/unit");
 		}
 	}
+	// function management(){
+	// 	$db = $this->model("database");
+	// 	$database = new Database();
+	// 	$database->setTable("business");
+	// 	if (isset($_SESSION['usernameSS1'])){
+	// 		// require_once("./views/businessMigration.html");
+	// 		// if (isset($_POST["btn_business"])) {
+	// 		// 	$data = array(
+	// 		// 		'Model_number' 						=> $_POST["Model_number"],
+	// 		// 		'Model_symbol' 						=> $_POST["Model_symbol"],
+	// 		// 		'Service_offer_date' 				=> $_POST["Service_offer_date"],
+	// 		// 		'Corporate_name' 					=> $_POST["Corporate_name"],
+	// 		// 		'Representative' 					=> $_POST["Representative"],
+	// 		// 		'Businesser_name' 					=> $_POST["Businesser_name"],
+	// 		// 		'Abbreviation' 						=> $_POST["Abbreviation"],
+	// 		// 		'Administrator' 					=> $_POST["Administrator"],
+	// 		// 		'Businesser_number' 				=> $_POST["Businesser_number"],
+	// 		// 		'Businesser_postal_code' 			=> $_POST["Businesser_postal_code"],
+	// 		// 		'Businesser_address' 				=> $_POST["Businesser_address"],
+	// 		// 		'Businesser_phone' 					=> $_POST["Businesser_phone"],
+	// 		// 		'Kind' 								=> $_POST["Kind"],
+	// 		// 		'Evaluation_point_type' 			=> $_POST["Work_settlement_type"],
+	// 		// 		'Public' 							=> $_POST["Public"],
+	// 		// 		'Area_type' 						=> $_POST["Area_type"],
+	// 		// 		'Capacity' 							=> $_POST["Capacity"],
+	// 		// 		'Capacity_type' 					=> $_POST["Capacity_type"],
+	// 		// 		'Vison_hear_support' 				=> $_POST["Vison_hear_support"],
+	// 		// 		'Welfare_pro_staff_add' 			=> $_POST["Welfare_pro_staff_add"],
+	// 		// 		'Work_support_add' 					=> $_POST["Work_support_add"],
+	// 		// 		'Care_link_nurse_staff' 			=> $_POST["Care_link_nurse_staff"],
+	// 		// 		'Pick_drop_kind_add' 				=> $_POST["Pick_drop_kind_add"],
+	// 		// 		'Body_not_abolition' 				=> $_POST["Body_not_abolition"],
+	// 		// 		'Area_life_support' 				=> $_POST["Area_life_support"],
+	// 		// 		'Overcapacity' 						=> $_POST["Overcapacity"],
+	// 		// 		'Employee_vacancy' 					=> $_POST["Employee_vacancy"],
+	// 		// 		'Service_admin_vacancy' 			=> $_POST["Service_admin_vacancy"],
+	// 		// 		'Standard_use_time' 				=> $_POST["Standard_use_time"],
+	// 		// 		'Treatment_improve' 				=> $_POST["Treatment_improve"],
+	// 		// 		'Treatment_improve_num' 			=> $_POST["Treatment_improve_num"],
+	// 		// 		'Treatment_career_improve' 			=> $_POST["Treatment_career_improve"],
+	// 		// 		'Special_treatment_improve_add' 	=> $_POST["Special_treatment_improve_add"],
+	// 		// 		'Treatment_improve_add' 			=> $_POST["Treatment_improve_add"],
+	// 		// 		'Invoice_title' 					=> $_POST["Invoice_title"],
+	// 		// 		'Invoice_name' 						=> $_POST["Invoice_name"],
+	// 		// 		'User_invoice_remark' 				=> $_POST["User_invoice_remark"],
+	// 		// 		'Actual_cost1' 						=> $_POST["Actual_cost1"],
+	// 		// 		'Actual_cost2' 						=> $_POST["Actual_cost2"],
+	// 		// 		'Business_type' 					=> 3
+	// 		// 	);
+	// 		// 	$database->insert($data);
+	// 		// 	header("Location: /fukushisystem/business/Migration");
+	// 		// }
+	// 		echo "Management";
+	// 	}else{
+	// 		// echo "<script>alert('unit');</script>";
+	// 		header("Location: /fukushisystem/unit");
+	// 	}
+	// }
 }
 ?>

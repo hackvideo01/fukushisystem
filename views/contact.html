@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>問い合わせ</title>
+</head>
+<body>
+	<style type="text/css">
+         /* Theme Name: NGUYEN LUC PRO
+         * Description: テーマ
+         * Theme URI: https://lucnguyen.com/
+         * Version: 1.0
+         * Theme Author: NGUYEN LUC MAIN
+         * Author URI: https://lucnguyen.com/
+         * Tags: starter theme, framework theme, two-columns, customize
+         * Textdomain: nguyenluc
+         */
+
+        /*  import google fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+        }
+        html{
+            scroll-behavior: smooth;
+        }
+
+        /* custom scroll bar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* all similar content styling codes */
+        section{
+            /*padding: 100px 0;*/
+        }
+
+        .menu{
+            margin: 0 auto;
+        }
+
+        .max-width{
+           /* max-width: 1300px;
+            padding: 0 80px;
+            margin: auto;*/
+        }
+        .about, .services, .skills, .teams, .contact, footer{
+            font-family: 'Poppins', sans-serif;
+        }
+        .about .about-content,
+        .services .serv-content,
+        .skills .skills-content,
+        .contact .contact-content{
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* navbar styling */
+        .navbar{
+            background: #004EA2;
+            /*position: fixed;*/
+            width: 100%;
+            z-index: 999;
+            padding: 12.3px 0;
+            font-family: 'Ubuntu', sans-serif;
+            transition: all 0.3s ease;
+        }
+        .navbar.sticky{
+            /*padding: 15px 0;*/
+            padding: 0;
+            background: white;
+            position: fixed;
+            top: 0;
+        }
+
+        /*dl, ol, ul{
+            margin-bottom: 0!important;
+        }*/
+
+        .top-content{
+            display: flex;
+            justify-content: center;
+            /*margin: .5em auto;*/
+            padding: .5em 0;
+            background: white;
+        }
+
+        .top-content img{
+            margin: 0 .8em;
+        }
+
+        .logo-top-disable{
+            display: none;
+        }
+
+        .navbar .max-width{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .navbar .logo a{
+            color: #fff;
+            font-size: 35px;
+            font-weight: 600;
+        }
+        .navbar .logo a span{
+            color: crimson;
+            transition: all 0.3s ease;
+        }
+        .navbar.sticky .logo a span{
+            color: #fff;
+        }
+        .navbar .menu li{
+            list-style: none;
+            display: inline-block;
+        }
+
+        .whiteline{
+            border-left: 1px solid white;
+            margin-right: 15px;
+            padding-right: 10px;
+        }
+
+        .menu-top1{
+            border-left: none!important;
+        }
+
+        .navbar .menu li a{
+            display: block;
+            color: white;
+            font-size: 0.9em;
+            font-weight: 500;
+            margin-left: 25px;
+            transition: color 0.3s ease;
+            font-family: adobe-garamond-pro,source-han-serif-japanese,"ヒラギノ明朝 Pro W3","Hiragino Mincho Pro","游明朝体",YuMincho,"Yu Mincho","ＭＳ Ｐ明朝","MS PMincho",serif;
+        }
+
+        .logo-scroll img{
+            display: none;
+            max-height: 4em;
+            margin: 0.2em;
+        }
+
+        .logo-scroll-display{
+            display: block!important;
+        }
+
+        .menu-margin-right{
+            margin: 0;
+        }
+
+        .navbar .menu li a:hover{
+            color: crimson;
+        }
+        .navbar.sticky .menu li a:hover{
+            color: red!important;
+        }
+
+        /* menu btn styling */
+        .menu-btn{
+            color: #fff;
+            font-size: 23px;
+            cursor: pointer;
+            display: none;
+        }
+
+        .menu-scroll{
+            color: black!important;
+        }
+
+        .scroll-up-btn{
+            position: fixed;
+            height: 45px;
+            width: 42px;
+            background: crimson;
+            right: 30px;
+            bottom: 10px;
+            text-align: center;
+            line-height: 45px;
+            color: #fff;
+            z-index: 9999;
+            font-size: 30px;
+            border-radius: 6px;
+            border-bottom-width: 2px;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        .scroll-up-btn.show{
+            bottom: 30px;
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .scroll-up-btn:hover{
+            filter: brightness(90%);
+        }
+
+        /* responsive media query start */
+        @media (max-width: 1104px) {
+            .about .about-content .left img{
+                height: 350px;
+                width: 350px;
+            }
+            .footer-img img{
+               width: 100%;
+            }
+        }
+
+        @media (min-width: 992px){
+        .logo-top img {
+            max-height: 5.9em;
+            margin-top: 0.5em;
+        }
+
+        .logo-top3 img {
+            max-height: 6em;
+        }
+        }
+
+        @media (max-width: 992px){
+            .footer-img img{
+               width: 100%;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .max-width{
+                padding: 0 50px;
+            }
+        }
+        @media (max-width: 947px){
+            .footer-img img{
+               width: 100%;
+            }
+
+            .menu-footer{
+                width: 100% !important;
+            }
+
+            .logo-scroll img{
+                max-height: 3em;
+            }
+
+            .menu-btn{
+                display: block;
+                z-index: 999;
+                color: black;
+            }
+            .menu-btn i.active:before{
+                content: "\f00d";
+            }
+            .navbar .menu{
+                position: fixed;
+                height: 100vh;
+                width: 100%;
+                left: -100%;
+                top: 0;
+                background: #D79013;
+                text-align: center;
+                padding-top: 80px;
+                transition: all 0.3s ease;
+            }
+            .navbar .menu.active{
+                left: 0;
+                overflow:scroll
+            }
+            .navbar .menu li{
+                display: block;
+            }
+            .navbar .menu li a{
+                display: inline-block;
+                margin: 15px 0 15px 1.2em;
+                font-size: 25px;
+            }
+            .home .home-content .text-2{
+                font-size: 70px;
+            }
+            .home .home-content .text-3{
+                font-size: 35px;
+            }
+            .home .home-content a{
+                font-size: 23px;
+                padding: 10px 30px;
+            }
+            .max-width{
+                max-width: 930px;
+            }
+            .about .about-content .column{
+                width: 100%;
+            }
+            .about .about-content .left{
+                display: flex;
+                justify-content: center;
+                margin: 0 auto 60px;
+            }
+            .about .about-content .right{
+                flex: 100%;
+            }
+            .services .serv-content .card{
+                width: calc(50% - 10px);
+                margin-bottom: 20px;
+            }
+            .skills .skills-content .column,
+            .contact .contact-content .column{
+                width: 100%;
+                margin-bottom: 35px;
+            }
+        }
+
+        @media (max-width: 690px) {
+            .max-width{
+                padding: 0 13px;
+            }
+            .home .home-content .text-2{
+                font-size: 60px;
+            }
+            .home .home-content .text-3{
+                font-size: 32px;
+            }
+            .home .home-content a{
+                font-size: 20px;
+            }
+            .services .serv-content .card{
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .home .home-content .text-2{
+                font-size: 50px;
+            }
+            .home .home-content .text-3{
+                font-size: 27px;
+            }
+            .about .about-content .right .text,
+            .skills .skills-content .left .text{
+                font-size: 19px;
+            }
+            .contact .right form .fields{
+                flex-direction: column;
+            }
+            .contact .right form .name,
+            .contact .right form .email{
+                margin: 0;
+            }
+            .right form .error-box{
+               width: 150px;
+            }
+            .scroll-up-btn{
+                right: 15px;
+                bottom: 15px;
+                height: 38px;
+                width: 35px;
+                font-size: 23px;
+                line-height: 38px;
+            }
+        }
+
+
+    /*Contact Form 7カスタマイズ*/
+    /*スマホContact Form 7カスタマイズ*/
+    .inquiry{
+      margin: 0 auto;
+    }
+
+    .check-margin input{
+     /* transform: scale(1.5);
+      margin-right: 1em;*/
+      height: 1em;
+      text-align: center;
+    }
+
+
+    @media(max-width:718px){
+        form input,textarea{
+          width: 100%;
+        }
+    }
+
+
+    @media(max-width:500px){
+    .inquiry th,.inquiry td {
+     display:block!important;
+     width:100%!important;
+     border-top:none!important;
+     -webkit-box-sizing:border-box!important;
+     -moz-box-sizing:border-box!important;
+     box-sizing:border-box!important;
+    }
+    .inquiry tr:first-child th{
+     border-top:1px solid #d7d7d7!important;
+    }
+    /* 必須・任意のサイズ調整 */   
+    .inquiry .haveto,.inquiry .any {    
+    font-size:10px;
+    }}
+
+    /*見出し欄*/
+    .inquiry th{
+     text-align:left;
+     font-size:14px;
+     color:#444;
+     /*padding-right:5px;*/
+     padding: 2em;
+     width:30%;
+     background:#f7f7f7;
+     border:solid 1px #d7d7d7;
+    }
+    /*通常欄*/
+    .inquiry td{
+     font-size:16px;
+     border:solid 1px #d7d7d7;  
+    }
+    /*横の行とテーブル全体*/
+    .entry-content .inquiry tr,.entry-content table{
+     border:solid 1px #d7d7d7;  
+    }
+    /*必須の調整*/
+    .haveto{
+     font-size:7px;
+     padding:5px;
+     background:#ff9393;
+     color:#fff;
+     border-radius:2px;
+     margin-right:5px;
+     position:relative;
+     bottom:1px;
+    }
+    /*任意の調整*/
+    .any{
+     font-size:7px;
+     padding:5px;
+     background:#93c9ff;
+     color:#fff;
+     border-radius:2px;
+     margin-right:5px;
+     position:relative;
+     bottom:1px;
+    }
+    /*ラジオボタンを縦並び指定*/
+    .verticallist .wpcf7-list-item{
+     display:block;
+    }
+    /*送信ボタンのデザイン変更*/
+
+    .button-margin{
+        margin-top: 3em;
+    }
+
+    #formbtn{
+     display: block;
+     padding:1em 0;
+     margin-top:30px;
+     width:13em;
+     margin: 5em auto;
+     background:#006400;
+     color:#fff;
+     font-size:18px;
+     font-weight:bold;   
+     border-radius:2em;
+     border: none;
+    }
+    /*送信ボタンマウスホバー時*/
+    #formbtn:hover{
+     background:rgba(13,137,197,0.97);
+     color:#fff;
+     border-radius:2em;
+    }
+
+    #wpcf7-f5-o1-ve-your-name{
+        display: none;
+    }
+
+    #wpcf7-f5-o1-ve-your-name-kana{
+        display: none;
+    }
+
+    #wpcf7-f5-o1-ve-your-email{
+        display: none;
+    }
+
+    #wpcf7-f5-o1-ve-your-message{
+        display: none;
+    }
+
+    .screen-reader-response{
+        text-align: center;
+      color: red;
+    }
+
+    .wpcf7-response-output{
+        margin-top: 2em;
+        text-align: center;
+      color: red;
+    }
+
+    .check-margin{
+        text-align: center;
+        margin: 3em 0 0 0;
+        color: black;
+    }
+
+    .delete-file, .button-primary{
+      display: none!important;
+    }
+
+    input[type=text]{
+        margin: 0;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+        width: 99%;
+    }
+    .checkbox_div{
+      margin: 0 auto;
+    }
+    textarea{
+      width: 99%;
+    }
+
+    @media only screen and (max-width: 959px) {
+        
+        }
+
+    .title-ct{
+        text-align: center;
+        font-family: adobe-garamond-pro, source-han-serif-japanese, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", 游明朝体, YuMincho, "Yu Mincho", "ＭＳ Ｐ明朝", "MS PMincho", serif;
+    }
+
+    .title-ct h1{
+        color: #006400!important;
+        font-weight: bold;
+        }
+        
+    @media (max-width: 868px) {
+        
+    }
+    .logout{
+        background: red;
+        color: white;
+        font-weight: bold;
+    }
+</style>
+
+  <?php
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
+
+    require './PHPMailer/src/Exception.php';
+    require './PHPMailer/src/PHPMailer.php';
+    require './PHPMailer/src/SMTP.php';
+
+    ?>
+<nav class="navbar">
+    <div class="max-width">
+        <ul class="menu">
+            <!-- <li class="menu-top1 whiteline"><a href="#" class="menu-btn">HOME</a></li> -->
+            <li class=""><a href="/fukushisystem/activeRecord" class="menu-btn">活動記録</a></li>
+            <li class="whiteline"><a href="/fukushisystem/business" class="menu-btn">事業所マスタ</a></li>
+            <li class="whiteline"><a href="/fukushisystem/display_data" class="menu-btn">印刷画面</a></li>
+            <li class="whiteline"><a href="/fukushisystem/contact" class="menu-btn">問い合わせ</a></li>
+        </ul>
+        <div class="menu-btn">
+            <!-- <i class="fas fa-bars"></i> -->
+        </div>
+    </div>
+</nav>
+
+<button type="button" class="logout" onclick="location.href='/fukushisystem/logout'">ログアウト</button>
+
+<form action="" method="post" enctype="multipart/form-data">
+
+<div class="title-ct">
+<h1>お問い合わせ</h1>
+</div>
+
+<?
+// ini_set("display_errors", 1);
+
+if (isset($_POST["send"])) {
+
+    if ($_POST['TypeQuestion']!=""&&$_POST['namehira']!=""&&$_POST['namekana']!=""&&$_POST['email']!=""&&$_POST['address']!=""&&$_POST['comment']!="") {
+
+     $targetfolder = "./uploads/";
+
+    $targetfolder = $targetfolder . basename( $_FILES['file']['name']) ;
+
+    $file_type=$_FILES['file']['type'];
+
+    $ok = 1;
+
+    if ($ok==1) {
+
+     if(move_uploaded_file($_FILES['file']['tmp_name'], $targetfolder))
+
+     {
+
+         echo "The file ". basename( $_FILES['file']['name']). " is uploaded";
+
+     }
+
+     else {
+
+         echo "Problem uploading file";
+         $targetfolder = "";
+
+     }
+
+    }
+
+    else {
+
+        echo "You may only upload PDFs, JPEGs or GIF files.<br>";
+
+    }
+        
+    
+
+    $mailguest = new PHPMailer(true);                              // Passing `true` enables exceptions
+    try {
+        //Server settings
+        $mailguest->SMTPDebug = 2;                                 // Enable verbose debug output
+        $mailguest->isSMTP();                                      // Set mailer to use SMTP
+        $mailguest->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+        $mailguest->SMTPAuth = true;                               // Enable SMTP authentication
+        $mailguest->Username = 'hackvideo01@gmail.com';                 // SMTP username
+        $mailguest->Password = 'motthoihoankim';                           // SMTP password
+        $mailguest->SMTPSecure = 'TLS';                           // Enable TLS encryption, `ssl` also accepted
+        $mailguest->Port = 587;                                    // TCP port to connect to
+        $mailguest->CharSet = "UTF-8";
+
+        //Recipients
+        $mailguest->setFrom('hackvideo01@gmail.com','株式会社大光産業');
+        $mailguest->addAddress($_POST['email']);     // Add a recipient
+
+
+
+        //Content
+        $mailguest->isHTML(true);                                  // Set email format to HTML
+        $mailguest->Subject = '大光産業へお問い合わせありがとうございます';
+        $mailguest->Body    = 'このたびは、お問合せいただき、誠にありがとうございました。<br>
+                        お送りいただきました内容を確認の上、担当者より折り返しご連絡させていただきます。<br>
+                        お急ぎの場合はお電話にてご連絡くださいませ。<br>
+                        TEL：055-977-3113　営業時間7:30～17:00(日祭日、その他会社指定日休業)。
+                        <br><br>
+
+                        【ご入力いただいた内容】
+                        <br><br>
+
+                        お問い合わせの種類：'.$_POST['TypeQuestion'].'
+                        <br><br>
+
+                        お名前: '.$_POST['namehira'].'
+                        <br><br>
+
+                        お名前カナ: '.$_POST['namekana'].'
+                        <br><br>
+
+                        会社名: '.$_POST['companyname'].'
+                        <br><br>
+
+                        メールアドレス: '.$_POST['email'].'
+                        <br><br>
+
+                        電話番号: '.$_POST['tel'].'
+                        <br><br>
+
+                        ご住所: '.$_POST['address'].'
+                        <br><br>
+
+                        お問い合わせ内容: '.$_POST['comment'].'
+                        <br><br>
+
+                        ************************************************************<br><br>
+
+                        株式会社大光産業<br><br>
+
+
+                        〒411-0815 静岡県三島市安久317番地<br><br>
+
+                        TEL: 055-977-3113 FAX: 055-977-7514<br><br>
+
+                        URL: https://www.taikoh.biz/<br><br>
+
+                        営業時間7:30～17:00(日祭日、その他会社指定日休業)<br><br>
+
+                        ★通販サイト★<br><br>
+
+                        プロ向け→https://stone.taikoh.biz/
+                        一般向け→https://garden.taikoh.biz/<br><br>
+
+                        ************************************************************<br><br>
+
+                            ';
+        if ($targetfolder != "") {
+
+           $mailguest->addAttachment($targetfolder);
+
+        }
+
+        $mailguest->send();
+        //echo 'Message has been sent';
+
+
+        
+    } catch (Exception $e) {
+        echo 'Message could not be sent.';
+        echo 'Mailer Error: ' . $mailguest->ErrorInfo;
+    }
+
+
+    $mailmanager = new PHPMailer(true);                              // Passing `true` enables exceptions
+    try {
+        //Server settings
+        $mailmanager->SMTPDebug = 2;                                 // Enable verbose debug output
+        $mailmanager->isSMTP();                                      // Set mailer to use SMTP
+        $mailmanager->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+        $mailmanager->SMTPAuth = true;                               // Enable SMTP authentication
+        $mailmanager->Username = 'hackvideo01@gmail.com';                 // SMTP username
+        $mailmanager->Password = 'motthoihoankim';                           // SMTP password
+        $mailmanager->SMTPSecure = 'TLS';                           // Enable TLS encryption, `ssl` also accepted
+        $mailmanager->Port = 587;                                    // TCP port to connect to
+        $mailmanager->CharSet = "UTF-8";
+
+        //Recipients
+        $mailmanager->setFrom('hackvideo01@gmail.com','株式会社大光産業');
+        $mailmanager->addAddress('hackvideo01@gmail.com');     // Add a recipient
+
+
+
+        //Content
+        $mailmanager->isHTML(true);                                  // Set email format to HTML
+        $mailmanager->Subject = 'ホームページより問い合わせがありました';
+        $mailmanager->Body    = '以下の内容でお客様から問い合わせをいただきました。
+                          <br><br>
+
+                          【お客様入力内容】
+                          <br><br>
+
+                          お問い合わせの種類：'.$_POST['TypeQuestion'].'
+                          <br><br>
+
+                          お名前: '.$_POST['namehira'].'
+                          <br><br>
+
+                          お名前カナ: '.$_POST['namekana'].'
+                          <br><br>
+
+                          会社名: '.$_POST['companyname'].'
+                          <br><br>
+
+                          メールアドレス: '.$_POST['email'].'
+                          <br><br>
+
+                          電話番号: '.$_POST['tel'].'
+                          <br><br>
+
+                          ご住所: '.$_POST['address'].'
+                          <br><br>
+
+                          お問い合わせ内容: '.$_POST['comment'].'
+                          <br><br>
+
+                            ';
+        if ($targetfolder != "") {
+
+           $mailmanager->addAttachment($targetfolder);
+
+        }
+
+        $mailmanager->send();
+        //echo 'Message has been sent';
+
+        header("Location: ?id=3");
+        exit();
+        
+    } catch (Exception $e) {
+        echo 'Message could not be sent.';
+        echo 'Mailer Error: ' . $mailmanager->ErrorInfo;
+    }
+
+}else{
+    echo "<div>必須項目を入力ください</div>";
+
+}
+    
+}
+?>
+
+
+<table class="inquiry">
+
+<tr>
+<th>
+<span class="haveto">必須</span><span>お問い合わせの種類</span>
+</th>
+<td>
+    <select id="TypeQuestion" name="TypeQuestion">
+        <option>商品について</option>
+        <option>広報について</option>
+        <option>店舗について</option>
+        <option>採用について</option>
+        <option>その他</option>
+    </select>
+</td>
+</tr>
+
+<tr>
+<th>
+<span class="haveto">必須</span><span>お名前</span>
+</th>
+<td>
+    <input type="text" name="namehira" placeholder="田中　太郎" required="" oninvalid="this.setCustomValidity('お名前を入力してください。')" oninput="setCustomValidity('')">
+</td>
+</tr>
+
+<tr>
+<th>
+<span class="haveto">必須</span><span>お名前カナ</span>
+</th>
+<td>
+    <input type="text" name="namekana" placeholder="タナカ　タロウ" required="" oninvalid="this.setCustomValidity('お名前カナを入力してください。')" oninput="setCustomValidity('')">
+</td>
+</tr>
+
+<tr>
+<th>
+<span class="any">任意</span><span>会社名</span>
+</th>
+<td>
+    <input type="text" name="companyname" placeholder="株式会社○○○">
+</td>
+</tr>
+
+<tr>
+<th>
+<span class="haveto">必須</span><span>ご連絡先メールアドレス</span>
+</th>
+<td>
+    <input type="text" name="email" placeholder="tanakataro@gmail.com" required="" oninvalid="this.setCustomValidity('ご連絡先メールアドレスを入力してください')" oninput="setCustomValidity('')">
+</td>
+</tr>
+
+<tr>
+<th>
+<span class="any">任意</span><span>電話番号</span>
+</th>
+<td>
+    <input type="text" name="tel" placeholder="090-1111-2222">
+</td>
+</tr>
+
+
+<tr>
+<th>
+<span class="haveto">任意</span><span>ご住所</span>
+</th>
+<td>
+    <input type="text" name="address" placeholder="○○市○○1-2-3 ○○マンション 101号室" required="" oninvalid="this.setCustomValidity('ご住所を入力してください')" oninput="setCustomValidity('')">
+</td>
+</tr>
+
+<tr>
+<th>
+<span class="haveto">必須</span><span>お問い合わせ内容</span>
+</th>
+<td>
+    <textarea name="comment" rows="10" placeholder="１行以上のテキスト入力欄" required="" oninvalid="this.setCustomValidity('お問い合わせ内容を入力してください')" oninput="setCustomValidity('')"></textarea>
+</td>
+</tr>
+
+<tr>
+<th>
+<span class="any">任意</span><span>添付ファイル</span>
+</th>
+<td>
+    <input type="file" name="file" size="50" />
+</td>
+</tr>
+
+</table>
+<div class="check-margin">
+    <div>
+        <input type="checkbox" name="checkconfirm" id="checkconfirm" value="Yes, I'm a web developer" required oninvalid="this.setCustomValidity('スパムメール防止のため、こちらのボックスにチェックを入れてから送信してください。')" oninput="setCustomValidity('')">
+        <label for="checkconfirm">スパムメール防止のため、こちらのボックスにチェックを入れてから送信してください。</label>
+    </div>
+</div>
+<input type="submit" name="send" value="上記の内容で送信する" id="formbtn">
+</form>
+</body>
+</html>

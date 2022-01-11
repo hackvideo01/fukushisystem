@@ -1,0 +1,669 @@
+
+.business{
+	max-width: 1140px;
+	margin: 0 auto;
+	padding: 0 1em;
+}
+.business1{
+	max-width: 1140px;
+	margin: 0 auto;
+	padding: 0 1em;
+	background:#000000;
+}
+.business1 p{
+	font-color:#FFFFFF;
+}
+.business1 img {
+	max-width: 100%;
+}
+.business-top-content{
+	padding-top: 3em;
+}
+
+.business .content-line{
+	font-family: adobe-garamond-pro,source-han-serif-japanese,"ヒラギノ明朝 Pro W3","Hiragino Mincho Pro","游明朝体",YuMincho,"Yu Mincho","ＭＳ Ｐ明朝","MS PMincho",serif;
+   font-size: 16px;
+   line-height: 1.9;
+   margin-bottom: 1.2em;
+   margin-block-start: 1em;
+   margin-block-end: 1em;
+}
+.business .content-line1{
+	font-family: adobe-garamond-pro,source-han-serif-japanese,"ヒラギノ明朝 Pro W3","Hiragino Mincho Pro","游明朝体",YuMincho,"Yu Mincho","ＭＳ Ｐ明朝","MS PMincho",serif;
+   font-size: 16px;
+	font-color:#FFFFFF;
+   line-height: 1.9;
+   margin-bottom: 1.2em;
+   margin-block-start: 1em;
+   margin-block-end: 1em;
+	background:#FFFFFF;
+}
+
+.business-top-title{
+	font-family: adobe-garamond-pro, source-han-serif-japanese, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", 游明朝体, YuMincho, "Yu Mincho", "ＭＳ Ｐ明朝", "MS PMincho", serif;
+	color: white;
+	font-size: 2em;
+   background-color: #72a6fd;
+   margin: 1em 0;
+   text-align: center;
+   border-radius: 10em;
+   border: 1px solid #004ea2;
+}
+
+.background-bussines{
+	background-color: #EFEFEF;
+}
+
+.work{
+	padding: 0 0.5em;
+	color: white;
+	font-size: 2em;
+   background-color: #72a6fd;
+   margin: 1em 0;
+   text-align: center;
+   font-family: adobe-garamond-pro,source-han-serif-japanese,"ヒラギノ明朝 Pro W3","Hiragino Mincho Pro","游明朝体",YuMincho,"Yu Mincho","ＭＳ Ｐ明朝","MS PMincho",serif;
+}
+
+.work-detail{
+	color: black;
+	font-weight: bold;
+}
+
+.img-business-header{
+	display: flex;
+}
+
+.shop-image{
+	width: 50%;
+	height: 22em;
+   background-position: center;
+   background-size: 100% 100%;
+   background-size: cover;
+   object-fit: cover;
+}
+
+.img360{
+	width: 50%;
+	height: 22em;
+}
+
+.timework{
+	font-weight: bold;
+}
+
+.point{
+	font-family: adobe-garamond-pro, source-han-serif-japanese, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", 游明朝体, YuMincho, "Yu Mincho", "ＭＳ Ｐ明朝", "MS PMincho", serif;
+	font-weight: bold;
+	font-size: 1.3em;
+}
+.poit-1{
+	font-family: adobe-garamond-pro, source-han-serif-japanese, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", 游明朝体, YuMincho, "Yu Mincho", "ＭＳ Ｐ明朝", "MS PMincho", serif;
+}
+.sale-detail{
+	font-weight: bold;
+}
+
+.sale1{
+	justify-content: center;
+   display: flex;
+}
+
+.sale1-title{
+	width: 100%;
+	padding: 0 0.5em;
+	text-align: center;
+	display: inline-block;
+	color: white;
+	font-size: 2em;
+   background-color: black;
+   margin: 1em 0;
+   font-family: adobe-garamond-pro, source-han-serif-japanese, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", 游明朝体, YuMincho, "Yu Mincho", "ＭＳ Ｐ明朝", "MS PMincho", serif;
+}
+
+.img-center{
+	display: flex;
+	justify-content: center;
+}
+
+.name-product{
+	font-family: adobe-garamond-pro, source-han-serif-japanese, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", 游明朝体, YuMincho, "Yu Mincho", "ＭＳ Ｐ明朝", "MS PMincho", serif;
+	text-align: center;
+	color: white;
+	width: 100%;
+   margin: 0 auto;
+   background: #0168b7d1;
+   padding: 0.5em;
+   border: 1px solid #EA6A67;
+}
+
+.sale1-content{
+	display: table;
+	border: 1px solid black;
+}
+
+.sale1-content1{
+	display: flex;
+	width: 100%;
+}
+
+.sale1-content2{
+	display: flex;
+	width: 100%;
+}
+
+.sale1-content3{
+	display: flex;
+	width: 100%;
+}
+
+.sale1-content-right{
+	width: 50%;
+}
+
+.sale1-content-right img{
+	width: 80%;
+	height: 20em;
+	border-top-right-radius: 1em;
+   border-top-left-radius: 1em;
+   border: 1px solid;
+   border-bottom: none;
+}
+
+.sale1-content-left{
+	width: 50%;
+}
+
+.sale1-content-left img{
+	width: 80%;
+	height: 20em;
+	border-top-right-radius: 1em;
+   border-top-left-radius: 1em;
+   border: 1px solid;
+   border-bottom: none;
+}
+
+.sale2{
+	justify-content: center;
+   display: flex;
+}
+
+.sale2-title{
+	width: 100%;
+	text-align: center;
+   display: inline-block;
+   color: white;
+   font-size: 2em;
+   background-color: black;
+   font-family: adobe-garamond-pro, source-han-serif-japanese, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", 游明朝体, YuMincho, "Yu Mincho", "ＭＳ Ｐ明朝", "MS PMincho", serif;
+   padding: 0px 0.5em;
+   margin: 1em 0px;
+}
+
+.sale3{
+	justify-content: center;
+    display: flex;
+}
+
+.sale3-title{
+	width: 100%;
+	text-align: center;
+   display: inline-block;
+   color: white;
+   font-size: 2em;
+   background-color: black;
+   font-family: adobe-garamond-pro, source-han-serif-japanese, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", 游明朝体, YuMincho, "Yu Mincho", "ＭＳ Ｐ明朝", "MS PMincho", serif;
+   padding: 0px 0.5em;
+   margin: 1em 0px;
+}
+
+.sale4{
+	justify-content: center;
+    display: flex;
+}
+
+.sale4-title{
+	width: 100%;
+	text-align: center;
+   display: inline-block;
+   color: white;
+   font-size: 2em;
+   background-color: black;
+   font-family: adobe-garamond-pro, source-han-serif-japanese, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", 游明朝体, YuMincho, "Yu Mincho", "ＭＳ Ｐ明朝", "MS PMincho", serif;
+   padding: 0px 0.5em;
+   margin: 1em 0px;
+}
+
+.sale5{
+	justify-content: center;
+    display: flex;
+}
+
+.sale5-title{
+	width: 100%;
+	text-align: center;
+   display: inline-block;
+   color: white;
+   font-size: 2em;
+   background-color: black;
+   font-family: adobe-garamond-pro, source-han-serif-japanese, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", 游明朝体, YuMincho, "Yu Mincho", "ＭＳ Ｐ明朝", "MS PMincho", serif;
+   padding: 0px 0.5em;
+   margin: 1em 0px;
+}
+
+div button{
+	font-family: adobe-garamond-pro, source-han-serif-japanese, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", 游明朝体, YuMincho, "Yu Mincho", "ＭＳ Ｐ明朝", "MS PMincho", serif;
+	font-size: 1.5em;
+	border-radius: 0.5em;
+	background-color: #293991;
+	border: 1px solid pink;
+	color: white;
+	padding: 0.3em;
+}
+
+div button a{
+	color: white;
+}
+
+.sale6{
+	justify-content: center;
+    display: flex;
+}
+
+.sale6-title{
+	font-family: adobe-garamond-pro, source-han-serif-japanese, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", 游明朝体, YuMincho, "Yu Mincho", "ＭＳ Ｐ明朝", "MS PMincho", serif;
+	padding: 0 0.5em;
+	text-align: center;
+	display: inline-block;
+	color: #FFFFFF;
+	font-size: 2em;
+   margin: 1em 0;
+}
+
+.sale6{
+	justify-content: center;
+    display: flex;
+}
+
+.sale6-title{
+	display: inline-block;
+	color: #FFFFFF;;
+	font-size: 2em;
+   margin: 1em 0;
+}
+.sale6-title1{
+	display: inline-block;
+	color: #FFFFFF;;
+	font-size: 1em;
+   margin: 1em 0;
+}
+.sale6-img{
+	width: 100%;
+    border: 1px solid black;
+}
+
+.sale7{
+	justify-content: center;
+   display: flex;
+}
+
+.sale7-title{
+	font-family: adobe-garamond-pro, source-han-serif-japanese, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", 游明朝体, YuMincho, "Yu Mincho", "ＭＳ Ｐ明朝", "MS PMincho", serif;
+	padding: 0 0.5em;
+	text-align: center;
+	display: inline-block;
+	color: #FFFFFF;
+	font-size: 2em;
+   margin: 1em 0;
+}
+
+.sale7-point{
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 1.5em;
+	letter-spacing:3px;
+	font-family: adobe-garamond-pro, source-han-serif-japanese, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", 游明朝体, YuMincho, "Yu Mincho", "ＭＳ Ｐ明朝", "MS PMincho", serif;
+	margin:10px 0px 10px 0px;
+	text-align:center;
+}
+
+.img-center-bg1,.img-center-bg2,.img-center-bg3,.img-center-bg4,.img-center-bg5,.img-center-bg6,.img-center-bg7,.img-center-bg8,.img-center-bg9,.img-center-bg10,.img-center-bg11,.img-center-bg12,.img-center-bg13,.img-center-bg14,.img-center-bg15,.img-center-bg16,.img-center-bg17,.img-center-bg18,.img-center-bg19,.img-center-bg20,.img-center-bg232,.img-center-bg233,.img-center-bg234,.img-center-bg235,.img-center-bg24,.img-center-bg25,.img-center-bg26,.img-center-bg27,.img-center-bg28,.img-center-bg29,.img-center-bg30{
+	/*border: 0.1px solid black;*/
+	border-bottom: 1px solid black;
+	border-top: 1px solid black;
+}
+
+@media (max-width: 768px){
+	.business-top-title{
+		font-size: 1.8em;
+	}
+	.object{
+		font-size: 1.3em;
+	}
+	.timework{
+		font-size: 1.3em;
+	}
+	.shop-image{
+		display: block;
+	}
+	.shop-image img{
+		width: 100%;
+		height: 25em;
+	}
+	.work{
+		font-size: 2.3em;
+	}
+	.content-line{
+		font-size: 1.3em!important;
+	}
+		.content-line1{
+		font-size: 1.3em!important;
+		color:#FFFFFF;
+	}
+	.sale1-title{
+		font-size: 1.8em;
+	}
+	.sale2-title{
+		font-size: 1.8em;
+	}
+	.sale3-title{
+		font-size: 1.8em;
+	}
+	.sale4-title{
+		font-size: 1.8em;
+	}
+	.sale5-title{
+		font-size: 1.8em;
+	}
+	.sale6-title{
+		font-size: 1.8em;
+	}
+	.sale7-title{
+		font-size: 1.8em;
+	}
+	.sale1-content1{
+		display: block;
+	}
+	.sale1-content2{
+		display: block;
+	}
+	.sale1-content-right{
+		width: 100%;
+	}
+	.sale1-content-left{
+		width: 100%;
+	}
+	.sale1-content-right img{
+		width: 100%;
+		height: 25em;
+	}
+	.sale1-content-left img{
+		width: 100%;
+		height: 25em;
+	}
+	.name-product{
+		width: 100%;
+	}
+	.corporation-title{
+		font-size: 1.3em;
+	}
+	.sale6-img{
+		width: 100%;
+	    height: 15em;
+	}
+	.img-center-bg1,.img-center-bg2,.img-center-bg3,.img-center-bg4,.img-center-bg5,.img-center-bg6,.img-center-bg7,.img-center-bg8,.img-center-bg9,.img-center-bg10,.img-center-bg11,.img-center-bg12,.img-center-bg13,.img-center-bg14,.img-center-bg15,.img-center-bg16,.img-center-bg17,.img-center-bg18,.img-center-bg19,.img-center-bg20,.img-center-bg232,.img-center-bg233,.img-center-bg234,.img-center-bg235,.img-center-bg24,.img-center-bg25,.img-center-bg26,.img-center-bg27,.img-center-bg28,.img-center-bg29,.img-center-bg30{
+		width: 100%!important;
+	    height: 25em!important;
+	}
+}
+
+@media (max-width: 414px){
+	.business-top-title{
+		font-size: 1.3em;
+	}
+	.object{
+		font-size: 0.9em;
+	}
+	.timework{
+		font-size: 0.9em;
+	}
+	.shop-image{
+		display: block;
+	}
+	.shop-image img{
+		width: 100%;
+		height: 15em;
+	}
+	.work{
+		font-size: 1.3em;
+	}
+	.content-line{
+		font-size: 0.9em!important;
+	}
+	.sale1-title{
+		font-size: 1em;
+	}
+	.sale2-title{
+		font-size: 1em;
+	}
+	.sale3-title{
+		font-size: 1em;
+	}
+	.sale4-title{
+		font-size: 1em;
+	}
+	.sale5-title{
+		font-size: 1em;
+	}
+	.sale6-title{
+		font-size: 1em;
+	}
+	.sale7-title{
+		font-size: 1em;
+	}
+	.sale1-content1{
+		display: block;
+	}
+	.sale1-content2{
+		display: block;
+	}
+	.sale1-content-right{
+		width: 100%;
+	}
+	.sale1-content-left{
+		width: 100%;
+	}
+	.sale1-content-right img{
+		width: 100%;
+		height: 15em;
+	}
+	.sale1-content-left img{
+		width: 100%;
+		height: 15em;
+	}
+	.name-product{
+		width: 100%;
+	}
+	.corporation-title{
+		font-size: 1.3em;
+	}
+	.sale6-img{
+		width: 100%;
+	   height: 8em;
+	}
+	.img-center-bg1,.img-center-bg2,.img-center-bg3,.img-center-bg4,.img-center-bg5,.img-center-bg6,.img-center-bg7,.img-center-bg8,.img-center-bg9,.img-center-bg10,.img-center-bg11,.img-center-bg12,.img-center-bg13,.img-center-bg14,.img-center-bg15,.img-center-bg16,.img-center-bg17,.img-center-bg18,.img-center-bg19,.img-center-bg20,.img-center-bg232,.img-center-bg233,.img-center-bg234,.img-center-bg235,.img-center-bg24,.img-center-bg25,.img-center-bg26,.img-center-bg27,.img-center-bg28,.img-center-bg29,.img-center-bg30{
+		width: 100%!important;
+	   height: 15em!important;
+	}
+}
+
+@media (max-width: 375px){
+	.business-top-title{
+		font-size: 1.3em;
+	}
+	.object{
+		font-size: 0.9em;
+	}
+	.timework{
+		font-size: 0.9em;
+	}
+	.shop-image{
+		display: block;
+	}
+	.shop-image img{
+		width: 100%;
+		height: 15em;
+	}
+	.work{
+		font-size: 1.3em;
+	}
+	.sale1-title{
+		font-size: 1em;
+	}
+	.sale2-title{
+		font-size: 1em;
+	}
+	.sale3-title{
+		font-size: 1em;
+	}
+	.sale4-title{
+		font-size: 1em;
+	}
+	.sale5-title{
+		font-size: 1em;
+	}
+	.sale6-title{
+		font-size: 1em;
+	}
+	.sale7-title{
+		font-size: 1em;
+	}
+	.sale1-content1{
+		display: block;
+	}
+	.sale1-content2{
+		display: block;
+	}
+	.sale1-content-right{
+		width: 100%;
+	}
+	.sale1-content-left{
+		width: 100%;
+	}
+	.sale1-content-right img{
+		width: 100%;
+		height: 13em;
+	}
+	.sale1-content-left img{
+		width: 100%;
+		height: 13em;
+	}
+	.name-product{
+		width: 100%;
+	}
+	.corporation-title{
+		font-size: 1.3em;
+	}
+	.sale6-img{
+		width: 100%;
+	   height: 7em;
+	}
+	.img-center-bg1,.img-center-bg2,.img-center-bg3,.img-center-bg4,.img-center-bg5,.img-center-bg6,.img-center-bg7,.img-center-bg8,.img-center-bg9,.img-center-bg10,.img-center-bg11,.img-center-bg12,.img-center-bg13,.img-center-bg14,.img-center-bg15,.img-center-bg16,.img-center-bg17,.img-center-bg18,.img-center-bg19,.img-center-bg20,.img-center-bg232,.img-center-bg233,.img-center-bg234,.img-center-bg235,.img-center-bg24,.img-center-bg25,.img-center-bg26,.img-center-bg27,.img-center-bg28,.img-center-bg29,.img-center-bg30{
+		width: 100%!important;
+	   height: 12em!important;
+	}
+}
+
+@media (max-width: 320px){
+	.img-business-header{
+		display: block;
+	}
+	.business-top-title{
+		font-size: 1.3em;
+	}
+	.object{
+		font-size: 0.9em;
+	}
+	.timework{
+		font-size: 0.9em;
+	}
+	.shop-image{
+		width: 100%;
+		height: 15em;
+	}
+	.shop-image img{
+		width: 100%;
+	}
+	.img360{
+		width: 100%;
+		height: 15em;
+	}
+	.img360 iframe{
+		height: 15em;
+	}
+	.work{
+		font-size: 1.3em;
+	}
+	.content-line{
+		font-size: 0.9em!important;
+	}
+	.sale1-title{
+		font-size: 1em;
+	}
+	.sale2-title{
+		font-size: 1em;
+	}
+	.sale3-title{
+		font-size: 1em;
+	}
+	
+	.sale4-title{
+		font-size: 1em;
+	}
+	.sale5-title{
+		font-size: 1em;
+	}
+	.sale6-title{
+		font-size: 1em;
+	}
+	.sale7-title{
+		font-size: 1em;
+	}
+	.sale1-content1{
+		display: block;
+	}
+	.sale1-content2{
+		display: block;
+	}
+	.sale1-content-right{
+		width: 100%;
+	}
+	.sale1-content-left{
+		width: 100%;
+	}
+	.sale1-content-right img{
+		width: 100%;
+		height: 10em;
+	}
+	.sale1-content-left img{
+		width: 100%;
+		height: 10em;
+	}
+	.name-product{
+		width: 100%;
+	}
+	.corporation-title{
+		font-size: 1.3em;
+	}
+
+	.sale6-img{
+		width: 100%;
+	   height: 6em;
+	}
+	.img-center-bg1,.img-center-bg2,.img-center-bg3,.img-center-bg4,.img-center-bg5,.img-center-bg6,.img-center-bg7,.img-center-bg8,.img-center-bg9,.img-center-bg10,.img-center-bg11,.img-center-bg12,.img-center-bg13,.img-center-bg14,.img-center-bg15,.img-center-bg16,.img-center-bg17,.img-center-bg18,.img-center-bg19,.img-center-bg20,.img-center-bg232,.img-center-bg233,.img-center-bg234,.img-center-bg235,.img-center-bg24,.img-center-bg25,.img-center-bg26,.img-center-bg27,.img-center-bg28,.img-center-bg29,.img-center-bg30{
+		width: 100%!important;
+	   height: 10em!important;
+	}
+	.sale7-point{
+	   font-size: 1em;
+	}
+}

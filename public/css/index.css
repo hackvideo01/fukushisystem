@@ -1,0 +1,700 @@
+.logo-top3,.logo-top{
+    margin: 0 1em;
+}
+
+.flickity-viewport{
+    height: 487px!important;
+    margin-top: 3em;
+}
+
+.content-main{
+    /*margin: 5em auto 0 auto;*/
+    /*padding: 0 1em;*/
+}
+
+.content-main-top{
+    max-width: 1140px;
+    /*display: flex;*/
+    margin: 1em auto 0em auto;
+}
+
+.background-color-main-top{
+    background-color: #000000;
+    padding-top: 1em;
+}
+
+.content-left{
+    width: 100%;
+    padding-bottom: 5em;
+}
+
+.content{
+    max-width: 1140px;
+}
+
+/*.content-right{
+    width: 27.33333%;
+    margin-left: 2em;
+
+}*/
+
+.news-index{
+    border: 2px solid red;
+    margin: 5em auto 0 auto;
+    font-family: adobe-garamond-pro, source-han-serif-japanese, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", 游明朝体, YuMincho, "Yu Mincho", "ＭＳ Ｐ明朝", "MS PMincho", serif;
+}
+
+.news-content{
+    margin: .4em 2em 2em 2em;
+}
+
+.news-content .news-title{
+    background: white;
+    color: black;
+    padding: .5em;
+    border: 3px solid red;
+    position: absolute;
+    margin-top: -5em;
+}
+
+.news-content .news-icon{
+    background: red;
+    color: white;
+    font-size: .5em;
+    align-self: end;
+}
+
+.news-item{
+    margin-top: 4em;
+}
+
+.news-item p{
+    color: white;
+}
+
+.news-item-flex{
+    display: flex;
+    margin-top: 1em;
+}
+
+.news-item a{
+    color: white;
+}
+
+
+.corporation{
+    justify-content: center;
+    display: flex;
+}
+
+.corporation-title{
+    font-family: adobe-garamond-pro, source-han-serif-japanese, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", 游明朝体, YuMincho, "Yu Mincho", "ＭＳ Ｐ明朝", "MS PMincho", serif;
+    display: inline-block;
+    color: black;
+    font-size: 2em;
+    /*background-color:#EC6867;*/
+    border-radius: 10em;
+    margin: 2em 0 0 0;
+    /*border: 1px solid #004ea2;*/
+    padding: 0 0.5em;
+}
+
+.info-person{
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.welcome-img iframe{
+    height: 35em;
+    /*margin-top: 5em;*/
+}
+
+.welcome-img{
+    max-width: 1140px;
+}
+
+.welcome-img img{
+    width: 100%;
+    object-fit: cover;
+}
+
+.welcome{
+    /*background: #D79013;*/
+    background:#000000;
+    color: white;
+    font-size: 1.5em;
+}
+/*2021/09/25追加*/
+.welcome img{
+    max-width: 100%;
+}
+.360v{
+    /*background: #D79013;*/
+    background:#000000;
+    color: white;
+    font-size: 1.5em;
+}
+/*2021/09/25追加*/
+.360v img{
+    max-width: 100%;
+}
+/*2021/09/25追加*/
+.gaiyo img{
+    max-width: 100%;
+}
+/*2021/09/25追加*/
+.history-1 img{
+    max-width: 100%;
+}
+/*2021/09/25追加*/
+.srervice img{
+    max-width: 100%;
+}
+.welcome-text{
+    font-family: adobe-garamond-pro,source-han-serif-japanese,"ヒラギノ明朝 Pro W3","Hiragino Mincho Pro","游明朝体",YuMincho,"Yu Mincho","ＭＳ Ｐ明朝","MS PMincho",serif;
+    font-size: 16px;
+    line-height: 1.9;
+    margin-bottom: 1.2em;
+    text-align: left;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    color: white;
+}
+
+.banner-info{
+    height: 22em;
+    background: #59b0e3;
+
+}
+
+.banner-info-content{
+    display: table;
+    margin: 0 auto;
+}
+
+.info-title{
+    font-size: 1.5em;
+    color: white;
+    font-weight: bold;
+    margin: 1em 0 0 0 ;
+}
+
+.address{
+    color: white;
+}
+
+.time{
+    color: white;
+}
+
+.tel{
+    margin: 1em 0 0 0;
+    color: white;
+    font-size: 1.5em;
+}
+
+.fax{
+    color: white;
+    font-size: 1.5em;
+}
+
+.background-introduce-content{
+    background-color: #333333;
+    padding-top: 2em;
+}
+
+.banner-contact{
+    color: #59b0e3;
+    background: white;
+    font-weight: bold;
+    margin: 1.5em 0 ;
+    height: 2.5em;
+    text-align: center;
+    line-height: 2.5em;
+    cursor: pointer;
+}
+
+.banner-contact i{
+    font-size: 1.3em;
+    margin: 0 0.3em;
+}
+
+.banner-introduce{
+    height: 5em;
+    line-height: 5em;
+    background: #ec6867;
+    margin-top: 1em;
+    cursor: pointer;
+}
+
+.banner-introduce p{
+    color: white;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.banner-store{
+    height: 5em;
+    line-height: 5em;
+    background: #A50021;
+    margin-top: 1.5em;
+    cursor: pointer;
+}
+
+.banner-store p{
+    color: white;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.banner-legal{
+    height: 5em;
+    line-height: 5em;
+    background: #FFFF00;
+    margin-top: 1.5em;
+    cursor: pointer;
+}
+
+.banner-legal p{
+    color: black;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.banner-computer{
+    height: 5em;
+    line-height: 5em;
+    background: #004ea1;
+    margin-top: 1.5em;
+    cursor: pointer;
+}
+
+.banner-computer p{
+    color: white;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.banner-buynet{
+    height: 5em;
+    line-height: 5em;
+    background: #FF6600;
+    margin-top: 1.5em;
+    cursor: pointer;
+}
+
+.banner-buynet p{
+    color: black;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.banner-parasol{
+    height: 5em;
+    margin-top: 1.5em;
+    cursor: pointer;
+    background: white;
+    display: flex;
+    border: 1px solid black;
+    justify-content: center;
+}
+
+.banner-parasol img{
+    height: 3em;
+    margin: 1em 0 0 0;
+}
+
+.content-line{
+    font-family: adobe-garamond-pro,source-han-serif-japanese,"ヒラギノ明朝 Pro W3","Hiragino Mincho Pro","游明朝体",YuMincho,"Yu Mincho","ＭＳ Ｐ明朝","MS PMincho",serif;
+    font-size: 16px;
+    line-height: 1.9;
+    margin-bottom: 1.2em;
+    text-align: left;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    color: black;
+}
+
+.info-person{
+    font-family: adobe-garamond-pro,source-han-serif-japanese,"ヒラギノ明朝 Pro W3","Hiragino Mincho Pro","游明朝体",YuMincho,"Yu Mincho","ＭＳ Ｐ明朝","MS PMincho",serif;
+    font-size: 16px;
+    line-height: 1.9;
+    margin-bottom: 1.2em;
+    text-align: left;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    text-align: center;
+}
+
+.history-content img{
+    width: 100%;
+    /*border-radius: 1em;*/
+}
+
+.history-last{
+    border: none !important;
+}
+
+.sale1-content1-index{
+    display: flex;
+    width: 100%;
+    margin: 2em 0 0 0;
+}
+.img-center-bg235-index{
+    height: 16em;
+    width: 95%;
+    margin: 0 auto;
+    background-position: center;
+    background-size: 100% 100%;
+    background-image: url('<?php echo get_template_directory_uri()?>/images/matsudashoukai-jigyou235.jpg?v=1');
+    background-size: cover;
+    object-fit: cover;
+    
+    /*border: 0.1px solid black;:*/
+}
+
+.img-center-bg24-index{
+    height: 16em;
+    width: 95%;
+    margin: 0 auto;
+    background-position: center;
+    background-size: 100% 100%;
+    background-image: url('<?php echo get_template_directory_uri()?>/images/matsudashoukai-jigyou24.jpg?v=1');
+    background-size: cover;
+    object-fit: cover;
+    
+   /*border: 0.1px solid black;:*/
+}
+.img-center-bg25-index{
+    height: 16em;
+    width: 95%;
+    margin: 0 auto;
+    background-position: center;
+    background-size: 100% 100%;
+    background-image: url('<?php echo get_template_directory_uri()?>/images/matsudashoukai-jigyou25.jpg?v=1');
+    background-size: cover;
+    object-fit: cover;
+    
+    /*border: 0.1px solid black;:*/
+}
+.img-center-bg26-index{
+    height: 16em;
+    width: 95%;
+    margin: 0 auto;
+    background-position: center;
+    background-size: 100% 100%;
+    background-image: url('<?php echo get_template_directory_uri()?>/images/matsudashoukai-jigyou26.jpg?v=1');
+    background-size: cover;
+    object-fit: cover;
+    
+   /*border: 0.1px solid black;:*/
+}
+.img-center-bg27-index{
+    height: 16em;
+    width: 95%;
+    margin: 0 auto;
+    background-position: center;
+    background-size: 100% 100%;
+    background-image: url('<?php echo get_template_directory_uri()?>/images/matsudashoukai-jigyou27.jpg?v=1');
+    background-size: cover;
+    object-fit: cover;
+    
+  /*border: 0.1px solid black;:*/
+}
+.img-center-bg28-index{
+    height: 16em;
+    width: 95%;
+    margin: 0 auto;
+    background-position: center;
+    background-size: 100% 100%;
+    background-image: url('<?php echo get_template_directory_uri()?>/images/matsudashoukai-jigyou28.jpg?v=1');
+    background-size: cover;
+    object-fit: cover;
+    
+    /*border: 0.1px solid black;:*/
+}
+.kaunet-img-center-bg29-index{
+    height: 18em;
+    width: 95%;
+    margin: 0 auto;
+    background-position: center;
+    background-size: 100% 100%;
+    background-size: cover;
+    object-fit: cover;
+    
+   /*border: 0.1px solid black;:*/
+}
+.parasol-img-center-bg30-index{
+    height: 18em;
+    width: 95%;
+    margin: 0 auto;
+    background-position: center;
+    background-size: 100% 100%;
+    background-size: cover;
+    object-fit: cover;
+    
+   /*border: 0.1px solid black;:*/
+}
+
+.sale1-content-left-index{
+    width: 33.333%;
+}
+
+.sale1-content-center-index{
+    width: 33.333%;
+}
+
+.sale1-content-right-index{
+    width: 33.333%;
+}
+
+.name-product-index{
+    font-family: adobe-garamond-pro,source-han-serif-japanese,"ヒラギノ明朝 Pro W3","Hiragino Mincho Pro","游明朝体",YuMincho,"Yu Mincho","ＭＳ Ｐ明朝","MS PMincho",serif;
+    text-align: left;
+    color: white;
+    width: 95%;
+    margin: 0 auto;
+    background: black;
+    /*border-bottom-right-radius: 1em;
+    border-bottom-left-radius: 1em;*/
+    padding: 0.5em;
+    /*border: 1px solid #EA6A67;*/
+}
+.name-product-index1{
+    font-family: adobe-garamond-pro,source-han-serif-japanese,"ヒラギノ明朝 Pro W3","Hiragino Mincho Pro","游明朝体",YuMincho,"Yu Mincho","ＭＳ Ｐ明朝","MS PMincho",serif;
+    text-align: center;
+    color: white;
+    width: 95%;
+    margin: 0 auto;
+    background: black;
+    /*border-bottom-right-radius: 1em;
+    border-bottom-left-radius: 1em;*/
+    padding: 0.5em;
+    /*border: 1px solid #EA6A67;*/
+}
+.kaunet-comment{
+    width: 65%;
+}
+
+.kaunet-content-index{
+    width: 35%;
+}
+
+.kaunet-img-center-index{
+    width: 100%;
+}
+
+/*.kaunet-name-product-index{
+    font-family: adobe-garamond-pro,source-han-serif-japanese,"ヒラギノ明朝 Pro W3","Hiragino Mincho Pro","游明朝体",YuMincho,"Yu Mincho","ＭＳ Ｐ明朝","MS PMincho",serif;
+    text-align: center;
+    color: white;
+    width: 95%;
+    margin: 0 auto;
+    background: black;
+    padding: 0.5em;
+}*/
+
+.parasol-comment{
+    width: 65%;
+}
+
+.parasol-content-index{
+    width: 35%;
+}
+
+.parasol-img-center-index{
+    width: 100%;
+}
+
+.parasol-name-product-index{
+    font-family: adobe-garamond-pro,source-han-serif-japanese,"ヒラギノ明朝 Pro W3","Hiragino Mincho Pro","游明朝体",YuMincho,"Yu Mincho","ＭＳ Ｐ明朝","MS PMincho",serif;
+    text-align: center;
+    color: white;
+    width: 95%;
+    margin: 0 auto;
+    background: black;
+    /*border-bottom-right-radius: 1em;
+    border-bottom-left-radius: 1em;*/
+    padding: 0.5em;
+}
+
+.content-line-index{
+    font-family: adobe-garamond-pro,source-han-serif-japanese,"ヒラギノ明朝 Pro W3","Hiragino Mincho Pro","游明朝体",YuMincho,"Yu Mincho","ＭＳ Ｐ明朝","MS PMincho",serif;
+    font-size: 16px;
+    line-height: 1.9;
+    margin-bottom: 1.2em;
+    text-align: left;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    color: black;
+    padding: 0.5em;
+}
+
+@media (max-width: 1024px){
+    .flickity-viewport{
+        height: 415px!important;
+        margin-top: 3em;
+    }
+}
+
+@media (min-width: 1016px){
+    .image-360v{
+        width: 100%;
+    }  
+}
+
+@media (min-width: 948px){
+    .banner-parasol img{
+        width: 100%;
+    }
+}
+
+@media (max-width: 947px){
+    .image-360v{
+        width: 100%;
+    }  
+    .content-main-top{
+        display: block;
+    }
+    .content-left{
+        width: 100%;
+    }
+    .welcome{
+        font-size: 1.5em;
+    }
+    .content-right{
+        width: 100%;
+        margin-left: 0;
+    }
+    .banner-computer{
+        margin-bottom: 1.5em;
+    }
+    .img-center-bg235-index,.img-center-bg24-index,.img-center-bg25-index,.img-center-bg26-index,.img-center-bg27-index,.img-center-bg28-index{
+        height: 13em;
+    }
+    .kaunet-img-center-bg29-index,.parasol-img-center-bg30-index{
+        height: 13em;
+    }
+    .kaunet-comment,.parasol-comment{
+        margin-top: -4.5%;
+    }
+    .welcome-img iframe{
+        height: 23em;
+    }
+}
+
+
+@media (max-width: 414px){
+    .image-360v{
+        width: 100%;
+    }  
+    .banner-parasol img{
+        width: 100%;
+    }
+    .news-content{
+        margin: .4em .2em 2em .2em;
+    }
+    .news-item{
+        font-size: 14px;
+    }
+    .img-center-bg235-index,.img-center-bg24-index,.img-center-bg25-index,.img-center-bg26-index,.img-center-bg27-index,.img-center-bg28-index,.kaunet-img-center-bg29-index,.parasol-img-center-bg30-index{
+        height: 16em;
+    }
+    .sale1-content1-index{
+        display: block;
+    }
+    .sale1-content-right-index,.sale1-content-center-index,.sale1-content-left-index{
+        width: 95%;
+        margin: 1em auto;
+    }
+    .kaunet-content-index,.parasol-content-index{
+        display: block;
+        width: 90%;
+        margin: 0 auto;
+    }
+    .kaunet-img-center-index,.parasol-img-center-index{
+        width: 100%;
+    }
+    .kaunet-name-product-index,.parasol-name-product-index{
+        width: 100%;
+    }
+    .kaunet-img-center-bg29-index,.parasol-img-center-bg30-index{
+        width: 100%;
+    }
+    .kaunet-comment{
+        width: 100%;
+        margin-top: -15%;
+    }
+    .parasol-comment{
+        width: 100%;
+        margin-top: -6%;
+    }
+    .welcome-img iframe{
+        height: 18em;
+    }
+}
+
+@media (max-width: 320px){
+    .image-360v{
+        width: 100%;
+    }  
+    .flickity-viewport{
+        height: 241px!important;
+        margin-top: 3em;
+    }
+    .gallery img{
+        width: 32em;
+    }
+    .welcome-img iframe{
+        height: 16em;
+    }
+    .welcome {
+        font-size: 1.3em;
+    }
+    .welcome-text{
+        font-size: 14px;
+    }
+    .news-content{
+        margin: .4em .2em 2em .2em;
+    }
+    .img-center-bg235-index,.img-center-bg24-index,.img-center-bg25-index,.img-center-bg26-index,.img-center-bg27-index,.img-center-bg28-index,.kaunet-img-center-bg29-index,.parasol-img-center-bg30-index{
+        height: 13em;
+    }
+    .sale1-content1-index{
+        display: block;
+    }
+    .sale1-content-right-index,.sale1-content-center-index,.sale1-content-left-index{
+        width: 95%;
+        margin: 1em auto;
+    }
+    .kaunet-content-index,.parasol-content-index{
+        display: block;
+        width: 90%;
+        margin: 0 auto;
+    }
+    .kaunet-img-center-index,.parasol-img-center-index{
+        width: 100%;
+    }
+    .kaunet-name-product-index,.parasol-name-product-index{
+        width: 100%;
+    }
+    .kaunet-img-center-bg29-index,.parasol-img-center-bg30-index{
+        width: 100%;
+    }
+    .kaunet-comment{
+        width: 100%;
+        margin-top: -15%;
+    }
+    .parasol-comment{
+        width: 100%;
+        margin-top: -6%;
+    }
+}
