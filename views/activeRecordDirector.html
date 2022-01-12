@@ -4,7 +4,11 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="./public/css/menu.css?v=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
 	<title>活動記録</title>
 </head>
 <body>
@@ -447,10 +451,87 @@
             <td><?php echo $item['Recipient_number'];?></td>
             <td><?php echo $item['Day'];?></td>
             <td><?php echo $item['Date'];?></td>
-            <td><button>修正</button></td>
-            <td><button>削除</button></td>
+            <td><button onclick="javascript:update(`<?php echo $item['Activity_record_id'];?>`)">修正</button></td>
+            <td><button onclick="javascript:deleteItem(`<?php echo $item['Activity_record_id'];?>`)">削除</button></td>
         </tr>
     <?}?>
 	</table>
+    <?php include_once 'views/pagination.php'; ?>
 </body>
 </html>
+
+<script type="text/javascript">
+    //Delete
+    function deleteItem(id){
+        // var flag = confirm('削除ですか ?');
+        // if(flag == true){
+        //     var url = 'delete.php?Activity_record_id=' + id;
+        //     window.location.href = url;
+        // }else{
+        //     return false;
+        // }
+
+        var result = confirm(id+"　削除したいですか?");
+        if (result) {
+            var action = "deleteActiveRecord";
+           $.post("./controllers/delete.php",
+            {
+              changestatus: status.value,
+              id: id,
+              action:action
+            },
+            function(data,status){
+              if(status=="success"){
+                alert("削除されました。");
+                location.reload();
+              }else{
+                alert("削除できませんでした。");
+              }
+            });
+        }
+    }
+
+    //Update
+    function update(id){
+        // var flag = confirm('削除ですか ?');
+        // if(flag == true){
+        //     var url = 'delete.php?Activity_record_id=' + id;
+        //     window.location.href = url;
+        // }else{
+        //     return false;
+        // }
+
+        var result = confirm(id+"　編集したいですか？");
+        if (result) {
+            var action = "updateActiveRecord";
+           $.post("./controllers/activeRecord.php",
+            {
+              changestatus: status.value,
+              id: id,
+              action:action
+            },
+            function(data,status){
+              if(status=="success"){
+                alert("編集されました。");
+                // location.reload();
+                location.href="./A/"+id;
+
+              }else{
+                alert("編集できませんでした。");
+              }
+            });
+        }
+    }
+
+    function setParam(href, key, value){
+        var url = new URL(href);
+
+        url.searchParams.set(key, value);
+        return url.href;
+    }
+
+    function changePage(page){
+        url = setParam(window.location.href, 'page', page);
+        window.location.href = url;
+    }
+</script>

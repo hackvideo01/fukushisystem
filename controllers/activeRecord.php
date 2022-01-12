@@ -1,6 +1,7 @@
 <? 
 class activeRecord extends controller{
 	function welcome(){
+		require_once("./libs/Pagination.php");
 		if (isset($_SESSION['usernameSS1'])){
 			// Load the database configuration file 
 			$db = $this->model("database");
@@ -16,6 +17,32 @@ class activeRecord extends controller{
 			// 	// print_r($item);
 
 			// }
+
+			// $_GET['url']="http://localhost/fukushisystem/activeRecord/?page=1";
+			// echo $_GET['url'];
+
+			// $components = parse_url($_GET['url']);
+			// parse_str($components['query'], $results);
+			// echo($results['page']); 
+
+			// if (isset($_REQUEST['page'])) {
+			// 	echo $_REQUEST['page'];
+			// }else{
+
+			// }
+
+			$paramsCurrentPage  = (!empty($_GET['page'])) ?  $_GET['page'] : 1;
+
+			// Query Count
+			$queryCount =  "SELECT COUNT(*) AS `total` FROM `activityrecord` WHERE `Activity_record_id` > 0";
+
+			$totalItem = $database->fetchRow($queryCount)['total'];
+			$configPagination = ['totalItemsPerPage'	=> 5, 'pageRange' => 3, 'currentPage' => $paramsCurrentPage];
+			$objPagination 	 = new Pagination($totalItem, $configPagination);
+			// echo "<pre>";
+			// print_r($objPagination);
+			// echo "</pre>";
+
 			require_once("./views/activeRecordDirector.html");
 		}else{
 			// echo "<script>alert('unit');</script>";
@@ -27,13 +54,28 @@ class activeRecord extends controller{
 		$database = new Database();
 		$database->setTable("activityrecord");
 		if (isset($_SESSION['usernameSS1'])){
+
+		$arr = $this->UrlProcess();
+
+		// echo $arr[2];
+			$queryList = "SELECT * FROM activityrecord WHERE `Activity_record_id` = ".$arr[2];
+
+			if (condition) {
+				$queryList = "SELECT * FROM activityrecord WHERE `Activity_record_id` = ".$arr[2];
+				$listItem = $database->fetchRow($queryList);
+			}
+			// echo $listItem['Recipient_number'];
+			// echo $queryList;
+			// print_r($listItem);
+			// exit();
+
 			require_once("./views/activeRecordA.html");
+
 					if ($_POST["Tsusho"] == "attendance") {
 						$tsusho =1;
 					}else{
 						$tsusho =0;
 					}
-					
 			if (isset($_POST["btn_activeRecord"])) {
 				$queryList[] = "SELECT `Date` FROM activityrecord WHERE `Recipient_number` = ".$_POST["Recipient_number"];
 
@@ -179,6 +221,11 @@ class activeRecord extends controller{
 		}else{
 			// echo "<script>alert('unit');</script>";
 			header("Location: /fukushisystem/unit");
+		}
+	}
+	function UrlProcess(){
+		if (isset($_GET['url'])) {
+			return explode("/", filter_var(trim($_GET['url'], "/")));
 		}
 	}
 }

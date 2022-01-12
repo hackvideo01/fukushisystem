@@ -576,7 +576,7 @@
             <li class=""><a href="/fukushisystem/activeRecord" class="menu-btn">活動記録</a></li>
             <li class="whiteline"><a href="/fukushisystem/business" class="menu-btn">事業所マスタ</a></li>
             <li class="whiteline"><a href="/fukushisystem/display_data" class="menu-btn">印刷画面</a></li>
-            <li class="whiteline"><a href="/fukushisystem/contact" class="menu-btn">問い合わせ</a></li>
+            <!-- <li class="whiteline"><a href="/fukushisystem/contact" class="menu-btn">問い合わせ</a></li> -->
         </ul>
         <div class="menu-btn">
             <!-- <i class="fas fa-bars"></i> -->
@@ -597,7 +597,7 @@
 
 if (isset($_POST["send"])) {
 
-    if ($_POST['TypeQuestion']!=""&&$_POST['namehira']!=""&&$_POST['namekana']!=""&&$_POST['email']!=""&&$_POST['address']!=""&&$_POST['comment']!="") {
+    if ($_POST['namehira']!=""&&$_POST['namekana']!=""&&$_POST['email']!=""&&$_POST['address']!=""&&$_POST['comment']!="") {
 
      $targetfolder = "./uploads/";
 
@@ -655,17 +655,11 @@ if (isset($_POST["send"])) {
 
         //Content
         $mailguest->isHTML(true);                                  // Set email format to HTML
-        $mailguest->Subject = '大光産業へお問い合わせありがとうございます';
+        $mailguest->Subject = '福祉サービスへお問い合わせありがとうございます';
         $mailguest->Body    = 'このたびは、お問合せいただき、誠にありがとうございました。<br>
-                        お送りいただきました内容を確認の上、担当者より折り返しご連絡させていただきます。<br>
-                        お急ぎの場合はお電話にてご連絡くださいませ。<br>
-                        TEL：055-977-3113　営業時間7:30～17:00(日祭日、その他会社指定日休業)。
                         <br><br>
 
                         【ご入力いただいた内容】
-                        <br><br>
-
-                        お問い合わせの種類：'.$_POST['TypeQuestion'].'
                         <br><br>
 
                         お名前: '.$_POST['namehira'].'
@@ -691,30 +685,11 @@ if (isset($_POST["send"])) {
 
                         ************************************************************<br><br>
 
-                        株式会社大光産業<br><br>
-
-
-                        〒411-0815 静岡県三島市安久317番地<br><br>
-
-                        TEL: 055-977-3113 FAX: 055-977-7514<br><br>
-
-                        URL: https://www.taikoh.biz/<br><br>
-
-                        営業時間7:30～17:00(日祭日、その他会社指定日休業)<br><br>
-
-                        ★通販サイト★<br><br>
-
-                        プロ向け→https://stone.taikoh.biz/
-                        一般向け→https://garden.taikoh.biz/<br><br>
+                        福祉サービス<br><br>
 
                         ************************************************************<br><br>
 
                             ';
-        if ($targetfolder != "") {
-
-           $mailguest->addAttachment($targetfolder);
-
-        }
 
         $mailguest->send();
         //echo 'Message has been sent';
@@ -755,9 +730,6 @@ if (isset($_POST["send"])) {
                           【お客様入力内容】
                           <br><br>
 
-                          お問い合わせの種類：'.$_POST['TypeQuestion'].'
-                          <br><br>
-
                           お名前: '.$_POST['namehira'].'
                           <br><br>
 
@@ -780,11 +752,6 @@ if (isset($_POST["send"])) {
                           <br><br>
 
                             ';
-        if ($targetfolder != "") {
-
-           $mailmanager->addAttachment($targetfolder);
-
-        }
 
         $mailmanager->send();
         //echo 'Message has been sent';
@@ -807,21 +774,6 @@ if (isset($_POST["send"])) {
 
 
 <table class="inquiry">
-
-<tr>
-<th>
-<span class="haveto">必須</span><span>お問い合わせの種類</span>
-</th>
-<td>
-    <select id="TypeQuestion" name="TypeQuestion">
-        <option>商品について</option>
-        <option>広報について</option>
-        <option>店舗について</option>
-        <option>採用について</option>
-        <option>その他</option>
-    </select>
-</td>
-</tr>
 
 <tr>
 <th>
@@ -884,15 +836,6 @@ if (isset($_POST["send"])) {
 </th>
 <td>
     <textarea name="comment" rows="10" placeholder="１行以上のテキスト入力欄" required="" oninvalid="this.setCustomValidity('お問い合わせ内容を入力してください')" oninput="setCustomValidity('')"></textarea>
-</td>
-</tr>
-
-<tr>
-<th>
-<span class="any">任意</span><span>添付ファイル</span>
-</th>
-<td>
-    <input type="file" name="file" size="50" />
 </td>
 </tr>
 

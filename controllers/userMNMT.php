@@ -17,6 +17,7 @@ class userMNMT extends controller{
 			// 	// print_r($item);
 
 			// }
+			require_once("./libs/Pagination.php");
 			require_once("./views/userMNMTDirector.html");
 		}else{
 			// echo "<script>alert('unit');</script>";

@@ -1,5 +1,6 @@
 <?php 
-include_once './config/define.php'; 
+// include_once './config/define.php'; 
+require_once dirname(__FILE__) . '/.././config/define.php';
 class Database{
 	protected $connect;
 	protected $table;
