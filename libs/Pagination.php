@@ -30,16 +30,27 @@ class Pagination{
 			$prev 	= '<li class="disabled"><a href="#">‹</a></li>';
 			if($this->currentPage > 1){
 				$page = $this->currentPage-1;
-				$start 	= '<li><a href="#"  onclick="javascript:changePage(1)">«</a></li>';
-				$prev 	= '<li><a href="#"  onclick="javascript:changePage('.$page.')">‹</a></li>';
+				
+				if ($_GET['url']=="activeRecord") {
+					$start 	= '<li><a href="#"  onclick="javascript:changePageActiveRecord(1)">«</a></li>';
+					$prev 	= '<li><a href="#"  onclick="javascript:changePageActiveRecord('.$page.')">‹</a></li>';
+				}else if ($_GET['url']=="business") {
+					$start 	= '<li><a href="#"  onclick="javascript:changePageBusiness(1)">«</a></li>';
+					$prev 	= '<li><a href="#"  onclick="javascript:changePageBusiness('.$page.')">‹</a></li>';
+				}
 			}
 		
 			$next 	= '<li class="disabled"><a href="#">›</a></li>';
 			$end 	= '<li class="disabled"><a href="#">»</a></li>';
 			if($this->currentPage < $this->totalPage){
 				$page = $this->currentPage+1;
-				$next 	= '<li><a href="#"  onclick="javascript:changePage('.$page.')">›</a></li>';
-				$end 	= '<li><a href="#"  onclick="javascript:changePage('.$this->totalPage.')">»</a></li>';
+				if ($_GET['url']=="activeRecord") {
+					$next 	= '<li><a href="#"  onclick="javascript:changePageActiveRecord('.$page.')">›</a></li>';
+					$end 	= '<li><a href="#"  onclick="javascript:changePageActiveRecord('.$this->totalPage.')">»</a></li>';
+				}else if ($_GET['url']=="business") {
+					$next 	= '<li><a href="#"  onclick="javascript:changePageBusiness('.$page.')">›</a></li>';
+					$end 	= '<li><a href="#"  onclick="javascript:changePageBusiness('.$this->totalPage.')">»</a></li>';
+				}
 			}
 		
 			if($this->pageRange < $this->totalPage){
@@ -73,7 +84,11 @@ class Pagination{
 				if($i == $this->currentPage) {
 					$listPages .= '<li class="active"><a href="#">'.$i.'</a></li>';
 				}else{
-					$listPages .= '<li><a href="#" onclick="javascript:changePage('.$i.')">'.$i.'</a></li>';
+					if ($_GET['url']=="activeRecord") {
+						$listPages .= '<li><a href="#" onclick="javascript:changePageActiveRecord('.$i.')">'.$i.'</a></li>';
+					}else if ($_GET['url']=="business") {
+						$listPages .= '<li><a href="#" onclick="javascript:changePageBusiness('.$i.')">'.$i.'</a></li>';
+					}
 				}
 			}
 			$paginationHTML .= '<ul class="pagination pull-right">' .$start.$prev . $listPages . $next . $end.'</ul>';

@@ -523,15 +523,15 @@
         }
     }
 
-    function setParam(href, key, value){
-        var url = new URL(href);
+    // function setParam(href, key, value){
+    //     var url = new URL(href);
 
-        url.searchParams.set(key, value);
-        return url.href;
-    }
+    //     url.searchParams.set(key, value);
+    //     return url.href;
+    // }
 
-    function changePage(page){
-        url = setParam(window.location.href, 'page', page);
+    function changePageActiveRecord(page){
+        url = "/fukushisystem/activeRecord&page="+page;
         window.location.href = url;
     }
 </script>

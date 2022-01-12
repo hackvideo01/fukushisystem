@@ -6,17 +6,6 @@ class activeRecord extends controller{
 			// Load the database configuration file 
 			$db = $this->model("database");
 			$database = new Database();
-			// $database->setTable("usermanagement");
-			// Fetch records from database 
-			$queryList[] = "SELECT * FROM activityrecord ORDER BY Recipient_number ASC";
-
-			$queryList = implode(" ", $queryList);
-
-			$listItem = $database->fetchAll($queryList);
-			// foreach ($listItem as $item) {
-			// 	// print_r($item);
-
-			// }
 
 			// $_GET['url']="http://localhost/fukushisystem/activeRecord/?page=1";
 			// echo $_GET['url'];
@@ -37,11 +26,30 @@ class activeRecord extends controller{
 			$queryCount =  "SELECT COUNT(*) AS `total` FROM `activityrecord` WHERE `Activity_record_id` > 0";
 
 			$totalItem = $database->fetchRow($queryCount)['total'];
-			$configPagination = ['totalItemsPerPage'	=> 5, 'pageRange' => 3, 'currentPage' => $paramsCurrentPage];
+			$configPagination = ['totalItemsPerPage'	=> 10, 'pageRange' => 3, 'currentPage' => $paramsCurrentPage];
 			$objPagination 	 = new Pagination($totalItem, $configPagination);
 			// echo "<pre>";
 			// print_r($objPagination);
 			// echo "</pre>";
+
+			// $database->setTable("usermanagement");
+			// Fetch records from database 
+			$queryList[] = "SELECT * FROM activityrecord ORDER BY Recipient_number ASC";
+
+			// Pagination
+			if($objPagination->getTotalPage() > 1)  {
+				$totalPage		= $configPagination['totalItemsPerPage'];
+				$position		= ($configPagination['currentPage']-1) * $totalPage;
+				$queryList[] 	= "LIMIT $position, $totalPage";
+			}
+
+			$queryList = implode(" ", $queryList);
+
+			$listItem = $database->fetchAll($queryList);
+			// foreach ($listItem as $item) {
+			// 	// print_r($item);
+
+			// }
 
 			require_once("./views/activeRecordDirector.html");
 		}else{

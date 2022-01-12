@@ -1,13 +1,31 @@
 <? 
 class business extends controller{
 	function welcome(){
+		require_once("./libs/Pagination.php");
 		if (isset($_SESSION['usernameSS1'])){
 			// Load the database configuration file 
 			$db = $this->model("database");
 			$database = new Database();
 			// $database->setTable("usermanagement");
 			// Fetch records from database 
+
+			$paramsCurrentPage  = (!empty($_GET['page'])) ?  $_GET['page'] : 1;
+
+			// Query Count
+			$queryCount =  "SELECT COUNT(*) AS `total` FROM `business` WHERE `Business_id` > 0";
+
+			$totalItem = $database->fetchRow($queryCount)['total'];
+			$configPagination = ['totalItemsPerPage'	=> 10, 'pageRange' => 3, 'currentPage' => $paramsCurrentPage];
+			$objPagination 	 = new Pagination($totalItem, $configPagination);
+
 			$queryList[] = "SELECT * FROM business ORDER BY Model_number ASC";
+
+			// Pagination
+			if($objPagination->getTotalPage() > 1)  {
+				$totalPage		= $configPagination['totalItemsPerPage'];
+				$position		= ($configPagination['currentPage']-1) * $totalPage;
+				$queryList[] 	= "LIMIT $position, $totalPage";
+			}
 
 			$queryList = implode(" ", $queryList);
 
