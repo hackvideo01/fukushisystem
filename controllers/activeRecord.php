@@ -89,11 +89,11 @@ class activeRecord extends controller{
 						$tsusho =0;
 					}
 			if (isset($_POST["btn_activeRecord"])) {
-				$queryList[] = "SELECT `Date` FROM activityrecord WHERE `Recipient_number` = ".$_POST["Recipient_number"];
+				// $queryList[] = "SELECT `Date` FROM activityrecord WHERE `Recipient_number` = ".$_POST["Recipient_number"];
 
-					$queryList = implode(" ", $queryList);
+				// 	$queryList = implode(" ", $queryList);
 
-					$listItem = $database->fetchAll($queryList);
+				// 	$listItem = $database->fetchAll($queryList);
 					// foreach ($variable as $key => $value) {
 						// if ($_POST['Recipient_number'] != null) {
 						// 	header("Location: /fukushisystem/activeRecord/B");
@@ -146,6 +146,60 @@ class activeRecord extends controller{
 						$dateElements = explode('-', $_POST["Date"]);
 						$al1 = "'は'+".$dateElements[0].$dateElements[1]."";
 						echo "<script>alert('受給者番号：'+".$_POST["Recipient_number"]."+".$al1."+'ありました。');</script>";
+					}
+			}else if(isset($_POST["btn_activeRecordUpdate"])) {
+				// echo "<script>alert('受給者番号：');</script>";
+					$queryList = "SELECT  COUNT(`Recipient_number`) AS `total` FROM activityrecord WHERE `Date` ="."'".$_POST["Date"]."'";
+					// $queryList = implode(" ", $queryList);
+					$listItem = $database->fetchRow($queryList)['total'];
+					if ($listItem != 0) {
+						$dateElements = explode('-', $_POST["Date"]);
+						$data = array(
+							'Recipient_number' 			=> $_POST["Recipient_number"],
+							'Date' 						=> $_POST["Date"],
+							'Month_year' 				=> $dateElements[0].$dateElements[1],
+							'Day_week' 					=> $dateElements[2],
+							'Day' 						=> $_POST["Day"],
+							'Tsusho' 					=> $tsusho,
+							'Start_time' 				=> $_POST["Start_time"],
+							'End_time' 					=> $_POST["End_time"],
+							'Meal_addition' 			=> $_POST["Meal_addition"],
+							'Pick_drop' 				=> $_POST["Pick_drop"],
+							'Experience_use' 			=> $_POST["Experience_use"],
+							'Visit_support' 			=> $_POST["Visit_support"],
+							'Work_out_facility' 		=> $_POST["Work_out_facility"],
+							'Social_life' 				=> $_POST["Social_life"],
+							'Life_home' 				=> $_POST["Life_home"],
+							'Medical_cooperation' 		=> $_POST["Medical_cooperation"],
+							'Remark' 					=> $_POST["Remark"],
+							'Actual_cost1' 				=> $_POST["Actual_cost1"],
+							'Actual_cost2' 				=> $_POST["Actual_cost2"],
+							'ActiveRecord_type' 		=> 1
+						);
+					// echo $arr[2];
+					// $data = array(['Activity_record_id', $arr[2] ]);
+					// foreach($data as $value){
+					// 	echo $value[0]."=".$value[1].$value[2];
+
+					// }
+					$list =  $database->update($data, array(['Activity_record_id', $arr[2] ]));
+					// print_r($list);
+					// exit();
+					// header("Location: /fukushisystem/activeRecord/A/".$arr[2]."");
+					echo "<script>
+							UpdateActiveRecord();
+							function UpdateActiveRecord(page){
+						        var result = confirm('修正されました。');
+						        if (result) {
+						        	url = '/fukushisystem/activeRecord/A/".$arr[2]."';
+						        	window.location.href = url;
+						        }
+						    }
+
+						 </script>";
+
+					}else{
+						echo "<script>alert('受給者番号：');";
 					}
 			}
 		}else{

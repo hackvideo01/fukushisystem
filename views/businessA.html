@@ -706,7 +706,11 @@
         <tr>
             <td></td>
             <td>
-                <input name="btn_business" type="submit" value="登録"/>
+                <?if(isset($arr[2])) {?>
+                    <input name="btn_businessUpdate" type="submit" value="修正"/>
+                <?}else{?>
+                    <input name="btn_business" type="submit" value="登録"/>
+                <?}?>
             </td>
         </tr>
     </table>

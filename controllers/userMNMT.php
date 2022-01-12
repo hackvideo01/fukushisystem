@@ -60,7 +60,7 @@ class userMNMT extends controller{
 					$queryList = "SELECT * FROM usermanagement WHERE `Usermanagement_id` = ".$arr[2];
 					$listItem = $database->fetchRow($queryList);
 				}
-				
+
 			require_once("./views/userMNMTA.html");
 			if (isset($_POST["btn_userMNMT"])) {
 				$data = array(
@@ -200,6 +200,11 @@ class userMNMT extends controller{
 		}else{
 			// echo "<script>alert('unit');</script>";
 			header("Location: /fukushisystem/unit");
+		}
+	}
+	function UrlProcess(){
+		if (isset($_GET['url'])) {
+			return explode("/", filter_var(trim($_GET['url'], "/")));
 		}
 	}
 }

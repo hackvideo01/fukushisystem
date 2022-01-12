@@ -167,10 +167,13 @@ class Database{
 		$newWhere = '';
 		if(!empty($data)){
 			foreach($data as $value){
-				$newWhere[] = "`$value[0]` = '$value[1]'";
-				@$newWhere[] = $value[2];
+				$newWhere1[] = "`$value[0]` = '$value[1]'";
+				@$newWhere1[] = $value[2];
+				// echo "<script>alert('".$value[1]."');</script>";
+				// $newWhere = "`$value[0]` = '$value[1]'";
+			// exit();
 			}
-			$newWhere = implode(" ", $newWhere);
+			$newWhere = implode(" ", $newWhere1);
 		}
 		return $newWhere;
 	}
