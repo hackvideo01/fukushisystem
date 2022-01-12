@@ -62,6 +62,8 @@ class business extends controller{
 				
 			require_once("./views/businessA.html");
 			if (isset($_POST["btn_business"])) {
+				// echo $_POST["Service_offer_date"];
+				// exit();
 				$data = array(
 					'Model_number' 					=> $_POST["Model_number"],
 					'Model_symbol' 					=> $_POST["Model_symbol"],
