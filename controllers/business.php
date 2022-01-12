@@ -175,8 +175,8 @@ class business extends controller{
 					// exit();
 					// header("Location: /fukushisystem/activeRecord/A/".$arr[2]."");
 					echo "<script>
-							UpdateActiveRecord();
-							function UpdateActiveRecord(page){
+							UpdateBusiness();
+							function UpdateBusiness(){
 						        var result = confirm('修正されました。');
 						        if (result) {
 						        	url = '/fukushisystem/business/A/".$arr[2]."';
