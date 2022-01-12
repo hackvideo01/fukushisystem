@@ -435,272 +435,272 @@
 <div class="business">
     <button type="button" onclick="location.href='/fukushisystem/business/B'">B</button>
     <button type="button" onclick="location.href='/fukushisystem/business/migration'">移行</button>
-    <button type="button" onclick="location.href='/fukushisystem/business/'">メイン画面</button>
+    <button type="button" onclick="location.href='/fukushisystem/business'">メイン画面</button>
 </div>
 <form method="post">
     <table>
         <tr>
             <td>形式番号</td>
             <td>
-                <input type="text" name="Model_number" required="required"/>
+                <input type="text" value="<?=$listItem['Model_number'];?>" name="Model_number" required="required"/>
             </td>
         </tr>
         <tr>
             <td>形式記号</td>
             <td>
-                <input type="text" name="Model_symbol" required="required"/>
+                <input type="text" value="<?=$listItem['Model_symbol'];?>" name="Model_symbol" required="required"/>
             </td>
         </tr>
         <tr>
             <td class="important">サービス提供年月</td>
             <td>
-                <input type="month" name="Service_offer_date" required/>
+                <input type="month" value="<?=$listItem['Service_offer_date'];?>" name="Service_offer_date" required/>
             </td>
         </tr>
         <tr>
             <td>法人名</td>
             <td>
-                <input type="text" value="" name="Corporate_name"/>
+                <input type="text" value="<?=$listItem['Corporate_name'];?>" name="Corporate_name"/>
             </td>
         </tr>
         <tr>
             <td>代表者</td>
             <td>
-                <input type="text" value="" name="Representative"/>
+                <input type="text" value="<?=$listItem['Representative'];?>" name="Representative"/>
             </td>
         </tr>
         <tr>
             <td class="important">事業者名</td>
             <td>
-                <input type="text" value="" name="Businesser_name" required/>
+                <input type="text" value="<?=$listItem['Businesser_name'];?>" name="Businesser_name" required/>
             </td>
         </tr>
         <tr>
             <td>略称</td>
             <td>
-                <input type="text" value="" name="Abbreviation"/>
+                <input type="text" value="<?=$listItem['Abbreviation'];?>" name="Abbreviation"/>
             </td>
         </tr>
         <tr>
             <td>管理者</td>
             <td>
-                <input type="text" value="" name="Administrator"/>
+                <input type="text" value="<?=$listItem['Administrator'];?>" name="Administrator"/>
             </td>
         </tr>
         <tr>
             <td class="important">事業者番号</td>
             <td>
-                <input type="text" value="" name="Businesser_number" maxlength="10" required/>
+                <input type="text" value="<?=$listItem['Businesser_number'];?>" name="Businesser_number" maxlength="10" required/>
             </td>
         </tr>
         <tr>
             <td>郵便番号</td>
             <td>
-                <input type="text" value="" name="Businesser_postal_code"/>
+                <input type="text" value="<?=$listItem['Businesser_postal_code'];?>" name="Businesser_postal_code"/>
             </td>
         </tr>
         <tr>
             <td>住所</td>
             <td>
-                <input type="text" value="" name="Businesser_address"/>
+                <input type="text" value="<?=$listItem['Businesser_address'];?>" name="Businesser_address"/>
             </td>
         </tr>
         <tr>
             <td>電話番号</td>
             <td>
-                <input type="text" value="" name="Businesser_phone"/>
+                <input type="text" value="<?=$listItem['Businesser_phone'];?>" name="Businesser_phone"/>
             </td>
         </tr>
         <tr>
             <td>種別</td>
             <td>
-                <input type="text" value="" name="Kind"/>
+                <input type="text" value="<?=$listItem['Kind'];?>" name="Kind"/>
             </td>
         </tr>
         <tr>
             <td>評価点区分</td>
             <td>
-                <input type="text" value="" name="Evaluation_point_type"/>
+                <input type="text" value="<?=$listItem['Evaluation_point_type'];?>" name="Evaluation_point_type"/>
             </td>
         </tr>
         <tr>
             <td>公立</td>
             <td>
-                <input type="text" value="" name="Public"/>
+                <input type="text" value="<?=$listItem['Public'];?>" name="Public"/>
             </td>
         </tr>
         <tr>
             <td>地域区分</td>
             <td>
-                <input type="text" value="" name="Area_type"/>
+                <input type="text" value="<?=$listItem['Area_type'];?>" name="Area_type"/>
             </td>
         </tr>
         <tr>
             <td>定員</td>
             <td>
-                <input type="text" value="" name="Capacity"/>
+                <input type="text" value="<?=$listItem['Capacity'];?>" name="Capacity"/>
             </td>
         </tr>
         <tr>
             <td>種類別定員</td>
             <td>
-                <input type="text" value="" name="Capacity_type"/>
+                <input type="text" value="<?=$listItem['Capacity_type'];?>" name="Capacity_type"/>
             </td>
         </tr>
         <tr>
             <td>就労移行支援体制加算</td>
             <td>
-                <input type="text" value="" name="Work_migration_support"/>
+                <input type="text" value="<?=$listItem['Work_migration_support'];?>" name="Work_migration_support"/>
             </td>
         </tr>
         <tr>
             <td>就労移行支援体制加算（就労定着者数）</td>
             <td>
-                <input type="text" value="" name="Work_settle_number"/>
+                <input type="text" value="<?=$listItem['Work_settle_number'];?>" name="Work_settle_number"/>
             </td>
         </tr>
         <tr>
             <td>視覚聴覚支援体制加算</td>
             <td>
-                <input type="text" value="" name="Vison_hear_support"/>
+                <input type="text" value="<?=$listItem['Vison_hear_support'];?>" name="Vison_hear_support"/>
             </td>
         </tr>
         <tr>
             <td>福祉専門職員配置等加算</td>
             <td>
-                <input type="text" value="" name="Welfare_pro_staff_add"/>
+                <input type="text" value="<?=$listItem['Welfare_pro_staff_add'];?>" name="Welfare_pro_staff_add"/>
             </td>
         </tr>
         <tr>
             <td>重度者支援体制加算</td>
             <td>
-                <input type="text" value="" name="Severe_support_add1"/>
+                <input type="text" value="<?=$listItem['Severe_support_add1'];?>" name="Severe_support_add1"/>
             </td>
         </tr>
         <tr>
             <td>重度者支援体制加算２</td>
             <td>
-                <input type="text" value="" name="Severe_support_add2"/>
+                <input type="text" value="<?=$listItem['Severe_support_add2'];?>" name="Severe_support_add2"/>
             </td>
         </tr>
         <tr>
             <td>医療連携看護職員</td>
             <td>
-                <input type="text" value="" name="Care_link_nurse_staff"/>
+                <input type="text" value="<?=$listItem['Care_link_nurse_staff'];?>" name="Care_link_nurse_staff"/>
             </td>
         </tr>
         <tr>
             <td>減免措置</td>
             <td>
-                <input type="text" value="" name="Exemption_measures"/>
+                <input type="text" value="<?=$listItem['Exemption_measures'];?>" name="Exemption_measures"/>
             </td>
         </tr>
         <tr>
             <td>送迎加算種類</td>
             <td>
-                <input type="text" value="" name="Pick_drop_kind_add"/>
+                <input type="text" value="<?=$listItem['Pick_drop_kind_add'];?>" name="Pick_drop_kind_add"/>
             </td>
         </tr>
         <tr>
             <td>自己評価結果等未公表減算</td>
             <td>
-                <input type="text" value="" name="Self_result_unpulic"/>
+                <input type="text" value="<?=$listItem['Self_result_unpulic'];?>" name="Self_result_unpulic"/>
             </td>
         </tr>
         <tr>
             <td>身体拘束廃止未実施減算</td>
             <td>
-                <input type="text" value="" name="Body_not_abolition"/>
+                <input type="text" value="<?=$listItem['Body_not_abolition'];?>" name="Body_not_abolition"/>
             </td>
         </tr>
         <tr>
             <td>賃金向上達成指導員配置加算</td>
             <td>
-                <input type="text" value="" name="Wage_improve"/>
+                <input type="text" value="<?=$listItem['Wage_improve'];?>" name="Wage_improve"/>
             </td>
         </tr>
         <tr>
             <td>地域生活支援拠点等</td>
             <td>
-                <input type="text" value="" name="Area_life_support"/>
+                <input type="text" value="<?=$listItem['Area_life_support'];?>" name="Area_life_support"/>
             </td>
         </tr>
         <tr>
             <td>定員超過</td>
             <td>
-                <input type="text" value="" name="Overcapacity"/>
+                <input type="text" value="<?=$listItem['Overcapacity'];?>" name="Overcapacity"/>
             </td>
         </tr>
         <tr>
             <td>従業員欠員</td>
             <td>
-                <input type="text" value="" name="Employee_vacancy"/>
+                <input type="text" value="<?=$listItem['Employee_vacancy'];?>" name="Employee_vacancy"/>
             </td>
         </tr>
         <tr>
             <td>サービス管理責任者欠員</td>
             <td>
-                <input type="text" value="" name="Service_admin_vacancy"/>
+                <input type="text" value="<?=$listItem['Service_admin_vacancy'];?>" name="Service_admin_vacancy"/>
             </td>
         </tr>
         <tr>
             <td>処遇改善都道府県</td>
             <td>
-                <input type="text" value="" name="Treatment_improve"/>
+                <input type="text" value="<?=$listItem['Treatment_improve'];?>" name="Treatment_improve"/>
             </td>
         </tr>
         <tr>
             <td>処遇改善都道府県番号</td>
             <td>
-                <input type="text" value="" name="Treatment_improve_num"/>
+                <input type="text" value="<?=$listItem['Treatment_improve_num'];?>" name="Treatment_improve_num"/>
             </td>
         </tr>
         <tr>
             <td>処遇改善キャリアパス区分</td>
             <td>
-                <input type="text" value="" name="Treatment_improve"/>
+                <input type="text" value="<?=$listItem['Treatment_improve'];?>" name="Treatment_improve"/>
             </td>
         </tr>
         <tr>
             <td>特定処遇改善加算</td>
             <td>
-                <input type="text" value="" name="Treatment_career_improve"/>
+                <input type="text" value="<?=$listItem['Treatment_career_improve'];?>" name="Treatment_career_improve"/>
             </td>
         </tr>
         <tr>
             <td>処遇改善特別加算</td>
             <td>
-                <input type="text" value="" name="Treatment_improve_add"/>
+                <input type="text" value="<?=$listItem['Treatment_improve_add'];?>" name="Treatment_improve_add"/>
             </td>
         </tr>
         <tr>
             <td>請求書役職</td>
             <td>
-                <input type="text" value="" name="Invoice_title"/>
+                <input type="text" value="<?=$listItem['Invoice_title'];?>" name="Invoice_title"/>
             </td>
         </tr>
         <tr>
             <td>請求書氏名</td>
             <td>
-                <input type="text" value="" name="Invoice_name"/>
+                <input type="text" value="<?=$listItem['Invoice_name'];?>" name="Invoice_name"/>
             </td>
         </tr>
         <tr>
             <td>利用者請求書備考</td>
             <td>
-                <input type="text" value="" name="User_invoice_remark"/>
+                <input type="text" value="<?=$listItem['User_invoice_remark'];?>" name="User_invoice_remark"/>
             </td>
         </tr>
         <tr>
             <td>実費１</td>
             <td>
-                <input type="text" value="" name="Actual_cost1"/>
+                <input type="text" value="<?=$listItem['Actual_cost1'];?>" name="Actual_cost1"/>
             </td>
         </tr>
         <tr>
             <td>実費２</td>
             <td>
-                <input type="text" value="" name="Actual_cost2"/>
+                <input type="text" value="<?=$listItem['Actual_cost2'];?>" name="Actual_cost2"/>
             </td>
         </tr>
         <tr>
