@@ -441,7 +441,7 @@
 			<th>形式記号</th>
 			<th>サービス提供年月</th>
 			<th>修正</th>
-			<th>削除</th>
+			<!-- <th>削除</th> -->
 		</tr>
 	<?foreach ($listItem as $item) {?>
         <tr>
@@ -449,7 +449,7 @@
             <td><?php echo $item['Model_symbol'];?></td>
             <td><?php echo $item['Service_offer_date'];?></td>
             <td><button>修正</button></td>
-            <td><button onclick="javascript:deleteItem(`<?php echo $item['Business_id'];?>`)">削除</button></td>
+            <!-- <td><button onclick="javascript:deleteItem(`<?php echo $item['Business_id'];?>`)">削除</button></td> -->
         </tr>
     <?}?>
 	</table>
