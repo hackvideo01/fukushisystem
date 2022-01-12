@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./public/css/menu.css?v=1">
+    <title>単位マスタ</title>
+</head>
+<body>
+    <style>
+        table{
+            margin: 0 auto;
+        }
+        table td{
+            padding: 5px 10px;
+        }
+        input, textarea{
+            border: solid 1px #ddd;
+            padding: 5px 20px;
+            width: 100%;
+        }
+        input[type="submit"]{
+            width: auto;
+            background: red;
+            color:#fff;
+        }
+        h1{
+            text-align: center;
+        }
+        .btn-unit{
+            text-align: center;
+        }
+        .btn-unit button{
+            background-color: black;
+            color: white;
+            padding: 1px;
+        }
+        .logout{
+            background: red;
+            color: white;
+            font-weight: bold;
+        }
+        .important{
+            background: red;
+            color: white;
+        }
+         /* Theme Name: NGUYEN LUC PRO
+         * Description: テーマ
+         * Theme URI: https://lucnguyen.com/
+         * Version: 1.0
+         * Theme Author: NGUYEN LUC MAIN
+         * Author URI: https://lucnguyen.com/
+         * Tags: starter theme, framework theme, two-columns, customize
+         * Textdomain: nguyenluc
+         */
+
+        /*  import google fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+        }
+        html{
+            scroll-behavior: smooth;
+        }
+
+        /* custom scroll bar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* all similar content styling codes */
+        section{
+            /*padding: 100px 0;*/
+        }
+
+        .menu{
+            margin: 0 auto;
+        }
+
+        .max-width{
+           /* max-width: 1300px;
+            padding: 0 80px;
+            margin: auto;*/
+        }
+        .about, .services, .skills, .teams, .contact, footer{
+            font-family: 'Poppins', sans-serif;
+        }
+        .about .about-content,
+        .services .serv-content,
+        .skills .skills-content,
+        .contact .contact-content{
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* navbar styling */
+        .navbar{
+            background: #004EA2;
+            /*position: fixed;*/
+            width: 100%;
+            z-index: 999;
+            padding: 12.3px 0;
+            font-family: 'Ubuntu', sans-serif;
+            transition: all 0.3s ease;
+        }
+        .navbar.sticky{
+            /*padding: 15px 0;*/
+            padding: 0;
+            background: white;
+            position: fixed;
+            top: 0;
+        }
+
+        /*dl, ol, ul{
+            margin-bottom: 0!important;
+        }*/
+
+        .top-content{
+            display: flex;
+            justify-content: center;
+            /*margin: .5em auto;*/
+            padding: .5em 0;
+            background: white;
+        }
+
+        .top-content img{
+            margin: 0 .8em;
+        }
+
+        .logo-top-disable{
+            display: none;
+        }
+
+        .navbar .max-width{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .navbar .logo a{
+            color: #fff;
+            font-size: 35px;
+            font-weight: 600;
+        }
+        .navbar .logo a span{
+            color: crimson;
+            transition: all 0.3s ease;
+        }
+        .navbar.sticky .logo a span{
+            color: #fff;
+        }
+        .navbar .menu li{
+            list-style: none;
+            display: inline-block;
+        }
+
+        .whiteline{
+            border-left: 1px solid white;
+            margin-right: 15px;
+            padding-right: 10px;
+        }
+
+        .menu-top1{
+            border-left: none!important;
+        }
+
+        .navbar .menu li a{
+            display: block;
+            color: white;
+            font-size: 0.9em;
+            font-weight: 500;
+            margin-left: 25px;
+            transition: color 0.3s ease;
+            font-family: adobe-garamond-pro,source-han-serif-japanese,"ヒラギノ明朝 Pro W3","Hiragino Mincho Pro","游明朝体",YuMincho,"Yu Mincho","ＭＳ Ｐ明朝","MS PMincho",serif;
+        }
+
+        .logo-scroll img{
+            display: none;
+            max-height: 4em;
+            margin: 0.2em;
+        }
+
+        .logo-scroll-display{
+            display: block!important;
+        }
+
+        .menu-margin-right{
+            margin: 0;
+        }
+
+        .navbar .menu li a:hover{
+            color: crimson;
+        }
+        .navbar.sticky .menu li a:hover{
+            color: red!important;
+        }
+
+        /* menu btn styling */
+        .menu-btn{
+            color: #fff;
+            font-size: 23px;
+            cursor: pointer;
+            display: none;
+        }
+
+        .menu-scroll{
+            color: black!important;
+        }
+
+        .scroll-up-btn{
+            position: fixed;
+            height: 45px;
+            width: 42px;
+            background: crimson;
+            right: 30px;
+            bottom: 10px;
+            text-align: center;
+            line-height: 45px;
+            color: #fff;
+            z-index: 9999;
+            font-size: 30px;
+            border-radius: 6px;
+            border-bottom-width: 2px;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        .scroll-up-btn.show{
+            bottom: 30px;
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .scroll-up-btn:hover{
+            filter: brightness(90%);
+        }
+
+        /* responsive media query start */
+        @media (max-width: 1104px) {
+            .about .about-content .left img{
+                height: 350px;
+                width: 350px;
+            }
+            .footer-img img{
+               width: 100%;
+            }
+        }
+
+        @media (min-width: 992px){
+        .logo-top img {
+            max-height: 5.9em;
+            margin-top: 0.5em;
+        }
+
+        .logo-top3 img {
+            max-height: 6em;
+        }
+        }
+
+        @media (max-width: 992px){
+            .footer-img img{
+               width: 100%;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .max-width{
+                padding: 0 50px;
+            }
+        }
+        @media (max-width: 947px){
+            .footer-img img{
+               width: 100%;
+            }
+
+            .menu-footer{
+                width: 100% !important;
+            }
+
+            .logo-scroll img{
+                max-height: 3em;
+            }
+
+            .menu-btn{
+                display: block;
+                z-index: 999;
+                color: black;
+            }
+            .menu-btn i.active:before{
+                content: "\f00d";
+            }
+            .navbar .menu{
+                position: fixed;
+                height: 100vh;
+                width: 100%;
+                left: -100%;
+                top: 0;
+                background: #D79013;
+                text-align: center;
+                padding-top: 80px;
+                transition: all 0.3s ease;
+            }
+            .navbar .menu.active{
+                left: 0;
+                overflow:scroll
+            }
+            .navbar .menu li{
+                display: block;
+            }
+            .navbar .menu li a{
+                display: inline-block;
+                margin: 15px 0 15px 1.2em;
+                font-size: 25px;
+            }
+            .home .home-content .text-2{
+                font-size: 70px;
+            }
+            .home .home-content .text-3{
+                font-size: 35px;
+            }
+            .home .home-content a{
+                font-size: 23px;
+                padding: 10px 30px;
+            }
+            .max-width{
+                max-width: 930px;
+            }
+            .about .about-content .column{
+                width: 100%;
+            }
+            .about .about-content .left{
+                display: flex;
+                justify-content: center;
+                margin: 0 auto 60px;
+            }
+            .about .about-content .right{
+                flex: 100%;
+            }
+            .services .serv-content .card{
+                width: calc(50% - 10px);
+                margin-bottom: 20px;
+            }
+            .skills .skills-content .column,
+            .contact .contact-content .column{
+                width: 100%;
+                margin-bottom: 35px;
+            }
+        }
+
+        @media (max-width: 690px) {
+            .max-width{
+                padding: 0 13px;
+            }
+            .home .home-content .text-2{
+                font-size: 60px;
+            }
+            .home .home-content .text-3{
+                font-size: 32px;
+            }
+            .home .home-content a{
+                font-size: 20px;
+            }
+            .services .serv-content .card{
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .home .home-content .text-2{
+                font-size: 50px;
+            }
+            .home .home-content .text-3{
+                font-size: 27px;
+            }
+            .about .about-content .right .text,
+            .skills .skills-content .left .text{
+                font-size: 19px;
+            }
+            .contact .right form .fields{
+                flex-direction: column;
+            }
+            .contact .right form .name,
+            .contact .right form .email{
+                margin: 0;
+            }
+            .right form .error-box{
+               width: 150px;
+            }
+            .scroll-up-btn{
+                right: 15px;
+                bottom: 15px;
+                height: 38px;
+                width: 35px;
+                font-size: 23px;
+                line-height: 38px;
+            }
+        }
+    </style>
+<nav class="navbar">
+    <div class="max-width">
+        <ul class="menu">
+            <!-- <li class="menu-top1 whiteline"><a href="#" class="menu-btn">HOME</a></li> -->
+            <li class=""><a href="/fukushisystem/municipality" class="menu-btn">市町村マスタ</a></li>
+        </ul>
+        <div class="menu-btn">
+            <!-- <i class="fas fa-bars"></i> -->
+        </div>
+    </div>
+</nav>
+
+<button type="button" class="logout" onclick="location.href='/fukushisystem/logout'">ログアウト</button>
+<!-- <button type="button" onclick="location.href='/fukushisystem/municipality'">市町村マスタ</button> -->
+<!-- <button type="button" onclick="location.href='/fukushisystem/activeRecord'">活動記録</button>
+<button type="button" onclick="location.href='/fukushisystem/userMNMT'">利用者管理</button>
+<button type="button" onclick="location.href='/fukushisystem/business'">事業所マスタ</button>
+<button type="button" onclick="location.href='/fukushisystem/display_data'">印刷画面</button> -->
+
+<h1>単位</h1>
+<div class="btn-unit">
+    <button type="button" onclick="location.href='/fukushisystem/unit'">戻る</button>
+</div>
+<form method="post">
+    <table>
+        <tr>
+            <td>サービスコード</td>
+            <td>
+                <input type="text" name="Unit_code" required />
+            </td>
+        </tr>
+        <tr>
+            <td>サービス内容</td>
+            <td>
+                <input type="text" id="Service_content" name="Service_content" required="required"/>
+            </td>
+        </tr>
+        <tr>
+            <td>単位</td>
+            <td>
+                <input type="text" id="Number_unit" name="Number_unit" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required="required"/>
+            </td>
+        </tr>
+        <tr>
+            <td>単位単価</td>
+            <td>
+                <input type="text" name="Unit_price" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+            </td>
+        </tr>
+        <!-- <tr>
+            <td>適用</td>
+            <td>
+                <input type="text" value="" name="Pick"/>
+            </td>
+        </tr> -->
+        <tr>
+            <td></td>
+            <td>
+                <input name="btn_unit" type="submit" value="登録"/>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
+<script type="text/javascript">
+    $('input[type="date"]').on('change', function() {
+        var days = ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'];
+        var d = new Date(document.getElementById("Date").value);
+        var dayName = days[d.getDay()];
+        document.getElementById('Day').value = dayName;
+    });
+
+     $(document).ready(function () {
+        $('#bt').click(function () {
+            $('#Start_time').prop('disabled', function (index, value) {   // Passing "function()" as parameter to .prop().
+                // if (value) {
+                //     $('#msg').html('dropdown list <b>enabled</b>');
+                // }
+                // else {
+                //     $('#msg').html('dropdown list <b>disabled</b>');
+                // }
+
+                return !value;  // return true or false
+            });
+            $('#End_time').prop('disabled', function (index, value) {   // Passing "function()" as parameter to .prop().
+                // if (value) {
+                //     $('#msg').html('dropdown list <b>enabled</b>');
+                // }
+                // else {
+                //     $('#msg').html('dropdown list <b>disabled</b>');
+                // }
+
+                return !value;  // return true or false
+            });
+        });
+    });
+
+    function outputSelectedValueAndText(obj)
+    {
+        /* 
+         * obj は select タグであり、selectedIndex プロパティには
+         * 変更後の選択項目のインデックスが格納されています
+         */
+        var idx = obj.selectedIndex;
+        var value = obj.options[idx].value; // 値
+        var text  = obj.options[idx].text;  // 表示テキスト
+        if (text=="欠席") {
+            $('#Start_time').prop('disabled', function (index, value) {   // Passing "function()" as parameter to .prop().
+                // if (value) {
+                //     $('#msg').html('dropdown list <b>enabled</b>');
+                // }
+                // else {
+                //     $('#msg').html('dropdown list <b>disabled</b>');
+                // }
+
+                return !value;  // return true or false
+            });
+            $('#End_time').prop('disabled', function (index, value) {   // Passing "function()" as parameter to .prop().
+                // if (value) {
+                //     $('#msg').html('dropdown list <b>enabled</b>');
+                // }
+                // else {
+                //     $('#msg').html('dropdown list <b>disabled</b>');
+                // }
+
+                return !value;  // return true or false
+            });
+        }
+        // 値とテキストをコンソールに出力
+        // console.log('value = ' + value + ', ' + 'text = ' + text);
+    }
+</script>

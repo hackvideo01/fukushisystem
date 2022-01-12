@@ -1,44 +1,57 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="./public/css/menu.css?v=1">
-    <title>単位マスタ</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<title>単位マスタ</title>
 </head>
 <body>
-    <style>
-        table{
-            margin: 0 auto;
-        }
-        table td{
-            padding: 5px 10px;
-        }
-        input, textarea{
-            border: solid 1px #ddd;
-            padding: 5px 20px;
-            width: 100%;
-        }
-        input[type="submit"]{
-            width: auto;
-            background: red;
-            color:#fff;
-        }
-        h1{
-            text-align: center;
-        }
-        .logout{
+	<style type="text/css">
+		.logout{
             background: red;
             color: white;
             font-weight: bold;
         }
-        .important{
-            background: red;
+        .unit{
+            background: green;
             color: white;
         }
-         /* Theme Name: NGUYEN LUC PRO
+        .btn-unit{
+            text-align: center;
+        }
+        .btn-unit button{
+            background-color: red;
+            color: white;
+            padding: 1px;
+        }
+        h1{
+       		text-align: center;
+        }
+        .activeRecord{
+            text-align: center;
+        }
+        table{
+			border-collapse: collapse;
+			width: 1000px;
+			margin: 0 auto;
+		}
+		th {
+		    border: solid 1px;
+		    text-align: left;
+		    background: skyblue;
+		    color: white;
+		}
+		td {
+		    border: white solid 1px;
+		    background: lightgray;
+	    }
+    	/* Theme Name: NGUYEN LUC PRO
          * Description: テーマ
          * Theme URI: https://lucnguyen.com/
          * Version: 1.0
@@ -405,133 +418,131 @@
             }
         }
     </style>
-<nav class="navbar">
-    <div class="max-width">
-        <ul class="menu">
-            <!-- <li class="menu-top1 whiteline"><a href="#" class="menu-btn">HOME</a></li> -->
-            <li class=""><a href="/fukushisystem/municipality" class="menu-btn">市町村マスタ</a></li>
-        </ul>
-        <div class="menu-btn">
-            <!-- <i class="fas fa-bars"></i> -->
+
+    <nav class="navbar">
+        <div class="max-width">
+            <ul class="menu">
+                <!-- <li class="menu-top1 whiteline"><a href="#" class="menu-btn">HOME</a></li> -->
+                <li class=""><a href="/fukushisystem/business" class="menu-btn">事業所マスタ</a></li>
+                <li class="whiteline"><a href="/fukushisystem/userMNMT" class="menu-btn">利用者管理</a></li>
+                <li class="whiteline"><a href="/fukushisystem/display_data" class="menu-btn">印刷画面</a></li>
+                <li class="whiteline"><a href="/fukushisystem/contact" class="menu-btn">問い合わせ</a></li>
+            </ul>
+            <div class="menu-btn">
+                <!-- <i class="fas fa-bars"></i> -->
+            </div>
         </div>
+    </nav>
+
+	<button type="button" class="logout" onclick="location.href='/fukushisystem/logout'">ログアウト</button>
+	<!-- <button type="button" onclick="location.href='/fukushisystem/userMNMT'">利用者管理</button>
+	<button type="button" onclick="location.href='/fukushisystem/business'">事業所マスタ</button>
+	<button type="button" onclick="location.href='/fukushisystem/display_data'">印刷画面</button> -->
+	<!-- <button type="button" class="unit" onclick="location.href='/fukushisystem/unit'">単位</button> -->
+
+	<h1>単位マスタ管理</h1>
+    
+    <div class="btn-unit">
+        <button type="button" onclick="location.href='/fukushisystem/unit/New'">新規登録</button>
     </div>
-</nav>
-
-<button type="button" class="logout" onclick="location.href='/fukushisystem/logout'">ログアウト</button>
-<!-- <button type="button" onclick="location.href='/fukushisystem/municipality'">市町村マスタ</button> -->
-<!-- <button type="button" onclick="location.href='/fukushisystem/activeRecord'">活動記録</button>
-<button type="button" onclick="location.href='/fukushisystem/userMNMT'">利用者管理</button>
-<button type="button" onclick="location.href='/fukushisystem/business'">事業所マスタ</button>
-<button type="button" onclick="location.href='/fukushisystem/display_data'">印刷画面</button> -->
-
-<h1>単位</h1>
-<form method="post">
-    <table>
+	<table>
+		<tr>
+			<th>サービスコード</th>
+			<th>サービス内容</th>
+			<th>単位</th>
+            <th>単位単価</th>
+			<th>修正</th>
+			<th>削除</th>
+		</tr>
+	<?foreach ($listItem as $item) {?>
         <tr>
-            <td>サービスコード</td>
-            <td>
-                <input type="text" name="Unit_code" required />
-            </td>
+            <td><?php echo $item['Unit_code'];?></td>
+            <td><?php echo $item['Service_content'];?></td>
+            <td><?php echo $item['Number_unit'];?></td>
+            <td><?php echo $item['Unit_price'];?></td>
+            <td><button onclick="javascript:update(`<?php echo $item['Unit_id'];?>`)">修正</button></td>
+            <td><button onclick="javascript:deleteItem(`<?php echo $item['Unit_id'];?>`)">削除</button></td>
         </tr>
-        <tr>
-            <td>サービス内容</td>
-            <td>
-                <input type="text" id="Service_content" name="Service_content" required="required"/>
-            </td>
-        </tr>
-        <tr>
-            <td>単位</td>
-            <td>
-                <input type="text" id="Number_unit" name="Number_unit" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required="required"/>
-            </td>
-        </tr>
-        <tr>
-            <td>単位単価</td>
-            <td>
-                <input type="text" name="Unit_price" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
-            </td>
-        </tr>
-        <!-- <tr>
-            <td>適用</td>
-            <td>
-                <input type="text" value="" name="Pick"/>
-            </td>
-        </tr> -->
-        <tr>
-            <td></td>
-            <td>
-                <input name="btn_unit" type="submit" value="登録"/>
-            </td>
-        </tr>
-    </table>
-</form>
+    <?}?>
+	</table>
+    <?php include_once 'views/pagination.php'; ?>
 </body>
 </html>
+
 <script type="text/javascript">
-    $('input[type="date"]').on('change', function() {
-        var days = ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'];
-        var d = new Date(document.getElementById("Date").value);
-        var dayName = days[d.getDay()];
-        document.getElementById('Day').value = dayName;
-    });
+    //Delete
+    function deleteItem(id){
+        // var flag = confirm('削除ですか ?');
+        // if(flag == true){
+        //     var url = 'delete.php?Activity_record_id=' + id;
+        //     window.location.href = url;
+        // }else{
+        //     return false;
+        // }
 
-     $(document).ready(function () {
-        $('#bt').click(function () {
-            $('#Start_time').prop('disabled', function (index, value) {   // Passing "function()" as parameter to .prop().
-                // if (value) {
-                //     $('#msg').html('dropdown list <b>enabled</b>');
-                // }
-                // else {
-                //     $('#msg').html('dropdown list <b>disabled</b>');
-                // }
-
-                return !value;  // return true or false
-            });
-            $('#End_time').prop('disabled', function (index, value) {   // Passing "function()" as parameter to .prop().
-                // if (value) {
-                //     $('#msg').html('dropdown list <b>enabled</b>');
-                // }
-                // else {
-                //     $('#msg').html('dropdown list <b>disabled</b>');
-                // }
-
-                return !value;  // return true or false
-            });
-        });
-    });
-
-    function outputSelectedValueAndText(obj)
-    {
-        /* 
-         * obj は select タグであり、selectedIndex プロパティには
-         * 変更後の選択項目のインデックスが格納されています
-         */
-        var idx = obj.selectedIndex;
-        var value = obj.options[idx].value; // 値
-        var text  = obj.options[idx].text;  // 表示テキスト
-        if (text=="欠席") {
-            $('#Start_time').prop('disabled', function (index, value) {   // Passing "function()" as parameter to .prop().
-                // if (value) {
-                //     $('#msg').html('dropdown list <b>enabled</b>');
-                // }
-                // else {
-                //     $('#msg').html('dropdown list <b>disabled</b>');
-                // }
-
-                return !value;  // return true or false
-            });
-            $('#End_time').prop('disabled', function (index, value) {   // Passing "function()" as parameter to .prop().
-                // if (value) {
-                //     $('#msg').html('dropdown list <b>enabled</b>');
-                // }
-                // else {
-                //     $('#msg').html('dropdown list <b>disabled</b>');
-                // }
-
-                return !value;  // return true or false
+        var result = confirm(id+"　削除したいですか?");
+        if (result) {
+            var action = "deleteUnit";
+           $.post("./controllers/delete.php",
+            {
+              changestatus: status.value,
+              id: id,
+              action:action
+            },
+            function(data,status){
+              if(status=="success"){
+                alert("削除されました。");
+                location.reload();
+              }else{
+                alert("削除できませんでした。");
+              }
             });
         }
-        // 値とテキストをコンソールに出力
-        // console.log('value = ' + value + ', ' + 'text = ' + text);
     }
+
+    //Update
+    function update(id){
+        // var flag = confirm('削除ですか ?');
+        // if(flag == true){
+        //     var url = 'delete.php?Activity_record_id=' + id;
+        //     window.location.href = url;
+        // }else{
+        //     return false;
+        // }
+
+        var result = confirm(id+"　編集したいですか？");
+        if (result) {
+            var action = "updateUnit";
+           $.post("./controllers/unit.php",
+            {
+              changestatus: status.value,
+              id: id,
+              action:action
+            },
+            function(data,status){
+              if(status=="success"){
+                // alert("編集されました。");
+                // // location.reload();
+                location.href="./unit/Update/"+id;
+
+              // }else{
+              //   alert("編集できませんでした。");
+              }
+            });
+        }
+    }
+
+    // function setParam(href, key, value){
+    //     var url = new URL(href);
+
+    //     url.searchParams.set(key, value);
+    //     return url.href;
+    // }
+
+    function changePageUnit(page){
+        url = "/fukushisystem/unit&page="+page;
+        window.location.href = url;
+    }
+
+    
 </script>

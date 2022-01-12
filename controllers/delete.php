@@ -32,6 +32,16 @@
 		}
 	}
 
+	if($_POST["action"] == "deleteUnit"){
+	
+	 	$dataID = $_POST["id"];
+	 	// echo "<script>alert('o');</script>";
+	 	// exit();
+		if( $dataID !=null){
+			deleteUnit((int)$dataID);	
+		}
+	}
+
 	function deleteActiveRecord($ID){
 
 		$database = new Database();
@@ -61,6 +71,18 @@
 		$database = new Database();
 		// $database->setTable("activityrecord");
 		$queryList = "DELETE FROM business WHERE `Business_id`=".$ID;
+
+		// $queryList = implode(" ", $queryList);
+		$exc = $database->execute($queryList);
+
+		return;
+	}
+
+	function deleteUnit($ID){
+
+		$database = new Database();
+		// $database->setTable("activityrecord");
+		$queryList = "DELETE FROM unit WHERE `Unit_id`=".$ID;
 
 		// $queryList = implode(" ", $queryList);
 		$exc = $database->execute($queryList);
