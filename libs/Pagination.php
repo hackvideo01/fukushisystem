@@ -37,6 +37,9 @@ class Pagination{
 				}else if ($_GET['url']=="business") {
 					$start 	= '<li><a href="#"  onclick="javascript:changePageBusiness(1)">«</a></li>';
 					$prev 	= '<li><a href="#"  onclick="javascript:changePageBusiness('.$page.')">‹</a></li>';
+				}else if ($_GET['url']=="userMNMT") {
+					$start 	= '<li><a href="#"  onclick="javascript:changePageUserMNMT(1)">«</a></li>';
+					$prev 	= '<li><a href="#"  onclick="javascript:changePageUserMNMT('.$page.')">‹</a></li>';
 				}
 			}
 		
@@ -50,6 +53,9 @@ class Pagination{
 				}else if ($_GET['url']=="business") {
 					$next 	= '<li><a href="#"  onclick="javascript:changePageBusiness('.$page.')">›</a></li>';
 					$end 	= '<li><a href="#"  onclick="javascript:changePageBusiness('.$this->totalPage.')">»</a></li>';
+				}else if ($_GET['url']=="userMNMT") {
+					$next 	= '<li><a href="#"  onclick="javascript:changePageUserMNMT('.$page.')">›</a></li>';
+					$end 	= '<li><a href="#"  onclick="javascript:changePageUserMNMT('.$this->totalPage.')">»</a></li>';
 				}
 			}
 		
@@ -88,6 +94,8 @@ class Pagination{
 						$listPages .= '<li><a href="#" onclick="javascript:changePageActiveRecord('.$i.')">'.$i.'</a></li>';
 					}else if ($_GET['url']=="business") {
 						$listPages .= '<li><a href="#" onclick="javascript:changePageBusiness('.$i.')">'.$i.'</a></li>';
+					}else if ($_GET['url']=="userMNMT") {
+						$listPages .= '<li><a href="#" onclick="javascript:changePageUserMNMT('.$i.')">'.$i.'</a></li>';
 					}
 				}
 			}

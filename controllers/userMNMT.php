@@ -2,13 +2,30 @@
 
 class userMNMT extends controller{
 	function welcome(){
+		require_once("./libs/Pagination.php");
 		if (isset($_SESSION['usernameSS1'])){
 			// Load the database configuration file 
 			$db = $this->model("database");
 			$database = new Database();
 			// $database->setTable("usermanagement");
 			// Fetch records from database 
+
+			$paramsCurrentPage  = (!empty($_GET['page'])) ?  $_GET['page'] : 1;
+
+			// Query Count
+			$queryCount =  "SELECT COUNT(*) AS `total` FROM `usermanagement` WHERE `Usermanagement_id` > 0";
+
+			$totalItem = $database->fetchRow($queryCount)['total'];
+			$configPagination = ['totalItemsPerPage'	=> 10, 'pageRange' => 3, 'currentPage' => $paramsCurrentPage];
+			$objPagination 	 = new Pagination($totalItem, $configPagination);
+
 			$queryList[] = "SELECT * FROM usermanagement ORDER BY Recipient_number ASC";
+
+			if($objPagination->getTotalPage() > 1)  {
+				$totalPage		= $configPagination['totalItemsPerPage'];
+				$position		= ($configPagination['currentPage']-1) * $totalPage;
+				$queryList[] 	= "LIMIT $position, $totalPage";
+			}
 
 			$queryList = implode(" ", $queryList);
 
@@ -29,6 +46,21 @@ class userMNMT extends controller{
 		$database = new Database();
 		$database->setTable("usermanagement");
 		if (isset($_SESSION['usernameSS1'])){
+
+			$arr = $this->UrlProcess();
+			$countItem;
+				// echo $arr[2];
+				if (isset($arr[2])) {
+					// Query Count
+					$queryCount =  "SELECT COUNT(*) AS `total` FROM `usermanagement` WHERE `Usermanagement_id` = ".$arr[2];
+					$countItem = $database->fetchRow($queryCount)['total'];
+				}
+
+				if ($countItem != 0) {
+					$queryList = "SELECT * FROM usermanagement WHERE `Usermanagement_id` = ".$arr[2];
+					$listItem = $database->fetchRow($queryList);
+				}
+				
 			require_once("./views/userMNMTA.html");
 			if (isset($_POST["btn_userMNMT"])) {
 				$data = array(

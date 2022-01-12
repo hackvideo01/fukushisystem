@@ -450,11 +450,12 @@
 			<td><?php echo $item['Recipient_number'];?></td>
 			<td><?php echo $item['Name_kana'];?></td>
 			<td><?php echo $item['Supply_municipalitie'];?></td>
-			<td><button>修正</button></td>
+            <td><button onclick="javascript:update(`<?php echo $item['Usermanagement_id'];?>`)">修正</button></td>
 			<td><button onclick="javascript:deleteItem(`<?php echo $item['Usermanagement_id'];?>`)">削除</button></td>
 		</tr>
     <?}?>
 	</table>
+    <?php include_once 'views/pagination.php'; ?>
 </body>
 </html>
 
@@ -487,5 +488,49 @@
               }
             });
         }
+    }
+
+    //Update
+    function update(id){
+        // var flag = confirm('削除ですか ?');
+        // if(flag == true){
+        //     var url = 'delete.php?Activity_record_id=' + id;
+        //     window.location.href = url;
+        // }else{
+        //     return false;
+        // }
+
+        var result = confirm(id+"　編集したいですか？");
+        if (result) {
+            var action = "updateUserMNMTA";
+           $.post("./controllers/userMNMT.php",
+            {
+              changestatus: status.value,
+              id: id,
+              action:action
+            },
+            function(data,status){
+              if(status=="success"){
+                // alert("編集されました。");
+                // // location.reload();
+                location.href="./userMNMT/A/"+id;
+
+              // }else{
+              //   alert("編集できませんでした。");
+              }
+            });
+        }
+    }
+
+    // function setParam(href, key, value){
+    //     var url = new URL(href);
+
+    //     url.searchParams.set(key, value);
+    //     return url.href;
+    // }
+
+    function changePageUserMNMT(page){
+        url = "/fukushisystem/userMNMT&page="+page;
+        window.location.href = url;
     }
 </script>
