@@ -448,7 +448,7 @@
             <td><?php echo $item['Model_number'];?></td>
             <td><?php echo $item['Model_symbol'];?></td>
             <td><?php echo $item['Service_offer_date'];?></td>
-            <td><button>修正</button></td>
+            <td><button onclick="javascript:update(`<?php echo $item['Business_id'];?>`)">修正</button></td>
             <!-- <td><button onclick="javascript:deleteItem(`<?php echo $item['Business_id'];?>`)">削除</button></td> -->
         </tr>
     <?}?>
@@ -483,6 +483,38 @@
                 location.reload();
               }else{
                 alert("削除できませんでした。");
+              }
+            });
+        }
+    }
+
+     //Update
+    function update(id){
+        // var flag = confirm('削除ですか ?');
+        // if(flag == true){
+        //     var url = 'delete.php?Activity_record_id=' + id;
+        //     window.location.href = url;
+        // }else{
+        //     return false;
+        // }
+
+        var result = confirm(id+"　編集したいですか？");
+        if (result) {
+            var action = "updateActiveRecord";
+           $.post("./controllers/business.php",
+            {
+              changestatus: status.value,
+              id: id,
+              action:action
+            },
+            function(data,status){
+              if(status=="success"){
+                alert("編集されました。");
+                // location.reload();
+                location.href="./business/A/"+id;
+
+              }else{
+                alert("編集できませんでした。");
               }
             });
         }

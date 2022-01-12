@@ -45,6 +45,21 @@ class business extends controller{
 		$database = new Database();
 		$database->setTable("business");
 		if (isset($_SESSION['usernameSS1'])){
+			$arr = $this->UrlProcess();
+			$countItem;
+			
+			// echo $arr[2];
+			if (isset($arr[2])) {
+				// Query Count
+				$queryCount =  "SELECT COUNT(*) AS `total` FROM `business` WHERE `Business_id` = ".$arr[2];
+				$countItem = $database->fetchRow($queryCount)['total'];
+			}
+
+			if ($countItem != 0) {
+				$queryList = "SELECT * FROM business WHERE `Business_id` = ".$arr[2];
+				$listItem = $database->fetchRow($queryList);
+			}
+				
 			require_once("./views/businessA.html");
 			if (isset($_POST["btn_business"])) {
 				$data = array(
@@ -281,5 +296,10 @@ class business extends controller{
 	// 		header("Location: /fukushisystem/unit");
 	// 	}
 	// }
+	function UrlProcess(){
+		if (isset($_GET['url'])) {
+			return explode("/", filter_var(trim($_GET['url'], "/")));
+		}
+	}
 }
 ?>

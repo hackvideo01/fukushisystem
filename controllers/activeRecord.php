@@ -64,11 +64,15 @@ class activeRecord extends controller{
 		if (isset($_SESSION['usernameSS1'])){
 
 		$arr = $this->UrlProcess();
+		$countItem;
+			// echo $arr[2];
+			if (isset($arr[2])) {
+				// Query Count
+				$queryCount =  "SELECT COUNT(*) AS `total` FROM `activityrecord` WHERE `Activity_record_id` = ".$arr[2];
+				$countItem = $database->fetchRow($queryCount)['total'];
+			}
 
-		// echo $arr[2];
-			$queryList = "SELECT * FROM activityrecord WHERE `Activity_record_id` = ".$arr[2];
-
-			if (condition) {
+			if ($countItem != 0) {
 				$queryList = "SELECT * FROM activityrecord WHERE `Activity_record_id` = ".$arr[2];
 				$listItem = $database->fetchRow($queryList);
 			}
