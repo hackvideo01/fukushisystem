@@ -59,6 +59,19 @@ class unit extends controller{
 		$database = new Database();
 		$database->setTable("unit");
 		if (isset($_SESSION['usernameSS2'])){
+			$arr = $this->UrlProcess();
+			$countItem;
+				// echo $arr[2];
+				if (isset($arr[2])) {
+					// Query Count
+					$queryCount =  "SELECT COUNT(*) AS `total` FROM `unit` WHERE `Unit_id` = ".$arr[2];
+					$countItem = $database->fetchRow($queryCount)['total'];
+				}
+
+				if ($countItem != 0) {
+					$queryList = "SELECT * FROM unit WHERE `Unit_id` = ".$arr[2];
+					$listItem = $database->fetchRow($queryList);
+				}
 			require_once("./views/unitNew.html");
 			// echo "<script>alert('ok');</script>";
 			
@@ -71,20 +84,62 @@ class unit extends controller{
 				// exit();
 				if ($listItem==0) {
 					$data = array(
-					'Unit_code' 				=> $_POST["Unit_code"],
-					'Service_content' 			=> $_POST["Service_content"],
-					'Number_unit' 				=> $_POST["Number_unit"],
-					'Unit_price' 				=> $_POST["Unit_price"]
-				);
+						'Unit_code' 				=> $_POST["Unit_code"],
+						'Service_content' 			=> $_POST["Service_content"],
+						'Number_unit' 				=> $_POST["Number_unit"],
+						'Unit_price' 				=> $_POST["Unit_price"]
+					);
 				$database->insert($data);
 				header("Location: /fukushisystem/unit");
 				}else{
 					echo "<script>alert('サービスコードはありました。');</script>";
 				}
+			}else if(isset($_POST["btn_unitUpdate"])) {
+				// echo "<script>alert('受給者番号：');</script>";
+					$queryList = "SELECT  COUNT(`Unit_id`) AS `total` FROM unit WHERE `Unit_id` =".$arr[2];
+					// $queryList = implode(" ", $queryList);
+					$listItem = $database->fetchRow($queryList)['total'];
+					if ($listItem != 0) {
+						$data = array(
+							'Unit_code' 				=> $_POST["Unit_code"],
+							'Service_content' 			=> $_POST["Service_content"],
+							'Number_unit' 				=> $_POST["Number_unit"],
+							'Unit_price' 				=> $_POST["Unit_price"]
+						);
+					// echo $arr[2];
+					// $data = array(['Activity_record_id', $arr[2] ]);
+					// foreach($data as $value){
+					// 	echo $value[0]."=".$value[1].$value[2];
+
+					// }
+					$list =  $database->update($data, array(['Unit_id', $arr[2] ]));
+					// print_r($list);
+					// exit();
+					// header("Location: /fukushisystem/activeRecord/A/".$arr[2]."");
+					echo "<script>
+							UpdateActiveRecord();
+							function UpdateActiveRecord(page){
+						        var result = confirm('修正されました。');
+						        if (result) {
+						        	url = '/fukushisystem/unit/Update/".$arr[2]."';
+						        	window.location.href = url;
+						        }
+						    }
+
+						 </script>";
+
+					}else{
+						echo "<script>alert('受給者番号：');";
+					}
 			}
 		}else{
 			// echo "<script>alert('unit');</script>";
 			header("Location: /fukushisystem/unit");
+		}
+	}
+	function UrlProcess(){
+		if (isset($_GET['url'])) {
+			return explode("/", filter_var(trim($_GET['url'], "/")));
 		}
 	}
 }

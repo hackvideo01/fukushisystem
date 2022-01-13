@@ -441,25 +441,25 @@
         <tr>
             <td>サービスコード</td>
             <td>
-                <input type="text" name="Unit_code" required />
+                <input type="text" name="Unit_code" value="<?=$listItem['Unit_code'];?>" required />
             </td>
         </tr>
         <tr>
             <td>サービス内容</td>
             <td>
-                <input type="text" id="Service_content" name="Service_content" required="required"/>
+                <input type="text" id="Service_content" name="Service_content" value="<?=$listItem['Service_content'];?>" required="required"/>
             </td>
         </tr>
         <tr>
             <td>単位</td>
             <td>
-                <input type="text" id="Number_unit" name="Number_unit" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required="required"/>
+                <input type="text" id="Number_unit" name="Number_unit" value="<?=$listItem['Number_unit'];?>" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required="required"/>
             </td>
         </tr>
         <tr>
             <td>単位単価</td>
             <td>
-                <input type="text" name="Unit_price" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+                <input type="text" name="Unit_price" value="<?=$listItem['Unit_price'];?>" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
             </td>
         </tr>
         <!-- <tr>
@@ -471,7 +471,11 @@
         <tr>
             <td></td>
             <td>
-                <input name="btn_unit" type="submit" value="登録"/>
+                <?if(isset($arr[2])) {?>
+                    <input name="btn_unitUpdate" type="submit" value="修正"/>
+                <?}else{?>
+                    <input name="btn_unit" type="submit" value="登録"/>
+                <?}?>
             </td>
         </tr>
     </table>
