@@ -2,6 +2,7 @@
 class display_data extends controller{
 	function welcome(){
 		require_once("./libs/Pagination.php");
+
 		// Load the database configuration file 
 		// $db = $this->model("database");
 		// $database = new Database();
@@ -57,6 +58,8 @@ class display_data extends controller{
 	}
 	
 	function exportData(){
+		define('TIMEZONE', 'Asia/Tokyo');
+		date_default_timezone_set(TIMEZONE);
 		$check_year_month = $_POST['year'].$_POST['month'];
 		// Load the database configuration file 
 		$db = $this->model("database");
@@ -148,7 +151,15 @@ class display_data extends controller{
     		fputcsv($f, $fields4, $delimiter);
 
 		 	// Move back to beginning of file 
-		    fseek($f, 0); 
+		    fseek($f, 0);
+
+		    $databaseEX = new Database();
+		    $databaseEX->setTable('historyex');
+		    $dataEX = array(
+		    	'FileNameEX'	=>	'SV エクスポート',
+		    	'DateEX'		=>	date('Y/m/d H:i:s')
+		    );
+		    $databaseEX->insert($dataEX);
 		     
 		    // Set headers to download file rather than displayed 
 		 	// mb_convert_encoding($csv, 'UTF-16LE', 'UTF-8');
@@ -208,6 +219,8 @@ class display_data extends controller{
 	}
 
 	function exportDataSE(){
+		define('TIMEZONE', 'Asia/Tokyo');
+		date_default_timezone_set(TIMEZONE);
 		$check_year_month = $_POST['year'].$_POST['month'];
 		// Load the database configuration file 
 		$db = $this->model("database");
@@ -321,6 +334,14 @@ class display_data extends controller{
 
 		 	// Move back to beginning of file 
 		    fseek($f, 0); 
+
+		    $databaseEX = new Database();
+		    $databaseEX->setTable('historyex');
+		    $dataEX = array(
+		    	'FileNameEX'	=>	'SE エクスポート',
+		    	'DateEX'		=>	date('Y/m/d H:i:s')
+		    );
+		    $databaseEX->insert($dataEX);
 		     
 		    // Set headers to download file rather than displayed 
 		 	// mb_convert_encoding($csv, 'UTF-16LE', 'UTF-8');
@@ -377,6 +398,47 @@ class display_data extends controller{
 		// 		confirm("LUC");
 		//       </script>';
 
+	}
+	function historyExport(){
+		require_once("./libs/Pagination.php");
+		
+		if (isset($_SESSION['usernameSS1'])){
+			// Load the database configuration file 
+			$db = $this->model("database");
+			$database = new Database();
+			// $database->setTable("usermanagement");
+			// Fetch records from database 
+
+			$paramsCurrentPage  = (!empty($_GET['page'])) ?  $_GET['page'] : 1;
+
+			// Query Count
+			$queryCount =  "SELECT COUNT(*) AS `total` FROM `historyex` WHERE `HistoryEX_id` > 0";
+
+			$totalItem = $database->fetchRow($queryCount)['total'];
+			$configPagination = ['totalItemsPerPage'	=> 10, 'pageRange' => 3, 'currentPage' => $paramsCurrentPage];
+			$objPagination 	 = new Pagination($totalItem, $configPagination);
+
+			$queryList[] = "SELECT * FROM historyex ORDER BY DateEX ASC";
+
+			// Pagination
+			if($objPagination->getTotalPage() > 1)  {
+				$totalPage		= $configPagination['totalItemsPerPage'];
+				$position		= ($configPagination['currentPage']-1) * $totalPage;
+				$queryList[] 	= "LIMIT $position, $totalPage";
+			}
+
+			$queryList = implode(" ", $queryList);
+
+			$listItem = $database->fetchAll($queryList);
+			// foreach ($listItem as $item) {
+			// 	// print_r($item);
+
+			// }
+			require_once("./views/historyEX.html");
+		}else{
+			// echo "<script>alert('unit');</script>";
+			header("Location: /fukushisystem/unit");
+		}
 	}
 }
 ?>
