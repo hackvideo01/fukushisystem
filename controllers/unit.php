@@ -2,9 +2,6 @@
 class unit extends controller{
 	function welcome(){
 		require_once("./libs/Pagination.php");
-		// Load the database configuration file 
-		$db = $this->model("database");
-		$database = new Database();
 		// $database->setTable("usermanagement");
 		// Fetch records from database 
 		// $queryList[] = "SELECT * FROM activityrecord WHERE 17";
@@ -117,8 +114,8 @@ class unit extends controller{
 					// exit();
 					// header("Location: /fukushisystem/activeRecord/A/".$arr[2]."");
 					echo "<script>
-							UpdateActiveRecord();
-							function UpdateActiveRecord(page){
+							UpdateUnit();
+							function UpdateUnit(){
 						        var result = confirm('修正されました。');
 						        if (result) {
 						        	url = '/fukushisystem/unit/Update/".$arr[2]."';

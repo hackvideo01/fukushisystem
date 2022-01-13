@@ -24,6 +24,14 @@
             background: red;
             color:#fff;
         }
+        .btn-municipality{
+            text-align: center;
+        }
+        .btn-municipality button{
+            background-color: black;
+            color: white;
+            padding: 1px;
+        }
         h1{
             text-align: center;
         }
@@ -424,42 +432,31 @@
 <button type="button" onclick="location.href='/fukushisystem/display_data'">印刷画面</button> -->
 
 <h1>市町村マスタ</h1>
+<div class="btn-municipality">
+    <button type="button" onclick="location.href='/fukushisystem/municipality'">戻る</button>
+</div>
 <form method="post">
     <table>
         <tr>
             <td>サービスコード</td>
             <td>
-                <input type="text" name="Unit_code" required />
+                <input type="text" name="Municipality_number" value="<?=$listItem['Municipality_number'];?>" maxlength="6" required />
             </td>
         </tr>
         <tr>
             <td>サービス内容</td>
             <td>
-                <input type="text" id="Service_content" name="Service_content" required="required"/>
+                <input type="text" id="Municipality" name="Municipality" value="<?=$listItem['Municipality'];?>" required="required"/>
             </td>
         </tr>
-        <tr>
-            <td>単位</td>
-            <td>
-                <input type="text" id="Number_unit" name="Number_unit" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required="required"/>
-            </td>
-        </tr>
-        <tr>
-            <td>単位単価</td>
-            <td>
-                <input type="text" name="Unit_price" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
-            </td>
-        </tr>
-        <!-- <tr>
-            <td>適用</td>
-            <td>
-                <input type="text" value="" name="Pick"/>
-            </td>
-        </tr> -->
         <tr>
             <td></td>
             <td>
-                <input name="btn_unit" type="submit" value="登録"/>
+                <?if(isset($arr[2])) {?>
+                    <input name="btn_municipalityUpdate" type="submit" value="修正"/>
+                <?}else{?>
+                    <input name="btn_municipality" type="submit" value="登録"/>
+                <?}?>
             </td>
         </tr>
     </table>

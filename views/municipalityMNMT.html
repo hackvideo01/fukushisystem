@@ -9,7 +9,7 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-	<title>単位マスタ管理</title>
+	<title>市町村マスタ管理</title>
 </head>
 <body>
 	<style type="text/css">
@@ -437,28 +437,24 @@
 	<button type="button" onclick="location.href='/fukushisystem/display_data'">印刷画面</button> -->
 	<!-- <button type="button" class="unit" onclick="location.href='/fukushisystem/unit'">単位</button> -->
 
-	<h1>単位マスタ管理</h1>
+	<h1>市町村マスタ管理</h1>
     
     <div class="btn-unit">
-        <button type="button" onclick="location.href='/fukushisystem/unit/Update'">新規登録</button>
+        <button type="button" onclick="location.href='/fukushisystem/municipality/Update'">新規登録</button>
     </div>
 	<table>
 		<tr>
-			<th>サービスコード</th>
-			<th>サービス内容</th>
-			<th>単位</th>
-            <th>単位単価</th>
+			<th>市町村</th>
+			<th>市町村番号</th>
 			<th>修正</th>
 			<th>削除</th>
 		</tr>
 	<?foreach ($listItem as $item) {?>
         <tr>
-            <td><?php echo $item['Unit_code'];?></td>
-            <td><?php echo $item['Service_content'];?></td>
-            <td><?php echo $item['Number_unit'];?></td>
-            <td><?php echo $item['Unit_price'];?></td>
-            <td><button onclick="javascript:update(`<?php echo $item['Unit_id'];?>`)">修正</button></td>
-            <td><button onclick="javascript:deleteItem(`<?php echo $item['Unit_id'];?>`)">削除</button></td>
+            <td><?php echo $item['Municipality'];?></td>
+            <td><?php echo $item['Municipality_number'];?></td>
+            <td><button onclick="javascript:update(`<?php echo $item['Municipality_id'];?>`)">修正</button></td>
+            <td><button onclick="javascript:deleteItem(`<?php echo $item['Municipality_id'];?>`)">削除</button></td>
         </tr>
     <?}?>
 	</table>
@@ -479,7 +475,7 @@
 
         var result = confirm(id+"　削除したいですか?");
         if (result) {
-            var action = "deleteUnit";
+            var action = "deleteMunicipality";
            $.post("./controllers/delete.php",
             {
               changestatus: status.value,
@@ -509,8 +505,8 @@
 
         var result = confirm(id+"　編集したいですか？");
         if (result) {
-            var action = "updateUnit";
-           $.post("./controllers/unit.php",
+            var action = "updateMunicipality";
+           $.post("./controllers/municipality.php",
             {
               changestatus: status.value,
               id: id,
@@ -520,7 +516,7 @@
               if(status=="success"){
                 // alert("編集されました。");
                 // // location.reload();
-                location.href="./unit/Update/"+id;
+                location.href="./municipality/Update/"+id;
 
               // }else{
               //   alert("編集できませんでした。");
@@ -536,8 +532,8 @@
     //     return url.href;
     // }
 
-    function changePageUnit(page){
-        url = "/fukushisystem/unit&page="+page;
+    function changePageMunicipality(page){
+        url = "/fukushisystem/municipality&page="+page;
         window.location.href = url;
     }
 
