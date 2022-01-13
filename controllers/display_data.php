@@ -1,21 +1,59 @@
 <? 
 class display_data extends controller{
 	function welcome(){
+		require_once("./libs/Pagination.php");
 		// Load the database configuration file 
-		$db = $this->model("database");
-		$database = new Database();
+		// $db = $this->model("database");
+		// $database = new Database();
 		// $database->setTable("usermanagement");
 		// Fetch records from database 
-		$queryList[] = "SELECT * FROM activityrecord ORDER BY Recipient_number ASC";
+		// $queryList[] = "SELECT * FROM activityrecord ORDER BY Recipient_number ASC";
 
-		$queryList = implode(" ", $queryList);
+		// $queryList = implode(" ", $queryList);
 
-		$listItem = $database->fetchAll($queryList);
+		// $listItem = $database->fetchAll($queryList);
 		// foreach ($listItem as $item) {
 		// 	// print_r($item);
 
 		// }
-		require_once("./views/display_data.html");
+		if (isset($_SESSION['usernameSS1'])){
+			// Load the database configuration file 
+			$db = $this->model("database");
+			$database = new Database();
+			// $database->setTable("usermanagement");
+			// Fetch records from database 
+
+			$paramsCurrentPage  = (!empty($_GET['page'])) ?  $_GET['page'] : 1;
+
+			// Query Count
+			$queryCount =  "SELECT COUNT(*) AS `total` FROM `activityrecord` WHERE `Activity_record_id` > 0";
+
+			$totalItem = $database->fetchRow($queryCount)['total'];
+			$configPagination = ['totalItemsPerPage'	=> 10, 'pageRange' => 3, 'currentPage' => $paramsCurrentPage];
+			$objPagination 	 = new Pagination($totalItem, $configPagination);
+
+			$queryList[] = "SELECT * FROM activityrecord ORDER BY Recipient_number ASC";
+
+			// Pagination
+			if($objPagination->getTotalPage() > 1)  {
+				$totalPage		= $configPagination['totalItemsPerPage'];
+				$position		= ($configPagination['currentPage']-1) * $totalPage;
+				$queryList[] 	= "LIMIT $position, $totalPage";
+			}
+
+			$queryList = implode(" ", $queryList);
+
+			$listItem = $database->fetchAll($queryList);
+			// foreach ($listItem as $item) {
+			// 	// print_r($item);
+
+			// }
+			require_once("./views/display_data.html");
+		}else{
+			// echo "<script>alert('unit');</script>";
+			header("Location: /fukushisystem/unit");
+		}
+		// require_once("./views/display_data.html");
 	}
 	
 	function exportData(){

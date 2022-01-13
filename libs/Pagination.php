@@ -46,6 +46,9 @@ class Pagination{
 				}else if ($_GET['url']=="municipality") {
 					$start 	= '<li><a href="#"  onclick="javascript:changePageMunicipality(1)">«</a></li>';
 					$prev 	= '<li><a href="#"  onclick="javascript:changePageMunicipality('.$page.')">‹</a></li>';
+				}else if ($_GET['url']=="display_data") {
+					$start 	= '<li><a href="#"  onclick="javascript:changePageDisplay_data(1)">«</a></li>';
+					$prev 	= '<li><a href="#"  onclick="javascript:changePageDisplay_data('.$page.')">‹</a></li>';
 				}
 			}
 		
@@ -68,6 +71,9 @@ class Pagination{
 				}else if ($_GET['url']=="municipality") {
 					$next 	= '<li><a href="#"  onclick="javascript:changePageMunicipality('.$page.')">›</a></li>';
 					$end 	= '<li><a href="#"  onclick="javascript:changePageMunicipality('.$this->totalPage.')">»</a></li>';
+				}else if ($_GET['url']=="display_data") {
+					$next 	= '<li><a href="#"  onclick="javascript:changePageDisplay_data('.$page.')">›</a></li>';
+					$end 	= '<li><a href="#"  onclick="javascript:changePageDisplay_data('.$this->totalPage.')">»</a></li>';
 				}
 			}
 		
@@ -112,6 +118,8 @@ class Pagination{
 						$listPages .= '<li><a href="#" onclick="javascript:changePageUnit('.$i.')">'.$i.'</a></li>';
 					}else if ($_GET['url']=="municipality") {
 						$listPages .= '<li><a href="#" onclick="javascript:changePageMunicipality('.$i.')">'.$i.'</a></li>';
+					}else if ($_GET['url']=="display_data") {
+						$listPages .= '<li><a href="#" onclick="javascript:changePageDisplay_data('.$i.')">'.$i.'</a></li>';
 					}
 				}
 			}
