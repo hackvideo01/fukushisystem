@@ -438,13 +438,13 @@
 <form method="post">
     <table>
         <tr>
-            <td>サービスコード</td>
+            <td>市町村番号</td>
             <td>
-                <input type="text" name="Municipality_number" value="<?=$listItem['Municipality_number'];?>" maxlength="6" required />
+                <input type="text" name="Municipality_number" value="<?=$listItem['Municipality_number'];?>" maxlength="6" required  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
             </td>
         </tr>
         <tr>
-            <td>サービス内容</td>
+            <td>市町村</td>
             <td>
                 <input type="text" id="Municipality" name="Municipality" value="<?=$listItem['Municipality'];?>" required="required"/>
             </td>
