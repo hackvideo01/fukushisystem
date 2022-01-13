@@ -157,6 +157,7 @@ class display_data extends controller{
 		    $databaseEX->setTable('historyex');
 		    $dataEX = array(
 		    	'FileNameEX'	=>	'SV エクスポート',
+		    	'Comment'		=>	'成功',
 		    	'DateEX'		=>	date('Y/m/d H:i:s')
 		    );
 		    $databaseEX->insert($dataEX);
@@ -339,6 +340,7 @@ class display_data extends controller{
 		    $databaseEX->setTable('historyex');
 		    $dataEX = array(
 		    	'FileNameEX'	=>	'SE エクスポート',
+		    	'Comment'		=>	'成功',
 		    	'DateEX'		=>	date('Y/m/d H:i:s')
 		    );
 		    $databaseEX->insert($dataEX);
