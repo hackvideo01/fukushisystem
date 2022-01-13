@@ -78,7 +78,7 @@ class municipality extends controller{
 				}else{
 					echo "<script>alert('サービスコードはありました。');</script>";
 				}
-			}else if(isset($_POST["btn_municipalitytUpdate"])) {
+			}else if(isset($_POST["btn_municipalityUpdate"])) {
 				// echo "<script>alert('受給者番号：');</script>";
 					$queryList = "SELECT  COUNT(`Municipality_id`) AS `total` FROM municipality WHERE `Municipality_id` =".$arr[2];
 					// $queryList = implode(" ", $queryList);
