@@ -52,7 +52,11 @@ class display_data extends controller{
 			require_once("./views/display_data.html");
 		}else{
 			// echo "<script>alert('unit');</script>";
-			header("Location: /fukushisystem/unit");
+			if (isset($_SESSION['usernameSS2'])) {
+				header("Location: /fukushisystem/unit");
+			}else{
+				header("Location: /fukushisystem/login");
+			}
 		}
 		// require_once("./views/display_data.html");
 	}

@@ -37,10 +37,15 @@ class business extends controller{
 			require_once("./views/businessDirector.html");
 		}else{
 			// echo "<script>alert('unit');</script>";
-			header("Location: /fukushisystem/unit");
+			if (isset($_SESSION['usernameSS2'])) {
+				header("Location: /fukushisystem/unit");
+			}else{
+				header("Location: /fukushisystem/login");
+			}
 		}
 	}
 	function A(){
+		require_once("./views/head.html");
 		$db = $this->model("database");
 		$database = new Database();
 		$database->setTable("business");
@@ -196,6 +201,7 @@ class business extends controller{
 		}
 	}
 	function B(){
+		require_once("./views/head.html");
 		$db = $this->model("database");
 		$database = new Database();
 		$database->setTable("business");
@@ -260,6 +266,7 @@ class business extends controller{
 		}
 	}
 	function migration(){
+		require_once("./views/head.html");
 		$db = $this->model("database");
 		$database = new Database();
 		$database->setTable("business");

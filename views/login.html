@@ -14,12 +14,12 @@
 <body>
 <style type="text/css">
     /* Style the tab */
-    .tab {
+    /*.tab {
       overflow: hidden;
-    }
+    }*/
 
     /* Style the buttons inside the tab */
-    .tab button {
+    /*.tab button {
       background-color: white;
       float: left;
       border: 1px solid red;
@@ -28,31 +28,31 @@
       padding: 14px 16px;
       transition: 0.3s;
       font-size: 17px;
-    }
+    }*/
 
     /* Change background color of buttons on hover */
-    .tab button:hover {
+    /*.tab button:hover {
       background-color: #ddd;
-    }
+    }*/
 
     /* Create an active/current tablink class */
-    .tab button.active {
+    /*.tab button.active {
       background-color: green;
       color: white;
-    }
+    }*/
 
     /* Style the tab content */
-    .tabcontent {
+    /*.tabcontent {
       display: none;
       padding: 6px 12px;
-    }
+    }*/
 </style>
 
 <div class="tab">
-  <button class="tablinks" onclick="openCity(event, 'Operation')">運営</button>
-  <button class="tablinks" onclick="openCity(event, 'Office')">事業所</button>
+  <!-- <button class="tablinks" onclick="openCity(event, 'Operation')">運営</button>
+  <button class="tablinks" onclick="openCity(event, 'Office')">事業所</button> -->
 </div>
-
+<?if($access == 1){?>
 <div id="Operation" class="tabcontent">
   <div id="wrapper">
         <form id="form-login" method="post">
@@ -73,6 +73,8 @@
     </div>
 </div>
 
+<?}else{?>
+
 <div id="Office" class="tabcontent">
     <div id="wrapper">
         <form id="form-login" method="post">
@@ -92,6 +94,7 @@
         </form>
     </div>
 </div>
+<?}?>
     
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>

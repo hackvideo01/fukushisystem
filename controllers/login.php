@@ -2,7 +2,8 @@
 class login extends controller{
 	function welcome(){
 		$db = $this->model("database");
-		include_once './views/login.html';
+
+		$access = $_GET['access'];
 
 		if (isset($_POST["login-office"])) {
 			if($_SESSION["usernameSS1"]==NULL){
@@ -85,6 +86,7 @@ class login extends controller{
 		if($_SESSION["usernameSS2"]!=NULL ){
 			header('Location: ./municipality');
 		}
+		include_once './views/login.html';
 	}
 }
 ?>

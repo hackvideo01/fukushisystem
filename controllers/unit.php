@@ -48,10 +48,11 @@ class unit extends controller{
 			require_once("./views/unitMNMT.html");
 		}else{
 			// echo "<script>alert('unit');</script>";
-			header("Location: /fukushisystem/unit");
+			header("Location: /fukushisystem/userMNMT");
 		}
 	}
 	function Update(){
+		require_once("./views/head.html");
 		$db = $this->model("database");
 		$database = new Database();
 		$database->setTable("unit");
