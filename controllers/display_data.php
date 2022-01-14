@@ -249,7 +249,7 @@ class display_data extends controller{
 			// echo $item['Tsusho'];
 
 			$delimiter = ","; 
-		    $filename = "SE".date('Ymd') . ".csv"; 
+		    $filename = "SE".$check_year_month."01.csv"; 
 		    $dateNow = date('Ym');
 		     
 		    // Create a file pointer 
@@ -284,6 +284,7 @@ class display_data extends controller{
 					// $queryListMu = implode(" ", $queryListMu);
 					$listItemMu = $database->fetchRow($queryListMu);
 					// print_r($listItemMu);
+					// echo $queryListMu;
 					// exit();
 					$fields2 = array(2, $i, 'J11', 1, $item['Month_year'], $listItemMu['Supply_municipalitie'], 2210600272, 166177, 1, 16340, 166177, 166177, 0, 0, 0, 0, 0, 0, 1, 16340, 166177
 						, 166177, 0, 0, 0, '', '', '', '', '', '');
@@ -343,7 +344,7 @@ class display_data extends controller{
 		    $databaseEX = new Database();
 		    $databaseEX->setTable('historyex');
 		    $dataEX = array(
-		    	'FileNameEX'	=>	'SE'.date('Ymd'),
+		    	'FileNameEX'	=>	"SE".$check_year_month."01",
 		    	'Comment'		=>	'成功',
 		    	'DateEX'		=>	date('Y/m/d H:i:s')
 		    );

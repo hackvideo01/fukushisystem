@@ -20,12 +20,24 @@ class activeRecord extends controller{
 
 			// }
 
+			$paramsSearch 		= (!empty($_GET['search'])) ? $_GET['search'] : '';
 			$paramsCurrentPage  = (!empty($_GET['page'])) ?  $_GET['page'] : 1;
 
-			// Query Count
-			$queryCount =  "SELECT COUNT(*) AS `total` FROM `activityrecord` WHERE `Activity_record_id` > 0";
+			// Fetch records from database 
+			$queryList[] = "SELECT * FROM activityrecord ORDER BY Recipient_number ASC";
 
-			$totalItem = $database->fetchRow($queryCount)['total'];
+			// Query Count
+			$queryCount[] =  "SELECT COUNT(*) AS `total` FROM `activityrecord` WHERE `Activity_record_id` > 0";
+
+			// Filter Search
+			// if($paramsSearch != '')  {
+			// 	$filterSearch 	= "AND `Recipient_number` LIKE '%$paramsSearch%'";
+			// 	$queryList[] 	= $filterSearch;
+			// 	$queryCount[] 	= $filterSearch;
+			// }
+
+			$totalItem = $database->fetchRow(implode(" ", $queryCount))['total'];
+			
 			$configPagination = ['totalItemsPerPage'	=> 10, 'pageRange' => 3, 'currentPage' => $paramsCurrentPage];
 			$objPagination 	 = new Pagination($totalItem, $configPagination);
 			// echo "<pre>";
@@ -33,8 +45,6 @@ class activeRecord extends controller{
 			// echo "</pre>";
 
 			// $database->setTable("usermanagement");
-			// Fetch records from database 
-			$queryList[] = "SELECT * FROM activityrecord ORDER BY Recipient_number ASC";
 
 			// Pagination
 			if($objPagination->getTotalPage() > 1)  {
@@ -44,6 +54,9 @@ class activeRecord extends controller{
 			}
 
 			$queryList = implode(" ", $queryList);
+			// echo $queryList;
+			// print_r($queryList);
+			// exit();
 
 			$listItem = $database->fetchAll($queryList);
 			// foreach ($listItem as $item) {
