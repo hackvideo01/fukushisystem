@@ -87,7 +87,7 @@ class display_data extends controller{
 			// echo $item['Tsusho'];
 
 			$delimiter = ","; 
-		    $filename = "SV".date('Ymd') . ".csv"; 
+		    $filename = "SV".$check_year_month."01".".csv"; 
 		    $dateNow = date('Ym');
 		     
 		    // Create a file pointer 
@@ -160,7 +160,7 @@ class display_data extends controller{
 		    $databaseEX = new Database();
 		    $databaseEX->setTable('historyex');
 		    $dataEX = array(
-		    	'FileNameEX'	=>	'SV エクスポート',
+		    	'FileNameEX'	=>	"SV".$check_year_month."01",
 		    	'Comment'		=>	'成功',
 		    	'DateEX'		=>	date('Y/m/d H:i:s')
 		    );
@@ -343,7 +343,7 @@ class display_data extends controller{
 		    $databaseEX = new Database();
 		    $databaseEX->setTable('historyex');
 		    $dataEX = array(
-		    	'FileNameEX'	=>	'SE エクスポート',
+		    	'FileNameEX'	=>	'SE'.date('Ymd'),
 		    	'Comment'		=>	'成功',
 		    	'DateEX'		=>	date('Y/m/d H:i:s')
 		    );
@@ -406,6 +406,7 @@ class display_data extends controller{
 
 	}
 	function historyExport(){
+		require_once("./views/head.html");
 		require_once("./libs/Pagination.php");
 		
 		if (isset($_SESSION['usernameSS1'])){
