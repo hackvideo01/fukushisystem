@@ -9,7 +9,9 @@
 class newSignUp extends controller{
 	public function welcome(){
 		include_once './views/newSignUp.html';
-		
+		$db = $this->model("database");
+		$database = new Database();
+		$database->setTable("users");
 		if (isset($_POST['newSignUp'])) {
 			$_SESSION['email'] = $_POST['email'];
 
@@ -21,6 +23,17 @@ class newSignUp extends controller{
 				// echo $_POST['firstname']."<br>";
 				// echo $_POST['lastname']."<br>";
 				// echo $_POST['radiogroup1'];
+				$queryCount =  'SELECT COUNT(*) AS `total` FROM `users` WHERE `username` = "'.$_REQUEST["username"].'"AND role=1';
+				$countItem = $database->fetchRow($queryCount)['total'];
+				if ($countItem == 0) {
+						$data = array(
+						'username' 				=> $_POST["username"],
+						'password' 				=> $_POST["password"],
+						'sex' 					=> $_POST["radiogroup1"],
+						'role' 					=> 1
+					);
+					$database->insert($data);
+
 		    	// $targetfolder = "./uploads/";
 
 			    // $targetfolder = $targetfolder . basename( $_FILES['file']['name']) ;
@@ -95,13 +108,14 @@ class newSignUp extends controller{
 			        $mailguest->send();
 			        //echo 'Message has been sent';
 			        header("Location: /fukushisystem/newSignUp/Success");
-
 			        
 			    } catch (Exception $e) {
 			        echo 'Message could not be sent.';
 			        echo 'Mailer Error: ' . $mailguest->ErrorInfo;
 			    }
-
+			    }else{
+						echo '<h3 class="duplicate">アカウントが登録されました。他のアカウントを入力して下さい。</h3>';
+					}
 
 			    // $mailmanager = new PHPMailer(true);                              // Passing `true` enables exceptions
 			    // try {
