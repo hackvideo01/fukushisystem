@@ -640,16 +640,16 @@ if (isset($_POST["send"])) {
         //Server settings
         $mailguest->SMTPDebug = 2;                                 // Enable verbose debug output
         $mailguest->isSMTP();                                      // Set mailer to use SMTP
-        $mailguest->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+        $mailguest->Host = 'sv13156.xserver.jp';  // Specify main and backup SMTP servers
         $mailguest->SMTPAuth = true;                               // Enable SMTP authentication
-        $mailguest->Username = 'hackvideo01@gmail.com';                 // SMTP username
-        $mailguest->Password = 'motthoihoankim';                           // SMTP password
+        $mailguest->Username = 'no-reply@moff-mall.com';                 // SMTP username
+        $mailguest->Password = 'osakana3939';                           // SMTP password
         $mailguest->SMTPSecure = 'TLS';                           // Enable TLS encryption, `ssl` also accepted
         $mailguest->Port = 587;                                    // TCP port to connect to
         $mailguest->CharSet = "UTF-8";
 
         //Recipients
-        $mailguest->setFrom('hackvideo01@gmail.com','福祉システム');
+        $mailguest->setFrom('no-reply@moff-mall.com','福祉システム');
         $mailguest->addAddress($_POST['email']);     // Add a recipient
 
 
@@ -708,17 +708,17 @@ if (isset($_POST["send"])) {
         //Server settings
         $mailmanager->SMTPDebug = 2;                                 // Enable verbose debug output
         $mailmanager->isSMTP();                                      // Set mailer to use SMTP
-        $mailmanager->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+        $mailmanager->Host = 'sv13156.xserver.jp';  // Specify main and backup SMTP servers
         $mailmanager->SMTPAuth = true;                               // Enable SMTP authentication
-        $mailmanager->Username = 'hackvideo01@gmail.com';                 // SMTP username
-        $mailmanager->Password = 'motthoihoankim';                           // SMTP password
+        $mailmanager->Username = 'no-reply@moff-mall.com';                 // SMTP username
+        $mailmanager->Password = 'osakana3939';                           // SMTP password
         $mailmanager->SMTPSecure = 'TLS';                           // Enable TLS encryption, `ssl` also accepted
         $mailmanager->Port = 587;                                    // TCP port to connect to
         $mailmanager->CharSet = "UTF-8";
 
         //Recipients
-        $mailmanager->setFrom('hackvideo01@gmail.com','福祉システム');
-        $mailmanager->addAddress('hackvideo01@gmail.com');     // Add a recipient
+        $mailmanager->setFrom('no-reply@moff-mall.com','福祉システム');
+        $mailmanager->addAddress('no-reply@moff-mall.com');     // Add a recipient
 
 
 
