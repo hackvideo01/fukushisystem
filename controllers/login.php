@@ -16,7 +16,6 @@ class login extends controller{
 						// echo $query;
 						// exit();
 						if($list){
-
 							// if (!empty($list)) {
 							//     foreach ($list as $item) {
 							//         echo '<pre style="color:red;font-weight:bold">';
@@ -37,10 +36,10 @@ class login extends controller{
 									<span>'.$error_info.'</span>
 								</div>	
 							 	';
-							return false;
+							// return false;
 						}
 				}
-				return false;
+				// return false;
 			}
 		}elseif (isset($_POST["login-operation"])) {
 			if($_SESSION["usernameSS2"]==NULL){
@@ -72,10 +71,10 @@ class login extends controller{
 									<span>'.$error_info.'</span>
 								</div>	
 							 	';
-							return false;
+							// return false;
 						}
 				}
-				return false;
+				// return false;
 			}
 		}
 
