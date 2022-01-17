@@ -407,17 +407,18 @@ body {
       <div class="">
         <form method="post">
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
-            <input type="email" name="email" placeholder="メールアドレス" required />
+            <input type="email" name="email" placeholder="メールアドレス"  pattern="^[a-zA-Z0-9.!#$&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$" required />
           </div>
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
             <input type="username" name="username" placeholder="アカウント" required />
           </div>
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
-            <input type="password" name="password" placeholder="パスワード" required />
+            <input type="password" name="password" id="password" placeholder="パスワード" required />
           </div>
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
-            <input type="password" name="password" placeholder="パスワード再度入力" required />
+            <input type="password" name="confirm_password" id="confirm_password" placeholder="パスワード再度入力" required />
           </div>
+          <span id='message'></span>
           <div class="row clearfix">
             <div class="col_half">
               <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
@@ -431,9 +432,9 @@ body {
             </div>
           </div>
               <div class="input_field radio_option">
-              <input type="radio" name="radiogroup1" id="rd1" required>
+              <input type="radio" name="radiogroup1" id="rd1" value="Male" required>
               <label for="rd1">男</label>
-              <input type="radio" name="radiogroup1" id="rd2">
+              <input type="radio" name="radiogroup1" id="rd2" value="Female">
               <label for="rd2">女</label>
               </div>
               <!-- <div class="input_field select_option">
@@ -452,10 +453,23 @@ body {
               <input type="checkbox" id="cb2"> -->
           <!-- <label for="cb2">I want to receive the newsletter</label> -->
             </div>
-          <input class="button" type="submit" name="newSignUp" value="登録" />
+          <input class="button" type="submit" name="newSignUp" id="newSignUp" disabled="disabled" value="登録" />
         </form>
       </div>
     </div>
   </div>
 </div>
 <!-- <p class="credit">Developed by <a href="http://www.designtheway.com" target="_blank">Design the way</a></p> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+  $('#password, #confirm_password').on('keyup', function () {
+    if ($('#password').val() == $('#confirm_password').val()) {
+      $('#message').html('Password Matching').css('color', 'green');
+      $('#newSignUp').prop('disabled', false);
+    } else {
+      $('#message').html('Password Not Matching').css('color', 'red');
+      $('#newSignUp').prop('disabled', true);
+    }
+  });
+
+</script>
