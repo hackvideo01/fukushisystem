@@ -405,7 +405,7 @@ body {
     </div>
     <div class="row clearfix">
       <div class="">
-        <form>
+        <form method="post">
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
             <input type="email" name="email" placeholder="メールアドレス" required />
           </div>
@@ -431,10 +431,10 @@ body {
             </div>
           </div>
               <div class="input_field radio_option">
-              <input type="radio" name="radiogroup1" id="rd1">
+              <input type="radio" name="radiogroup1" id="rd1" required>
               <label for="rd1">男</label>
               <input type="radio" name="radiogroup1" id="rd2">
-              <label for="rd2">女性</label>
+              <label for="rd2">女</label>
               </div>
               <!-- <div class="input_field select_option">
                 <select>
@@ -452,7 +452,7 @@ body {
               <input type="checkbox" id="cb2"> -->
           <!-- <label for="cb2">I want to receive the newsletter</label> -->
             </div>
-          <input class="button" type="submit" value="登録" />
+          <input class="button" type="submit" name="newSignUp" value="登録" />
         </form>
       </div>
     </div>
