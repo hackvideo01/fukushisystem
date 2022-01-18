@@ -410,7 +410,7 @@ class display_data extends controller{
 		require_once("./views/head.html");
 		require_once("./libs/Pagination.php");
 		
-		if (isset($_SESSION['usernameSS1'])){
+		if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==1){
 			// Load the database configuration file 
 			$db = $this->model("database");
 			$database = new Database();

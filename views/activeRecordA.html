@@ -7,49 +7,90 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="./public/css/menu.css">
     <link rel="icon" href="..\public\images\logo.png">
-    <title>A 活動記録</title>
+    <title>活動記録</title>
 </head>
+<?if(!isset($arr[2])){?>
+    <link rel="icon" href="./public/images/logo.png">
+<?}else{?>
+    <link rel="icon" href="../../public/images/logo.png">
+<?}?>
 <body>
     <style>
         table{
+            padding: 25px;
             margin: 0 auto;
+            border: 1px solid gray;
+            width: 700px;
+        }
+        table th{
+            color: white;
+            padding: 5px 10px;
+            background-color: #000000;
+            text-align: left;
+            border-radius: 6px;
+            width: 50%;
+            font-weight: 100;
         }
         table td{
             padding: 5px 10px;
+            width: 50%;
         }
         input, textarea{
             border: solid 1px #ddd;
             padding: 5px 20px;
             width: 100%;
+            border-radius: 6px;
         }
         input[type="submit"]{
             width: auto;
-            background: red;
             color:#fff;
+            cursor: pointer;
+        }
+        .submit-btn-New{
+            padding: 10px 20px !important;
+            display: flex;
+            margin: 30px auto 0px auto;
+            background: radial-gradient(#3b6c95, #003969f2);
+        }
+        .submit-btn-Update{
+            padding: 10px 20px !important;
+            display: flex;
+            margin: 30px auto 0px auto;
+            background: radial-gradient(#3b6c95, #003969f2);
         }
         h1{
             text-align: center;
+        }
+        .btn-unit{
+            text-align: center;
+        }
+        .btn-unit button{
+            background: radial-gradient(#555555, #b5b5b5);
+            color: white;
+            padding: 10px 30px;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-unit {
+            text-align: right;
+            margin-right: 30%;
+            margin-bottom: 10px;
+        }
+        @media (max-width: 1024px) {
+            .btn-unit {
+                text-align: right;
+                margin-right: 1%;
+            }
         }
         .logout{
             background: red;
             color: white;
             font-weight: bold;
         }
-        .important{
+       /* .important{
             background: red;
             color: white;
-        }
-        .Day{
-            font-weight: bold;
-            color: black;
-        }
-        .unit{
-            background: green;
-            color: white;
-        }
-        .activeRecord{
-            text-align: center;
-        }
+        }*/
          /* Theme Name: NGUYEN LUC PRO
          * Description: テーマ
          * Theme URI: https://lucnguyen.com/
@@ -117,11 +158,12 @@
 
         /* navbar styling */
         .navbar{
-            background: #004EA2;
+            border-radius: inherit;
+            background: #131A44;
             /*position: fixed;*/
             width: 100%;
             z-index: 999;
-            padding: 12.3px 0;
+            padding: 20.3px 0;
             font-family: 'Ubuntu', sans-serif;
             transition: all 0.3s ease;
         }
@@ -416,49 +458,41 @@
                 line-height: 38px;
             }
         }
-
-        @media all and (max-width: 320px) {
-
-
+        .head-top{
+            display: flex;
+            padding: 10px;
         }
-
-        @media all and (max-width: 480px) {
-
-
+        .head-top-title{
+            width: 92%;
         }
-
-        @media all and (max-width: 600px ) {
-
-
+        .head-top-title-company{
+            margin: 20px 0 0 100px;
+            position: absolute;
         }
-
-        @media all and (max-width: 800px) {
-
-
+        .head-top-logo{
+            width: 8%;
         }
-
-        @media all and (max-width: 768px) {
-
-
+        .head-top-logo img{
+            height: 50px;
         }
-
-        @media all and (max-width: 1024px) {
-
-
-        }
-
-        @media all and (max-width: 1025px) {
-
-
-        }
-
     </style>
-
+<div class="head-top">
+    <div class="head-top-title">
+        <p class="head-top-title-company">会社名のテキスト</p>
+    </div>
+    <div class="head-top-logo">
+        <?if(!isset($arr[2])){?>
+            <img src="..\public\images\logo.png">
+        <?}else{?>
+            <img src="../../public/images/logo.png">
+        <?}?>
+    </div>
+</div>
 <nav class="navbar">
     <div class="max-width">
         <ul class="menu">
-            <!-- <li class="menu-top1 whiteline"><a href="#" class="menu-btn">HOME</a></li> -->
             <li class=""><a href="/fukushisystem/business" class="menu-btn">事業所マスタ</a></li>
+            <li class="whiteline"><a href="/fukushisystem/activeRecord" class="menu-btn">活動記録</a></li>
             <li class="whiteline"><a href="/fukushisystem/userMNMT" class="menu-btn">利用者管理</a></li>
             <li class="whiteline"><a href="/fukushisystem/display_data" class="menu-btn">印刷画面</a></li>
             <li class="whiteline"><a href="/fukushisystem/contact" class="menu-btn">問い合わせ</a></li>
@@ -475,35 +509,38 @@
 <button type="button" onclick="location.href='/fukushisystem/display_data'">印刷画面</button> -->
 <!-- <button type="button" class="unit" onclick="location.href='/fukushisystem/unit'">単位</button> -->
 
-<h1>A 活動記録</h1>
+<h1>活動記録</h1>
 <div class="activeRecord">
     <!-- <button type="button" onclick="location.href='/fukushisystem/activeRecord/A'">A</button> -->
-    <button type="button" onclick="location.href='/fukushisystem/activeRecord/B'">B</button>
+    <!-- <button type="button" onclick="location.href='/fukushisystem/activeRecord/B'">B</button>
     <button type="button" onclick="location.href='/fukushisystem/activeRecord/migration'">移行</button>
-    <button type="button" onclick="location.href='/fukushisystem/activeRecord'">メイン画面</button>
+    <button type="button" onclick="location.href='/fukushisystem/activeRecord'">メイン画面</button> -->
+</div>
+<div class="btn-unit">
+    <button type="button" onclick="location.href='/fukushisystem/activeRecord'">一覧へ戻る</button>
 </div>
 <form method="post">
     <table>
         <tr>
-            <td class="important">受給者証番号</td>
+            <th class="important">受給者証番号</th>
             <td>
                 <input type="text" name="Recipient_number" maxlength="10" value="<?=$listItem['Recipient_number'];?>" onkeypress="return isNumber(event)" required />
             </td>
         </tr>
         <tr>
-            <td>日</td>
+            <th>日</th>
             <td>
                 <input type="date" id="Date" name="Date" value="<?=$listItem['Date'];?>" required="required"/>
             </td>
         </tr>
         <tr>
-            <td>曜日</td>
+            <th>曜日</th>
             <td>
                 <input class="Day" type="text" id="Day" value="<?=$listItem['Day'];?>" name="Day" required="required"/>
             </td>
         </tr>
         <tr>
-            <td class="important">通所</td>
+            <th class="important">通所</th>
             <td>
                 <!-- <input type="text" name="Tsusho"/> -->
                 <select name="Tsusho" onchange="outputSelectedValueAndText(this);">
@@ -513,7 +550,7 @@
             </td>
         </tr>
         <tr>
-            <td class="important">開始時刻</td>
+            <th class="important">開始時刻</th>
             <td>
                 <!-- <select name="Start_time" id="Start_time">
                     <option value="1">1</option>
@@ -545,7 +582,7 @@
             </td>
         </tr>
         <tr>
-            <td class="important">終了時刻</td>
+            <th class="important">終了時刻</th>
             <td>
                 <!-- <select name="End_time" id="End_time">
                     <option value="1">1</option>
@@ -577,80 +614,80 @@
             </td>
         </tr>
         <tr>
-            <td>食事加算</td>
+            <th>食事加算</th>
             <td>
                 <input type="text" value="<?=$listItem['Meal_addition'];?>" name="Meal_addition"/>
             </td>
         </tr>
         <tr>
-            <td>送迎</td>
+            <th>送迎</th>
             <td>
                 <input type="text" value="<?=$listItem['Pick_drop'];?>" name="Pick_drop"/>
             </td>
         </tr>
         <tr>
-            <td>体験利用</td>
+            <th>体験利用</th>
             <td>
                 <input type="text" value="<?=$listItem['Experience_use'];?>" name="Experience_use"/>
             </td>
         </tr>
         <tr>
-            <td>訪問支援</td>
+            <th>訪問支援</th>
             <td>
                 <input type="text" value="<?=$listItem['Visit_support'];?>" name="Visit_support"/>
             </td>
         </tr>
         <tr>
-            <td>施設外就労</td>
+            <th>施設外就労</th>
             <td>
                 <input type="text" value="<?=$listItem['Work_out_facility'];?>" name="Work_out_facility"/>
             </td>
         </tr>
         <tr>
-            <td>社会生活</td>
+            <th>社会生活</th>
             <td>
                 <input type="text" value="<?=$listItem['Social_life'];?>" name="Social_life"/>
             </td>
         </tr>
         <tr>
-            <td>在宅時生活</td>
+            <th>在宅時生活</th>
             <td>
                 <input type="text" value="<?=$listItem['Life_home'];?>" name="Life_home"/>
             </td>
         </tr>
         <tr>
-            <td>医療連携</td>
+            <th>医療連携</th>
             <td>
                 <input type="text" value="<?=$listItem['Medical_cooperation'];?>" name="Medical_cooperation"/>
             </td>
         </tr>
         <tr>
-            <td>備考</td>
+            <th>備考</th>
             <td>
                 <input type="text" value="<?=$listItem['Remark'];?>" name="Remark"/>
             </td>
         </tr>
         <tr>
-            <td>実費１</td>
+            <th>実費１</th>
             <td>
                 <input type="text" value="<?=$listItem['Actual_cost1'];?>" name="Actual_cost1"/>
             </td>
         </tr>
         <tr>
-            <td>実費２</td>
+            <th>実費２</th>
             <td>
                 <input type="text" value="<?=$listItem['Actual_cost2'];?>" name="Actual_cost2"/>
             </td>
         </tr>
         <tr>
-            <td></td>
-            <td>
+            <td colspan="2">
                 <?if(isset($arr[2])) {?>
-                    <input name="btn_activeRecordUpdate" type="submit" value="修正"/>
+                    <input class="submit-btn-Update" name="btn_activeRecordUpdate" type="submit" value="修　正"/>
                 <?}else{?>
-                    <input name="btn_activeRecord" type="submit" value="登録"/>
+                    <input class="submit-btn-New" name="btn_activeRecord" type="submit" value="確 認 画 面 へ"/>
                 <?}?>
             </td>
+            <td></td>
         </tr>
     </table>
 </form>

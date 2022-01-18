@@ -4,45 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="./public/images/logo.png">
-    <title>A 利用者管理</title>
+    <title>利用者管理</title>
 </head>
+<?if(!isset($arr[2])){?>
+    <link rel="icon" href="./public/images/logo.png">
+<?}else{?>
+    <link rel="icon" href="../../public/images/logo.png">
+<?}?>
 <body>
     <style>
         table{
+            padding: 25px;
             margin: 0 auto;
+            border: 1px solid gray;
+            width: 700px;
+        }
+        table th{
+            color: white;
+            padding: 5px 10px;
+            background-color: #000000;
+            text-align: left;
+            border-radius: 6px;
+            width: 50%;
+            font-weight: 100;
         }
         table td{
             padding: 5px 10px;
+            width: 50%;
         }
         input, textarea{
             border: solid 1px #ddd;
             padding: 5px 20px;
             width: 100%;
+            border-radius: 6px;
         }
         input[type="submit"]{
             width: auto;
-            background: red;
             color:#fff;
+            cursor: pointer;
+        }
+        .submit-btn-New{
+            padding: 10px 20px !important;
+            display: flex;
+            margin: 30px auto 0px auto;
+            background: radial-gradient(#3b6c95, #003969f2);
+        }
+        .submit-btn-Update{
+            padding: 10px 20px !important;
+            display: flex;
+            margin: 30px auto 0px auto;
+            background: radial-gradient(#3b6c95, #003969f2);
         }
         h1{
             text-align: center;
+        }
+        .btn-unit{
+            text-align: center;
+        }
+        .btn-unit button{
+            background: radial-gradient(#555555, #b5b5b5);
+            color: white;
+            padding: 10px 30px;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-unit {
+            text-align: right;
+            margin-right: 30%;
+            margin-bottom: 10px;
+        }
+        @media (max-width: 1024px) {
+            .btn-unit {
+                text-align: right;
+                margin-right: 1%;
+            }
         }
         .logout{
             background: red;
             color: white;
             font-weight: bold;
         }
-        .important{
+       /* .important{
             background: red;
             color: white;
-        }
-        .unit{
-            background: green;
-            color: white;
-        }
-        .userMNMT{
-            text-align: center;
-        }
+        }*/
          /* Theme Name: NGUYEN LUC PRO
          * Description: テーマ
          * Theme URI: https://lucnguyen.com/
@@ -110,11 +155,12 @@
 
         /* navbar styling */
         .navbar{
-            background: #004EA2;
+            border-radius: inherit;
+            background: #131A44;
             /*position: fixed;*/
             width: 100%;
             z-index: 999;
-            padding: 12.3px 0;
+            padding: 20.3px 0;
             font-family: 'Ubuntu', sans-serif;
             transition: all 0.3s ease;
         }
@@ -409,14 +455,42 @@
                 line-height: 38px;
             }
         }
+        .head-top{
+            display: flex;
+            padding: 10px;
+        }
+        .head-top-title{
+            width: 92%;
+        }
+        .head-top-title-company{
+            margin: 20px 0 0 100px;
+            position: absolute;
+        }
+        .head-top-logo{
+            width: 8%;
+        }
+        .head-top-logo img{
+            height: 50px;
+        }
     </style>
-
+<div class="head-top">
+    <div class="head-top-title">
+        <p class="head-top-title-company">会社名のテキスト</p>
+    </div>
+    <div class="head-top-logo">
+        <?if(!isset($arr[2])){?>
+            <img src="..\public\images\logo.png">
+        <?}else{?>
+            <img src="../../public/images/logo.png">
+        <?}?>
+    </div>
+</div>
 <nav class="navbar">
     <div class="max-width">
         <ul class="menu">
-            <!-- <li class="menu-top1 whiteline"><a href="#" class="menu-btn">HOME</a></li> -->
-            <li class=""><a href="/fukushisystem/activeRecord" class="menu-btn">活動記録</a></li>
-            <li class="whiteline"><a href="/fukushisystem/business" class="menu-btn">事業所マスタ</a></li>
+            <li class=""><a href="/fukushisystem/business" class="menu-btn">事業所マスタ</a></li>
+            <li class="whiteline"><a href="/fukushisystem/activeRecord" class="menu-btn">活動記録</a></li>
+            <li class="whiteline"><a href="/fukushisystem/userMNMT" class="menu-btn">利用者管理</a></li>
             <li class="whiteline"><a href="/fukushisystem/display_data" class="menu-btn">印刷画面</a></li>
             <li class="whiteline"><a href="/fukushisystem/contact" class="menu-btn">問い合わせ</a></li>
         </ul>
@@ -433,216 +507,218 @@
 <button type="button" onclick="location.href='/fukushisystem/display_data'">印刷画面</button> -->
 <!-- <button type="button" class="unit" onclick="location.href='/fukushisystem/unit'">単位</button> -->
 
-<h1>A 利用者管理</h1>
+<h1>利用者管理</h1>
 <div class="userMNMT">
-    <button type="button" onclick="location.href='/fukushisystem/userMNMT/B'">B</button>
+    <!-- <button type="button" onclick="location.href='/fukushisystem/userMNMT/B'">B</button>
     <button type="button" onclick="location.href='/fukushisystem/userMNMT/migration'">移行</button>
-    <!-- <button type="button" onclick="location.href='userMNMT/A'">A</button> -->
-    <button type="button" onclick="location.href='/fukushisystem/userMNMT'">メイン画面</button>
+    <button type="button" onclick="location.href='/fukushisystem/userMNMT'">メイン画面</button> -->
+</div>
+<div class="btn-unit">
+    <button type="button" onclick="location.href='/fukushisystem/userMNMT'">一覧へ戻る</button>
 </div>
 <form method="post">
     <table>
         <tr>
-            <td>氏名</td>
+            <th>氏名</th>
             <td>
                 <input type="text" value="<?=$listItem['Name_hira'];?>" name="Name_hira" required="required"/>
             </td>
         </tr>
         <tr>
-            <td>氏名カナ</td>
+            <th>氏名カナ</th>
             <td>
                 <input type="text" value="<?=$listItem['Name_kana'];?>" name="Name_kana" required="required"/>
             </td>
         </tr>
         <tr>
-            <td class="important">受給者証番号</td>
+            <th class="important">受給者証番号</th>
             <td>
                 <input type="text" value="<?=$listItem['Recipient_number'];?>" name="Recipient_number" maxlength="10" onkeypress="return isNumber(event)" required />
             </td>
         </tr>
         <tr>
-            <td class="important">支給市町村</td>
+            <th class="important">支給市町村</th>
             <td>
                 <input type="text" value="<?=$listItem['Supply_municipalitie'];?>" name="Supply_municipalitie" maxlength="6" onkeypress="return isNumber(event)" required />
             </td>
         </tr>
         <tr>
-            <td>障害支援区分</td>
+            <th>障害支援区分</th>
             <td>
                 <input type="text" value="<?=$listItem['Disability_support_type'];?>" name="Disability_support_type"/>
             </td>
         </tr>
         <tr>
-            <td>利用者負担上限額</td>
+            <th>利用者負担上限額</th>
             <td>
                 <input type="text" value="<?=$listItem['Business_up_limit'];?>" name="Business_up_limit"/>
             </td>
         </tr>
         <tr>
-            <td>事業者減免額</td>
+            <th>事業者減免額</th>
             <td>
                 <input type="text" value="<?=$listItem['Business_exemption_amount'];?>" name="Business_exemption_amount"/>
             </td>
         </tr>
         <tr>
-            <td>サービス開始日(支給決定開始日）</td>
+            <th>サービス開始日(支給決定開始日）</th>
             <td>
                 <input type="date" value="<?=$listItem['Service_start_date'];?>" name="Service_start_date"/>
             </td>
         </tr>
         <tr>
-            <td>サービス終了日（支給決定終了日）</td>
+            <th>サービス終了日（支給決定終了日）</th>
             <td>
                 <input type="date" value="<?=$listItem['Service_end_date'];?>" name="Service_end_date"/>
             </td>
         </tr>
         <tr>
-            <td>契約記入欄番号(事業者記入欄番号）</td>
+            <th>契約記入欄番号(事業者記入欄番号）</th>
             <td>
                 <input type="text" value="<?=$listItem['Contract_field_number'];?>" name="Contract_field_number"/>
             </td>
         </tr>
         <tr>
-            <td>契約日</td>
+            <th>契約日</th>
             <td>
                 <input type="date" value="<?=$listItem['Contract_date'];?>" name="Contract_date"/>
             </td>
         </tr>
         <tr>
-            <td>契約終了日（終了日は空欄でもかまわない）</td>
+            <th>契約終了日（終了日は空欄でもかまわない）</th>
             <td>
                 <input type="date" value="<?=$listItem['Contract_end_date'];?>" name="Contract_end_date"/>
             </td>
         </tr>
         <tr>
-            <td>契約支給量(決定支給量）該当月の日数から8日を控除した日数</td>
+            <th>契約支給量(決定支給量）該当月の日数から8日を控除した日数</th>
             <td>
                 <input type="text" value="<?=$listItem['Contract_payment_amount'];?>" name="Contract_payment_amount"/>
             </td>
         </tr>
         <tr>
-            <td>初期加算(日付が入る）</td>
+            <th>初期加算(日付が入る）</th>
             <td>
                 <input type="text" value="<?=$listItem['Initial_addition'];?>" name="Initial_addition"/>
             </td>
         </tr>
         <tr>
-            <td>介護計画未作成</td>
+            <th>介護計画未作成</th>
             <td>
                 <input type="text" value="<?=$listItem['Nursing_plan_notcreated'];?>" name="Nursing_plan_notcreated"/>
             </td>
         </tr>
         <tr>
-            <td>送迎同一敷地</td>
+            <th>送迎同一敷地</th>
             <td>
                 <input type="text" value="<?=$listItem['Pick_drop_same_site'];?>" name="Pick_drop_same_site"/>
             </td>
         </tr>
         <tr>
-            <td>上限額管理事業所番号</td>
+            <th>上限額管理事業所番号</th>
             <td>
                 <input type="text" value="<?=$listItem['Max_mgmt_office_number'];?>" name="Max_mgmt_office_number"/>
             </td>
         </tr>
         <tr>
-            <td>上限額管理事業所名</td>
+            <th>上限額管理事業所名</th>
             <td>
                 <input type="text" value="<?=$listItem['Max_mgmt_office_name'];?>" name="Max_mgmt_office_name"/>
             </td>
         </tr>
         <tr>
-            <td>上限額管理結果</td>
+            <th>上限額管理結果</th>
             <td>
                 <input type="text" value="<?=$listItem['Max_mgmt_result'];?>" name="Max_mgmt_result"/>
             </td>
         </tr>
         <tr>
-            <td>上限額管理後利用者負担額</td>
+            <th>上限額管理後利用者負担額</th>
             <td>
                 <input type="text" value="<?=$listItem['Max_mgmt_after_user_burden'];?>" name="Max_mgmt_after_user_burden"/>
             </td>
         </tr>
         <tr>
-            <td>上限額管理加算</td>
+            <th>上限額管理加算</th>
             <td>
                 <input type="text" value="<?=$listItem['Max_mgmt_addition'];?>" name="Max_mgmt_addition"/>
             </td>
         </tr>
         <tr>
-            <td>特例利用開始年月</td>
+            <th>特例利用開始年月</th>
             <td>
                 <input type="date" value="<?=$listItem['Special_use_start_date'];?>" name="Special_use_start_date"/>
             </td>
         </tr>
         <tr>
-            <td>特例利用終了年月</td>
+            <th>特例利用終了年月</th>
             <td>
                 <input type="date" value="<?=$listItem['Special_use_end_date'];?>" name="Special_use_end_date"/>
             </td>
         </tr>
         <tr>
-            <td>特例利用年間原則日数</td>
+            <th>特例利用年間原則日数</th>
             <td>
                 <input type="text" value="<?=$listItem['Special_use_year_principle'];?>" name="Special_use_year_principle"/>
             </td>
         </tr>
         <tr>
-            <td>特例利用当月利用日数</td>
+            <th>特例利用当月利用日数</th>
             <td>
                 <input type="text" value="<?=$listItem['Special_use_month_day'];?>" name="Special_use_month_day"/>
             </td>
         </tr>
         <tr>
-            <td>特例利用各月日数</td>
+            <th>特例利用各月日数</th>
             <td>
                 <input type="text" value="<?=$listItem['Special_use_each_month'];?>" name="Special_use_each_month"/>
             </td>
         </tr>
         <tr>
-            <td>施設外支援累計</td>
+            <th>施設外支援累計</th>
             <td>
                 <input type="text" value="<?=$listItem['Structout_support_cumulative'];?>" name="Structout_support_cumulative"/>
             </td>
         </tr>
         <tr>
-            <td>再請求対象</td>
+            <th>再請求対象</th>
             <td>
                 <input type="text" value="<?=$listItem['Rechargeable'];?>" name="Rechargeable"/>
             </td>
         </tr>
         <tr>
-            <td>自社が上限額管理をする場合の、他社の利用状況</td>
+            <th>自社が上限額管理をする場合の、他社の利用状況</th>
             <td>
                 <input type="text" value="<?=$listItem['Other_compay_use_status'];?>" name="Other_compay_use_status"/>
             </td>
         </tr>
         <tr>
-            <td>事業所名</td>
+            <th>事業所名</th>
             <td>
                 <input type="text" value="<?=$listItem['Office_name'];?>" name="Office_name"/>
             </td>
         </tr>
         <tr>
-            <td>利用者負担上限額開始日</td>
+            <th>利用者負担上限額開始日</th>
             <td>
                 <input type="date" value="<?=$listItem['User_burden_limit_start'];?>" name="User_burden_limit_start"/>
             </td>
         </tr>
         <tr>
-            <td>利用者負担上限額終了日</td>
+            <th>利用者負担上限額終了日</th>
             <td>
                 <input type="date" value="<?=$listItem['User_burden_limit_end'];?>" name="User_burden_limit_end"/>
             </td>
         </tr>
         <tr>
-            <td></td>
-            <td>
+            <td colspan="2">
                 <?if(isset($arr[2])) {?>
-                    <input name="btn_userMNMTUpdate" type="submit" value="修正"/>
+                    <input class="submit-btn-Update" name="btn_userMNMTUpdate" type="submit" value="修　正"/>
                 <?}else{?>
-                    <input name="btn_userMNMT" type="submit" value="登録"/>
+                    <input class="submit-btn-New" name="btn_userMNMT" type="submit" value="確 認 画 面 へ"/>
                 <?}?>
             </td>
+            <td></td>
         </tr>
     </table>
 </form>

@@ -75,11 +75,12 @@
 
         /* navbar styling */
         .navbar{
-            background: #004EA2;
+            border-radius: inherit;
+            background: #131A44;
             /*position: fixed;*/
             width: 100%;
             z-index: 999;
-            padding: 12.3px 0;
+            padding: 20.3px 0;
             font-family: 'Ubuntu', sans-serif;
             transition: all 0.3s ease;
         }
@@ -422,13 +423,13 @@
      /*padding-right:5px;*/
      padding: 2em;
      width:30%;
-     background:#f7f7f7;
-     border:solid 1px #d7d7d7;
+     /*background:#f7f7f7;*/
+     /*border:solid 1px #d7d7d7;*/
     }
     /*通常欄*/
     .inquiry td{
      font-size:16px;
-     border:solid 1px #d7d7d7;  
+     /*border:solid 1px #d7d7d7;  */
     }
     /*横の行とテーブル全体*/
     .entry-content .inquiry tr,.entry-content table{
@@ -438,8 +439,8 @@
     .haveto{
      font-size:7px;
      padding:5px;
-     background:#ff9393;
-     color:#fff;
+     /*background:#ff9393;*/
+     color:red;
      border-radius:2px;
      margin-right:5px;
      position:relative;
@@ -472,12 +473,13 @@
      margin-top:30px;
      width:13em;
      margin: 5em auto;
-     background:#006400;
+     background:#B9A580;
      color:#fff;
      font-size:18px;
      font-weight:bold;   
-     border-radius:2em;
+     /*border-radius:2em;*/
      border: none;
+     cursor: pointer;
     }
     /*送信ボタンマウスホバー時*/
     #formbtn:hover{
@@ -515,7 +517,7 @@
 
     .check-margin{
         text-align: center;
-        margin: 3em 0 0 0;
+        /*margin: 3em 0 0 0;*/
         color: black;
     }
 
@@ -547,9 +549,9 @@
     }
 
     .title-ct h1{
-        color: #006400!important;
-        font-weight: bold;
-        }
+        color: #000000!important;
+        /*font-weight: bold;*/
+    }
         
     @media (max-width: 868px) {
         
@@ -558,6 +560,33 @@
         background: red;
         color: white;
         font-weight: bold;
+    }
+    .head-top{
+        display: flex;
+        padding: 10px;
+    }
+    .head-top-title{
+        width: 92%;
+    }
+    .head-top-title-company{
+        margin: 20px 0 0 100px;
+        position: absolute;
+    }
+    .head-top-logo{
+        width: 8%;
+    }
+    .head-top-logo img{
+        height: 50px;
+    }
+    .input_field input{
+        height: 23px;
+        width: 23px;
+    }
+    .input-radio{
+        margin-left: 33px;
+    }
+    .person-infor{
+        text-decoration: underline;
     }
 </style>
 
@@ -570,15 +599,22 @@
     require './PHPMailer/src/SMTP.php';
 
     ?>
+<div class="head-top">
+    <div class="head-top-title">
+        <p class="head-top-title-company">会社名のテキスト</p>
+    </div>
+    <div class="head-top-logo">
+        <img src=".\public\images\logo.png">
+    </div>
+</div>
 <nav class="navbar">
     <div class="max-width">
         <ul class="menu">
-            <!-- <li class="menu-top1 whiteline"><a href="#" class="menu-btn">HOME</a></li> -->
-            <li class=""><a href="/fukushisystem/activeRecord" class="menu-btn">活動記録</a></li>
-            <li class="whiteline"><a href="/fukushisystem/business" class="menu-btn">事業所マスタ</a></li>
+            <li class=""><a href="/fukushisystem/business" class="menu-btn">事業所マスタ</a></li>
+            <li class="whiteline"><a href="/fukushisystem/activeRecord" class="menu-btn">活動記録</a></li>
             <li class="whiteline"><a href="/fukushisystem/userMNMT" class="menu-btn">利用者管理</a></li>
             <li class="whiteline"><a href="/fukushisystem/display_data" class="menu-btn">印刷画面</a></li>
-            <!-- <li class="whiteline"><a href="/fukushisystem/contact" class="menu-btn">問い合わせ</a></li> -->
+            <li class="whiteline"><a href="/fukushisystem/contact" class="menu-btn">問い合わせ</a></li>
         </ul>
         <div class="menu-btn">
             <!-- <i class="fas fa-bars"></i> -->
@@ -592,6 +628,8 @@
 
 <div class="title-ct">
 <h1>お問い合わせ</h1>
+<h1 class="contact-english" style="color:gray !important;font-weight: 100;">- Contact -</h1>
+<p style="text-align: center;font-weight: bold;margin: 80px 0 30px 0;">下記のフォームに必要項目を入力の上、「確認する」ボタンを押してください。</p>
 </div>
 
 <?
@@ -779,25 +817,24 @@ if (isset($_POST["send"])) {
 
 <tr>
 <th>
-<span class="haveto">必須</span><span>お名前</span>
+<span>お問い合わせ項目</span><span class="haveto">必須</span>
 </th>
 <td>
-    <input type="text" name="namehira" placeholder="田中　太郎" required="" oninvalid="this.setCustomValidity('お名前を入力してください。')" oninput="setCustomValidity('')">
+    <div class="input_field">
+        <input type="radio" name="radiogroup1" id="rd1" value="1" required>
+        <label for="rd1">ご利用前</label>
+        <input class="input-radio" type="radio" name="radiogroup1" id="rd2" value="2">
+        <label class="label-radio" for="rd2">利用中</label>
+        <input class="input-radio" type="radio" name="radiogroup1" id="rd3" value="3">
+        <label class="label-radio" for="rd3">その他</label>
+  </div>
 </td>
 </tr>
 
 <tr>
 <th>
-<span class="haveto">必須</span><span>お名前カナ</span>
-</th>
-<td>
-    <input type="text" name="namekana" placeholder="タナカ　タロウ" required="" oninvalid="this.setCustomValidity('お名前カナを入力してください。')" oninput="setCustomValidity('')">
-</td>
-</tr>
-
-<tr>
-<th>
-<span class="any">任意</span><span>会社名</span>
+<!-- <span class="any">任意</span> -->
+<span>会社名・団体名</span>
 </th>
 <td>
     <input type="text" name="companyname" placeholder="株式会社○○○">
@@ -806,38 +843,65 @@ if (isset($_POST["send"])) {
 
 <tr>
 <th>
-<span class="haveto">必須</span><span>ご連絡先メールアドレス</span>
+<span>お名前</span><span class="haveto">必須</span>
 </th>
 <td>
-    <input type="text" name="email" placeholder="tanakataro@gmail.com" required="" oninvalid="this.setCustomValidity('ご連絡先メールアドレスを入力してください')" oninput="setCustomValidity('')">
+    <input type="text" name="namehira" placeholder="田中　太郎" required="" oninvalid="this.setCustomValidity('お名前を入力してください。')" oninput="setCustomValidity('')">
 </td>
 </tr>
 
+<!-- <tr>
+<th>
+<span>お名前カナ</span><span class="haveto">必須</span>
+</th>
+<td>
+    <input type="text" name="namekana" placeholder="タナカ　タロウ" required="" oninvalid="this.setCustomValidity('お名前カナを入力してください。')" oninput="setCustomValidity('')">
+</td>
+</tr> -->
+
 <tr>
 <th>
-<span class="any">任意</span><span>電話番号</span>
+<!-- <span class="any">任意</span> -->
+<span>電話番号</span>
 </th>
 <td>
     <input type="text" name="tel" placeholder="090-1111-2222">
 </td>
 </tr>
 
-
 <tr>
+<th>
+<span>メールアドレス</span><span class="haveto">必須</span>
+</th>
+<td>
+    <input type="text" name="email" placeholder="tanakataro@gmail.com" required="" oninvalid="this.setCustomValidity('ご連絡先メールアドレスを入力してください')" oninput="setCustomValidity('')">
+</td>
+</tr>
+
+<!-- <tr>
 <th>
 <span class="haveto">任意</span><span>ご住所</span>
 </th>
 <td>
     <input type="text" name="address" placeholder="○○市○○1-2-3 ○○マンション 101号室" required="" oninvalid="this.setCustomValidity('ご住所を入力してください')" oninput="setCustomValidity('')">
 </td>
+</tr> -->
+
+<tr>
+<th>
+<span>お問い合わせ内容</span><span class="haveto">必須</span>
+</th>
+<td>
+    <textarea name="comment" rows="10" placeholder="１行以上のテキスト入力欄" required="" oninvalid="this.setCustomValidity('お問い合わせ内容を入力してください')" oninput="setCustomValidity('')"></textarea>
+</td>
 </tr>
 
 <tr>
 <th>
-<span class="haveto">必須</span><span>お問い合わせ内容</span>
+<span>個人情報について</span><span class="haveto">必須</span>
 </th>
 <td>
-    <textarea name="comment" rows="10" placeholder="１行以上のテキスト入力欄" required="" oninvalid="this.setCustomValidity('お問い合わせ内容を入力してください')" oninput="setCustomValidity('')"></textarea>
+    <p><a class="person-infor" href="">個人情報の取り扱いについて</a>をご確認の上、チェックを入れてください。</p>
 </td>
 </tr>
 
@@ -845,10 +909,10 @@ if (isset($_POST["send"])) {
 <div class="check-margin">
     <div>
         <input type="checkbox" name="checkconfirm" id="checkconfirm" value="Yes, I'm a web developer" required oninvalid="this.setCustomValidity('スパムメール防止のため、こちらのボックスにチェックを入れてから送信してください。')" oninput="setCustomValidity('')">
-        <label for="checkconfirm">スパムメール防止のため、こちらのボックスにチェックを入れてから送信してください。</label>
+        <label for="checkconfirm">確認しました。</label>
     </div>
 </div>
-<input type="submit" name="send" value="上記の内容で送信する" id="formbtn">
+<input type="submit" name="send" value="確認する" id="formbtn">
 </form>
 </body>
 </html>

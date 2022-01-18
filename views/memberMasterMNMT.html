@@ -7,8 +7,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="./public/css/menu.css?v=1">
     <link rel="icon" href="./public/images/logo.png">
+    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<title>事業所マスタ</title>
+
+	<title>会員マスタ</title>
 </head>
 <body>
 	<style type="text/css">
@@ -17,7 +19,7 @@
             width: 1000px;
             margin: auto;
         }
-        .logout{
+		.logout{
             background: red;
             color: white;
             font-weight: bold;
@@ -46,7 +48,7 @@
             }
         }
         h1{
-            text-align: center;
+       		text-align: center;
         }
         .activeRecord{
             text-align: center;
@@ -68,7 +70,7 @@
             background: lightgray;
             padding: 5px;
         }
-        /* Theme Name: NGUYEN LUC PRO
+    	/* Theme Name: NGUYEN LUC PRO
          * Description: テーマ
          * Theme URI: https://lucnguyen.com/
          * Version: 1.0
@@ -452,7 +454,9 @@
         .head-top-logo img{
             height: 50px;
         }
+        
     </style>
+
     <div class="head-top">
         <div class="head-top-title">
             <p class="head-top-title-company">会社名のテキスト</p>
@@ -464,11 +468,10 @@
     <nav class="navbar">
         <div class="max-width">
             <ul class="menu">
-                <li class=""><a href="/fukushisystem/business" class="menu-btn">事業所マスタ</a></li>
-                <li class="whiteline"><a href="/fukushisystem/activeRecord" class="menu-btn">活動記録</a></li>
-                <li class="whiteline"><a href="/fukushisystem/userMNMT" class="menu-btn">利用者管理</a></li>
-                <li class="whiteline"><a href="/fukushisystem/display_data" class="menu-btn">印刷画面</a></li>
-                <li class="whiteline"><a href="/fukushisystem/contact" class="menu-btn">問い合わせ</a></li>
+                <!-- <li class="menu-top1 whiteline"><a href="#" class="menu-btn">HOME</a></li> -->
+                <li class=""><a href="/fukushisystem/municipality" class="menu-btn">市町村マスタ</a></li>
+                <li class=""><a href="/fukushisystem/unit" class="menu-btn">単価マスタ</a></li>
+                <li class=""><a href="/fukushisystem/memberMaster" class="menu-btn">会員マスタ</a></li>
             </ul>
             <div class="menu-btn">
                 <!-- <i class="fas fa-bars"></i> -->
@@ -477,34 +480,40 @@
     </nav>
 
 	<button type="button" class="logout" onclick="location.href='/fukushisystem/logout'">ログアウト</button>
-	<!-- <button type="button" onclick="location.href='/fukushisystem/activeRecord'">活動記録</button>
-	<button type="button" onclick="location.href='/fukushisystem/userMNMT'">利用者管理</button>
+	<!-- <button type="button" onclick="location.href='/fukushisystem/userMNMT'">利用者管理</button>
+	<button type="button" onclick="location.href='/fukushisystem/business'">事業所マスタ</button>
 	<button type="button" onclick="location.href='/fukushisystem/display_data'">印刷画面</button> -->
 	<!-- <button type="button" class="unit" onclick="location.href='/fukushisystem/unit'">単位</button> -->
-	<h1>事業所マスタ</h1>
+
+	<h1>会員マスタ</h1>
+    
     <div class="btn-unit">
-        <button type="button" onclick="location.href='/fukushisystem/business/A'">新規追加</button>
+        <button type="button" onclick="location.href='/fukushisystem/memberMaster/Update'">新規追加</button>
     </div>
-	<div class="business">
-		<!-- <button type="button" onclick="location.href='/fukushisystem/business/A'">A</button>
-		<button type="button" onclick="location.href='/fukushisystem/business/B'">B</button>
-		<button type="button" onclick="location.href='/fukushisystem/business/migration'">移行</button> -->
-	</div>
 	<table>
 		<tr>
-			<th>形式番号</th>
-			<th>形式記号</th>
-			<th>サービス提供年月</th>
+			<th>No.</th>
+			<th>サービスコード</th>
+			<th>提供内容</th>
+            <!-- <th>単位単価</th> -->
 			<th>修正</th>
-			<!-- <th>削除</th> -->
+			<th>削除</th>
 		</tr>
-	<?foreach ($listItem as $item) {?>
+	<?
+        if(isset($_GET['page'])){
+            $i = ($_GET['page']-1)*10+1;
+        }else{
+            $i = 1;
+        }
+        foreach ($listItem as $item) {
+    ?>
         <tr>
-            <td><?php echo $item['Model_number'];?></td>
-            <td><?php echo $item['Model_symbol'];?></td>
-            <td><?php echo $item['Service_offer_date'];?></td>
-            <td><button onclick="javascript:update(`<?php echo $item['Business_id'];?>`)">修正</button></td>
-            <!-- <td><button onclick="javascript:deleteItem(`<?php echo $item['Business_id'];?>`)">削除</button></td> -->
+            <td><?echo $i++;?>.</td>
+            <td><?php echo $item['Unit_code'];?></td>
+            <td><?php echo $item['Service_content'];?></td>
+            <!-- <td><?php echo $item['Number_unit'];?></td> -->
+            <td><button onclick="javascript:update(`<?php echo $item['Unit_id'];?>`)">修正</button></td>
+            <td><button onclick="javascript:deleteItem(`<?php echo $item['Unit_id'];?>`)">削除</button></td>
         </tr>
     <?}?>
 	</table>
@@ -525,7 +534,7 @@
 
         var result = confirm(id+"　削除したいですか?");
         if (result) {
-            var action = "deleteBusiness";
+            var action = "deleteMemberMaster";
            $.post("./controllers/delete.php",
             {
               changestatus: status.value,
@@ -543,7 +552,7 @@
         }
     }
 
-     //Update
+    //Update
     function update(id){
         // var flag = confirm('削除ですか ?');
         // if(flag == true){
@@ -555,8 +564,8 @@
 
         var result = confirm(id+"　編集したいですか？");
         if (result) {
-            var action = "updateActiveRecord";
-           $.post("./controllers/business.php",
+            var action = "updateMemberMaster";
+           $.post("./controllers/memberMaster.php",
             {
               changestatus: status.value,
               id: id,
@@ -565,8 +574,8 @@
             function(data,status){
               if(status=="success"){
                 // alert("編集されました。");
-                // location.reload();
-                location.href="./business/A/"+id;
+                // // location.reload();
+                location.href="./memberMaster/Update/"+id;
 
               // }else{
               //   alert("編集できませんでした。");
@@ -575,8 +584,17 @@
         }
     }
 
-    function changePageBusiness(page){
-        url = "/fukushisystem/business&page="+page;
+    // function setParam(href, key, value){
+    //     var url = new URL(href);
+
+    //     url.searchParams.set(key, value);
+    //     return url.href;
+    // }
+
+    function changePageUnit(page){
+        url = "/fukushisystem/memberMaster&page="+page;
         window.location.href = url;
     }
+
+    
 </script>
