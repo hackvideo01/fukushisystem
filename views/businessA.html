@@ -443,7 +443,7 @@
         <tr>
             <td>形式番号</td>
             <td>
-                <input type="text" value="<?=$listItem['Model_number'];?>" name="Model_number" required="required"/>
+                <input class="Model_number" type="text" value="<?=$listItem['Model_number'];?>" name="Model_number" required="required"/>
             </td>
         </tr>
         <tr>
@@ -491,7 +491,7 @@
         <tr>
             <td class="important">事業者番号</td>
             <td>
-                <input type="text" value="<?=$listItem['Businesser_number'];?>" name="Businesser_number" maxlength="10" required/>
+                <input type="text" value="<?=$listItem['Businesser_number'];?>" name="Businesser_number" maxlength="10" onkeypress="return isNumber(event)" required/>
             </td>
         </tr>
         <tr>
@@ -718,3 +718,16 @@
 </form>
 </body>
 </html>
+<input type="text" name="num" class="only-phonenumber" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    function isNumber(evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    }
+
+</script>

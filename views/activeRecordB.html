@@ -452,7 +452,7 @@
         <tr>
             <td class="important">受給者証番号</td>
             <td>
-                <input type="text" name="Recipient_number" maxlength="10" required />
+                <input type="text" name="Recipient_number" maxlength="10" required  onkeypress="return isNumber(event)"/>
             </td>
         </tr>
         <tr>
@@ -506,7 +506,7 @@
                     <option value="23">23</option>
                     <option value="24">24</option>
                 </select> -->
-                <input type="text" value="<?=$listItem['Start_time'];?>" name="Start_time"/>
+                <input type="text" value="<?=$listItem['Start_time'];?>" name="Start_time" onkeypress="return isNumber(event)" maxlength="2"/>
             </td>
         </tr>
         <tr>
@@ -538,7 +538,7 @@
                     <option value="23">23</option>
                     <option value="24">24</option>
                 </select> -->
-                <input type="text" value="<?=$listItem['End_time'];?>" name="End_time"/>
+                <input type="text" value="<?=$listItem['End_time'];?>" name="End_time" onkeypress="return isNumber(event)" maxlength="2"/>
             </td>
         </tr>
         <tr>
@@ -683,5 +683,14 @@
         }
         // 値とテキストをコンソールに出力
         // console.log('value = ' + value + ', ' + 'text = ' + text);
+    }
+
+    function isNumber(evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
     }
 </script>
