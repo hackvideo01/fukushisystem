@@ -1,18 +1,35 @@
 body{
-    background: url('../images/bg.jpg');
-    background-size: cover;
-    background-position-y: -80px;
-    font-size: 16px;
+    /*background: url('../images/bg.jpg');*/
+    /*background-size: cover;*/
+    /*background-position-y: -80px;*/
+    /*font-size: 16px;*/
+}
+.tab{
+    height: 80px;
+    background-color: #131A44;
+}
+.login-title{
+    color: white;
+    font-size: 23px;
+    margin: 28px;
+    position: absolute;
+}
+.logo-cover{
+    margin-top: 80px;
+    text-align: center;
+}
+.logo-cover img{
+    height: 150px;
 }
 #wrapper{
-    min-height: 100vh;
+    min-height: 40vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 #form-login{
-    max-width: 400px;
-    background: rgba(0, 0, 0 , 0.8);
+    max-width: 390px;
+    background: rgb(255 255 255);
     flex-grow: 1;
     padding: 30px 30px 40px;
     box-shadow: 0px 0px 17px 2px rgba(255, 255, 255, 0.8);
@@ -26,7 +43,6 @@ body{
 .form-group{
     border-bottom: 1px solid #fff;
     margin-top: 15px;
-    margin-bottom: 20px;
     display: flex;
 }
 .form-group i{
@@ -39,11 +55,15 @@ body{
     background: transparent;
     border: 0;
     outline: 0;
-    color: #f5f5f5;
+    color: black;
     flex-grow: 1;
+    height: 40px;
+    border: 1px solid gray;
+    border-radius: 6px;
+    padding: 1px 10px 1px 10px;
 }
 .form-input::placeholder{
-    color: #f5f5f5;
+    color: gray;
 }
 #eye i{
     padding-right: 0;
@@ -51,15 +71,42 @@ body{
 }
 
 .form-submit{
-    background: transparent;
+    background: #131A44;
     border: 1px solid #f5f5f5;
     color: #fff;
     width: 100%;
     text-transform: uppercase;
-    padding: 6px 10px;
     transition: 0.25s ease-in-out;
     margin-top: 30px;
+    padding: 12px 0;
+    border-radius: 6px;
 }
 .form-submit:hover{
     border: 1px solid #54a0ff;
+}
+
+.forget-pass{
+    text-align: center;
+    margin-top: 25px;
+}
+
+.forget-pass a{
+    text-decoration: none;
+}
+
+.bottom-content{
+    margin-bottom: 100px;
+}
+
+.margin-text-input{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.text-input-parent{
+    display: inline-block;
+}
+
+.text-input-children{
+    display: flex;
 }

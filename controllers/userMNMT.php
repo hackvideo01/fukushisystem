@@ -3,7 +3,7 @@
 class userMNMT extends controller{
 	function welcome(){
 		require_once("./libs/Pagination.php");
-		if (isset($_SESSION['usernameSS1'])){
+		if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==1){
 			// Load the database configuration file 
 			$db = $this->model("database");
 			$database = new Database();
@@ -51,7 +51,7 @@ class userMNMT extends controller{
 		$db = $this->model("database");
 		$database = new Database();
 		$database->setTable("usermanagement");
-		if (isset($_SESSION['usernameSS1'])){
+		if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==1){
 
 			$arr = $this->UrlProcess();
 			$countItem;
@@ -181,7 +181,7 @@ class userMNMT extends controller{
 		$db = $this->model("database");
 		$database = new Database();
 		$database->setTable("usermanagement");
-		if (isset($_SESSION['usernameSS1'])){
+		if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==1){
 			require_once("./views/userMNMTB.html");
 			if (isset($_POST["btn_userMNMT"])) {
 				$data = array(
@@ -230,7 +230,7 @@ class userMNMT extends controller{
 		$db = $this->model("database");
 		$database = new Database();
 		$database->setTable("usermanagement");
-		if (isset($_SESSION['usernameSS1'])){
+		if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==1){
 			require_once("./views/userMNMTMigration.html");
 			if (isset($_POST["btn_userMNMT"])) {
 				$data = array(

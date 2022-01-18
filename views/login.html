@@ -4,68 +4,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="css/reset.css"> -->
-    <link rel="stylesheet" href="./public/css/login.css">
+    <link rel="stylesheet" href="./public/css/reset.css">
+    <link rel="stylesheet" href="./public/css/login.css?v=1">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <link rel="icon" href=".\public\images\logo.png">
     <title>福祉システム</title>
 </head>
 <body>
 <style type="text/css">
-    /* Style the tab */
-    /*.tab {
-      overflow: hidden;
-    }*/
+   
 
-    /* Style the buttons inside the tab */
-    /*.tab button {
-      background-color: white;
-      float: left;
-      border: 1px solid red;
-      outline: none;
-      cursor: pointer;
-      padding: 14px 16px;
-      transition: 0.3s;
-      font-size: 17px;
-    }*/
-
-    /* Change background color of buttons on hover */
-    /*.tab button:hover {
-      background-color: #ddd;
-    }*/
-
-    /* Create an active/current tablink class */
-    /*.tab button.active {
-      background-color: green;
-      color: white;
-    }*/
-
-    /* Style the tab content */
-    /*.tabcontent {
-      display: none;
-      padding: 6px 12px;
-    }*/
 </style>
 
 <div class="tab">
   <!-- <button class="tablinks" onclick="openCity(event, 'Operation')">運営</button>
   <button class="tablinks" onclick="openCity(event, 'Office')">事業所</button> -->
-  <a href="/fukushisystem/newSignUp" style="padding: 6px;background-color: #f5ba1a;border-radius: 5px;color: black;">新規登録</a>
+    <!-- <a href="/fukushisystem/newSignUp" style="padding: 6px;background-color: #f5ba1a;border-radius: 5px;color: black;">新規登録</a> -->
+    <p class="login-title">ログイン</p>
 </div>
+
+<div class="logo-cover">
+    <img src=".\public\images\logo.png">
+</div>
+
 <?if($access == 1){?>
 <div id="Operation" class="tabcontent">
   <div id="wrapper">
         <form id="form-login" method="post">
-            <h1 class="form-heading">ログイン - 運営</h1>
+            <!-- <h1 class="form-heading">ログイン - 運営</h1> -->
             <div class="form-group">
-                <i class="far fa-user"></i>
+                <!-- <i class="far fa-user"></i> -->
                 <input name="username" type="text" class="form-input" placeholder="アカウント">
             </div>
             <div class="form-group">
-                <i class="fas fa-key"></i>
+                <!-- <i class="fas fa-key"></i> -->
                 <input name="password" type="password" class="form-input" placeholder="パスワード">
                 <div id="eyeOperation">
-                    <i class="far fa-eye"></i>
+                    <!-- <i class="far fa-eye"></i> -->
                 </div>
             </div>
             <input name="login-operation" type="submit" value="ログイン" class="form-submit">
@@ -78,24 +53,47 @@
 <div id="Office" class="tabcontent">
     <div id="wrapper">
         <form id="form-login" method="post">
-            <h1 class="form-heading">ログイン - 事業所</h1>
+            <!-- <h1 class="form-heading">ログイン - 事業所</h1> -->
             <div class="form-group">
-                <i class="far fa-user"></i>
-                <input name="username" type="text" class="form-input" placeholder="アカウント">
+                <!-- <i class="far fa-user"></i> -->
+                <input name="username" type="text" class="form-input" placeholder="ID">
             </div>
             <div class="form-group">
-                <i class="fas fa-key"></i>
+                <!-- <i class="fas fa-key"></i> -->
                 <input name="password" type="password" class="form-input" placeholder="パスワード">
                 <div id="eyeOffice">
-                    <i class="far fa-eye"></i>
+                    <!-- <i class="far fa-eye"></i> -->
                 </div>
             </div>
-            <input name="login-office" type="submit" value="ログイン" class="form-submit">
+            <!-- <input name="login-office" type="submit" value="ログイン" class="form-submit"> -->
+            <input name="login" type="submit" value="ログイン" class="form-submit">
+            <div class="forget-pass">
+                <a href="">パスワードを忘れの場合</a>
+            </div>
         </form>
     </div>
 </div>
+<div class="bottom-content">
+    <div class="margin-text-input">
+        <div class="text-input-parent">
+            <div class="text-input-children">
+                <p>テキスト入りますテキスト入りますテキスト入ります　</p>
+                <a href="">詳細はこちら</a>
+            </div>
+        </div>
+    </div>
+    <div class="margin-text-input">
+        <div class="text-input-parent">
+            <div class="text-input-children">
+                <p>テキスト入りますテキスト入りますテキスト入ります　</p>
+                <a href="">詳細はこちら</a>
+            </div>
+        </div>
+    </div>
+</div>
 <?}?>
-    
+
+<?include_once './views/footer.html';?>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="public/js/passwordShowHide.js?v=2"></script>

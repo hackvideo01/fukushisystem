@@ -1,8 +1,8 @@
 <? 
 class logout{
 	function welcome(){
-		if (isset($_SESSION['usernameSS1'])){
-		unset($_SESSION['usernameSS1']); // xóa session login
+		if (isset($_SESSION['usernameSS'])){
+		unset($_SESSION['usernameSS']); // xóa session login
 		header('Location: ./login');
 		}
 		if (isset($_SESSION['usernameSS2'])){

@@ -13,7 +13,7 @@ class unit extends controller{
 		// 	// print_r($item);
 
 		// }
-		if (isset($_SESSION['usernameSS2'])){
+		if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==0){
 			// Load the database configuration file 
 			$db = $this->model("database");
 			$database = new Database();
@@ -56,7 +56,7 @@ class unit extends controller{
 		$db = $this->model("database");
 		$database = new Database();
 		$database->setTable("unit");
-		if (isset($_SESSION['usernameSS2'])){
+		if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==0){
 			$arr = $this->UrlProcess();
 			$countItem;
 				// echo $arr[2];

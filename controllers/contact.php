@@ -48,7 +48,6 @@ class contact extends controller{
 		// 	header("Location: /fukushisystem/userMNMT");
 		// }
 		require_once("./views/contact.html");
-		echo "string";
 	}
 	function A(){
 		

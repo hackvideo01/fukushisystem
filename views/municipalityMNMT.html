@@ -32,9 +32,20 @@
             text-align: center;
         }
         .btn-unit button{
-            background-color: red;
+            background-color: #666666;
             color: white;
-            padding: 1px;
+            padding: 10px 20px;
+        }
+        .btn-unit {
+            text-align: right;
+            margin-right: 23%;
+            margin-bottom: 10px;
+        }
+        @media (max-width: 1024px) {
+            .btn-unit {
+                text-align: right;
+                margin-right: 1%;
+            }
         }
         h1{
        		text-align: center;
@@ -126,11 +137,12 @@
 
         /* navbar styling */
         .navbar{
-            background: #004EA2;
+            border-radius: inherit;
+            background: #131A44;
             /*position: fixed;*/
             width: 100%;
             z-index: 999;
-            padding: 12.3px 0;
+            padding: 20.3px 0;
             font-family: 'Ubuntu', sans-serif;
             transition: all 0.3s ease;
         }
@@ -425,13 +437,40 @@
                 line-height: 38px;
             }
         }
+         .head-top{
+            display: flex;
+            padding: 10px;
+        }
+        .head-top-title{
+            width: 92%;
+        }
+        .head-top-title-company{
+            margin: 20px 0 0 100px;
+            position: absolute;
+        }
+        .head-top-logo{
+            width: 8%;
+        }
+        .head-top-logo img{
+            height: 50px;
+        }
+        
     </style>
 
+    <div class="head-top">
+        <div class="head-top-title">
+            <p class="head-top-title-company">会社名のテキスト</p>
+        </div>
+        <div class="head-top-logo">
+            <img src=".\public\images\logo.png">
+        </div>
+    </div>
     <nav class="navbar">
         <div class="max-width">
             <ul class="menu">
                 <!-- <li class="menu-top1 whiteline"><a href="#" class="menu-btn">HOME</a></li> -->
-                <li class=""><a href="/fukushisystem/unit" class="menu-btn">単価マスタ</a></li>
+                <li class=""><a href="/fukushisystem/municipality" class="menu-btn">市町村マスタ</a></li>
+            <li class=""><a href="/fukushisystem/unit" class="menu-btn">単価マスタ</a></li>
             </ul>
             <div class="menu-btn">
                 <!-- <i class="fas fa-bars"></i> -->
@@ -448,19 +487,28 @@
 	<h1>市町村マスタ管理</h1>
     
     <div class="btn-unit">
-        <button type="button" onclick="location.href='/fukushisystem/municipality/Update'">新規登録</button>
+        <button type="button" onclick="location.href='/fukushisystem/municipality/Update'">新規追加</button>
     </div>
 	<table>
 		<tr>
-			<th>市町村</th>
-			<th>市町村番号</th>
+            <th>No.</th>
+			<th>市町村コード</th>
+			<th>市町村名</th>
 			<th>修正</th>
 			<th>削除</th>
 		</tr>
-	<?foreach ($listItem as $item) {?>
+	<?
+        if(isset($_GET['page'])){
+            $i = ($_GET['page']-1)*10+1;
+        }else{
+            $i = 1;
+        }
+        foreach ($listItem as $item) 
+    {?>
         <tr>
-            <td><?php echo $item['Municipality'];?></td>
+            <td><?echo $i++;?>.</td>
             <td><?php echo $item['Municipality_number'];?></td>
+            <td><?php echo $item['Municipality'];?></td>
             <td><button onclick="javascript:update(`<?php echo $item['Municipality_id'];?>`)">修正</button></td>
             <td><button onclick="javascript:deleteItem(`<?php echo $item['Municipality_id'];?>`)">削除</button></td>
         </tr>

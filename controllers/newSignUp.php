@@ -23,7 +23,9 @@ class newSignUp extends controller{
 				// echo $_POST['firstname']."<br>";
 				// echo $_POST['lastname']."<br>";
 				// echo $_POST['radiogroup1'];
-				$queryCount =  'SELECT COUNT(*) AS `total` FROM `users` WHERE `username` = "'.$_REQUEST["username"].'"AND role=1';
+				// $query[] = 'SELECT * FROM users WHERE username="'.$_REQUEST["username"].'"AND password="'.$_REQUEST["password"].'"';
+				// $queryCount =  'SELECT COUNT(*) AS `total` FROM `users` WHERE `username` = "'.$_REQUEST["username"].'"AND role=1';
+				$queryCount =  'SELECT COUNT(*) AS `total` FROM `users` WHERE `username` = "'.$_REQUEST["username"].'"';
 				$countItem = $database->fetchRow($queryCount)['total'];
 				if ($countItem == 0) {
 						$data = array(

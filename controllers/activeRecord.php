@@ -2,7 +2,7 @@
 class activeRecord extends controller{
 	function welcome(){
 		require_once("./libs/Pagination.php");
-		if (isset($_SESSION['usernameSS1'])){
+		if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==1){
 			// Load the database configuration file 
 			$db = $this->model("database");
 			$database = new Database();
@@ -78,7 +78,7 @@ class activeRecord extends controller{
 		$db = $this->model("database");
 		$database = new Database();
 		$database->setTable("activityrecord");
-		if (isset($_SESSION['usernameSS1'])){
+		if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==1){
 
 		$arr = $this->UrlProcess();
 		$countItem;
@@ -228,7 +228,7 @@ class activeRecord extends controller{
 		$db = $this->model("database");
 		$database = new Database();
 		$database->setTable("activityrecord");
-		if (isset($_SESSION['usernameSS1'])){
+		if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==1){
 			require_once("./views/activeRecordB.html");
 				if ($_POST["Tsusho"] == "attendance") {
 					$tsusho =1;
@@ -268,7 +268,7 @@ class activeRecord extends controller{
 		$db = $this->model("database");
 		$database = new Database();
 		$database->setTable("activityrecord");
-		if (isset($_SESSION['usernameSS1'])){
+		if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==1){
 			require_once("./views/activeRecordMigration.html");
 				if ($_POST["Tsusho"] == "attendance") {
 					$tsusho =1;

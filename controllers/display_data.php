@@ -17,7 +17,7 @@ class display_data extends controller{
 		// 	// print_r($item);
 
 		// }
-		if (isset($_SESSION['usernameSS1'])){
+		if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==1){
 			// Load the database configuration file 
 			$db = $this->model("database");
 			$database = new Database();

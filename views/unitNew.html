@@ -5,27 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="./public/css/menu.css?v=1">
-    <link rel="icon" href="./public/images/logo.png">
     <title>単位マスタ</title>
 </head>
+<?if(!isset($arr[2])){?>
+    <link rel="icon" href="./public/images/logo.png">
+<?}else{?>
+    <link rel="icon" href="../../public/images/logo.png">
+<?}?>
 <body>
     <style>
         table{
+            padding: 25px;
             margin: 0 auto;
+            border: 1px solid gray;
+            width: 700px;
+        }
+        table th{
+            color: white;
+            padding: 5px 10px;
+            background-color: #000000;
+            text-align: left;
+            border-radius: 6px;
+            width: 50%;
+            font-weight: 100;
         }
         table td{
             padding: 5px 10px;
+            width: 50%;
         }
         input, textarea{
             border: solid 1px #ddd;
             padding: 5px 20px;
             width: 100%;
+            border-radius: 6px;
         }
         input[type="submit"]{
             width: auto;
-            background: red;
             color:#fff;
+            cursor: pointer;
+        }
+        .submit-btn-New{
+            padding: 10px 20px !important;
+            display: flex;
+            margin: 30px auto 0px auto;
+            background: radial-gradient(#3b6c95, #003969f2);
+        }
+        .submit-btn-Update{
+            padding: 10px 20px !important;
+            display: flex;
+            margin: 30px auto 0px auto;
+            background: radial-gradient(#3b6c95, #003969f2);
         }
         h1{
             text-align: center;
@@ -34,9 +63,22 @@
             text-align: center;
         }
         .btn-unit button{
-            background-color: black;
+            background: radial-gradient(#555555, #b5b5b5);
             color: white;
-            padding: 1px;
+            padding: 10px 30px;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-unit {
+            text-align: right;
+            margin-right: 30%;
+            margin-bottom: 10px;
+        }
+        @media (max-width: 1024px) {
+            .btn-unit {
+                text-align: right;
+                margin-right: 1%;
+            }
         }
         .logout{
             background: red;
@@ -114,11 +156,12 @@
 
         /* navbar styling */
         .navbar{
-            background: #004EA2;
+            border-radius: inherit;
+            background: #131A44;
             /*position: fixed;*/
             width: 100%;
             z-index: 999;
-            padding: 12.3px 0;
+            padding: 20.3px 0;
             font-family: 'Ubuntu', sans-serif;
             transition: all 0.3s ease;
         }
@@ -413,12 +456,42 @@
                 line-height: 38px;
             }
         }
+        .head-top{
+            display: flex;
+            padding: 10px;
+        }
+        .head-top-title{
+            width: 92%;
+        }
+        .head-top-title-company{
+            margin: 20px 0 0 100px;
+            position: absolute;
+        }
+        .head-top-logo{
+            width: 8%;
+        }
+        .head-top-logo img{
+            height: 50px;
+        }
     </style>
+<div class="head-top">
+    <div class="head-top-title">
+        <p class="head-top-title-company">会社名のテキスト</p>
+    </div>
+    <div class="head-top-logo">
+        <?if(!isset($arr[2])){?>
+            <img src="..\public\images\logo.png">
+        <?}else{?>
+            <img src="../../public/images/logo.png">
+        <?}?>
+    </div>
+</div>
 <nav class="navbar">
     <div class="max-width">
         <ul class="menu">
             <!-- <li class="menu-top1 whiteline"><a href="#" class="menu-btn">HOME</a></li> -->
             <li class=""><a href="/fukushisystem/municipality" class="menu-btn">市町村マスタ</a></li>
+            <li class=""><a href="/fukushisystem/unit" class="menu-btn">単価マスタ</a></li>
         </ul>
         <div class="menu-btn">
             <!-- <i class="fas fa-bars"></i> -->
@@ -433,49 +506,66 @@
 <button type="button" onclick="location.href='/fukushisystem/business'">事業所マスタ</button>
 <button type="button" onclick="location.href='/fukushisystem/display_data'">印刷画面</button> -->
 
-<h1>単位</h1>
+<h1>単価マスタ</h1>
 <div class="btn-unit">
-    <button type="button" onclick="location.href='/fukushisystem/unit'">戻る</button>
+    <button type="button" onclick="location.href='/fukushisystem/unit'">一覧へ戻る</button>
 </div>
 <form method="post">
     <table>
         <tr>
-            <td>サービスコード</td>
+            <th>サービスコード</th>
             <td>
                 <input type="text" name="Unit_code" value="<?=$listItem['Unit_code'];?>" required />
             </td>
         </tr>
         <tr>
-            <td>サービス内容</td>
+            <th>提供内容</th>
             <td>
                 <input type="text" id="Service_content" name="Service_content" value="<?=$listItem['Service_content'];?>" required="required"/>
             </td>
         </tr>
         <tr>
-            <td>単位</td>
+            <th>単位</th>
             <td>
                 <input type="text" id="Number_unit" name="Number_unit" value="<?=$listItem['Number_unit'];?>" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required="required"/>
             </td>
         </tr>
         <tr>
-            <td>単位単価</td>
+            <th>単位単価</th>
             <td>
                 <input type="text" name="Unit_price" value="<?=$listItem['Unit_price'];?>" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
             </td>
         </tr>
-        <!-- <tr>
-            <td>適用</td>
-            <td>
-                <input type="text" value="" name="Pick"/>
-            </td>
-        </tr> -->
         <tr>
-            <td></td>
+            <th>適用開始日</th>
             <td>
+                <input type="text" id="Service_content" name="Service_content" value="<?=$listItem['Service_content'];?>" required="required"/>
+            </td>
+        </tr>
+        <tr>
+            <th>適用終了日</th>
+            <td>
+                <input type="text" id="Service_content" name="Service_content" value="<?=$listItem['Service_content'];?>" required="required"/>
+            </td>
+        </tr>
+        <tr>
+            <th>事業科目</th>
+            <td>
+                <input type="text" id="Service_content" name="Service_content" value="<?=$listItem['Service_content'];?>" required="required"/>
+            </td>
+        </tr>
+        <tr>
+            <th>国保仕分</th>
+            <td>
+                <input type="text" id="Service_content" name="Service_content" value="<?=$listItem['Service_content'];?>" required="required"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
                 <?if(isset($arr[2])) {?>
-                    <input name="btn_unitUpdate" type="submit" value="修正"/>
+                    <input class="submit-btn-Update" name="btn_unitUpdate" type="submit" value="修　正"/>
                 <?}else{?>
-                    <input name="btn_unit" type="submit" value="登録"/>
+                    <input class="submit-btn-New" name="btn_unit" type="submit" value="確 認 画 面 へ"/>
                 <?}?>
             </td>
         </tr>

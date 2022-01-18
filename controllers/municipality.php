@@ -2,7 +2,7 @@
 class municipality extends controller{
 	function welcome(){
 		require_once("./libs/Pagination.php");
-		if (isset($_SESSION['usernameSS2'])){
+		if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==0){
 			// Load the database configuration file 
 			$db = $this->model("database");
 			$database = new Database();
@@ -45,7 +45,7 @@ class municipality extends controller{
 		$db = $this->model("database");
 		$database = new Database();
 		$database->setTable("municipality");
-		if (isset($_SESSION['usernameSS2'])){
+		if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==0){
 			$arr = $this->UrlProcess();
 			$countItem;
 				// echo $arr[2];
