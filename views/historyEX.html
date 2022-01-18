@@ -18,7 +18,7 @@
             width: 1000px;
             margin: auto;
         }
-		.logout{
+        .logout{
             background: red;
             color: white;
             font-weight: bold;
@@ -31,12 +31,23 @@
             text-align: center;
         }
         .btn-unit button{
-            background-color: red;
+            background-color: #666666;
             color: white;
-            padding: 1px;
+            padding: 10px 20px;
+        }
+        .btn-unit {
+            text-align: right;
+            margin-right: 23%;
+            margin-bottom: 10px;
+        }
+        @media (max-width: 1024px) {
+            .btn-unit {
+                text-align: right;
+                margin-right: 1%;
+            }
         }
         h1{
-       		text-align: center;
+            text-align: center;
         }
         .activeRecord{
             text-align: center;
@@ -58,7 +69,7 @@
             background: lightgray;
             padding: 5px;
         }
-    	/* Theme Name: NGUYEN LUC PRO
+        /* Theme Name: NGUYEN LUC PRO
          * Description: テーマ
          * Theme URI: https://lucnguyen.com/
          * Version: 1.0
@@ -125,11 +136,12 @@
 
         /* navbar styling */
         .navbar{
-            background: #004EA2;
+            border-radius: inherit;
+            background: #131A44;
             /*position: fixed;*/
             width: 100%;
             z-index: 999;
-            padding: 12.3px 0;
+            padding: 20.3px 0;
             font-family: 'Ubuntu', sans-serif;
             transition: all 0.3s ease;
         }
@@ -424,8 +436,71 @@
                 line-height: 38px;
             }
         }
-    </style>
+        .head-top{
+            display: flex;
+            padding: 10px;
+        }
+        .head-top-title{
+            width: 92%;
+        }
+        .head-top-title-company{
+            margin: 20px 0 0 100px;
+            position: absolute;
+        }
+        .head-top-logo{
+            width: 8%;
+        }
+        .head-top-logo img{
+            height: 50px;
+        }
 
+        @media all and (max-width: 320px) {
+
+
+        }
+
+        @media all and (max-width: 480px) {
+
+
+        }
+
+        @media all and (max-width: 600px ) {
+
+
+        }
+
+        @media all and (max-width: 800px) {
+
+
+        }
+
+        @media all and (max-width: 768px) {
+
+
+        }
+
+        @media all and (max-width: 1024px) {
+
+
+        }
+
+        @media all and (max-width: 1025px) {
+
+
+        }
+    </style>
+    <div class="head-top">
+        <div class="head-top-title">
+            <p class="head-top-title-company">会社名のテキスト</p>
+        </div>
+        <div class="head-top-logo">
+            <?if(!isset($arr[2])){?>
+                <img src="..\public\images\logo.png">
+            <?}else{?>
+                <img src="../../public/images/logo.png">
+            <?}?>
+        </div>
+    </div>
     <nav class="navbar">
         <div class="max-width">
             <ul class="menu">
