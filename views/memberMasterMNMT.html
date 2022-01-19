@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="./public/css/menu.css?v=1">
-    <link rel="icon" href="./public/images/logo.png">
+    <link rel="icon" href="/fukushisystem/public/images/logo.png">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -462,24 +462,25 @@
             <p class="head-top-title-company">会社名のテキスト</p>
         </div>
         <div class="head-top-logo">
-            <img src=".\public\images\logo.png">
+            <img src="/fukushisystem/public/images/logo.png">
         </div>
     </div>
-    <nav class="navbar">
+    <!-- <nav class="navbar">
         <div class="max-width">
             <ul class="menu">
-                <!-- <li class="menu-top1 whiteline"><a href="#" class="menu-btn">HOME</a></li> -->
                 <li class=""><a href="/fukushisystem/municipality" class="menu-btn">市町村マスタ</a></li>
                 <li class=""><a href="/fukushisystem/unit" class="menu-btn">単価マスタ</a></li>
                 <li class=""><a href="/fukushisystem/memberMaster" class="menu-btn">会員マスタ</a></li>
             </ul>
             <div class="menu-btn">
-                <!-- <i class="fas fa-bars"></i> -->
+                <i class="fas fa-bars"></i>
             </div>
         </div>
-    </nav>
+    </nav> -->
 
-	<button type="button" class="logout" onclick="location.href='/fukushisystem/logout'">ログアウト</button>
+    <?include './views/menuOffice.html';?>
+
+	<!-- <button type="button" class="logout" onclick="location.href='/fukushisystem/logout'">ログアウト</button> -->
 	<!-- <button type="button" onclick="location.href='/fukushisystem/userMNMT'">利用者管理</button>
 	<button type="button" onclick="location.href='/fukushisystem/business'">事業所マスタ</button>
 	<button type="button" onclick="location.href='/fukushisystem/display_data'">印刷画面</button> -->
@@ -493,9 +494,9 @@
 	<table>
 		<tr>
 			<th>No.</th>
-			<th>サービスコード</th>
-			<th>提供内容</th>
-            <!-- <th>単位単価</th> -->
+			<th>会社名</th>
+			<th>住　所</th>
+            <th>電話番号</th>
 			<th>修正</th>
 			<th>削除</th>
 		</tr>
@@ -511,7 +512,7 @@
             <td><?echo $i++;?>.</td>
             <td><?php echo $item['Unit_code'];?></td>
             <td><?php echo $item['Service_content'];?></td>
-            <!-- <td><?php echo $item['Number_unit'];?></td> -->
+            <td><?php echo $item['Number_unit'];?></td>
             <td><button onclick="javascript:update(`<?php echo $item['Unit_id'];?>`)">修正</button></td>
             <td><button onclick="javascript:deleteItem(`<?php echo $item['Unit_id'];?>`)">削除</button></td>
         </tr>

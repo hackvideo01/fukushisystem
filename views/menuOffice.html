@@ -58,16 +58,11 @@
 <nav class="navbar">
         <div class="max-width">
             <ul class="menu">
-                <li class=""><a href="/fukushisystem/business" class="menu-btn">事業所マスタ</a></li>
-                <li class=""><a href="/fukushisystem/activeRecord" class="menu-btn">活動記録</a></li>
-                <li class=""><a href="/fukushisystem/userMNMT" class="menu-btn">利用者管理</a></li>
-                <li class=""><a href="/fukushisystem/display_data" class="menu-btn">印刷画面</a></li>
-                <li class=""><a href="/fukushisystem/contact" class="menu-btn">問い合わせ</a></li>
-                <!-- <?if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==1){?>
-                    <li class="acount"><a href="" class="menu-btn"><?echo $_SESSION['usernameSS'];?>さん</a></li>
-                <?}?> -->
+                <li class=""><a href="/fukushisystem/municipality" class="menu-btn">市町村マスタ</a></li>
+                <li class=""><a href="/fukushisystem/unit" class="menu-btn">単価マスタ</a></li>
+                <li class=""><a href="/fukushisystem/memberMaster" class="menu-btn">会員マスタ</a></li>
             </ul>
-            <?if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==1){?>
+            <?if (isset($_SESSION['usernameSS'])){?>
                 <i class="fa fa-bell" style="font-size:24px;color: white;margin-right: 40px"></i>
                 <!-- <a href=""><p class="acount" style="color:white;margin: 0px 120px 0 0"><?echo $_SESSION['usernameSS'];?>さん　<i class='fas fa-chevron-down'></i></p></a> -->
                 <div class="dropdown-fukushi">

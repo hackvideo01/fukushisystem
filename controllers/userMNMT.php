@@ -46,6 +46,9 @@ class userMNMT extends controller{
 		// 	}
 		// }
 
+		$arr = $this->UrlProcess();
+		$path = dirname(__FILE__,2); 
+
 		if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==1){
 			// Load the database configuration file 
 			$db = $this->model("database");

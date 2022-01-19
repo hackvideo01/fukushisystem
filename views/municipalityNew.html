@@ -4,13 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="icon" href="/fukushisystem/public/images/logo.png">
     <title>市町村マスタ</title>
 </head>
-<?if(!isset($arr[2])){?>
-    <link rel="icon" href="./public/images/logo.png">
-<?}else{?>
-    <link rel="icon" href="../../public/images/logo.png">
-<?}?>
+
 <body>
     <style>
         table{
@@ -479,35 +476,32 @@
         <p class="head-top-title-company">会社名のテキスト</p>
     </div>
     <div class="head-top-logo">
-        <?if(!isset($arr[2])){?>
-            <img src="..\public\images\logo.png">
-        <?}else{?>
-            <img src="../../public/images/logo.png">
-        <?}?>
+        <img src="/fukushisystem/public/images/logo.png">
     </div>
 </div>
-<nav class="navbar">
+<!-- <nav class="navbar">
     <div class="max-width">
         <ul class="menu">
-            <!-- <li class="menu-top1 whiteline"><a href="#" class="menu-btn">HOME</a></li> -->
             <li class=""><a href="/fukushisystem/municipality" class="menu-btn">市町村マスタ</a></li>
             <li class=""><a href="/fukushisystem/unit" class="menu-btn">単価マスタ</a></li>
             <li class=""><a href="/fukushisystem/memberMaster" class="menu-btn">会員マスタ</a></li>
         </ul>
         <div class="menu-btn">
-            <!-- <i class="fas fa-bars"></i> -->
+            <i class="fas fa-bars"></i>
         </div>
     </div>
-</nav>
+</nav> -->
 
-<button type="button" class="logout" onclick="location.href='/fukushisystem/logout'">ログアウト</button>
+<?include './views/menuOffice.html';?>
+
+<!-- <button type="button" class="logout" onclick="location.href='/fukushisystem/logout'">ログアウト</button> -->
 <!-- <button type="button" onclick="location.href='/fukushisystem/unit'">単価マスタ</button> -->
 <!-- <button type="button" onclick="location.href='/fukushisystem/activeRecord'">活動記録</button>
 <button type="button" onclick="location.href='/fukushisystem/userMNMT'">利用者管理</button>
 <button type="button" onclick="location.href='/fukushisystem/business'">事業所マスタ</button>
 <button type="button" onclick="location.href='/fukushisystem/display_data'">印刷画面</button> -->
 
-<h1>市町村マスタ</h1>
+<h1 style="margin-top: 30px;font-weight: 100;">市町村マスタ</h1>
 <div class="btn-municipality">
     <button type="button" onclick="location.href='/fukushisystem/municipality'">一覧へ戻る</button>
 </div>

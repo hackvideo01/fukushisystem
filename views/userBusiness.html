@@ -8,13 +8,10 @@
     <link rel="stylesheet" type="text/css" href="./public/css/menu.css?v=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="icon" href="/fukushisystem/public/images/logo.png">
 	<title>利用者・事業所</title>
 </head>
-<?if(!isset($arr[2])){?>
-    <link rel="icon" href="./public/images/logo.png">
-<?}else{?>
-    <link rel="icon" href="../../public/images/logo.png">
-<?}?>
+    
 <body>
 	<style type="text/css">
         .panel-info {
@@ -463,7 +460,7 @@
             <p class="head-top-title-company">会社名のテキスト</p>
         </div>
         <div class="head-top-logo">
-            <img src=".\public\images\logo.png">
+            <img src="/fukushisystem/public/images/logo.png">
         </div>
     </div>
     <!-- <nav class="navbar">
@@ -493,6 +490,7 @@
 	<button type="button" onclick="location.href='/fukushisystem/display_data'">印刷画面</button> -->
 	<!-- <button type="button" class="unit" onclick="location.href='/fukushisystem/unit'">単位</button> -->
 	<h1>事業所一覧</h1>
+
     <div class="btn-unit">
         <button type="button" onclick="location.href='/fukushisystem/userMNMT/A'">利用者追加</button>
     </div>
