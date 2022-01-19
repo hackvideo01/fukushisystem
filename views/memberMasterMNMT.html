@@ -510,9 +510,9 @@
     ?>
         <tr>
             <td><?echo $i++;?>.</td>
-            <td><?php echo $item['Unit_code'];?></td>
-            <td><?php echo $item['Service_content'];?></td>
-            <td><?php echo $item['Number_unit'];?></td>
+            <td><?php echo $item['CompanyName'];?></td>
+            <td><?php echo $item['Address'];?></td>
+            <td><?php echo $item['TelephoneNumber'];?></td>
             <td><button onclick="javascript:update(`<?php echo $item['Unit_id'];?>`)">修正</button></td>
             <td><button onclick="javascript:deleteItem(`<?php echo $item['Unit_id'];?>`)">削除</button></td>
         </tr>
