@@ -6,10 +6,15 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="./public/css/menu.css?v=1">
-    <link rel="icon" href="./public/images/logo.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<title>事業所マスタ</title>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+	<title>利用者・事業所</title>
 </head>
+<?if(!isset($arr[2])){?>
+    <link rel="icon" href="./public/images/logo.png">
+<?}else{?>
+    <link rel="icon" href="../../public/images/logo.png">
+<?}?>
 <body>
 	<style type="text/css">
         .panel-info {
@@ -470,6 +475,10 @@
                 <li class="whiteline"><a href="/fukushisystem/display_data" class="menu-btn">印刷画面</a></li>
                 <li class="whiteline"><a href="/fukushisystem/contact" class="menu-btn">問い合わせ</a></li>
             </ul>
+            <?if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==1){?>
+                <i class="fa fa-bell" style="font-size:24px;color: white;margin-right: 40px"></i>
+                <a href=""><p class="acount" style="color:white;margin: 0px 120px 0 0"><?echo $_SESSION['usernameSS'];?>さん　<i class='fas fa-chevron-down'></i></p></a>
+            <?}?>
             <div class="menu-btn">
                 <i class="fas fa-bars"></i>
             </div>
@@ -483,9 +492,9 @@
 	<button type="button" onclick="location.href='/fukushisystem/userMNMT'">利用者管理</button>
 	<button type="button" onclick="location.href='/fukushisystem/display_data'">印刷画面</button> -->
 	<!-- <button type="button" class="unit" onclick="location.href='/fukushisystem/unit'">単位</button> -->
-	<h1>事業所マスタ</h1>
+	<h1>事業所一覧</h1>
     <div class="btn-unit">
-        <button type="button" onclick="location.href='/fukushisystem/business/A'">新規追加</button>
+        <button type="button" onclick="location.href='/fukushisystem/userMNMT/A'">利用者追加</button>
     </div>
 	<div class="business">
 		<!-- <button type="button" onclick="location.href='/fukushisystem/business/A'">A</button>
@@ -497,8 +506,8 @@
 			<th>No.</th>
             <th>事業所番号</th>
             <th>事業所名</th>
-            <th>修正</th>
-            <th>削除</th>
+           <!--  <th>修正</th>
+            <th>削除</th> -->
 		</tr>
 	<?
         if(isset($_GET['page'])){
@@ -510,10 +519,10 @@
     ?>
         <tr>
             <td><?php echo $i++;?>.</td>
-            <td><?php echo $item['Businesser_number'];?></td>
+            <td><a href="/fukushisystem/userMNMT/List&Businesser_number=<?echo $item['Businesser_number'];?>&Businesser_name=<?echo $item['Businesser_name'];?>"><?php echo $item['Businesser_number'];?></a></td>
             <td><?php echo $item['Businesser_name'];?></td>
-            <td><button onclick="javascript:update(`<?php echo $item['Business_id'];?>`)">修正</button></td>
-            <td><button onclick="javascript:deleteItem(`<?php echo $item['Business_id'];?>`)">削除</button></td>
+           <!--  <td><button onclick="javascript:update(`<?php echo $item['Business_id'];?>`)">修正</button></td>
+            <td><button onclick="javascript:deleteItem(`<?php echo $item['Business_id'];?>`)">削除</button></td> -->
         </tr>
     <?}?>
 	</table>
@@ -523,69 +532,69 @@
 
 <script type="text/javascript">
     //Delete
-    function deleteItem(id){
-        // var flag = confirm('削除ですか ?');
-        // if(flag == true){
-        //     var url = 'delete.php?Activity_record_id=' + id;
-        //     window.location.href = url;
-        // }else{
-        //     return false;
-        // }
+    // function deleteItem(id){
+    //     // var flag = confirm('削除ですか ?');
+    //     // if(flag == true){
+    //     //     var url = 'delete.php?Activity_record_id=' + id;
+    //     //     window.location.href = url;
+    //     // }else{
+    //     //     return false;
+    //     // }
 
-        var result = confirm(id+"　削除したいですか?");
-        if (result) {
-            var action = "deleteBusiness";
-           $.post("./controllers/delete.php",
-            {
-              changestatus: status.value,
-              id: id,
-              action:action
-            },
-            function(data,status){
-              if(status=="success"){
-                alert("削除されました。");
-                location.reload();
-              }else{
-                alert("削除できませんでした。");
-              }
-            });
-        }
-    }
+    //     var result = confirm(id+"　削除したいですか?");
+    //     if (result) {
+    //         var action = "deleteBusiness";
+    //        $.post("./controllers/delete.php",
+    //         {
+    //           changestatus: status.value,
+    //           id: id,
+    //           action:action
+    //         },
+    //         function(data,status){
+    //           if(status=="success"){
+    //             alert("削除されました。");
+    //             location.reload();
+    //           }else{
+    //             alert("削除できませんでした。");
+    //           }
+    //         });
+    //     }
+    // }
 
      //Update
-    function update(id){
-        // var flag = confirm('削除ですか ?');
-        // if(flag == true){
-        //     var url = 'delete.php?Activity_record_id=' + id;
-        //     window.location.href = url;
-        // }else{
-        //     return false;
-        // }
+    // function update(id){
+    //     // var flag = confirm('削除ですか ?');
+    //     // if(flag == true){
+    //     //     var url = 'delete.php?Activity_record_id=' + id;
+    //     //     window.location.href = url;
+    //     // }else{
+    //     //     return false;
+    //     // }
 
-        var result = confirm(id+"　編集したいですか？");
-        if (result) {
-            var action = "updateActiveRecord";
-           $.post("./controllers/business.php",
-            {
-              changestatus: status.value,
-              id: id,
-              action:action
-            },
-            function(data,status){
-              if(status=="success"){
-                // alert("編集されました。");
-                // location.reload();
-                location.href="./business/A/"+id;
+    //     var result = confirm(id+"　編集したいですか？");
+    //     if (result) {
+    //         var action = "updateuserMNMT";
+    //        $.post("./controllers/userMNMT.php",
+    //         {
+    //           changestatus: status.value,
+    //           id: id,
+    //           action:action
+    //         },
+    //         function(data,status){
+    //           if(status=="success"){
+    //             // alert("編集されました。");
+    //             // location.reload();
+    //             location.href="./userMNMT/A/"+id;
 
-              // }else{
-              //   alert("編集できませんでした。");
-              }
-            });
-        }
-    }
+    //           // }else{
+    //           //   alert("編集できませんでした。");
+    //           }
+    //         });
+    //     }
+    // }
 
-    function changePageBusiness(page){
-        url = "/fukushisystem/business&page="+page;
+    function changePageUserMNMT(page){
+        url = "/fukushisystem/userMNMT&page="+page;
         window.location.href = url;
     }
 </script>

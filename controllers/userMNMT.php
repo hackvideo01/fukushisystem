@@ -3,6 +3,49 @@
 class userMNMT extends controller{
 	function welcome(){
 		require_once("./libs/Pagination.php");
+		// if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==1){
+		// 	// Load the database configuration file 
+		// 	$db = $this->model("database");
+		// 	$database = new Database();
+		// 	// $database->setTable("usermanagement");
+		// 	// Fetch records from database 
+
+		// 	$paramsCurrentPage  = (!empty($_GET['page'])) ?  $_GET['page'] : 1;
+
+		// 	// Query Count
+		// 	$queryCount =  "SELECT COUNT(*) AS `total` FROM `usermanagement` WHERE `Usermanagement_id` > 0";
+
+		// 	$totalItem = $database->fetchRow($queryCount)['total'];
+		// 	$configPagination = ['totalItemsPerPage'	=> 10, 'pageRange' => 3, 'currentPage' => $paramsCurrentPage];
+		// 	$objPagination 	 = new Pagination($totalItem, $configPagination);
+
+		// 	$queryList[] = "SELECT * FROM usermanagement ORDER BY Recipient_number ASC";
+
+		// 	if($objPagination->getTotalPage() > 1)  {
+		// 		$totalPage		= $configPagination['totalItemsPerPage'];
+		// 		$position		= ($configPagination['currentPage']-1) * $totalPage;
+		// 		$queryList[] 	= "LIMIT $position, $totalPage";
+		// 	}
+
+		// 	$queryList = implode(" ", $queryList);
+
+		// 	$listItem = $database->fetchAll($queryList);
+		// 	// foreach ($listItem as $item) {
+		// 	// 	// print_r($item);
+
+		// 	// }
+		// 	require_once("./libs/Pagination.php");
+		// 	require_once("./views/userMNMTDirector.html");
+		// }else{
+		// 	// echo "<script>alert('unit');</script>";
+			
+		// 	if (isset($_SESSION['usernameSS2'])) {
+		// 		header("Location: /fukushisystem/unit");
+		// 	}else{
+		// 		header("Location: /fukushisystem/login");
+		// 	}
+		// }
+
 		if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==1){
 			// Load the database configuration file 
 			$db = $this->model("database");
@@ -13,14 +56,15 @@ class userMNMT extends controller{
 			$paramsCurrentPage  = (!empty($_GET['page'])) ?  $_GET['page'] : 1;
 
 			// Query Count
-			$queryCount =  "SELECT COUNT(*) AS `total` FROM `usermanagement` WHERE `Usermanagement_id` > 0";
+			$queryCount =  "SELECT COUNT(*) AS `total` FROM `business` WHERE `Business_id` > 0";
 
 			$totalItem = $database->fetchRow($queryCount)['total'];
 			$configPagination = ['totalItemsPerPage'	=> 10, 'pageRange' => 3, 'currentPage' => $paramsCurrentPage];
 			$objPagination 	 = new Pagination($totalItem, $configPagination);
 
-			$queryList[] = "SELECT * FROM usermanagement ORDER BY Recipient_number ASC";
+			$queryList[] = "SELECT * FROM business ORDER BY Model_number ASC";
 
+			// Pagination
 			if($objPagination->getTotalPage() > 1)  {
 				$totalPage		= $configPagination['totalItemsPerPage'];
 				$position		= ($configPagination['currentPage']-1) * $totalPage;
@@ -34,11 +78,9 @@ class userMNMT extends controller{
 			// 	// print_r($item);
 
 			// }
-			require_once("./libs/Pagination.php");
-			require_once("./views/userMNMTDirector.html");
+			require_once("./views/userBusiness.html");
 		}else{
 			// echo "<script>alert('unit');</script>";
-			
 			if (isset($_SESSION['usernameSS2'])) {
 				header("Location: /fukushisystem/unit");
 			}else{
@@ -52,7 +94,11 @@ class userMNMT extends controller{
 		$database = new Database();
 		$database->setTable("usermanagement");
 		if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==1){
-
+			$queryListBusiness[] = "SELECT Businesser_number FROM business ORDER BY Businesser_number ASC";
+			$queryListBusiness = implode(" ", $queryListBusiness);
+			$listItemBusiness = $database->fetchAll($queryListBusiness);
+			// print_r($listItem);
+			// exit();
 			$arr = $this->UrlProcess();
 			$countItem;
 				// echo $arr[2];
@@ -70,6 +116,7 @@ class userMNMT extends controller{
 			require_once("./views/userMNMTA.html");
 			if (isset($_POST["btn_userMNMT"])) {
 				$data = array(
+					'Businesser_number' 				=> $_POST["Businesser_number"],
 					'Name_hira' 						=> $_POST["Name_hira"],
 					'Name_kana' 						=> $_POST["Name_kana"],
 					'Recipient_number' 					=> $_POST["Recipient_number"],
@@ -111,6 +158,7 @@ class userMNMT extends controller{
 				// exit();
 					if (isset($arr[2])) {
 						$data = array(
+							'Businesser_number' 				=> $_POST["Businesser_number"],
 							'Name_hira' 						=> $_POST["Name_hira"],
 							'Name_kana' 						=> $_POST["Name_kana"],
 							'Recipient_number' 					=> $_POST["Recipient_number"],
@@ -185,6 +233,7 @@ class userMNMT extends controller{
 			require_once("./views/userMNMTB.html");
 			if (isset($_POST["btn_userMNMT"])) {
 				$data = array(
+					'Businesser_number' 				=> $_POST["Businesser_number"],
 					'Name_hira' 						=> $_POST["Name_hira"],
 					'Name_kana' 						=> $_POST["Name_kana"],
 					'Recipient_number' 					=> $_POST["Recipient_number"],
@@ -234,6 +283,7 @@ class userMNMT extends controller{
 			require_once("./views/userMNMTMigration.html");
 			if (isset($_POST["btn_userMNMT"])) {
 				$data = array(
+					'Businesser_number' 				=> $_POST["Businesser_number"],
 					'Name_hira' 						=> $_POST["Name_hira"],
 					'Name_kana' 						=> $_POST["Name_kana"],
 					'Recipient_number' 					=> $_POST["Recipient_number"],
@@ -272,6 +322,56 @@ class userMNMT extends controller{
 		}else{
 			// echo "<script>alert('unit');</script>";
 			header("Location: /fukushisystem/unit");
+		}
+	}
+	function List(){
+		// echo $_GET['Businesser_number'];
+		// exit();
+		require_once("./libs/Pagination.php");
+		if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==1){
+			// Load the database configuration file 
+			$db = $this->model("database");
+			$database = new Database();
+			// $database->setTable("usermanagement");
+			// Fetch records from database 
+
+			$paramsCurrentPage  = (!empty($_GET['page'])) ?  $_GET['page'] : 1;
+
+			// Query Count
+			$queryCount =  "SELECT COUNT(*) AS `total` FROM `usermanagement` WHERE `Businesser_number` = ".$_GET['Businesser_number'];
+			// echo $queryCount;
+			// exit();
+
+			$totalItem = $database->fetchRow($queryCount)['total'];
+			$configPagination = ['totalItemsPerPage'	=> 10, 'pageRange' => 3, 'currentPage' => $paramsCurrentPage];
+			$objPagination 	 = new Pagination($totalItem, $configPagination);
+
+			$queryList[] = "SELECT * FROM usermanagement WHERE `Businesser_number` = ".$_GET['Businesser_number'];
+			// print_r($queryList);
+			// exit(); 
+
+			if($objPagination->getTotalPage() > 1)  {
+				$totalPage		= $configPagination['totalItemsPerPage'];
+				$position		= ($configPagination['currentPage']-1) * $totalPage;
+				$queryList[] 	= "LIMIT $position, $totalPage";
+			}
+
+			$queryList = implode(" ", $queryList);
+
+			$listItem = $database->fetchAll($queryList);
+			// foreach ($listItem as $item) {
+			// 	// print_r($item);
+
+			// }
+			require_once("./views/userMNMTDirector.html");
+		}else{
+			// echo "<script>alert('unit');</script>";
+			
+			if (isset($_SESSION['usernameSS2'])) {
+				header("Location: /fukushisystem/unit");
+			}else{
+				header("Location: /fukushisystem/login");
+			}
 		}
 	}
 	function UrlProcess(){

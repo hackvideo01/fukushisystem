@@ -484,7 +484,7 @@
         <?}?>
     </div>
 </div>
-<nav class="navbar">
+<!-- <nav class="navbar">
     <div class="max-width">
         <ul class="menu">
             <li class=""><a href="/fukushisystem/business" class="menu-btn">事業所マスタ</a></li>
@@ -494,12 +494,14 @@
             <li class="whiteline"><a href="/fukushisystem/contact" class="menu-btn">問い合わせ</a></li>
         </ul>
         <div class="menu-btn">
-            <!-- <i class="fas fa-bars"></i> -->
+            <i class="fas fa-bars"></i>
         </div>
     </div>
-</nav>
+</nav> -->
 
-<button type="button" class="logout" onclick="location.href='/fukushisystem/logout'">ログアウト</button>
+<?include './views/menuOperation.html';?>
+
+<!-- <button type="button" class="logout" onclick="location.href='/fukushisystem/logout'">ログアウト</button> -->
 
 <!-- <button type="button" onclick="location.href='/fukushisystem/userMNMT'">利用者管理</button>
 <button type="button" onclick="location.href='/fukushisystem/activeRecord'">活動記録</button>
@@ -526,7 +528,7 @@
         <tr>
             <th>形式記号</th>
             <td>
-                <input type="text" value="<?=$listItem['Model_symbol'];?>" name="Model_symbol" required="required"/>
+                <input type="text" value="<?=$listItem['Model_symbol'];?>" name="Model_symbol" />
             </td>
         </tr>
         <tr>

@@ -1,0 +1,89 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style type="text/css">
+    .dropbtn-fukushi {
+      background-color: #131A44;
+      color: white;
+      /*padding: 16px;*/
+      font-size: 16px;
+      margin-right: 65px;
+      border: none;
+    }
+
+    p{
+      margin-bottom: 0;
+    }
+
+    .dropdown-fukushi {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-fukushi-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-fukushi-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-fukushi-content a:hover {background-color: #ddd;}
+
+    .dropdown-fukushi:hover .dropdown-fukushi-content {display: block;}
+
+    .dropdown-fukushi:hover .dropbtn-fukushi {background-color: #3e8e41;}
+</style>
+
+<!-- <nav class="navbar">
+    <div class="max-width">
+        <ul class="menu">
+            <li class=""><a href="/fukushisystem/business" class="menu-btn">事業所マスタ</a></li>
+            <li class="whiteline"><a href="/fukushisystem/userMNMT" class="menu-btn">利用者管理</a></li>
+            <li class="whiteline"><a href="/fukushisystem/display_data" class="menu-btn">印刷画面</a></li>
+            <li class="whiteline"><a href="/fukushisystem/activeRecord" class="menu-btn">問い合わせ</a></li>
+        </ul>
+        <div class="menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</nav> -->
+
+<nav class="navbar">
+        <div class="max-width">
+            <ul class="menu">
+                <li class=""><a href="/fukushisystem/business" class="menu-btn">事業所マスタ</a></li>
+                <li class="whiteline"><a href="/fukushisystem/activeRecord" class="menu-btn">活動記録</a></li>
+                <li class="whiteline"><a href="/fukushisystem/userMNMT" class="menu-btn">利用者管理</a></li>
+                <li class="whiteline"><a href="/fukushisystem/display_data" class="menu-btn">印刷画面</a></li>
+                <li class="whiteline"><a href="/fukushisystem/contact" class="menu-btn">問い合わせ</a></li>
+                <!-- <?if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==1){?>
+                    <li class="acount"><a href="" class="menu-btn"><?echo $_SESSION['usernameSS'];?>さん</a></li>
+                <?}?> -->
+            </ul>
+            <?if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==1){?>
+                <i class="fa fa-bell" style="font-size:24px;color: white;margin-right: 40px"></i>
+                <!-- <a href=""><p class="acount" style="color:white;margin: 0px 120px 0 0"><?echo $_SESSION['usernameSS'];?>さん　<i class='fas fa-chevron-down'></i></p></a> -->
+                <div class="dropdown-fukushi">
+                  <button class="dropbtn-fukushi"><a href=""><p class="acount" style="color:white;"><?echo $_SESSION['usernameSS'];?>さん　<i class='fas fa-chevron-down'></i></p></a></button>
+                  <div class="dropdown-fukushi-content">
+                    <a href="/fukushisystem/logout">ログアウト</a>
+                    <!-- <a href="#">Link 2</a>
+                    <a href="#">Link 3</a> -->
+                  </div>
+                </div>
+            <?}?>
+            <div class="menu-btn">
+                <!-- <i class="fas fa-bars"></i> -->
+            </div>
+        </div>
+    </nav>
+
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>

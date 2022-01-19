@@ -607,7 +607,7 @@
         <img src=".\public\images\logo.png">
     </div>
 </div>
-<nav class="navbar">
+<!-- <nav class="navbar">
     <div class="max-width">
         <ul class="menu">
             <li class=""><a href="/fukushisystem/business" class="menu-btn">事業所マスタ</a></li>
@@ -617,12 +617,14 @@
             <li class="whiteline"><a href="/fukushisystem/contact" class="menu-btn">問い合わせ</a></li>
         </ul>
         <div class="menu-btn">
-            <!-- <i class="fas fa-bars"></i> -->
+            <i class="fas fa-bars"></i>
         </div>
     </div>
-</nav>
+</nav> -->
 
-<button type="button" class="logout" onclick="location.href='/fukushisystem/logout'">ログアウト</button>
+<?include './views/menuOperation.html';?>
+
+<!-- <button type="button" class="logout" onclick="location.href='/fukushisystem/logout'">ログアウト</button> -->
 
 <form action="" method="post" enctype="multipart/form-data">
 
@@ -637,7 +639,7 @@
 
 if (isset($_POST["send"])) {
 
-    if ($_POST['namehira']!=""&&$_POST['namekana']!=""&&$_POST['email']!=""&&$_POST['address']!=""&&$_POST['comment']!="") {
+    if ($_POST['radiogroup1']!=""&&$_POST['namehira']!=""&&$_POST['email']!=""&&$_POST['comment']!="") {
 
      $targetfolder = "./uploads/";
 
@@ -702,26 +704,23 @@ if (isset($_POST["send"])) {
                         【ご入力いただいた内容】
                         <br><br>
 
-                        お名前: '.$_POST['namehira'].'
-                        <br><br>
+                         お問い合わせ項目: '.$_POST['radiogroup1'].'
+                          <br><br>
 
-                        お名前カナ: '.$_POST['namekana'].'
-                        <br><br>
+                          <!-- 会社名・団体名: '.$_POST['companyname'].'
+                          <br><br> -->
 
-                        会社名: '.$_POST['companyname'].'
-                        <br><br>
+                          お名前: '.$_POST['namehira'].'
+                          <br><br>
 
-                        メールアドレス: '.$_POST['email'].'
-                        <br><br>
+                          メールアドレス: '.$_POST['email'].'
+                          <br><br>
 
-                        電話番号: '.$_POST['tel'].'
-                        <br><br>
+                          電話番号: '.$_POST['tel'].'
+                          <br><br>
 
-                        ご住所: '.$_POST['address'].'
-                        <br><br>
-
-                        お問い合わせ内容: '.$_POST['comment'].'
-                        <br><br>
+                          お問い合わせ内容: '.$_POST['comment'].'
+                          <br><br>
 
                         ************************************************************<br><br>
 
@@ -770,23 +769,20 @@ if (isset($_POST["send"])) {
                           【お客様入力内容】
                           <br><br>
 
+                          お問い合わせ項目: '.$_POST['radiogroup1'].'
+                          <br><br>
+
+                          <!-- 会社名・団体名: '.$_POST['companyname'].'
+                          <br><br> -->
+
                           お名前: '.$_POST['namehira'].'
                           <br><br>
 
-                          お名前カナ: '.$_POST['namekana'].'
-                          <br><br>
+                         <!--  メールアドレス: '.$_POST['email'].'
+                          <br><br> -->
 
-                          会社名: '.$_POST['companyname'].'
-                          <br><br>
-
-                          メールアドレス: '.$_POST['email'].'
-                          <br><br>
-
-                          電話番号: '.$_POST['tel'].'
-                          <br><br>
-
-                          ご住所: '.$_POST['address'].'
-                          <br><br>
+                          <!-- 電話番号: '.$_POST['tel'].'
+                          <br><br> -->
 
                           お問い合わせ内容: '.$_POST['comment'].'
                           <br><br>
@@ -796,7 +792,7 @@ if (isset($_POST["send"])) {
         $mailmanager->send();
         //echo 'Message has been sent';
 
-        header("Location: ?id=3");
+        header("Location: /fukushisystem/contact/ThanksYou");
         exit();
         
     } catch (Exception $e) {
@@ -821,11 +817,11 @@ if (isset($_POST["send"])) {
 </th>
 <td>
     <div class="input_field">
-        <input type="radio" name="radiogroup1" id="rd1" value="1" required>
+        <input type="radio" name="radiogroup1" id="rd1" value="ご利用前" required>
         <label for="rd1">ご利用前</label>
-        <input class="input-radio" type="radio" name="radiogroup1" id="rd2" value="2">
+        <input class="input-radio" type="radio" name="radiogroup1" id="rd2" value="利用中">
         <label class="label-radio" for="rd2">利用中</label>
-        <input class="input-radio" type="radio" name="radiogroup1" id="rd3" value="3">
+        <input class="input-radio" type="radio" name="radiogroup1" id="rd3" value="その他">
         <label class="label-radio" for="rd3">その他</label>
   </div>
 </td>

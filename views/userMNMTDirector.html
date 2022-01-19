@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="./public/css/menu.css?v=1">
-    <link rel="icon" href="./public/images/logo.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<title>利用者管理マスタ</title>
 </head>
+<?if(!isset($_GET['Businesser_number'])){?>
+    <link rel="icon" href="./public/images/logo.png">
+<?}else{?>
+    <link rel="icon" href="../public/images/logo.png">
+<?}?>
 <body>
 	<style>
         .panel-info {
@@ -453,7 +457,9 @@
         .head-top-logo img{
             height: 50px;
         }
-
+        .info-business{
+            text-align: center;
+        }
         @media all and (max-width: 320px) {
 
 
@@ -494,10 +500,14 @@
             <p class="head-top-title-company">会社名のテキスト</p>
         </div>
         <div class="head-top-logo">
-            <img src=".\public\images\logo.png">
+            <?if(!isset($arr[2])){?>
+                <img src="..\public\images\logo.png">
+            <?}else{?>
+                <img src="../../public/images/logo.png">
+            <?}?>
         </div>
     </div>
-    <nav class="navbar">
+   <!--  <nav class="navbar">
         <div class="max-width">
             <ul class="menu">
                 <li class=""><a href="/fukushisystem/business" class="menu-btn">事業所マスタ</a></li>
@@ -507,10 +517,12 @@
                 <li class="whiteline"><a href="/fukushisystem/contact" class="menu-btn">問い合わせ</a></li>
             </ul>
             <div class="menu-btn">
-                <!-- <i class="fas fa-bars"></i> -->
+                <i class="fas fa-bars"></i>
             </div>
         </div>
-    </nav>
+    </nav> -->
+
+    <?include './views/menuOperation.html';?>
 
 	<button type="button" class="logout" onclick="location.href='/fukushisystem/logout'">ログアウト</button>
 	<!-- <button type="button" onclick="location.href='/fukushisystem/activeRecord'">活動記録</button>
@@ -518,25 +530,41 @@
 	<button type="button" onclick="location.href='/fukushisystem/display_data'">印刷画面</button> -->
 	<!-- <button type="button" class="unit" onclick="location.href='/fukushisystem/unit'">単位</button> -->
 
-	<h1>利用者管理マスタ</h1>
+	<h1>利用者マスタ</h1>
     <div class="btn-unit">
-        <button type="button" onclick="location.href='/fukushisystem/userMNMT/A'">新規追加</button>
+        <!-- <button type="button" onclick="location.href='/fukushisystem/userMNMT/A'">新規追加</button> -->
     </div>
 	<div class="userMNMT">
 		<!-- <button type="button" onclick="location.href='/fukushisystem/userMNMT/A'">A</button>
 		<button type="button" onclick="location.href='/fukushisystem/userMNMT/B'">B</button>
 		<button type="button" onclick="location.href='/fukushisystem/userMNMT/migration'">移行</button> -->
 	</div>
+    <div class="info-business">
+        <p>事業番号：<?echo $_GET['Businesser_number'];?></p>
+        <p>事業名  ：<?echo $_GET['Businesser_name'];?></p>
+    </div>
+    <?if($totalItem == 0){?>
+        <p style="color:red;text-align: center;font-weight: bold;">データがありません。</p>
+    <?}?>
 	<table>
 		<tr>
+            <th>No.</th>
 			<th>受給者証番号</th>
 			<th>氏名カナ</th>
 			<th>支給市町村</th>
 			<th>修正</th>
 			<th>削除</th>
 		</tr>
-    <?foreach ($listItem as $item) {?>
+    <?
+        if(isset($_GET['page'])){
+            $i = ($_GET['page']-1)*10+1;
+        }else{
+            $i = 1;
+        }
+        foreach ($listItem as $item) {
+    ?>
 		<tr>
+            <td><?php echo $i++;?>.</td>
 			<td><?php echo $item['Recipient_number'];?></td>
 			<td><?php echo $item['Name_kana'];?></td>
 			<td><?php echo $item['Supply_municipalitie'];?></td>
@@ -563,7 +591,7 @@
         var result = confirm(id+"　削除したいですか?");
         if (result) {
             var action = "deleteUserMNMT";
-           $.post("./controllers/delete.php",
+           $.post("../controllers/delete.php",
             {
               changestatus: status.value,
               id: id,
@@ -603,7 +631,7 @@
               if(status=="success"){
                 // alert("編集されました。");
                 // // location.reload();
-                location.href="./userMNMT/A/"+id;
+                location.href="./A/"+id;
 
               // }else{
               //   alert("編集できませんでした。");
@@ -619,8 +647,8 @@
     //     return url.href;
     // }
 
-    function changePageUserMNMT(page){
-        url = "/fukushisystem/userMNMT&page="+page;
+    function changePageList(page){
+        url = "/fukushisystem/userMNMT/List&Businesser_number=<?echo $item['Businesser_number'];?>&Businesser_name=<?echo $_GET['Businesser_name'];?>&page="+page;
         window.location.href = url;
     }
 </script>

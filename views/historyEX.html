@@ -501,7 +501,7 @@
             <?}?>
         </div>
     </div>
-    <nav class="navbar">
+    <!-- <nav class="navbar">
         <div class="max-width">
             <ul class="menu">
                 <li class=""><a href="/fukushisystem/activeRecord" class="menu-btn">活動記録</a></li>
@@ -511,12 +511,14 @@
                 <li class="whiteline"><a href="/fukushisystem/contact" class="menu-btn">問い合わせ</a></li>
             </ul>
             <div class="menu-btn">
-                <!-- <i class="fas fa-bars"></i> -->
+                <i class="fas fa-bars"></i>
             </div>
         </div>
-    </nav>
+    </nav> -->
 
-	<button type="button" class="logout" onclick="location.href='/fukushisystem/logout'">ログアウト</button>
+    <?include './views/menuOperation.html';?>
+
+	<!-- <button type="button" class="logout" onclick="location.href='/fukushisystem/logout'">ログアウト</button> -->
     <a style="background-color: black;color: white;padding: 5px;" href="/fukushisystem/display_data">戻る</a>
 	<!-- <button type="button" onclick="location.href='/fukushisystem/userMNMT'">利用者管理</button>
 	<button type="button" onclick="location.href='/fukushisystem/business'">事業所マスタ</button>

@@ -11,12 +11,10 @@
 			deleteActiveRecord((int)$dataID);	
 		}
 	}
-
+	
 	if($_POST["action"] == "deleteUserMNMT"){
 	
 	 	$dataID = $_POST["id"];
-	 	// echo "<script>alert('".$dataID."');</script>";
-	 	// exit();
 		if( $dataID !=null){
 			deleteUserMNMT((int)$dataID);	
 		}

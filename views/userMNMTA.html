@@ -485,7 +485,7 @@
         <?}?>
     </div>
 </div>
-<nav class="navbar">
+<!-- <nav class="navbar">
     <div class="max-width">
         <ul class="menu">
             <li class=""><a href="/fukushisystem/business" class="menu-btn">事業所マスタ</a></li>
@@ -495,10 +495,12 @@
             <li class="whiteline"><a href="/fukushisystem/contact" class="menu-btn">問い合わせ</a></li>
         </ul>
         <div class="menu-btn">
-            <!-- <i class="fas fa-bars"></i> -->
+            <i class="fas fa-bars"></i>
         </div>
     </div>
-</nav>
+</nav> -->
+
+<?include './views/menuOperation.html';?>
 
 <button type="button" class="logout" onclick="location.href='/fukushisystem/logout'">ログアウト</button>
 
@@ -518,6 +520,22 @@
 </div>
 <form method="post">
     <table>
+        <tr>
+            <th>事業者番号</th>
+            <td>
+                <!-- <input type="text" value="<?=$listItem['Businesser_number'];?>" name="Businesser_number" required="required"/> -->
+                <select name="Businesser_number" required>
+                    <option value="">--選択してください--</option>
+                    <?foreach($listItemBusiness as $value){?>
+                        <?if($listItem['Businesser_number'] === $value['Businesser_number']){?>
+                            <option value="<?echo $value['Businesser_number'];?>" selected><?echo $value['Businesser_number'];?></option>
+                        <?}else{?>
+                            <option value="<?echo $value['Businesser_number'];?>"><?echo $value['Businesser_number'];?></option>
+                        <?}?>
+                    <?}?>
+                </select>
+            </td>
+        </tr>
         <tr>
             <th>氏名</th>
             <td>
@@ -591,7 +609,7 @@
             </td>
         </tr>
         <tr>
-            <th>契約支給量(決定支給量）該当月の日数から8日を控除した日数</th>
+            <th>契約支給量(決定支給量）</th>
             <td>
                 <input type="text" value="<?=$listItem['Contract_payment_amount'];?>" name="Contract_payment_amount"/>
             </td>

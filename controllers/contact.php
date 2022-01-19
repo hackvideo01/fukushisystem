@@ -49,8 +49,8 @@ class contact extends controller{
 		// }
 		require_once("./views/contact.html");
 	}
-	function A(){
-		
+	function ThanksYou(){
+		require_once("./views/contactThanksYou.html");
 	}
 }
 ?>
