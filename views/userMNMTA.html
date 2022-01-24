@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/fukushisystem/public/images/logo.png">
-    <title>利用者管理</title>
+    <title>利用者マスタ</title>
 </head>
 
 <body>
@@ -12,27 +12,42 @@
         table{
             padding: 25px;
             margin: 0 auto;
-            border: 1px solid gray;
+            /*border: 1px solid gray;*/
             width: 700px;
+            border-collapse: separate;
+            border-spacing: 0 1em;
         }
         table th{
-            color: white;
-            padding: 5px 10px;
-            background-color: #000000;
+            color: black;
+            padding: 10px 10px;
+            background-color: #D8D8D8;
             text-align: left;
             border-radius: 6px;
             width: 50%;
             font-weight: 100;
         }
         table td{
-            padding: 5px 10px;
             width: 50%;
+            padding-left: 10px;
+        }
+        input{
+            padding: 13px;
+            border: 1px solid #a5a2a2;
+            background: #FBFBFB;
         }
         input, textarea{
-            border: solid 1px #ddd;
-            padding: 5px 20px;
+            /*border: solid 1px #ddd;*/
+            /*padding: 5px 20px;*/
             width: 100%;
             border-radius: 6px;
+        }
+        select{
+            font-size: 18px;
+            border-radius: 6px;
+            height: 44px;
+            background: #F9F9F9;
+            border: 1px solid #a5a2a2;
+            width: 100%;
         }
         input[type="submit"]{
             width: auto;
@@ -41,9 +56,11 @@
         }
         .submit-btn-New{
             padding: 10px 20px !important;
-            display: flex;
+            display: block;
             margin: 30px auto 0px auto;
-            background: radial-gradient(#3b6c95, #003969f2);
+            /*background: radial-gradient(#3b6c95, #003969f2);*/
+            background: #25305C;
+            width: 250px !important;
         }
         .submit-btn-Update{
             padding: 10px 20px !important;
@@ -468,15 +485,11 @@
         .head-top-logo img{
             height: 50px;
         }
+        .need-input{
+            color: red;
+        }
     </style>
-<div class="head-top">
-    <div class="head-top-title">
-        <p class="head-top-title-company">会社名のテキスト</p>
-    </div>
-    <div class="head-top-logo">
-        <img src="/fukushisystem/public/images/logo.png">
-    </div>
-</div>
+<?include './views/head.html';?>
 <!-- <nav class="navbar">
     <div class="max-width">
         <ul class="menu">
@@ -501,22 +514,231 @@
 <button type="button" onclick="location.href='/fukushisystem/display_data'">印刷画面</button> -->
 <!-- <button type="button" class="unit" onclick="location.href='/fukushisystem/unit'">単位</button> -->
 
-<h1>利用者管理</h1>
+<h1 style="margin-top:30px; font-weight: 100;">利用者マスタ</h1>
 <div class="userMNMT">
     <!-- <button type="button" onclick="location.href='/fukushisystem/userMNMT/B'">B</button>
     <button type="button" onclick="location.href='/fukushisystem/userMNMT/migration'">移行</button>
     <button type="button" onclick="location.href='/fukushisystem/userMNMT'">メイン画面</button> -->
 </div>
 <div class="btn-unit">
-    <button type="button" onclick="location.href='/fukushisystem/userMNMT'">一覧へ戻る</button>
+    <!-- <button type="button" onclick="location.href='/fukushisystem/userMNMT'">一覧へ戻る</button> -->
+    <?if($comfirm == 1){?>
+        <button onclick="history.back()">戻る</button>
+    <?}else{?>
+        <button type="button" onclick="location.href='/fukushisystem/userMNMT'">一覧へ戻る</button>
+    <?}?>
 </div>
-<form method="post">
+<form method="post" name="myForm" onsubmit="return validateForm()" required>
     <table>
+        <?if($comfirm == 1){?>
+            <tr>
+                <th>事業者番号</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Businesser_number'];?>" name="Businesser_number" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>氏名</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Name_hira'];?>" name="Name_hira" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>氏名カナ</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Name_kana'];?>" name="Name_kana" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="important">受給者証番号</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Recipient_number'];?>" name="Recipient_number" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="important">支給市町村</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Supply_municipalitie'];?>" name="Supply_municipalitie" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>障害支援区分</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Disability_support_type'];?>" name="Disability_support_type" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>利用者負担上限額</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Business_up_limit'];?>" name="Business_up_limit" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>事業者減免額</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Business_exemption_amount'];?>" name="Business_exemption_amount" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>サービス開始日(支給決定開始日）</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Service_start_date'];?>" name="Service_start_date" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>サービス終了日（支給決定終了日）</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Service_end_date'];?>" name="Service_end_date" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>契約記入欄番号(事業者記入欄番号）</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Contract_field_number'];?>" name="Contract_field_number" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>契約日</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Contract_date'];?>" name="Contract_date" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>契約終了日（終了日は空欄でもかまわない）</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Contract_end_date'];?>" name="Contract_end_date" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>契約支給量(決定支給量）</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Contract_payment_amount'];?>" name="Contract_payment_amount" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><p style="color:black;">該当月の日数から８日を控除した日数</p></td>
+            </tr>
+            <tr>
+                <th>初期加算(日付が入る）</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Initial_addition'];?>" name="Initial_addition" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>介護計画未作成</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Nursing_plan_notcreated'];?>" name="Nursing_plan_notcreated" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>送迎同一敷地</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Pick_drop_same_site'];?>" name="Pick_drop_same_site" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>上限額管理事業所番号</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Max_mgmt_office_number'];?>" name="Max_mgmt_office_number" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>上限額管理事業所名</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Max_mgmt_office_name'];?>" name="Max_mgmt_office_name" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>上限額管理結果</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Max_mgmt_result'];?>" name="Max_mgmt_result" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>上限額管理後利用者負担額</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Max_mgmt_after_user_burden'];?>" name="Max_mgmt_after_user_burden"　readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>上限額管理加算</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Max_mgmt_addition'];?>" name="Max_mgmt_addition" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>特例利用開始年月</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Special_use_start_date'];?>" name="Special_use_start_date" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>特例利用終了年月</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Special_use_end_date'];?>" name="Special_use_end_date" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>特例利用年間原則日数</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Special_use_year_principle'];?>" name="Special_use_year_principle" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>特例利用当月利用日数</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Special_use_month_day'];?>" name="Special_use_month_day" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>特例利用各月日数</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Special_use_each_month'];?>" name="Special_use_each_month" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>施設外支援累計</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Structout_support_cumulative'];?>" name="Structout_support_cumulative" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>再請求対象</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Rechargeable'];?>" name="Rechargeable" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>自社が上限額管理をする場合の、他社の利用状況</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Other_compay_use_status'];?>" name="Other_compay_use_status" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>事業所名</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Office_name'];?>" name="Office_name" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>利用者負担上限額開始日</th>
+                <td>
+                    <input type="text" value="<?=$listItem['User_burden_limit_start'];?>" name="User_burden_limit_start" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>利用者負担上限額終了日</th>
+                <td>
+                    <input type="text" value="<?=$listItem['User_burden_limit_end'];?>" name="User_burden_limit_end" readonly="readonly"/>
+                </td>
+            </tr>
+        <?}else{?>
         <tr>
-            <th>事業者番号</th>
+            <th>事業者番号<span class="need-input">（必須）</span></th>
             <td>
                 <!-- <input type="text" value="<?=$listItem['Businesser_number'];?>" name="Businesser_number" required="required"/> -->
-                <select name="Businesser_number" required>
+                <select name="Businesser_number">
                     <option value="">--選択してください--</option>
                     <?foreach($listItemBusiness as $value){?>
                         <?if($listItem['Businesser_number'] === $value['Businesser_number']){?>
@@ -529,37 +751,37 @@
             </td>
         </tr>
         <tr>
-            <th>氏名</th>
+            <th>氏名<span class="need-input">（必須）</span></th>
             <td>
-                <input type="text" value="<?=$listItem['Name_hira'];?>" name="Name_hira" required="required"/>
+                <input type="text" value="<?=$listItem['Name_hira'];?>" name="Name_hira"/>
             </td>
         </tr>
         <tr>
-            <th>氏名カナ</th>
+            <th>氏名カナ<span class="need-input">（必須）</span></th>
             <td>
-                <input type="text" value="<?=$listItem['Name_kana'];?>" name="Name_kana" required="required"/>
+                <input type="text" value="<?=$listItem['Name_kana'];?>" name="Name_kana"/>
             </td>
         </tr>
         <tr>
-            <th class="important">受給者証番号</th>
+            <th class="important">受給者証番号<span class="need-input">（必須）</span></th>
             <td>
-                <input type="text" value="<?=$listItem['Recipient_number'];?>" name="Recipient_number" maxlength="10" onkeypress="return isNumber(event)" required />
+                <input type="text" value="<?=$listItem['Recipient_number'];?>" name="Recipient_number" maxlength="10" onkeypress="return isNumber(event)"/>
             </td>
         </tr>
         <tr>
-            <th class="important">支給市町村</th>
+            <th class="important">支給市町村<span class="need-input">（必須）</span></th>
             <td>
-                <input type="text" value="<?=$listItem['Supply_municipalitie'];?>" name="Supply_municipalitie" maxlength="6" onkeypress="return isNumber(event)" required />
+                <input type="text" value="<?=$listItem['Supply_municipalitie'];?>" name="Supply_municipalitie" maxlength="6" onkeypress="return isNumber(event)"/>
             </td>
         </tr>
         <tr>
-            <th>障害支援区分</th>
+            <th>障害支援区分<span class="need-input">（必須）</span></th>
             <td>
                 <input type="text" value="<?=$listItem['Disability_support_type'];?>" name="Disability_support_type"/>
             </td>
         </tr>
         <tr>
-            <th>利用者負担上限額</th>
+            <th>利用者負担上限額<span class="need-input">（必須）</span></th>
             <td>
                 <input type="text" value="<?=$listItem['Business_up_limit'];?>" name="Business_up_limit"/>
             </td>
@@ -571,7 +793,7 @@
             </td>
         </tr>
         <tr>
-            <th>サービス開始日(支給決定開始日）</th>
+            <th>サービス開始日(支給決定開始日）<span class="need-input">（必須）</span></th>
             <td>
                 <input type="date" value="<?=$listItem['Service_start_date'];?>" name="Service_start_date"/>
             </td>
@@ -583,13 +805,13 @@
             </td>
         </tr>
         <tr>
-            <th>契約記入欄番号(事業者記入欄番号）</th>
+            <th>契約記入欄番号(事業者記入欄番号）<span class="need-input">（必須）</span></th>
             <td>
                 <input type="text" value="<?=$listItem['Contract_field_number'];?>" name="Contract_field_number"/>
             </td>
         </tr>
         <tr>
-            <th>契約日</th>
+            <th>契約日<span class="need-input">（必須）</span></th>
             <td>
                 <input type="date" value="<?=$listItem['Contract_date'];?>" name="Contract_date"/>
             </td>
@@ -605,6 +827,10 @@
             <td>
                 <input type="text" value="<?=$listItem['Contract_payment_amount'];?>" name="Contract_payment_amount"/>
             </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><p style="color:black;">該当月の日数から８日を控除した日数</p></td>
         </tr>
         <tr>
             <th>初期加算(日付が入る）</th>
@@ -720,22 +946,60 @@
                 <input type="date" value="<?=$listItem['User_burden_limit_end'];?>" name="User_burden_limit_end"/>
             </td>
         </tr>
+        <?}?>
         <tr>
             <td colspan="2">
-                <?if(isset($arr[2])) {?>
+              <!--   <?if(isset($arr[2])) {?>
                     <input class="submit-btn-Update" name="btn_userMNMTUpdate" type="submit" value="修　正"/>
                 <?}else{?>
                     <input class="submit-btn-New" name="btn_userMNMT" type="submit" value="確 認 画 面 へ"/>
+                <?}?> -->
+                <?if(isset($arr[2])) {?>
+                    <input class="submit-btn-Update" name="btn_userMNMTUpdate" type="submit" value="修　正"/>
+                <?}else if($comfirm == 1){?>
+                    <input class="submit-btn-New" name="btn_userMNMT" type="submit" value="登録"/>
+                <?}else{?>
+                    <input class="submit-btn-New" name="btn_userMNMTCheck" type="submit" value="確 認 画 面 へ"/>
                 <?}?>
             </td>
             <td></td>
         </tr>
     </table>
 </form>
+<?include_once './views/footer.html';?>
 </body>
 </html>
 
 <script type="text/javascript">
+    function validateForm() {
+      var Businesser_number = document.forms["myForm"]["Businesser_number"].value;
+      var Name_hira = document.forms["myForm"]["Name_hira"].value;
+      var Name_kana = document.forms["myForm"]["Name_kana"].value;
+      var Recipient_number = document.forms["myForm"]["Recipient_number"].value;
+      var Supply_municipalitie = document.forms["myForm"]["Supply_municipalitie"].value;
+      var Disability_support_type = document.forms["myForm"]["Disability_support_type"].value;
+      var Business_up_limit = document.forms["myForm"]["Business_up_limit"].value;
+      var Service_start_date = document.forms["myForm"]["Service_start_date"].value;
+      var Contract_field_number = document.forms["myForm"]["Contract_field_number"].value;
+      var Contract_date = document.forms["myForm"]["Contract_date"].value;
+
+      if (
+        Businesser_number == "" || Businesser_number == null 
+        || Name_hira == "" || Name_hira == null 
+        || Name_kana == "" || Name_kana == null
+        || Recipient_number == "" || Recipient_number == null
+        || Supply_municipalitie == "" || Supply_municipalitie == null
+        || Disability_support_type == "" || Disability_support_type == null
+        || Business_up_limit == "" || Business_up_limit == null
+        || Service_start_date == "" || Service_start_date == null
+        || Contract_field_number == "" || Contract_field_number == null
+        || Contract_date == "" || Contract_date == null
+        ) {
+        alert("必須項目を入力してください。");
+        return false;
+      }
+    }
+
     function isNumber(evt) {
         evt = (evt) ? evt : window.event;
         var charCode = (evt.which) ? evt.which : evt.keyCode;

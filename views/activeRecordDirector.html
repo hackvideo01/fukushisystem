@@ -10,14 +10,14 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-	<title>活動記録</title>
+	<title>活動記録入力</title>
 </head>
 <body>
 	<style type="text/css">
         .panel-info {
             border-color: #bce8f1;
-            width: 1000px;
-            margin: auto;
+            width: 650px;
+            margin: auto auto 30px auto;
         }
         .logout{
             background: red;
@@ -55,20 +55,24 @@
         }
         table{
             border-collapse: collapse;
-            width: 1000px;
+            width: 650px;
             margin: 0 auto;
         }
         th {
-            border: solid 1px;
-            text-align: left;
-            background: skyblue;
-            color: white;
-            padding: 5px;
+            border: solid 1px #80808075;
+            text-align: center;
+            /* background: skyblue; */
+            color: black;
+            padding: 10px;
+            font-weight: 100;
         }
         td {
-            border: white solid 1px;
-            background: lightgray;
-            padding: 5px;
+            border: #80808075 solid 1px;
+            /*background: lightgray;*/
+            padding: 10px;
+        }
+        .panel-info>.panel-heading{
+            background: white;
         }
         /* Theme Name: NGUYEN LUC PRO
          * Description: テーマ
@@ -490,14 +494,7 @@
 
         }
     </style>
-    <div class="head-top">
-        <div class="head-top-title">
-            <p class="head-top-title-company">会社名のテキスト</p>
-        </div>
-        <div class="head-top-logo">
-            <img src="/fukushisystem/public/images/logo.png">
-        </div>
-    </div>
+    <?include './views/head.html';?>
     <!-- <nav class="navbar">
         <div class="max-width">
             <ul class="menu">
@@ -521,7 +518,7 @@
 	<button type="button" onclick="location.href='/fukushisystem/display_data'">印刷画面</button> -->
 	<!-- <button type="button" class="unit" onclick="location.href='/fukushisystem/unit'">単位</button> -->
 
-	<h1>活動記録</h1>
+	<h1>活動記録入力</h1>
     <div class="btn-unit">
         <button type="button" onclick="location.href='/fukushisystem/activeRecord/A'">新規追加</button>
     </div>
@@ -532,23 +529,27 @@
 	</div>
 	<table>
 		<tr>
+            <th class="th-max-width" style="width: 60px;">No.</th>
 			<th>受給者証番号</th>
-			<th>曜日</th>
-			<th>日付</th>
-			<th>修正</th>
-			<th>削除</th>
+			<th>利用者名</th>
 		</tr>
-	<?foreach ($listItem as $item) {?>
+	<?
+        if(isset($_GET['page'])){
+            $i = ($_GET['page']-1)*10+1;
+        }else{
+            $i = 1;
+        }
+        foreach ($listItem as $item) 
+    {?>
         <tr>
-            <td><?php echo $item['Recipient_number'];?></td>
-            <td><?php echo $item['Day'];?></td>
-            <td><?php echo $item['Date'];?></td>
-            <td><button onclick="javascript:update(`<?php echo $item['Activity_record_id'];?>`)">修正</button></td>
-            <td><button onclick="javascript:deleteItem(`<?php echo $item['Activity_record_id'];?>`)">削除</button></td>
+            <td><?echo $i++;?>.</td>
+            <td><a href="/fukushisystem/activeRecord/A&Recipient_number=<?echo $item['Recipient_number'];?>"><?php echo $item['Recipient_number'];?></a></td>
+            <td><?php echo $item['Name_hira'];?></td>
         </tr>
     <?}?>
 	</table>
     <?php include_once 'views/pagination.php'; ?>
+    <?include_once './views/footer.html';?>
 </body>
 </html>
 

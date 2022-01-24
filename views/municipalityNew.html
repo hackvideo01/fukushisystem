@@ -13,27 +13,42 @@
         table{
             padding: 25px;
             margin: 0 auto;
-            border: 1px solid gray;
+            /*border: 1px solid gray;*/
             width: 700px;
+            border-collapse: separate;
+            border-spacing: 0 1em;
         }
         table th{
-            color: white;
-            padding: 5px 10px;
-            background-color: #000000;
+            color: black;
+            padding: 10px 10px;
+            background-color: #D8D8D8;
             text-align: left;
             border-radius: 6px;
-            width: 50%;
+            width: 40%;
             font-weight: 100;
         }
         table td{
-            padding: 5px 10px;
-            width: 50%;
+            width: 60%;
+            padding-left: 10px;
+        }
+        input{
+            padding: 13px;
+            border: 1px solid #a5a2a2;
+            background: #FBFBFB;
         }
         input, textarea{
-            border: solid 1px #ddd;
-            padding: 5px 20px;
+            /*border: solid 1px #ddd;*/
+            /*padding: 5px 20px;*/
             width: 100%;
             border-radius: 6px;
+        }
+        select{
+            font-size: 18px;
+            border-radius: 6px;
+            height: 44px;
+            background: #F9F9F9;
+            border: 1px solid #a5a2a2;
+            width: 100%;
         }
         input[type="submit"]{
             width: auto;
@@ -42,9 +57,11 @@
         }
         .submit-btn-New{
             padding: 10px 20px !important;
-            display: flex;
+            display: block;
             margin: 30px auto 0px auto;
-            background: radial-gradient(#3b6c95, #003969f2);
+            /*background: radial-gradient(#3b6c95, #003969f2);*/
+            background: #25305C;
+            width: 250px !important;
         }
         .submit-btn-Update{
             padding: 10px 20px !important;
@@ -471,14 +488,7 @@
         }
     </style>
 
-<div class="head-top">
-    <div class="head-top-title">
-        <p class="head-top-title-company">会社名のテキスト</p>
-    </div>
-    <div class="head-top-logo">
-        <img src="/fukushisystem/public/images/logo.png">
-    </div>
-</div>
+<?include './views/head.html';?>
 <!-- <nav class="navbar">
     <div class="max-width">
         <ul class="menu">
@@ -503,10 +513,28 @@
 
 <h1 style="margin-top: 30px;font-weight: 100;">市町村マスタ</h1>
 <div class="btn-municipality">
-    <button type="button" onclick="location.href='/fukushisystem/municipality'">一覧へ戻る</button>
+    <?if($comfirm == 1){?>
+        <button onclick="history.back()">戻る</button>
+    <?}else{?>
+        <button type="button" onclick="location.href='/fukushisystem/municipality'">一覧へ戻る</button>
+    <?}?>
 </div>
 <form method="post">
     <table>
+    <?if($comfirm == 1){?>
+        <tr>
+            <th>市町村番号</th>
+            <td>
+                <input type="text" name="Municipality_number" value="<?=$_SESSION['Municipality_number'];?>" disabled/>
+            </td>
+        </tr>
+        <tr>
+            <th>市町村</th>
+            <td>
+                <input type="text" id="Municipality" name="Municipality" value="<?=$_SESSION['Municipality'];?>" disabled/>
+            </td>
+        </tr>
+    <?}else{?>
         <tr>
             <th>市町村番号</th>
             <td>
@@ -519,18 +547,22 @@
                 <input type="text" id="Municipality" name="Municipality" value="<?=$listItem['Municipality'];?>" required="required"/>
             </td>
         </tr>
+    <?}?>
         <tr>
             <td colspan="2">
                 <?if(isset($arr[2])) {?>
                     <input class="submit-btn-Update" name="btn_municipalityUpdate" type="submit" value="修　正"/>
+                <?}else if($comfirm == 1){?>
+                    <input class="submit-btn-New" name="btn_municipality" type="submit" value="登録"/>
                 <?}else{?>
-                    <input class="submit-btn-New" name="btn_municipality" type="submit" value="確 認 画 面 へ"/>
+                    <input class="submit-btn-New" name="btn_municipalityCheck" type="submit" value="確 認 画 面 へ"/>
                 <?}?>
             </td>
             <td></td>
         </tr>
     </table>
 </form>
+<?include_once './views/footer.html';?>
 </body>
 </html>
 <script type="text/javascript">

@@ -52,7 +52,7 @@ class unit extends controller{
 		}
 	}
 	function Update(){
-		require_once("./views/head.html");
+		// require_once("./views/head.html");
 		$db = $this->model("database");
 		$database = new Database();
 		$database->setTable("unit");

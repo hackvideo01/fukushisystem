@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="/fukushisystem/public/images/logo.png">
+	<title>登録（福祉システム）</title>
+</head>
+<body>
+	<div style="margin-top: 150px;text-align: center;">
+		<?if(isset($_SESSION['email'])){?>
+			<h1 style="color: green;text-align: center;">会員を追加は出来ました。</h1>
+			<!-- <p style="text-align: center;">メールアドレス：　<?echo $_SESSION['email'];?>　をログインしてチェック下さい。</p> -->
+			<a style="color: white;background: #f5ba1a;padding: 5px;border-radius: 5px;" href="/fukushisystem/memberMaster">会員一覧へ</a>
+			<div style="text-align: center;">
+				<img style="width: 200px;margin-top: 100px" src="/fukushisystem/public/images/success.png">
+			</div>
+		<h2 style="color: green;text-align: center;">ありがとうございました。</h2>
+		<?} else{?>
+			<h1 style="color: green;text-align: center;">エラーが出て来ました！</h1>
+			<!-- <a style="color: white;background: #f5ba1a;padding: 5px;border-radius: 5px;" href="/fukushisystem/newSignUp">登録へ</a> -->
+		<?}?>
+		
+	</div>
+</body>
+</html>

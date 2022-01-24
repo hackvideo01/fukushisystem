@@ -5,17 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./public/css/reset.css">
-    <link rel="stylesheet" href="./public/css/login.css?v=2">
+    <link rel="stylesheet" href="./public/css/login.css?v=4">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <link rel="icon" href="/fukushisystem/public/images/logo.png">
     <title>福祉システム</title>
 </head>
 <body>
-<style type="text/css">
-   
-
-</style>
-
 <div class="tab">
   <!-- <button class="tablinks" onclick="openCity(event, 'Operation')">運営</button>
   <button class="tablinks" onclick="openCity(event, 'Office')">事業所</button> -->
@@ -49,31 +44,35 @@
 </div>
 
 <?}else{?>
-
+<div id="id-password" style="text-align:center;color:red;font-weight:bold;display: none;margin-top: 30px;">ユーザーIDまたはパスワードが正しくありません。</div>
 <div id="Office" class="tabcontent">
     <div id="wrapper">
         <form id="form-login" method="post">
             <!-- <h1 class="form-heading">ログイン - 事業所</h1> -->
             <div class="form-group">
                 <!-- <i class="far fa-user"></i> -->
-                <input name="username" type="text" class="form-input" placeholder="ID">
+                <input id="username" name="username" type="text" class="form-input" placeholder="ユーザーID">
             </div>
+            <p class="message" id='messageID'></p>
             <div class="form-group">
                 <!-- <i class="fas fa-key"></i> -->
-                <input name="password" type="password" class="form-input" placeholder="パスワード">
+                <input id="password" name="password" type="password" class="form-input" placeholder="パスワード">
                 <div id="eyeOffice">
                     <!-- <i class="far fa-eye"></i> -->
                 </div>
             </div>
+            <p class="message" id='messagePASS'></p>
             <!-- <input name="login-office" type="submit" value="ログイン" class="form-submit"> -->
             <input name="login" type="submit" value="ログイン" class="form-submit">
             <div class="forget-pass">
-                <a href="">パスワードを忘れの場合</a>
+                <a class="forget-pass-a" href="/fukushisystem/forget_pass">パスワードを忘れの場合</a>
+                <span>又は</span>
+                <a class="register" href="/fukushisystem/newSignUp">会員登録</a>
             </div>
         </form>
     </div>
 </div>
-<div class="bottom-content">
+<!-- <div class="bottom-content">
     <div class="margin-text-input">
         <div class="text-input-parent">
             <div class="text-input-children">
@@ -90,7 +89,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <?}?>
 
 <?include_once './views/footer.html';?>
@@ -98,6 +97,34 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="public/js/passwordShowHide.js?v=2"></script>
 <script>
+     $('#username').on('keyup', function () {
+        if ($('#username').val().length > 0) {
+          $('#messageID').html('').css('color', 'green');
+          // $('#login').prop('disabled', false);
+        } else {
+          $('#messageID').html('ユーザーIDを入力してください。').css('color', 'red');
+          $('#login').prop('disabled', true);
+        }
+        // if ($('#username').val().match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {
+        //   $('#messageID').html('半角英数で入力してください。').css('color', 'red');
+        //   $('#login').prop('disabled', true);
+        // }
+      });
+
+    $('#password').on('keyup', function () {
+        if ($('#password').val().length > 0) {
+          $('#messagePASS').html('').css('color', 'green');
+          $('#login').prop('disabled', false);
+        } else {
+          $('#messagePASS').html('パスワードを入力してください。').css('color', 'red');
+          $('#login').prop('disabled', true);
+        }
+        // if ($('#password').val().match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {
+        //   $('#messagePASS').html('半角英数で入力してください。').css('color', 'red');
+        //   $('#login').prop('disabled', true);
+        // }
+      });
+
     function openCity(evt, cityName) {
       var i, tabcontent, tablinks;
       tabcontent = document.getElementsByClassName("tabcontent");

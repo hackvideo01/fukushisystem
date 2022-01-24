@@ -14,7 +14,7 @@
         .panel-info {
             border-color: #bce8f1;
             width: 1000px;
-            margin: auto;
+            margin: auto auto 30px auto;
         }
         .logout{
             background: red;
@@ -453,10 +453,11 @@
         }
 
         .exportData-form{
-            border: 1px solid gray;
+            /*border: 1px solid gray;*/
             width: 1000px;
             margin: 0 auto;
             margin-top: 50px;
+            margin-bottom: 30px;
             padding: 30px;
             display: flex;
         }
@@ -480,19 +481,25 @@
         select{
             font-size: 18px;
             border-radius: 6px;
+            height: 39px;
+            background: #F9F9F9;
+            border: 1px solid #808080c9;
         }
 
        .select{
             padding: 10px;
-            background: #000000;
-            color: white;
+            background: #D8D8D8;
+            color: black;
             border-radius: 6px;
             width: 100px;
        }
        .exportData{
-            background: radial-gradient(#8E8E8E, #262626);
+            background: #25305C;
             padding: 8px 25px;
             color: white;
+            width: 64%;
+            border-radius: 6px;
+            font-weight: bold;
        }
         @media all and (max-width: 320px) {
 
@@ -530,14 +537,7 @@
         }
     </style>
 <body>
-    <div class="head-top">
-        <div class="head-top-title">
-            <p class="head-top-title-company">会社名のテキスト</p>
-        </div>
-        <div class="head-top-logo">
-            <img src="/fukushisystem/public/images/logo.png">
-        </div>
-    </div>
+    <?include './views/head.html';?>
 	<!-- <nav class="navbar">
         <div class="max-width">
             <ul class="menu">
@@ -591,10 +591,10 @@
     <div class="form2">
         <div class="form2-children">
             <form method="post" action="/fukushisystem/display_data/exportData">
-                <h1>明細ファイル</h1>
+                <h1>SVファイル</h1>
                 <label class="select" for="pet-select">年　度</label>
                 <select name="year" required>
-                    <option value="">--選択してください--</option>
+                    <option value="">選択してください　　</option>
                     <option value="2022">2022</option>
                     <option value="2023">2023</option>
                     <option value="2024">2024</option>
@@ -604,7 +604,7 @@
                 <br>
                 <label class="select" for="pet-select">月</label>
                 <select name="month" required>
-                    <option value="">--選択してください--</option>
+                    <option value="">選択してください　　</option>
                     <option value="01">01</option>
                     <option value="02">02</option>
                     <option value="03">03</option>
@@ -622,7 +622,7 @@
                 <br>
 
                 <!-- <button onclick="location.href='/fukushisystem/display_data/exportData'" class="prints">CSVファイルエクスポート</button> -->
-                <input class="exportData" name="btn_activeRecord" type="submit" value="データ作成"/>
+                <input class="exportData" name="btn_activeRecord" type="submit" value="データ 作 成"/>
             </form>
         </div>
     </div>
@@ -632,7 +632,7 @@
                 <h1>SEファイル</h1>
                 <label class="select" for="pet-select">年　度</label>
                 <select name="year" required>
-                    <option value="">--選択してください--</option>
+                    <option value="">選択してください　　</option>
                     <option value="2022">2022</option>
                     <option value="2023">2023</option>
                     <option value="2024">2024</option>
@@ -642,7 +642,7 @@
                 <br>
                 <label class="select" for="pet-select">月</label>
                 <select name="month" required>
-                    <option value="">--選択してください--</option>
+                    <option value="">選択してください　　</option>
                     <option value="01">01</option>
                     <option value="02">02</option>
                     <option value="03">03</option>
@@ -658,12 +658,12 @@
                 </select>
                 <br>
                 <br>
-                <input class="exportData" name="btn_activeRecordSE" type="submit" value="データ作成"/>
+                <input class="exportData" name="btn_activeRecordSE" type="submit" value="データ 作 成"/>
             </form>
         </div>
     </div>
 </div>
-
+<?include_once './views/footer.html';?>
 </body>
 </html>
 

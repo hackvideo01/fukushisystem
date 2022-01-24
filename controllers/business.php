@@ -45,14 +45,15 @@ class business extends controller{
 		}
 	}
 	function A(){
-		require_once("./views/head.html");
+		// require_once("./views/head.html");
 		$db = $this->model("database");
 		$database = new Database();
 		$database->setTable("business");
 		if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==1){
 			$arr = $this->UrlProcess();
 			$countItem;
-			
+			$_SESSION['dataSS'];
+			$dataSave = [];
 			// echo $arr[2];
 			if (isset($arr[2])) {
 				// Query Count
@@ -64,12 +65,8 @@ class business extends controller{
 				$queryList = "SELECT * FROM business WHERE `Business_id` = ".$arr[2];
 				$listItem = $database->fetchRow($queryList);
 			}
-				
-			require_once("./views/businessA.html");
-			if (isset($_POST["btn_business"])) {
-				// echo $_POST["Service_offer_date"];
-				// exit();
-				$data = array(
+			if (isset($_POST["btn_businessCheck"])) {
+			$dataSave = array(
 					'Model_number' 					=> $_POST["Model_number"],
 					'Model_symbol' 					=> $_POST["Model_symbol"],
 					'Service_offer_date' 			=> $_POST["Service_offer_date"],
@@ -114,10 +111,75 @@ class business extends controller{
 					'User_invoice_remark' 			=> $_POST["User_invoice_remark"],
 					'Actual_cost1' 					=> $_POST["Actual_cost1"],
 					'Actual_cost2' 					=> $_POST["Actual_cost2"],
+				);
+			$_SESSION['dataSS'] = $dataSave;
+			$listItem = $_SESSION['dataSS'];
+			$comfirm = 1;
+			}
+			require_once("./views/businessA.html");
+			if (isset($_POST["btn_business"])) {
+				// echo $_POST["Service_offer_date"];
+				// exit();
+				// print_r($_SESSION['dataSS']);
+				// exit();
+				$data = array(
+					'Model_number' 					=> $_SESSION['dataSS']["Model_number"],
+					'Model_symbol' 					=> $_SESSION['dataSS']["Model_symbol"],
+					'Service_offer_date' 			=> $_SESSION['dataSS']["Service_offer_date"],
+					'Corporate_name' 				=> $_SESSION['dataSS']["Corporate_name"],
+					'Representative' 				=> $_SESSION['dataSS']["Representative"],
+					'Businesser_name' 				=> $_SESSION['dataSS']["Businesser_name"],
+					'Abbreviation' 					=> $_SESSION['dataSS']["Abbreviation"],
+					'Administrator' 				=> $_SESSION['dataSS']["Administrator"],
+					'Businesser_number' 			=> $_SESSION['dataSS']["Businesser_number"],
+					'Businesser_postal_code' 		=> $_SESSION['dataSS']["Businesser_postal_code"],
+					'Businesser_address' 			=> $_SESSION['dataSS']["Businesser_address"],
+					'Businesser_phone' 				=> $_SESSION['dataSS']["Businesser_phone"],
+					'Kind' 							=> $_SESSION['dataSS']["Kind"],
+					'Evaluation_point_type' 		=> $_SESSION['dataSS']["Evaluation_point_type"],
+					'Public' 						=> $_SESSION['dataSS']["Public"],
+					'Area_type' 					=> $_SESSION['dataSS']["Area_type"],
+					'Capacity' 						=> $_SESSION['dataSS']["Capacity"],
+					'Capacity_type' 				=> $_SESSION['dataSS']["Capacity_type"],
+					'Work_migration_support' 		=> $_SESSION['dataSS']["Work_migration_support"],
+					'Work_settle_number' 			=> $_SESSION['dataSS']["Work_settle_number"],
+					'Vison_hear_support' 			=> $_SESSION['dataSS']["Vison_hear_support"],
+					'Welfare_pro_staff_add' 		=> $_SESSION['dataSS']["Welfare_pro_staff_add"],
+					'Severe_support_add1' 			=> $_SESSION['dataSS']["Severe_support_add1"],
+					'Severe_support_add2' 			=> $_SESSION['dataSS']["Severe_support_add2"],
+					'Care_link_nurse_staff' 		=> $_SESSION['dataSS']["Care_link_nurse_staff"],
+					'Exemption_measures' 			=> $_SESSION['dataSS']["Exemption_measures"],
+					'Pick_drop_kind_add' 			=> $_SESSION['dataSS']["Pick_drop_kind_add"],
+					'Self_result_unpulic' 			=> $_SESSION['dataSS']["Self_result_unpulic"],
+					'Body_not_abolition' 			=> $_SESSION['dataSS']["Body_not_abolition"],
+					'Wage_improve' 					=> $_SESSION['dataSS']["Wage_improve"],
+					'Area_life_support' 			=> $_SESSION['dataSS']["Area_life_support"],
+					'Overcapacity' 					=> $_SESSION['dataSS']["Overcapacity"],
+					'Employee_vacancy' 				=> $_SESSION['dataSS']["Employee_vacancy"],
+					'Service_admin_vacancy' 		=> $_SESSION['dataSS']["Service_admin_vacancy"],
+					'Treatment_improve' 			=> $_SESSION['dataSS']["Treatment_improve"],
+					'Treatment_improve_num' 		=> $_SESSION['dataSS']["Treatment_improve_num"],
+					'Treatment_career_improve' 		=> $_SESSION['dataSS']["Treatment_career_improve"],
+					'Special_treatment_improve_add' => $_SESSION['dataSS']["Special_treatment_improve_add"],
+					'Treatment_improve_add' 		=> $_SESSION['dataSS']["Treatment_improve_add"],
+					'Invoice_title' 				=> $_SESSION['dataSS']["Invoice_title"],
+					'Invoice_name' 					=> $_SESSION['dataSS']["Invoice_name"],
+					'User_invoice_remark' 			=> $_SESSION['dataSS']["User_invoice_remark"],
+					'Actual_cost1' 					=> $_SESSION['dataSS']["Actual_cost1"],
+					'Actual_cost2' 					=> $_SESSION['dataSS']["Actual_cost2"],
 					'Business_type' 				=> 1
 				);
 				$database->insert($data);
-				header("Location: /fukushisystem/business/A");
+				// header("Location: /fukushisystem/business");
+				echo "<script>
+							urlBusiness();
+							function urlBusiness(){
+						        var result = alert('登録が終了しました。');
+						        	url = '/fukushisystem/business';
+						        	window.location.href = url;
+						    }
+
+						 </script>";
 			}else if(isset($_POST["btn_businessUpdate"])) {
 				// echo "<script>alert('受給者番号：');</script>";
 				// exit();
@@ -182,26 +244,24 @@ class business extends controller{
 					echo "<script>
 							UpdateBusiness();
 							function UpdateBusiness(){
-						        var result = confirm('修正されました。');
-						        if (result) {
+						        var result = alert('修正完了しました。');
 						        	url = '/fukushisystem/business/A/".$arr[2]."';
 						        	window.location.href = url;
-						        }
 						    }
-
 						 </script>";
 
 					}else{
 						echo "<script>alert('受給者番号：');";
 					}
 			}
+			
 		}else{
 			// echo "<script>alert('unit');</script>";
 			header("Location: /fukushisystem/unit");
 		}
 	}
 	function B(){
-		require_once("./views/head.html");
+		// require_once("./views/head.html");
 		$db = $this->model("database");
 		$database = new Database();
 		$database->setTable("business");

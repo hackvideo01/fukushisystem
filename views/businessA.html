@@ -12,25 +12,32 @@
         table{
             padding: 25px;
             margin: 0 auto;
-            border: 1px solid gray;
+            /*border: 1px solid gray;*/
             width: 700px;
+            border-collapse: separate;
+            border-spacing: 0 1em;
         }
         table th{
-            color: white;
-            padding: 5px 10px;
-            background-color: #000000;
+            color: black;
+            padding: 10px 10px;
+            background-color: #D8D8D8;
             text-align: left;
             border-radius: 6px;
-            width: 50%;
+            width: 40%;
             font-weight: 100;
         }
         table td{
-            padding: 5px 10px;
-            width: 50%;
+            width: 60%;
+            padding-left: 10px;
+        }
+        input{
+            padding: 13px;
+            border: 1px solid #a5a2a2;
+            background: #FBFBFB;
         }
         input, textarea{
-            border: solid 1px #ddd;
-            padding: 5px 20px;
+            /*border: solid 1px #ddd;*/
+            /*padding: 5px 20px;*/
             width: 100%;
             border-radius: 6px;
         }
@@ -41,9 +48,11 @@
         }
         .submit-btn-New{
             padding: 10px 20px !important;
-            display: flex;
+            display: block;
             margin: 30px auto 0px auto;
-            background: radial-gradient(#3b6c95, #003969f2);
+            /* background: radial-gradient(#3b6c95, #003969f2); */
+            background: #25305C;
+            width: 250px !important;
         }
         .submit-btn-Update{
             padding: 10px 20px !important;
@@ -468,15 +477,11 @@
         .head-top-logo img{
             height: 50px;
         }
+        .need-input{
+            color: red;
+        }
     </style>
-<div class="head-top">
-    <div class="head-top-title">
-        <p class="head-top-title-company">会社名のテキスト</p>
-    </div>
-    <div class="head-top-logo">
-        <img src="/fukushisystem/public/images/logo.png">
-    </div>
-</div>
+<?include './views/head.html';?>
 <!-- <nav class="navbar">
     <div class="max-width">
         <ul class="menu">
@@ -501,21 +506,292 @@
 <button type="button" onclick="location.href='/fukushisystem/display_data'">印刷画面</button> -->
 <!-- <button type="button" class="unit" onclick="location.href='/fukushisystem/unit'">単位</button> -->
 
-<h1>事業所マスタ</h1>
+<h1 style="margin-top:30px; font-weight: 100;">事業所マスタ</h1>
 <div class="business">
    <!--  <button type="button" onclick="location.href='/fukushisystem/business/B'">B</button>
     <button type="button" onclick="location.href='/fukushisystem/business/migration'">移行</button>
     <button type="button" onclick="location.href='/fukushisystem/business'">メイン画面</button> -->
 </div>
 <div class="btn-unit">
-    <button type="button" onclick="location.href='/fukushisystem/business'">一覧へ戻る</button>
+    <!-- <button type="button" onclick="location.href='/fukushisystem/business'">一覧へ戻る</button> -->
+    <?if($comfirm == 1){?>
+        <button onclick="history.back()">戻る</button>
+    <?}else{?>
+        <button type="button" onclick="location.href='/fukushisystem/business'">一覧へ戻る</button>
+    <?}?>
 </div>
-<form method="post">
+<form method="post" name="myForm" onsubmit="return validateForm()" required>
     <table>
+        <?if($comfirm == 1){?>
+            <tr>
+                <th>形式番号</th>
+                <td>
+                    <input class="Model_number" type="text" value="<?=$listItem['Model_number'];?>" name="Model_number" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>形式記号</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Model_symbol'];?>" name="Model_symbol" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th class="important">サービス提供年月</th>
+                <td>
+                    <input type="month" value="<?=$listItem['Service_offer_date'];?>" name="Service_offer_date" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>法人名</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Corporate_name'];?>" name="Corporate_name" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>代表者</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Representative'];?>" name="Representative" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th class="important">事業者名</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Businesser_name'];?>" name="Businesser_name" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>略称</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Abbreviation'];?>" name="Abbreviation" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>管理者</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Administrator'];?>" name="Administrator" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th class="important">事業者番号</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Businesser_number'];?>" name="Businesser_number" maxlength="10" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>郵便番号</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Businesser_postal_code'];?>" name="Businesser_postal_code" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>住所</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Businesser_address'];?>" name="Businesser_address" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>電話番号</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Businesser_phone'];?>" name="Businesser_phone" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>種別</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Kind'];?>" name="Kind" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>評価点区分</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Evaluation_point_type'];?>" name="Evaluation_point_type" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>公立</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Public'];?>" name="Public" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>地域区分</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Area_type'];?>" name="Area_type" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>定員</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Capacity'];?>" name="Capacity" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>種類別定員</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Capacity_type'];?>" name="Capacity_type" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>就労移行支援体制加算</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Work_migration_support'];?>" name="Work_migration_support" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>就労移行支援体制加算（就労定着者数）</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Work_settle_number'];?>" name="Work_settle_number" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>視覚聴覚支援体制加算</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Vison_hear_support'];?>" name="Vison_hear_support" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>福祉専門職員配置等加算</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Welfare_pro_staff_add'];?>" name="Welfare_pro_staff_add" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>重度者支援体制加算</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Severe_support_add1'];?>" name="Severe_support_add1" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>重度者支援体制加算２</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Severe_support_add2'];?>" name="Severe_support_add2" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>医療連携看護職員</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Care_link_nurse_staff'];?>" name="Care_link_nurse_staff" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>減免措置</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Exemption_measures'];?>" name="Exemption_measures" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>送迎加算種類</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Pick_drop_kind_add'];?>" name="Pick_drop_kind_add" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>自己評価結果等未公表減算</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Self_result_unpulic'];?>" name="Self_result_unpulic" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>身体拘束廃止未実施減算</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Body_not_abolition'];?>" name="Body_not_abolition" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>賃金向上達成指導員配置加算</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Wage_improve'];?>" name="Wage_improve" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>地域生活支援拠点等</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Area_life_support'];?>" name="Area_life_support" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>定員超過</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Overcapacity'];?>" name="Overcapacity" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>従業員欠員</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Employee_vacancy'];?>" name="Employee_vacancy" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>サービス管理責任者欠員</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Service_admin_vacancy'];?>" name="Service_admin_vacancy" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>処遇改善都道府県</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Treatment_improve'];?>" name="Treatment_improve" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>処遇改善都道府県番号</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Treatment_improve_num'];?>" name="Treatment_improve_num" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>処遇改善キャリアパス区分</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Treatment_improve'];?>" name="Treatment_improve" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>特定処遇改善加算</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Treatment_career_improve'];?>" name="Treatment_career_improve" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>処遇改善特別加算</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Treatment_improve_add'];?>" name="Treatment_improve_add" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>請求書役職</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Invoice_title'];?>" name="Invoice_title" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>請求書氏名</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Invoice_name'];?>" name="Invoice_name" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>利用者請求書備考</th>
+                <td>
+                    <input type="text" value="<?=$listItem['User_invoice_remark'];?>" name="User_invoice_remark" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>実費１</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Actual_cost1'];?>" name="Actual_cost1" disabled/>
+                </td>
+            </tr>
+            <tr>
+                <th>実費２</th>
+                <td>
+                    <input type="text" value="<?=$listItem['Actual_cost2'];?>" name="Actual_cost2" disabled/>
+                </td>
+            </tr>
+        <?}else{?>
         <tr>
-            <th>形式番号</th>
+            <th>形式番号<span class="need-input">（必須）</span></th>
             <td>
-                <input class="Model_number" type="text" value="<?=$listItem['Model_number'];?>" name="Model_number" required="required"/>
+                <input class="Model_number" type="text" value="<?=$listItem['Model_number'];?>" name="Model_number"/>
             </td>
         </tr>
         <tr>
@@ -525,91 +801,91 @@
             </td>
         </tr>
         <tr>
-            <th class="important">サービス提供年月</th>
+            <th class="important">サービス提供年月<span class="need-input">（必須）</span></th>
             <td>
-                <input type="month" value="<?=$listItem['Service_offer_date'];?>" name="Service_offer_date" required/>
+                <input type="month" value="<?=$listItem['Service_offer_date'];?>" name="Service_offer_date"/>
             </td>
         </tr>
         <tr>
-            <th>法人名</th>
+            <th>法人名<span class="need-input">（必須）</span></th>
             <td>
                 <input type="text" value="<?=$listItem['Corporate_name'];?>" name="Corporate_name"/>
             </td>
         </tr>
         <tr>
-            <th>代表者</th>
+            <th>代表者<span class="need-input">（必須）</span></th>
             <td>
                 <input type="text" value="<?=$listItem['Representative'];?>" name="Representative"/>
             </td>
         </tr>
         <tr>
-            <th class="important">事業者名</th>
+            <th class="important">事業者名<span class="need-input">（必須）</span></th>
             <td>
-                <input type="text" value="<?=$listItem['Businesser_name'];?>" name="Businesser_name" required/>
+                <input type="text" value="<?=$listItem['Businesser_name'];?>" name="Businesser_name"/>
             </td>
         </tr>
         <tr>
-            <th>略称</th>
+            <th>略称<span class="need-input">（必須）</span></th>
             <td>
                 <input type="text" value="<?=$listItem['Abbreviation'];?>" name="Abbreviation"/>
             </td>
         </tr>
         <tr>
-            <th>管理者</th>
+            <th>管理者<span class="need-input">（必須）</span></th>
             <td>
                 <input type="text" value="<?=$listItem['Administrator'];?>" name="Administrator"/>
             </td>
         </tr>
         <tr>
-            <th class="important">事業者番号</th>
+            <th class="important">事業者番号<span class="need-input">（必須）</span></th>
             <td>
-                <input type="text" value="<?=$listItem['Businesser_number'];?>" name="Businesser_number" maxlength="10" onkeypress="return isNumber(event)" required/>
+                <input type="text" value="<?=$listItem['Businesser_number'];?>" name="Businesser_number" maxlength="10" onkeypress="return isNumber(event)"/>
             </td>
         </tr>
         <tr>
-            <th>郵便番号</th>
+            <th>郵便番号<span class="need-input">（必須）</span></th>
             <td>
                 <input type="text" value="<?=$listItem['Businesser_postal_code'];?>" name="Businesser_postal_code"/>
             </td>
         </tr>
         <tr>
-            <th>住所</th>
+            <th>住所<span class="need-input">（必須）</span></th>
             <td>
                 <input type="text" value="<?=$listItem['Businesser_address'];?>" name="Businesser_address"/>
             </td>
         </tr>
         <tr>
-            <th>電話番号</th>
+            <th>電話番号<span class="need-input">（必須）</span></th>
             <td>
                 <input type="text" value="<?=$listItem['Businesser_phone'];?>" name="Businesser_phone"/>
             </td>
         </tr>
         <tr>
-            <th>種別</th>
+            <th>種別<span class="need-input">（必須）</span></th>
             <td>
                 <input type="text" value="<?=$listItem['Kind'];?>" name="Kind"/>
             </td>
         </tr>
         <tr>
-            <th>評価点区分</th>
+            <th>評価点区分<span class="need-input">（必須）</span></th>
             <td>
                 <input type="text" value="<?=$listItem['Evaluation_point_type'];?>" name="Evaluation_point_type"/>
             </td>
         </tr>
         <tr>
-            <th>公立</th>
+            <th>公立<span class="need-input">（必須）</span></th>
             <td>
                 <input type="text" value="<?=$listItem['Public'];?>" name="Public"/>
             </td>
         </tr>
         <tr>
-            <th>地域区分</th>
+            <th>地域区分<span class="need-input">（必須）</span></th>
             <td>
                 <input type="text" value="<?=$listItem['Area_type'];?>" name="Area_type"/>
             </td>
         </tr>
         <tr>
-            <th>定員</th>
+            <th>定員<span class="need-input">（必須）</span></th>
             <td>
                 <input type="text" value="<?=$listItem['Capacity'];?>" name="Capacity"/>
             </td>
@@ -776,23 +1052,73 @@
                 <input type="text" value="<?=$listItem['Actual_cost2'];?>" name="Actual_cost2"/>
             </td>
         </tr>
+        <?}?>
         <tr>
             <td colspan="2">
-                <?if(isset($arr[2])) {?>
+                <!-- <?if(isset($arr[2])) {?>
                     <input class="submit-btn-Update" name="btn_businessUpdate" type="submit" value="修　正"/>
                 <?}else{?>
                     <input class="submit-btn-New" name="btn_business" type="submit" value="確 認 画 面 へ"/>
+                <?}?> -->
+                <?if(isset($arr[2])) {?>
+                    <input class="submit-btn-Update" name="btn_businessUpdate" type="submit" value="修　正"/>
+                <?}else if($comfirm == 1){?>
+                    <input class="submit-btn-New" id="btn_business" name="btn_business" type="submit" value="登録" />
+                <?}else{?>
+                    <input class="submit-btn-New" name="btn_businessCheck" type="submit" value="確 認 画 面 へ"/>
                 <?}?>
             </td>
             <td></td>
         </tr>
     </table>
 </form>
+<?include_once './views/footer.html';?>
 </body>
 </html>
-<input type="text" name="num" class="only-phonenumber" />
+<!-- <input type="text" name="num" class="only-phonenumber" /> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript">
+    function validateForm() {
+      var Model_number = document.forms["myForm"]["Model_number"].value;
+      var Service_offer_date = document.forms["myForm"]["Service_offer_date"].value;
+      var Corporate_name = document.forms["myForm"]["Corporate_name"].value;
+      var Representative = document.forms["myForm"]["Representative"].value;
+      var Businesser_name = document.forms["myForm"]["Businesser_name"].value;
+      var Abbreviation = document.forms["myForm"]["Abbreviation"].value;
+      var Administrator = document.forms["myForm"]["Administrator"].value;
+      var Businesser_number = document.forms["myForm"]["Businesser_number"].value;
+      var Businesser_postal_code = document.forms["myForm"]["Businesser_postal_code"].value;
+      var Businesser_address = document.forms["myForm"]["Businesser_address"].value;
+      var Businesser_phone = document.forms["myForm"]["Businesser_phone"].value;
+      var Kind = document.forms["myForm"]["Kind"].value;
+      var Evaluation_point_type = document.forms["myForm"]["Evaluation_point_type"].value;
+      var Public = document.forms["myForm"]["Public"].value;
+      var Area_type = document.forms["myForm"]["Area_type"].value;
+      var Capacity = document.forms["myForm"]["Capacity"].value;
+
+      if (
+        Model_number == "" || Model_number == null 
+        || Service_offer_date == "" || Service_offer_date == null 
+        || Corporate_name == "" || Corporate_name == null
+        || Representative == "" || Representative == null
+        || Businesser_name == "" || Businesser_name == null
+        || Abbreviation == "" || Abbreviation == null
+        || Administrator == "" || Administrator == null
+        || Businesser_number == "" || Businesser_number == null
+        || Businesser_postal_code == "" || Businesser_postal_code == null
+        || Businesser_address == "" || Businesser_address == null
+        || Businesser_phone == "" || Businesser_phone == null
+        || Kind == "" || Kind == null
+        || Evaluation_point_type == "" || Evaluation_point_type == null
+        || Public == "" || Public == null
+        || Area_type == "" || Area_type == null
+        || Capacity == "" || Capacity == null
+        ) {
+        alert("必須項目を入力してください。");
+        return false;
+      }
+    }
+    
     function isNumber(evt) {
         evt = (evt) ? evt : window.event;
         var charCode = (evt.which) ? evt.which : evt.keyCode;

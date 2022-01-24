@@ -8,4 +8,5 @@
 
 	define('PATH_ROOT'	, dirname(__FILE__));
 	define('PATH_DATABASE'	, PATH_ROOT.'/'.'database');
+	define('PATH_PASS' ,'http://localhost/');
 ?>

@@ -41,10 +41,11 @@ class municipality extends controller{
 		}
 	}
 	function Update(){
-		require_once("./views/head.html");
+		// require_once("./views/head.html");
 		$db = $this->model("database");
 		$database = new Database();
 		$database->setTable("municipality");
+		$comfirm = 0;
 		if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==0){
 			$arr = $this->UrlProcess();
 			$countItem;
@@ -59,8 +60,14 @@ class municipality extends controller{
 					$queryList = "SELECT * FROM municipality WHERE `Municipality_id` = ".$arr[2];
 					$listItem = $database->fetchRow($queryList);
 				}
-			require_once("./views/municipalityNew.html");
+			
 			// echo "<script>alert('ok');</script>";
+			if (isset($_POST["btn_municipalityCheck"])) {
+				$_SESSION['Municipality_number'] = $_POST["Municipality_number"];
+				$_SESSION['Municipality'] = $_POST["Municipality"];
+				$comfirm = 1;
+			}
+				
 			
 			if (isset($_POST["btn_municipality"])) {
 				$queryList = "SELECT  COUNT(`Municipality_id`) AS `total` FROM municipality WHERE Municipality_id ="."'".$_POST["Municipality_id"]."'";
@@ -71,8 +78,8 @@ class municipality extends controller{
 				// exit();
 				if ($listItem==0) {
 					$data = array(
-						'Municipality' 				=> $_POST["Municipality"],
-						'Municipality_number' 		=> $_POST["Municipality_number"]
+						'Municipality' 				=> $_SESSION['Municipality_number'],
+						'Municipality_number' 		=> $_SESSION['Municipality']
 					);
 				$database->insert($data);
 				header("Location: /fukushisystem/municipality");
@@ -115,6 +122,7 @@ class municipality extends controller{
 						echo "<script>alert('受給者番号：');";
 					}
 			}
+			require_once("./views/municipalityNew.html");
 		}else{
 			// echo "<script>alert('unit');</script>";
 			header("Location: /fukushisystem/municipality");

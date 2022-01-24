@@ -50,6 +50,16 @@
 		}
 	}
 
+	if($_POST["action"] == "deleteMember"){
+	
+	 	$dataID = $_POST["id"];
+	 	// echo "<script>alert('o');</script>";
+	 	// exit();
+		if( $dataID !=null){
+			deleteMember((int)$dataID);	
+		}
+	}
+
 	function deleteActiveRecord($ID){
 
 		$database = new Database();
@@ -103,6 +113,18 @@
 		$database = new Database();
 		// $database->setTable("activityrecord");
 		$queryList = "DELETE FROM municipality WHERE `Municipality_id`=".$ID;
+
+		// $queryList = implode(" ", $queryList);
+		$exc = $database->execute($queryList);
+
+		return;
+	}
+
+	function deleteMember($ID){
+
+		$database = new Database();
+		// $database->setTable("activityrecord");
+		$queryList = "DELETE FROM users WHERE `Id`=".$ID;
 
 		// $queryList = implode(" ", $queryList);
 		$exc = $database->execute($queryList);

@@ -55,6 +55,9 @@ class Pagination{
 				}else if ($_GET['url']=="userMNMT/List") {
 					$start 	= '<li><a href="#"  onclick="javascript:changePageList(1)">«</a></li>';
 					$prev 	= '<li><a href="#"  onclick="javascript:changePageList('.$page.')">‹</a></li>';
+				}else if ($_GET['url']=="memberMaster") {
+					$start 	= '<li><a href="#"  onclick="javascript:changeMemberMaster(1)">«</a></li>';
+					$prev 	= '<li><a href="#"  onclick="javascript:changeMemberMaster('.$page.')">‹</a></li>';
 				}
 			}
 		
@@ -86,6 +89,9 @@ class Pagination{
 				}else if ($_GET['url']=="userMNMT/List") {
 					$next 	= '<li><a href="#"  onclick="javascript:changePageList('.$page.')">›</a></li>';
 					$end 	= '<li><a href="#"  onclick="javascript:changePageList('.$this->totalPage.')">»</a></li>';
+				}else if ($_GET['url']=="memberMaster") {
+					$next 	= '<li><a href="#"  onclick="javascript:changeMemberMaster('.$page.')">›</a></li>';
+					$end 	= '<li><a href="#"  onclick="javascript:changeMemberMaster('.$this->totalPage.')">»</a></li>';
 				}
 			}
 		
@@ -135,7 +141,9 @@ class Pagination{
 					}else if ($_GET['url']=="display_data/historyExport") {
 						$listPages .= '<li><a href="#" onclick="javascript:changePageDisplay_dataEX('.$i.')">'.$i.'</a></li>';
 					}else if ($_GET['url']=="userMNMT/List") {
-						$listPages .= '<li><a href="#" onclick="javascript:changePageList('.$i.')">'.$i.'</a></li>';
+						$listPages .= '<li><a href="#" onclick="javascript:changeMemberMaster('.$i.')">'.$i.'</a></li>';
+					}else if ($_GET['url']=="memberMaster") {
+						$listPages .= '<li><a href="#" onclick="javascript:changeMemberMaster('.$i.')">'.$i.'</a></li>';
 					}
 				}
 			}

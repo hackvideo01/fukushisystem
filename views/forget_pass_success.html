@@ -4,14 +4,13 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" href="/fukushisystem/public/images/logo.png">
-	<title>登録（福祉システム）</title>
+	<title>新しいパスワード</title>
 </head>
 <body>
 	<div style="margin-top: 150px;text-align: center;">
 		<?if(isset($_SESSION['email'])){?>
-			<h1 style="color: green;text-align: center;">ご登録ありがとうございました。</h1>
-			<p style="text-align: center;">登録していただいたメールアドレスに（　<?echo $_SESSION['email'];?>　）、登録に関するメールをお送りしておりますのでご確認ください。</p>
-			<a style="color: white;background: #f5ba1a;padding: 5px;border-radius: 5px;" href="/fukushisystem/login">ログインへ</a>
+			<h1 style="color: green;text-align: center;">メールに確認</h1>
+			<p style="text-align: center;">メールアドレス：　<?echo $_SESSION['email'];?>　を確認してください。</p>
 			<div style="text-align: center;">
 				<img style="width: 200px;margin-top: 100px" src="../public/images/success.png">
 			</div>
@@ -22,5 +21,6 @@
 		<?}?>
 		
 	</div>
+	<?include_once './views/footer.html';?>
 </body>
 </html>

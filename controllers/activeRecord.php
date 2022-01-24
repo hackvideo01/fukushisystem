@@ -24,10 +24,10 @@ class activeRecord extends controller{
 			$paramsCurrentPage  = (!empty($_GET['page'])) ?  $_GET['page'] : 1;
 
 			// Fetch records from database 
-			$queryList[] = "SELECT * FROM activityrecord ORDER BY Recipient_number ASC";
+			$queryList[] = "SELECT * FROM usermanagement ORDER BY Name_hira ASC";
 
 			// Query Count
-			$queryCount[] =  "SELECT COUNT(*) AS `total` FROM `activityrecord` WHERE `Activity_record_id` > 0";
+			$queryCount[] =  "SELECT COUNT(*) AS `total` FROM `usermanagement` WHERE `Usermanagement_id` > 0";
 
 			// Filter Search
 			// if($paramsSearch != '')  {

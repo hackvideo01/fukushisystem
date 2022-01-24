@@ -15,25 +15,32 @@
         table{
             padding: 25px;
             margin: 0 auto;
-            border: 1px solid gray;
-            width: 700px;
+            /*border: 1px solid gray;*/
+            width: 80%;
+            border-collapse: separate;
+            border-spacing: 0 1em;
         }
         table th{
-            color: white;
-            padding: 5px 10px;
-            background-color: #000000;
-            text-align: left;
+            color: #262858;
+            padding: 10px 10px;
+            /*background-color: #D8D8D8;*/
+            text-align: center;
             border-radius: 6px;
-            width: 50%;
-            font-weight: 100;
+            /*width: 40%;*/
+            font-weight: bold;
         }
         table td{
-            padding: 5px 10px;
-            width: 50%;
+            /*width: 60%;*/
+            padding-left: 10px;
+        }
+        input{
+            padding: 13px;
+            border: 1px solid #a5a2a2;
+            background: #FBFBFB;
         }
         input, textarea{
-            border: solid 1px #ddd;
-            padding: 5px 20px;
+            /*border: solid 1px #ddd;*/
+            /*padding: 5px 20px;*/
             width: 100%;
             border-radius: 6px;
         }
@@ -44,9 +51,11 @@
         }
         .submit-btn-New{
             padding: 10px 20px !important;
-            display: flex;
+            display: block;
             margin: 30px auto 0px auto;
-            background: radial-gradient(#3b6c95, #003969f2);
+            /* background: radial-gradient(#3b6c95, #003969f2); */
+            background: #25305C;
+            width: 250px !important;
         }
         .submit-btn-Update{
             padding: 10px 20px !important;
@@ -471,15 +480,29 @@
         .head-top-logo img{
             height: 50px;
         }
+        .date-input{
+            background: #D8D8D8;
+            border: none;
+            font-weight: bold;
+        }
+        .coment-td{
+            width: 30%;
+        }
+        .normal-td{
+            width: 10%;
+        }
+        .hour-td{
+            width: 15%;
+        }
+        .select-hour{
+            height: 40px;
+            border-radius: 6px;
+            border: 1px solid #a5a2a2;
+            background: #FBFBFB;
+            width: 100%;
+        }
     </style>
-<div class="head-top">
-    <div class="head-top-title">
-        <p class="head-top-title-company">会社名のテキスト</p>
-    </div>
-    <div class="head-top-logo">
-        <img src="/fukushisystem/public/images/logo.png">
-    </div>
-</div>
+<?include './views/head.html';?>
 <!-- <nav class="navbar">
     <div class="max-width">
         <ul class="menu">
@@ -503,7 +526,7 @@
 <button type="button" onclick="location.href='/fukushisystem/display_data'">印刷画面</button> -->
 <!-- <button type="button" class="unit" onclick="location.href='/fukushisystem/unit'">単位</button> -->
 
-<h1>活動記録</h1>
+<h1 style="font-weight: 100;margin-top: 30px;">活 動 記 録</h1>
 <div class="activeRecord">
     <!-- <button type="button" onclick="location.href='/fukushisystem/activeRecord/A'">A</button> -->
     <!-- <button type="button" onclick="location.href='/fukushisystem/activeRecord/B'">B</button>
@@ -513,168 +536,61 @@
 <div class="btn-unit">
     <button type="button" onclick="location.href='/fukushisystem/activeRecord'">一覧へ戻る</button>
 </div>
+<p style="text-align:center;color: red;font-weight: bold;">受給者証番号：<?=$_GET['Recipient_number']?></p>
 <form method="post">
     <table>
         <tr>
-            <th class="important">受給者証番号</th>
-            <td>
-                <input type="text" name="Recipient_number" maxlength="10" value="<?=$listItem['Recipient_number'];?>" onkeypress="return isNumber(event)" required />
-            </td>
+            <th class="important">利 用 日</th>
+            <th class="important">開 始</th>
+            <th class="important">終 了</th>
+            <th class="important">欠 席</th>
+            <th class="important">送 迎（迎え）</th>
+            <th class="important">送 迎（送り）</th>
+            <th class="important">コメント</th>
         </tr>
+        <?for($i=1;$i<=31;$i++){?>
+            <tr>
+                <td class="normal-td">
+                    <input class="date-input" type="text" value="1月<?=$i?>日(曜日)" name="Life_home"/>
+                </td>
+                <td class="hour-td">
+                    <!-- <input type="text" value="" name="Life_home"/> -->
+                    <select class="select-hour" name="Businesser_number" required>
+                        <option value="">--選択してください--</option>
+                        <?for($j=1;$j<=24;$j++){?>
+                            <option value="<?=$j?>"><?=$j?></option>
+                        <?}?>
+                    </select>
+                </td>
+                <td class="hour-td">
+                    <!-- <input type="text" value="" name="Life_home"/> -->
+                    <select class="select-hour" name="Businesser_number" required>
+                        <option value="">--選択してください--</option>
+                        <?for($j=1;$j<=24;$j++){?>
+                            <option value="<?=$j?>"><?=$j?></option>
+                        <?}?>
+                    </select>
+                </td>
+                <td class="normal-td">
+                    <select class="select-hour" name="Businesser_number" required>
+                        <option value="">--選択してください--</option>
+                        <option value="<?=$j?>">出席</option>
+                        <option value="<?=$j?>">欠席</option>
+                    </select>
+                </td>
+                <td class="normal-td">
+                    <input type="text" value="" name="Life_home"/>
+                </td>
+                <td class="normal-td">
+                    <input type="text" value="" name="Life_home"/>
+                </td>
+                <td class="coment">
+                    <input type="text" value="" name="Life_home"/>
+                </td>
+            </tr>
+        <?}?>
         <tr>
-            <th>日</th>
-            <td>
-                <input type="date" id="Date" name="Date" value="<?=$listItem['Date'];?>" required="required"/>
-            </td>
-        </tr>
-        <tr>
-            <th>曜日</th>
-            <td>
-                <input class="Day" type="text" id="Day" value="<?=$listItem['Day'];?>" name="Day" required="required"/>
-            </td>
-        </tr>
-        <tr>
-            <th class="important">通所</th>
-            <td>
-                <!-- <input type="text" name="Tsusho"/> -->
-                <select name="Tsusho" onchange="outputSelectedValueAndText(this);">
-                    <option value="attendance">出席</option>
-                    <option value="absence">欠席</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <th class="important">開始時刻</th>
-            <td>
-                <!-- <select name="Start_time" id="Start_time">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-                    <option value="19">19</option>
-                    <option value="20">20</option>
-                    <option value="21">21</option>
-                    <option value="22">22</option>
-                    <option value="23">23</option>
-                    <option value="24">24</option>
-                </select> -->
-                <input type="text" value="<?=$listItem['Start_time'];?>" name="Start_time" onkeypress="return isNumber(event)" maxlength="2"/>
-            </td>
-        </tr>
-        <tr>
-            <th class="important">終了時刻</th>
-            <td>
-                <!-- <select name="End_time" id="End_time">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-                    <option value="19">19</option>
-                    <option value="20">20</option>
-                    <option value="21">21</option>
-                    <option value="22">22</option>
-                    <option value="23">23</option>
-                    <option value="24">24</option>
-                </select> -->
-                <input type="text" value="<?=$listItem['End_time'];?>" name="End_time" onkeypress="return isNumber(event)" maxlength="2"/>
-            </td>
-        </tr>
-        <tr>
-            <th>食事加算</th>
-            <td>
-                <input type="text" value="<?=$listItem['Meal_addition'];?>" name="Meal_addition"/>
-            </td>
-        </tr>
-        <tr>
-            <th>送迎</th>
-            <td>
-                <input type="text" value="<?=$listItem['Pick_drop'];?>" name="Pick_drop"/>
-            </td>
-        </tr>
-        <tr>
-            <th>体験利用</th>
-            <td>
-                <input type="text" value="<?=$listItem['Experience_use'];?>" name="Experience_use"/>
-            </td>
-        </tr>
-        <tr>
-            <th>訪問支援</th>
-            <td>
-                <input type="text" value="<?=$listItem['Visit_support'];?>" name="Visit_support"/>
-            </td>
-        </tr>
-        <tr>
-            <th>施設外就労</th>
-            <td>
-                <input type="text" value="<?=$listItem['Work_out_facility'];?>" name="Work_out_facility"/>
-            </td>
-        </tr>
-        <tr>
-            <th>社会生活</th>
-            <td>
-                <input type="text" value="<?=$listItem['Social_life'];?>" name="Social_life"/>
-            </td>
-        </tr>
-        <tr>
-            <th>在宅時生活</th>
-            <td>
-                <input type="text" value="<?=$listItem['Life_home'];?>" name="Life_home"/>
-            </td>
-        </tr>
-        <tr>
-            <th>医療連携</th>
-            <td>
-                <input type="text" value="<?=$listItem['Medical_cooperation'];?>" name="Medical_cooperation"/>
-            </td>
-        </tr>
-        <tr>
-            <th>備考</th>
-            <td>
-                <input type="text" value="<?=$listItem['Remark'];?>" name="Remark"/>
-            </td>
-        </tr>
-        <tr>
-            <th>実費１</th>
-            <td>
-                <input type="text" value="<?=$listItem['Actual_cost1'];?>" name="Actual_cost1"/>
-            </td>
-        </tr>
-        <tr>
-            <th>実費２</th>
-            <td>
-                <input type="text" value="<?=$listItem['Actual_cost2'];?>" name="Actual_cost2"/>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
+            <td colspan="7">
                 <?if(isset($arr[2])) {?>
                     <input class="submit-btn-Update" name="btn_activeRecordUpdate" type="submit" value="修　正"/>
                 <?}else{?>
@@ -685,6 +601,7 @@
         </tr>
     </table>
 </form>
+<?include_once './views/footer.html';?>
 </body>
 </html>
 <script type="text/javascript">

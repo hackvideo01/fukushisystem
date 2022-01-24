@@ -16,7 +16,7 @@
         .panel-info {
             border-color: #bce8f1;
             width: 1000px;
-            margin: auto;
+            margin: auto auto 30px auto;
         }
         .logout{
             background: red;
@@ -489,14 +489,7 @@
 
         }
     </style>
-    <div class="head-top">
-        <div class="head-top-title">
-            <p class="head-top-title-company">会社名のテキスト</p>
-        </div>
-        <div class="head-top-logo">
-            <img src="/fukushisystem/public/images/logo.png">
-        </div>
-    </div>
+    <?include './views/head.html';?>
     <!-- <nav class="navbar">
         <div class="max-width">
             <ul class="menu">
@@ -538,6 +531,7 @@
 		<?}?>
 	</table>
     <?php include_once 'views/pagination.php'; ?>
+    <?include_once './views/footer.html';?>
 </body>
 </html>
 

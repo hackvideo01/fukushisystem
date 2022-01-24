@@ -14,6 +14,21 @@ body{
     margin: 28px;
     position: absolute;
 }
+
+.forget-pass-a{
+    color: white;
+    padding: 5px;
+    background: darkseagreen;
+    border-radius: 6px;
+}
+
+.register{
+    color: blue;
+    padding: 5px;
+    background: gold;
+    border-radius: 6px;
+}
+
 .logo-cover{
     margin-top: 80px;
     text-align: center;
@@ -52,15 +67,15 @@ body{
     padding-right: 10px;
 }
 .form-input{
-    background: transparent;
     border: 0;
     outline: 0;
     color: black;
     flex-grow: 1;
     height: 40px;
-    border: 1px solid gray;
     border-radius: 6px;
     padding: 1px 10px 1px 10px;
+    border: 1px solid #a5a2a2;
+    background: #FBFBFB;
 }
 .form-input::placeholder{
     color: gray;

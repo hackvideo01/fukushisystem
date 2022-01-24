@@ -1,479 +1,750 @@
-<style type="text/css">
-body {
-   font-family: Verdana, Geneva, sans-serif;
-   font-size: 14px;
-   background: #f2f2f2;
-}
- .clearfix:after {
-   content: "";
-   display: block;
-   clear: both;
-   visibility: hidden;
-   height: 0;
-}
- .form_wrapper {
-   background: #fff;
-   width: 400px;
-   max-width: 100%;
-   box-sizing: border-box;
-   padding: 25px;
-   margin: 8% auto 0;
-   position: relative;
-   z-index: 1;
-   border-top: 5px solid #f5ba1a;
-   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
-   -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
-   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
-   -webkit-transform-origin: 50% 0%;
-   transform-origin: 50% 0%;
-   -webkit-transform: scale3d(1, 1, 1);
-   transform: scale3d(1, 1, 1);
-   -webkit-transition: none;
-   transition: none;
-   -webkit-animation: expand 0.8s 0.6s ease-out forwards;
-   animation: expand 0.8s 0.6s ease-out forwards;
-   opacity: 0;
-}
- .form_wrapper h2 {
-   font-size: 1.5em;
-   line-height: 1.5em;
-   margin: 0;
-}
- .form_wrapper .title_container {
-   text-align: center;
-   padding-bottom: 15px;
-}
- .form_wrapper h3 {
-   font-size: 1.1em;
-   font-weight: normal;
-   line-height: 1.5em;
-   margin: 0;
-}
- .form_wrapper label {
-   font-size: 12px;
-}
- .form_wrapper .row {
-   margin: 10px -15px;
-}
- .form_wrapper .row > div {
-   padding: 0 15px;
-   box-sizing: border-box;
-}
- .form_wrapper .col_half {
-   width: 50%;
-   float: left;
-}
- .form_wrapper .input_field {
-   position: relative;
-   margin-bottom: 20px;
-   -webkit-animation: bounce 0.6s ease-out;
-   animation: bounce 0.6s ease-out;
-}
- .form_wrapper .input_field > span {
-   position: absolute;
-   left: 0;
-   top: 0;
-   color: #333;
-   height: 100%;
-   border-right: 1px solid #ccc;
-   text-align: center;
-   width: 30px;
-}
- .form_wrapper .input_field > span > i {
-   padding-top: 10px;
-}
- .form_wrapper .textarea_field > span > i {
-   padding-top: 10px;
-}
- .form_wrapper input[type="text"], .form_wrapper input[type="email"], .form_wrapper input[type="password"], .form_wrapper input[type="username"] {
-   width: 100%;
-   padding: 8px 10px 9px 35px;
-   height: 35px;
-   border: 1px solid #ccc;
-   box-sizing: border-box;
-   outline: none;
-   -webkit-transition: all 0.3s ease-in-out;
-   -moz-transition: all 0.3s ease-in-out;
-   -ms-transition: all 0.3s ease-in-out;
-   transition: all 0.3s ease-in-out;
-}
- .form_wrapper input[type="text"]:hover, .form_wrapper input[type="email"]:hover, .form_wrapper input[type="password"]:hover {
-   background: #fafafa;
-}
- .form_wrapper input[type="text"]:focus, .form_wrapper input[type="email"]:focus, .form_wrapper input[type="password"]:focus {
-   -webkit-box-shadow: 0 0 2px 1px rgba(255, 169, 0, 0.5);
-   -moz-box-shadow: 0 0 2px 1px rgba(255, 169, 0, 0.5);
-   box-shadow: 0 0 2px 1px rgba(255, 169, 0, 0.5);
-   border: 1px solid #f5ba1a;
-   background: #fafafa;
-}
- .form_wrapper input[type="submit"] {
-   background: #f5ba1a;
-   height: 35px;
-   line-height: 35px;
-   width: 100%;
-   border: none;
-   outline: none;
-   cursor: pointer;
-   color: #fff;
-   font-size: 1.1em;
-   margin-bottom: 10px;
-   -webkit-transition: all 0.3s ease-in-out;
-   -moz-transition: all 0.3s ease-in-out;
-   -ms-transition: all 0.3s ease-in-out;
-   transition: all 0.3s ease-in-out;
-}
- .form_wrapper input[type="submit"]:hover {
-   background: #e1a70a;
-}
- .form_wrapper input[type="submit"]:focus {
-   background: #e1a70a;
-}
- .form_wrapper input[type="checkbox"], .form_wrapper input[type="radio"] {
-   border: 0;
-   clip: rect(0 0 0 0);
-   height: 1px;
-   margin: -1px;
-   overflow: hidden;
-   padding: 0;
-   position: absolute;
-   width: 1px;
-}
- .form_container .row .col_half.last {
-   border-left: 1px solid #ccc;
-}
- .checkbox_option label {
-   margin-right: 1em;
-   position: relative;
-}
- .checkbox_option label:before {
-   content: "";
-   display: inline-block;
-   width: 0.5em;
-   height: 0.5em;
-   margin-right: 0.5em;
-   vertical-align: -2px;
-   border: 2px solid #ccc;
-   padding: 0.12em;
-   background-color: transparent;
-   background-clip: content-box;
-   transition: all 0.2s ease;
-}
- .checkbox_option label:after {
-   border-right: 2px solid #000;
-   border-top: 2px solid #000;
-   content: "";
-   height: 20px;
-   left: 2px;
-   position: absolute;
-   top: 7px;
-   transform: scaleX(-1) rotate(135deg);
-   transform-origin: left top;
-   width: 7px;
-   display: none;
-}
- .checkbox_option input:hover + label:before {
-   border-color: #000;
-}
- .checkbox_option input:checked + label:before {
-   border-color: #000;
-}
- .checkbox_option input:checked + label:after {
-   -moz-animation: check 0.8s ease 0s running;
-   -webkit-animation: check 0.8s ease 0s running;
-   animation: check 0.8s ease 0s running;
-   display: block;
-   width: 7px;
-   height: 20px;
-   border-color: #000;
-}
- .radio_option label {
-   margin-right: 1em;
-}
- .radio_option label:before {
-   content: "";
-   display: inline-block;
-   width: 0.5em;
-   height: 0.5em;
-   margin-right: 0.5em;
-   border-radius: 100%;
-   vertical-align: -3px;
-   border: 2px solid #ccc;
-   padding: 0.15em;
-   background-color: transparent;
-   background-clip: content-box;
-   transition: all 0.2s ease;
-}
- .radio_option input:hover + label:before {
-   border-color: #000;
-}
- .radio_option input:checked + label:before {
-   background-color: #000;
-   border-color: #000;
-}
- .select_option {
-   position: relative;
-   width: 100%;
-}
- .select_option select {
-   display: inline-block;
-   width: 100%;
-   height: 35px;
-   padding: 0px 15px;
-   cursor: pointer;
-   color: #7b7b7b;
-   border: 1px solid #ccc;
-   border-radius: 0;
-   background: #fff;
-   appearance: none;
-   -webkit-appearance: none;
-   -moz-appearance: none;
-   transition: all 0.2s ease;
-}
- .select_option select::-ms-expand {
-   display: none;
-}
- .select_option select:hover, .select_option select:focus {
-   color: #000;
-   background: #fafafa;
-   border-color: #000;
-   outline: none;
-}
- .select_arrow {
-   position: absolute;
-   top: calc(50% - 4px);
-   right: 15px;
-   width: 0;
-   height: 0;
-   pointer-events: none;
-   border-width: 8px 5px 0 5px;
-   border-style: solid;
-   border-color: #7b7b7b transparent transparent transparent;
-}
- .select_option select:hover + .select_arrow, .select_option select:focus + .select_arrow {
-   border-top-color: #000;
-}
- .credit {
-   position: relative;
-   z-index: 1;
-   text-align: center;
-   padding: 15px;
-   color: #f5ba1a;
-}
- .credit a {
-   color: #e1a70a;
-}
- @-webkit-keyframes check {
-   0% {
-     height: 0;
-     width: 0;
-  }
-   25% {
-     height: 0;
-     width: 7px;
-  }
-   50% {
-     height: 20px;
-     width: 7px;
-  }
-}
- @keyframes check {
-   0% {
-     height: 0;
-     width: 0;
-  }
-   25% {
-     height: 0;
-     width: 7px;
-  }
-   50% {
-     height: 20px;
-     width: 7px;
-  }
-}
- @-webkit-keyframes expand {
-   0% {
-     -webkit-transform: scale3d(1, 0, 1);
-     opacity: 0;
-  }
-   25% {
-     -webkit-transform: scale3d(1, 1.2, 1);
-  }
-   50% {
-     -webkit-transform: scale3d(1, 0.85, 1);
-  }
-   75% {
-     -webkit-transform: scale3d(1, 1.05, 1);
-  }
-   100% {
-     -webkit-transform: scale3d(1, 1, 1);
-     opacity: 1;
-  }
-}
- @keyframes expand {
-   0% {
-     -webkit-transform: scale3d(1, 0, 1);
-     transform: scale3d(1, 0, 1);
-     opacity: 0;
-  }
-   25% {
-     -webkit-transform: scale3d(1, 1.2, 1);
-     transform: scale3d(1, 1.2, 1);
-  }
-   50% {
-     -webkit-transform: scale3d(1, 0.85, 1);
-     transform: scale3d(1, 0.85, 1);
-  }
-   75% {
-     -webkit-transform: scale3d(1, 1.05, 1);
-     transform: scale3d(1, 1.05, 1);
-  }
-   100% {
-     -webkit-transform: scale3d(1, 1, 1);
-     transform: scale3d(1, 1, 1);
-     opacity: 1;
-  }
-}
- @-webkit-keyframes bounce {
-   0% {
-     -webkit-transform: translate3d(0, -25px, 0);
-     opacity: 0;
-  }
-   25% {
-     -webkit-transform: translate3d(0, 10px, 0);
-  }
-   50% {
-     -webkit-transform: translate3d(0, -6px, 0);
-  }
-   75% {
-     -webkit-transform: translate3d(0, 2px, 0);
-  }
-   100% {
-     -webkit-transform: translate3d(0, 0, 0);
-     opacity: 1;
-  }
-}
- @keyframes bounce {
-   0% {
-     -webkit-transform: translate3d(0, -25px, 0);
-     transform: translate3d(0, -25px, 0);
-     opacity: 0;
-  }
-   25% {
-     -webkit-transform: translate3d(0, 10px, 0);
-     transform: translate3d(0, 10px, 0);
-  }
-   50% {
-     -webkit-transform: translate3d(0, -6px, 0);
-     transform: translate3d(0, -6px, 0);
-  }
-   75% {
-     -webkit-transform: translate3d(0, 2px, 0);
-     transform: translate3d(0, 2px, 0);
-  }
-   100% {
-     -webkit-transform: translate3d(0, 0, 0);
-     transform: translate3d(0, 0, 0);
-     opacity: 1;
-  }
-}
- @media (max-width: 600px) {
-   .form_wrapper .col_half {
-     width: 100%;
-     float: none;
-  }
-   .bottom_row .col_half {
-     width: 50%;
-     float: left;
-  }
-   .form_container .row .col_half.last {
-     border-left: none;
-  }
-   .remember_me {
-     padding-bottom: 20px;
-  }
-}
- 
-.duplicate{
-  color: red;
-  text-align: center;
-}
-</style>
-<link rel="icon" href=".\public\images\logo.png">
-<title>福祉システム（新規登録）</title>
-<a href="/fukushisystem/login" style="padding: 6px;background-color: #f5ba1a;border-radius: 5px;color: black;">ログイン</a>
-<div class="form_wrapper">
-  <div class="form_container">
-    <div class="title_container">
-      <h2>福祉システム（新規登録）</h2>
-    </div>
-    <div class="row clearfix">
-      <div class="">
-        <form method="post">
-          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
-            <input type="email" name="email" placeholder="メールアドレス"  pattern="^[a-zA-Z0-9.!#$&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$" required />
-          </div>
-          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
-            <input type="username" name="username" placeholder="アカウント" required />
-          </div>
-          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
-            <input type="password" name="password" id="password" placeholder="パスワード" required />
-          </div>
-          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
-            <input type="password" name="confirm_password" id="confirm_password" placeholder="パスワード再度入力" required />
-          </div>
-          <span id='message'></span>
-          <div class="row clearfix">
-            <div class="col_half">
-              <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
-                <input type="text" name="firstname" placeholder="姓" required />
-              </div>
-            </div>
-            <div class="col_half">
-              <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
-                <input type="text" name="lastname" placeholder="名" required />
-              </div>
-            </div>
-          </div>
-              <div class="input_field radio_option">
-              <input type="radio" name="radiogroup1" id="rd1" value="1" required>
-              <label for="rd1">男</label>
-              <input type="radio" name="radiogroup1" id="rd2" value="0">
-              <label for="rd2">女</label>
-              </div>
-              <!-- <div class="input_field select_option">
-                <select>
-                  <option>Select a country</option>
-                  <option>Option 1</option>
-                  <option>Option 2</option>
-                </select>
-                <div class="select_arrow"></div>
-              </div> -->
-          <!--   <div class="input_field checkbox_option">
-              <input type="checkbox" id="cb1">
-          <label for="cb1">I agree with terms and conditions</label>
-            </div> -->
-           <!--  <div class="input_field checkbox_option">
-              <input type="checkbox" id="cb2"> -->
-          <!-- <label for="cb2">I want to receive the newsletter</label> -->
-            </div>
-          <input class="button" type="submit" name="newSignUp" id="newSignUp" disabled="disabled" value="登録" />
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- <p class="credit">Developed by <a href="http://www.designtheway.com" target="_blank">Design the way</a></p> -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript">
-  $('#password, #confirm_password').on('keyup', function () {
-    if ($('#password').val() == $('#confirm_password').val()) {
-      $('#message').html('Password Matching').css('color', 'green');
-      $('#newSignUp').prop('disabled', false);
-    } else {
-      $('#message').html('Password Not Matching').css('color', 'red');
-      $('#newSignUp').prop('disabled', true);
-    }
-  });
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="/fukushisystem/public/images/logo.png">
+    <title>会員登録</title>
+</head>
 
+<body>
+    <style>
+        table{
+            padding: 25px;
+            margin: 0 auto;
+            /*border: 1px solid gray;*/
+            width: 700px;
+            border-collapse: separate;
+            border-spacing: 0 1em;
+        }
+        table th{
+            color: black;
+            padding: 10px 10px;
+            background-color: #D8D8D8;
+            text-align: left;
+            border-radius: 6px;
+            width: 40%;
+            font-weight: 100;
+        }
+        table td{
+            width: 60%;
+            padding-left: 10px;
+        }
+        input{
+            padding: 13px;
+            border: 1px solid #a5a2a2;
+            background: #FBFBFB;
+        }
+        input, textarea{
+            /*border: solid 1px #ddd;*/
+            /*padding: 5px 20px;*/
+            width: 100%;
+            border-radius: 6px;
+        }
+        input[type="submit"]{
+            width: auto;
+            color:#fff;
+            cursor: pointer;
+        }
+        .submit-btn-New{
+            padding: 10px 20px !important;
+            display: block;
+            margin: 30px auto 0px auto;
+            /* background: radial-gradient(#3b6c95, #003969f2); */
+            background: #25305C;
+            width: 250px !important;
+        }
+        h1{
+            text-align: center;
+        }
+        .btn-unit{
+            text-align: center;
+        }
+        .btn-unit button{
+            background: radial-gradient(#555555, #b5b5b5);
+            color: white;
+            padding: 10px 30px;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-unit {
+            text-align: right;
+            margin-right: 30%;
+            margin-bottom: 10px;
+        }
+        @media (max-width: 1024px) {
+            .btn-unit {
+                text-align: right;
+                margin-right: 1%;
+            }
+        }
+        .logout{
+            background: red;
+            color: white;
+            font-weight: bold;
+        }
+        .important{
+            background: red;
+            color: white;
+        }
+         /* Theme Name: NGUYEN LUC PRO
+         * Description: テーマ
+         * Theme URI: https://lucnguyen.com/
+         * Version: 1.0
+         * Theme Author: NGUYEN LUC MAIN
+         * Author URI: https://lucnguyen.com/
+         * Tags: starter theme, framework theme, two-columns, customize
+         * Textdomain: nguyenluc
+         */
+
+        /*  import google fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+        }
+        html{
+            scroll-behavior: smooth;
+        }
+
+        /* custom scroll bar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* all similar content styling codes */
+        section{
+            /*padding: 100px 0;*/
+        }
+
+        .menu{
+            margin: 0 auto;
+        }
+
+        .max-width{
+           /* max-width: 1300px;
+            padding: 0 80px;
+            margin: auto;*/
+        }
+        .about, .services, .skills, .teams, .contact, footer{
+            font-family: 'Poppins', sans-serif;
+        }
+        .about .about-content,
+        .services .serv-content,
+        .skills .skills-content,
+        .contact .contact-content{
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* navbar styling */
+        .navbar{
+            border-radius: inherit;
+            background: #131A44;
+            /*position: fixed;*/
+            width: 100%;
+            z-index: 999;
+            padding: 20.3px 0;
+            font-family: 'Ubuntu', sans-serif;
+            transition: all 0.3s ease;
+        }
+        .navbar.sticky{
+            /*padding: 15px 0;*/
+            padding: 0;
+            background: white;
+            position: fixed;
+            top: 0;
+        }
+
+        /*dl, ol, ul{
+            margin-bottom: 0!important;
+        }*/
+
+        .top-content{
+            display: flex;
+            justify-content: center;
+            /*margin: .5em auto;*/
+            padding: .5em 0;
+            background: white;
+        }
+
+        .top-content img{
+            margin: 0 .8em;
+        }
+
+        .logo-top-disable{
+            display: none;
+        }
+
+        .navbar .max-width{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .navbar .logo a{
+            color: #fff;
+            font-size: 35px;
+            font-weight: 600;
+        }
+        .navbar .logo a span{
+            color: crimson;
+            transition: all 0.3s ease;
+        }
+        .navbar.sticky .logo a span{
+            color: #fff;
+        }
+        .navbar .menu li{
+            list-style: none;
+            display: inline-block;
+        }
+
+        .whiteline{
+            border-left: 1px solid white;
+            margin-right: 15px;
+            padding-right: 10px;
+        }
+
+        .menu-top1{
+            border-left: none!important;
+        }
+
+        .navbar .menu li a{
+            display: block;
+            color: white;
+            font-size: 0.9em;
+            font-weight: 500;
+            margin-left: 25px;
+            transition: color 0.3s ease;
+            font-family: adobe-garamond-pro,source-han-serif-japanese,"ヒラギノ明朝 Pro W3","Hiragino Mincho Pro","游明朝体",YuMincho,"Yu Mincho","ＭＳ Ｐ明朝","MS PMincho",serif;
+        }
+
+        .logo-scroll img{
+            display: none;
+            max-height: 4em;
+            margin: 0.2em;
+        }
+
+        .logo-scroll-display{
+            display: block!important;
+        }
+
+        .menu-margin-right{
+            margin: 0;
+        }
+
+        .navbar .menu li a:hover{
+            color: crimson;
+        }
+        .navbar.sticky .menu li a:hover{
+            color: red!important;
+        }
+
+        /* menu btn styling */
+        .menu-btn{
+            color: #fff;
+            font-size: 23px;
+            cursor: pointer;
+            display: none;
+        }
+
+        .menu-scroll{
+            color: black!important;
+        }
+
+        .scroll-up-btn{
+            position: fixed;
+            height: 45px;
+            width: 42px;
+            background: crimson;
+            right: 30px;
+            bottom: 10px;
+            text-align: center;
+            line-height: 45px;
+            color: #fff;
+            z-index: 9999;
+            font-size: 30px;
+            border-radius: 6px;
+            border-bottom-width: 2px;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        .scroll-up-btn.show{
+            bottom: 30px;
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .scroll-up-btn:hover{
+            filter: brightness(90%);
+        }
+
+        /* responsive media query start */
+        @media (max-width: 1104px) {
+            .about .about-content .left img{
+                height: 350px;
+                width: 350px;
+            }
+            .footer-img img{
+               width: 100%;
+            }
+        }
+
+        @media (min-width: 992px){
+        .logo-top img {
+            max-height: 5.9em;
+            margin-top: 0.5em;
+        }
+
+        .logo-top3 img {
+            max-height: 6em;
+        }
+        }
+
+        @media (max-width: 992px){
+            .footer-img img{
+               width: 100%;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .max-width{
+                padding: 0 50px;
+            }
+        }
+        @media (max-width: 947px){
+            .footer-img img{
+               width: 100%;
+            }
+
+            .menu-footer{
+                width: 100% !important;
+            }
+
+            .logo-scroll img{
+                max-height: 3em;
+            }
+
+            .menu-btn{
+                display: block;
+                z-index: 999;
+                color: black;
+            }
+            .menu-btn i.active:before{
+                content: "\f00d";
+            }
+            .navbar .menu{
+                position: fixed;
+                height: 100vh;
+                width: 100%;
+                left: -100%;
+                top: 0;
+                background: #D79013;
+                text-align: center;
+                padding-top: 80px;
+                transition: all 0.3s ease;
+            }
+            .navbar .menu.active{
+                left: 0;
+                overflow:scroll
+            }
+            .navbar .menu li{
+                display: block;
+            }
+            .navbar .menu li a{
+                display: inline-block;
+                margin: 15px 0 15px 1.2em;
+                font-size: 25px;
+            }
+            .home .home-content .text-2{
+                font-size: 70px;
+            }
+            .home .home-content .text-3{
+                font-size: 35px;
+            }
+            .home .home-content a{
+                font-size: 23px;
+                padding: 10px 30px;
+            }
+            .max-width{
+                max-width: 930px;
+            }
+            .about .about-content .column{
+                width: 100%;
+            }
+            .about .about-content .left{
+                display: flex;
+                justify-content: center;
+                margin: 0 auto 60px;
+            }
+            .about .about-content .right{
+                flex: 100%;
+            }
+            .services .serv-content .card{
+                width: calc(50% - 10px);
+                margin-bottom: 20px;
+            }
+            .skills .skills-content .column,
+            .contact .contact-content .column{
+                width: 100%;
+                margin-bottom: 35px;
+            }
+        }
+
+        @media (max-width: 690px) {
+            .max-width{
+                padding: 0 13px;
+            }
+            .home .home-content .text-2{
+                font-size: 60px;
+            }
+            .home .home-content .text-3{
+                font-size: 32px;
+            }
+            .home .home-content a{
+                font-size: 20px;
+            }
+            .services .serv-content .card{
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .home .home-content .text-2{
+                font-size: 50px;
+            }
+            .home .home-content .text-3{
+                font-size: 27px;
+            }
+            .about .about-content .right .text,
+            .skills .skills-content .left .text{
+                font-size: 19px;
+            }
+            .contact .right form .fields{
+                flex-direction: column;
+            }
+            .contact .right form .name,
+            .contact .right form .email{
+                margin: 0;
+            }
+            .right form .error-box{
+               width: 150px;
+            }
+            .scroll-up-btn{
+                right: 15px;
+                bottom: 15px;
+                height: 38px;
+                width: 35px;
+                font-size: 23px;
+                line-height: 38px;
+            }
+        }
+        .tab{
+            height: 80px;
+            background-color: #131A44;
+        }
+        .login-title{
+            color: white;
+            font-size: 23px;
+            margin: 28px;
+            position: absolute;
+        }
+        .need-input{
+            color: red;
+        }
+    </style>
+
+<div class="tab">
+  <!-- <button class="tablinks" onclick="openCity(event, 'Operation')">運営</button>
+  <button class="tablinks" onclick="openCity(event, 'Office')">事業所</button> -->
+    <!-- <a href="/fukushisystem/newSignUp" style="padding: 6px;background-color: #f5ba1a;border-radius: 5px;color: black;">新規登録</a> -->
+    <a href="/fukushisystem/login"><p class="login-title">ログイン</p></a>
+</div>
+<h1 style="margin-top: 30px;margin-bottom: 30px;font-weight: 100;">新規会員登録</h1>
+<div class="btn-unit">
+    <?if($comfirm == 1){?>
+        <button onclick="history.back()">戻る</button>
+    <?}?>
+</div>
+<h3 id="acount-email-haved" style="text-align:center; color:red;margin-top:30px;display: none;">アカウントが登録されました。他のアカウントを入力して下さい。</h3>
+<h3 id="email-haved" style="text-align:center; color:red;margin-top:30px;display: none;">メールアドレスが使われています。他のメールアドレスを入力して下さい。</h3>
+<h3 id="need-haved" style="text-align:center; color:red;margin-top:30px;display: none;">必須項目を入力してください</h3>
+<?if($countItem != 0){?>
+    <h3 id="acount-email-haved" style="text-align:center; color:red;margin-top:30px;display: block;"><?=$_POST["username"]?>　アカウントが登録されました。他のアカウントを入力して下さい。</h3>
+<?}?>
+<?if($countItemEmail != 0){?>
+    <h3 id="email-haved" style="text-align:center; color:red;margin-top:30px;display: block;"><?=$_POST["email"]?>　メールアドレスが使われています。他のメールアドレスを入力して下さい。</h3>
+<?}?>
+<form method="post" name="myForm" onsubmit="return validateForm()" required>
+    <table>
+        <?if($comfirm == 1){?>
+            <tr>
+                <th>会社名<span class="need-input">（必須）</span></th>
+                <td>
+                    <input type="text" name="CompanyName" value="<?=$listItem['CompanyName'];?>" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>郵便番号</th>
+                <td>
+                    <input type="text" class="PostCode" id="PostCode" name="PostCode" value="<?=$listItem['PostCode'];?>" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>住所</th>
+                <td>
+                    <input type="text" id="Address" name="Address" value="<?=$listItem['Address'];?>" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>電話番号</th>
+                <td>
+                    <input type="text" id="TelephoneNumber" name="TelephoneNumber" value="<?=$listItem['TelephoneNumber'];?>" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>担当者名</th>
+                <td>
+                    <input type="text" id="PersonChargeName" name="PersonChargeName" value="<?=$listItem['PersonChargeName'];?>" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>担当者連絡先</th>
+                <td>
+                    <input type="text" id="PersonChargeInformation" name="PersonChargeInformation" value="<?=$listItem['PersonChargeInformation'];?>" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>メールアドレス<span class="need-input">（必須）</span></th>
+                <td>
+                    <input type="text" id="email" name="email" value="<?=$listItem['email'];?>" pattern="^[a-zA-Z0-9.!#$&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <th>ユーザーID<span class="need-input">（必須）</span></th>
+                <td>
+                    <input type="text" id="username" name="username" value="<?=$listItem['username'];?>" readonly="readonly" minlength="5"/>
+                </td>
+            </tr>
+            <tr>
+                <th>パスワード<span class="need-input">（必須）</span></th>
+                <td>
+                    <input type="password" id="password" name="password" value="<?=$listItem['password'];?>" readonly="readonly" minlength="5/>
+                </td>
+            </tr>
+        <?}else{?>
+        <tr>
+            <th>会社名<span class="need-input">（必須）</span></th>
+            <td>
+                <input type="text" name="CompanyName" value="<?=$listItem['CompanyName'];?>"/>
+            </td>
+        </tr>
+        <tr>
+            <th>郵便番号</th>
+            <td>
+                <input type="text" class="PostCode" id="PostCode" name="PostCode" value="<?=$listItem['PostCode'];?>"/>
+            </td>
+        </tr>
+        <tr>
+            <th>住所</th>
+            <td>
+                <input type="text" id="Address" name="Address" value="<?=$listItem['Address'];?>"/>
+            </td>
+        </tr>
+        <tr>
+            <th>電話番号</th>
+            <td>
+                <input type="text" id="TelephoneNumber" name="TelephoneNumber" value="<?=$listItem['TelephoneNumber'];?>"/>
+            </td>
+        </tr>
+        <tr>
+            <th>担当者名</th>
+            <td>
+                <input type="text" id="PersonChargeName" name="PersonChargeName" value="<?=$listItem['PersonChargeName'];?>" />
+            </td>
+        </tr>
+        <tr>
+            <th>担当者連絡先</th>
+            <td>
+                <input type="text" id="PersonChargeInformation" name="PersonChargeInformation" value="<?=$listItem['PersonChargeInformation'];?>" />
+            </td>
+        </tr>
+        <tr>
+            <th>メールアドレス<span class="need-input">（必須）</span></th>
+            <td>
+                <input type="text" id="email" name="email" value="<?=$listItem['email'];?>" pattern="^[a-zA-Z0-9.!#$&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$"  />
+            </td>
+        </tr>
+        <tr>
+            <th>ユーザーID<span class="need-input">（必須）</span></th>
+            <td>
+                <input type="text" id="username" name="username" value="<?=$listItem['username'];?>"/>
+            </td>
+        </tr>
+        <tr>
+            <td><span id='messageID'></span></td>
+        </tr>
+        <tr>
+            <th>パスワード<span class="need-input">（必須）</span></th>
+            <td>
+                <input type="password" id="password" name="password" value="<?=$listItem['password'];?>"/>
+            </td>
+        </tr>
+        <tr>
+            <td><span id='messagePASS'></span></td>
+        </tr>
+        <?}?>
+        <tr>
+            <td colspan="2">
+                <!-- <input class="submit-btn-New" name="newSignUp" type="submit" value="登録"/> -->
+                <?if($comfirm == 1){?>
+                    <input class="submit-btn-New" name="newSignUp" type="submit" value="登録"/>
+                <?}else{?>
+                    <input class="submit-btn-New" id="newSignUpCheck" name="newSignUpCheck" type="submit" value="確 認 画 面 へ"/>
+                <?}?>
+            </td>
+        </tr>
+    </table>
+</form>
+<?include_once './views/footer.html';?>
+</body>
+</html>
+<script type="text/javascript">
+    $('#username').on('keyup', function () {
+        if ($('#username').val().length > 5) {
+          $('#messageID').html('正しいです。').css('color', 'green');
+          $('#newSignUpCheck').prop('disabled', false);
+        } else {
+          $('#messageID').html('５文字以上で入力してください。').css('color', 'red');
+          $('#newSignUpCheck').prop('disabled', true);
+        }
+        if ($('#username').val().match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {
+          $('#messageID').html('半角英数で入力してください。').css('color', 'red');
+          $('#newSignUpCheck').prop('disabled', true);
+        }
+      });
+
+    $('#password').on('keyup', function () {
+        if ($('#password').val().length > 5) {
+          $('#messagePASS').html('正しいです。').css('color', 'green');
+          $('#newSignUpCheck').prop('disabled', false);
+        } else {
+          $('#messagePASS').html('５文字以上で入力してください。').css('color', 'red');
+          $('#newSignUpCheck').prop('disabled', true);
+        }
+        if ($('#password').val().match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {
+          $('#messagePASS').html('半角英数で入力してください。').css('color', 'red');
+          $('#newSignUpCheck').prop('disabled', true);
+        }
+      });
+
+    function validateForm() {
+      var CompanyName = document.forms["myForm"]["CompanyName"].value;
+      var email = document.forms["myForm"]["email"].value;
+      var username = document.forms["myForm"]["username"].value;
+      var password = document.forms["myForm"]["password"].value;
+      if (CompanyName == "" || CompanyName == null || email == "" || email == null|| username == "" || username == null|| password == "" || password == null) {
+        alert("必須項目を入力してください。");
+        return false;
+      }
+    }
+
+    jQuery(document).on('keyup', '#PostCode', function(e){
+      if(e.keyCode === 9 || e.keyCode === 16) return;
+      this.value = this.value.replace(/[^0-9a-zA-Z]+/i,'');
+    });
+
+    // jQuery(document).on('keyup', '#email', function(e){
+    //   if(e.keyCode === 9 || e.keyCode === 16) return;
+    //   this.value = this.value.replace(/[^0-9a-zA-Z]+/i,'');
+    // });
+
+    jQuery(document).on('keyup', '#TelephoneNumber', function(e){
+      if(e.keyCode === 9 || e.keyCode === 16) return;
+      this.value = this.value.replace(/[^0-9a-zA-Z]+/i,'');
+    });
+
+    $('input[type="date"]').on('change', function() {
+        var days = ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'];
+        var d = new Date(document.getElementById("Date").value);
+        var dayName = days[d.getDay()];
+        document.getElementById('Day').value = dayName;
+    });
+
+     $(document).ready(function () {
+        $('#bt').click(function () {
+            $('#Start_time').prop('disabled', function (index, value) {   // Passing "function()" as parameter to .prop().
+                // if (value) {
+                //     $('#msg').html('dropdown list <b>enabled</b>');
+                // }
+                // else {
+                //     $('#msg').html('dropdown list <b>disabled</b>');
+                // }
+
+                return !value;  // return true or false
+            });
+            $('#End_time').prop('disabled', function (index, value) {   // Passing "function()" as parameter to .prop().
+                // if (value) {
+                //     $('#msg').html('dropdown list <b>enabled</b>');
+                // }
+                // else {
+                //     $('#msg').html('dropdown list <b>disabled</b>');
+                // }
+
+                return !value;  // return true or false
+            });
+        });
+    });
+
+    function outputSelectedValueAndText(obj)
+    {
+        /* 
+         * obj は select タグであり、selectedIndex プロパティには
+         * 変更後の選択項目のインデックスが格納されています
+         */
+        var idx = obj.selectedIndex;
+        var value = obj.options[idx].value; // 値
+        var text  = obj.options[idx].text;  // 表示テキスト
+        if (text=="欠席") {
+            $('#Start_time').prop('disabled', function (index, value) {   // Passing "function()" as parameter to .prop().
+                // if (value) {
+                //     $('#msg').html('dropdown list <b>enabled</b>');
+                // }
+                // else {
+                //     $('#msg').html('dropdown list <b>disabled</b>');
+                // }
+
+                return !value;  // return true or false
+            });
+            $('#End_time').prop('disabled', function (index, value) {   // Passing "function()" as parameter to .prop().
+                // if (value) {
+                //     $('#msg').html('dropdown list <b>enabled</b>');
+                // }
+                // else {
+                //     $('#msg').html('dropdown list <b>disabled</b>');
+                // }
+
+                return !value;  // return true or false
+            });
+        }
+        // 値とテキストをコンソールに出力
+        // console.log('value = ' + value + ', ' + 'text = ' + text);
+    }
 </script>

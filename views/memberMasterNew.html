@@ -14,27 +14,42 @@
         table{
             padding: 25px;
             margin: 0 auto;
-            border: 1px solid gray;
+            /*border: 1px solid gray;*/
             width: 700px;
+            border-collapse: separate;
+            border-spacing: 0 1em;
         }
         table th{
-            color: white;
-            padding: 5px 10px;
-            background-color: #000000;
+            color: black;
+            padding: 10px 10px;
+            background-color: #D8D8D8;
             text-align: left;
             border-radius: 6px;
-            width: 50%;
+            width: 40%;
             font-weight: 100;
         }
         table td{
-            padding: 5px 10px;
-            width: 50%;
+            width: 60%;
+            padding-left: 10px;
+        }
+        input{
+            padding: 13px;
+            border: 1px solid #a5a2a2;
+            background: #FBFBFB;
         }
         input, textarea{
-            border: solid 1px #ddd;
-            padding: 5px 20px;
+            /*border: solid 1px #ddd;*/
+            /*padding: 5px 20px;*/
             width: 100%;
             border-radius: 6px;
+        }
+        select{
+            font-size: 18px;
+            border-radius: 6px;
+            height: 44px;
+            background: #F9F9F9;
+            border: 1px solid #a5a2a2;
+            width: 100%;
         }
         input[type="submit"]{
             width: auto;
@@ -43,9 +58,11 @@
         }
         .submit-btn-New{
             padding: 10px 20px !important;
-            display: flex;
+            display: block;
             margin: 30px auto 0px auto;
-            background: radial-gradient(#3b6c95, #003969f2);
+            /*background: radial-gradient(#3b6c95, #003969f2);*/
+            background: #25305C;
+            width: 250px !important;
         }
         .submit-btn-Update{
             padding: 10px 20px !important;
@@ -471,14 +488,7 @@
             height: 50px;
         }
     </style>
-<div class="head-top">
-    <div class="head-top-title">
-        <p class="head-top-title-company">会社名のテキスト</p>
-    </div>
-    <div class="head-top-logo">
-        <img src="/fukushisystem/public/images/logo.png">
-    </div>
-</div>
+<?include './views/head.html';?>
 <!-- <nav class="navbar">
     <div class="max-width">
         <ul class="menu">
@@ -505,6 +515,9 @@
 <div class="btn-unit">
     <button type="button" onclick="location.href='/fukushisystem/memberMaster'">一覧へ戻る</button>
 </div>
+    <div id="email-duplicate" style = "text-align:center; color: red; margin-top: 30px;display: none;">このメールアドレスが使われています。</div>
+    <h3 id="acount-email-haved" style="text-align:center; color:red;margin-top:30px;display: none;">アカウントが登録されました。他のアカウントを入力して下さい。</h3>
+    <h3 id="email-haved" style="text-align:center; color:red;margin-top:30px;display: none;">メールアドレスが使われています。他のメールアドレスを入力して下さい。</h3>
 <form method="post">
     <table>
         <tr>
@@ -546,7 +559,19 @@
         <tr>
             <th>メールアドレス</th>
             <td>
-                <input type="text" id="EmailAddress" name="EmailAddress" value="<?=$listItem['EmailAddress'];?>"/>
+                <input type="text" id="email" name="email" value="<?=$listItem['email'];?>" pattern="^[a-zA-Z0-9.!#$&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$" required />
+            </td>
+        </tr>
+        <tr>
+            <th>ユーザーID</th>
+            <td>
+                <input type="text" id="username" name="username" value="<?=$listItem['username'];?>"/>
+            </td>
+        </tr>
+        <tr>
+            <th>パスワード</th>
+            <td>
+                <input type="password" id="password" name="password" value="<?=$listItem['password'];?>"/>
             </td>
         </tr>
         <tr>
@@ -560,6 +585,7 @@
         </tr>
     </table>
 </form>
+<?include_once './views/footer.html';?>
 </body>
 </html>
 <script type="text/javascript">

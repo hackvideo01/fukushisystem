@@ -525,18 +525,25 @@
       display: none!important;
     }
 
-    input[type=text]{
-        margin: 0;
-        font-family: inherit;
-        font-size: inherit;
-        line-height: inherit;
-        width: 99%;
+input[type=text]{
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    width: 99%;
+    border-radius: 6px;
+    border: 1px solid #808080c9;
+    background: #FBFBFB;
+    height: 36px;
     }
     .checkbox_div{
       margin: 0 auto;
     }
-    textarea{
+textarea{
       width: 99%;
+      border-radius: 6px;
+      background: #FBFBFB;
+      border: 1px solid #808080c9;
     }
 
     @media only screen and (max-width: 959px) {
@@ -599,14 +606,7 @@
     require './PHPMailer/src/SMTP.php';
 
     ?>
-<div class="head-top">
-    <div class="head-top-title">
-        <p class="head-top-title-company">会社名のテキスト</p>
-    </div>
-    <div class="head-top-logo">
-        <img src="/fukushisystem/public/images/logo.png">
-    </div>
-</div>
+<?include './views/head.html';?>
 <!-- <nav class="navbar">
     <div class="max-width">
         <ul class="menu">
@@ -910,5 +910,6 @@ if (isset($_POST["send"])) {
 </div>
 <input type="submit" name="send" value="確認する" id="formbtn">
 </form>
+<?include_once './views/footer.html';?>
 </body>
 </html>

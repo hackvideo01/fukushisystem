@@ -1,2 +1,32 @@
-<link rel="icon" href="/fukushisystem/public/images/logo.png">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <link rel="icon" href="/fukushisystem/public/images/logo.png">
+<meta name="viewport" content="width=device-width, initial-scale=1"> -->
+<style type="text/css">
+	.head-top{
+        display: flex;
+        padding: 10px;
+    }
+    .head-top-title{
+        width: 92%;
+    }
+    .head-top-title-company{
+        margin: 20px 0 0 100px;
+        position: absolute;
+        font-weight: bold;
+        color: blue;
+        font-size: 19px;
+    }
+    .head-top-logo{
+        width: 8%;
+    }
+    .head-top-logo img{
+        height: 50px;
+    }
+</style>
+<div class="head-top">
+    <div class="head-top-title">
+        <p class="head-top-title-company"><?=$_SESSION['CompanyName']?></p>
+    </div>
+    <div class="head-top-logo">
+        <img src="/fukushisystem/public/images/logo.png">
+    </div>
+</div>

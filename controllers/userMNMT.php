@@ -92,10 +92,12 @@ class userMNMT extends controller{
 		}
 	}
 	function A(){
-		require_once("./views/head.html");
+		// require_once("./views/head.html");
 		$db = $this->model("database");
 		$database = new Database();
 		$database->setTable("usermanagement");
+		$_SESSION['dataSS'];
+		$dataSave = [];
 		if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==1){
 			$queryListBusiness[] = "SELECT Businesser_number FROM business ORDER BY Businesser_number ASC";
 			$queryListBusiness = implode(" ", $queryListBusiness);
@@ -115,47 +117,95 @@ class userMNMT extends controller{
 					$queryList = "SELECT * FROM usermanagement WHERE `Usermanagement_id` = ".$arr[2];
 					$listItem = $database->fetchRow($queryList);
 				}
-
-			require_once("./views/userMNMTA.html");
+				if (isset($_POST["btn_userMNMTCheck"])) {
+				$dataSave = array(
+						'Businesser_number' 				=> $_POST["Businesser_number"],
+						'Name_hira' 						=> $_POST["Name_hira"],
+						'Name_kana' 						=> $_POST["Name_kana"],
+						'Recipient_number' 					=> $_POST["Recipient_number"],
+						'Supply_municipalitie' 				=> $_POST["Supply_municipalitie"],
+						'Disability_support_type' 			=> $_POST["Disability_support_type"],
+						'Business_up_limit' 				=> $_POST["Business_up_limit"],
+						'Business_exemption_amount' 		=> $_POST["Business_exemption_amount"],
+						'Service_start_date' 				=> $_POST["Service_start_date"],
+						'Service_end_date' 					=> $_POST["Service_end_date"],
+						'Contract_field_number' 			=> $_POST["Contract_field_number"],
+						'Contract_date' 					=> $_POST["Contract_date"],
+						'Contract_end_date' 				=> $_POST["Contract_end_date"],
+						'Contract_payment_amount' 			=> $_POST["Contract_payment_amount"],
+						'Initial_addition' 					=> $_POST["Initial_addition"],
+						'Nursing_plan_notcreated' 			=> $_POST["Nursing_plan_notcreated"],
+						'Pick_drop_same_site' 				=> $_POST["Pick_drop_same_site"],
+						'Max_mgmt_office_number' 			=> $_POST["Max_mgmt_office_number"],
+						'Max_mgmt_office_name' 				=> $_POST["Max_mgmt_office_name"],
+						'Max_mgmt_result' 					=> $_POST["Max_mgmt_result"],
+						'Max_mgmt_after_user_burden' 		=> $_POST["Max_mgmt_after_user_burden"],
+						'Max_mgmt_addition' 				=> $_POST["Max_mgmt_addition"],
+						'Special_use_start_date' 			=> $_POST["Special_use_start_date"],
+						'Special_use_end_date' 				=> $_POST["Special_use_end_date"],
+						'Special_use_year_principle' 		=> $_POST["Special_use_year_principle"],
+						'Special_use_month_day' 			=> $_POST["Special_use_month_day"],
+						'Special_use_each_month' 			=> $_POST["Special_use_each_month"],
+						'Structout_support_cumulative' 		=> $_POST["Structout_support_cumulative"],
+						'Rechargeable' 						=> $_POST["Rechargeable"],
+						'Other_compay_use_status' 			=> $_POST["Other_compay_use_status"],
+						'Office_name' 						=> $_POST["Office_name"],
+						'User_burden_limit_start' 			=> $_POST["User_burden_limit_start"],
+						'User_burden_limit_end' 			=> $_POST["User_burden_limit_end"],
+					);
+				$_SESSION['dataSS'] = $dataSave;
+				$listItem = $_SESSION['dataSS'];
+				$comfirm = 1;
+			}
+			
 			if (isset($_POST["btn_userMNMT"])) {
 				$data = array(
-					'Businesser_number' 				=> $_POST["Businesser_number"],
-					'Name_hira' 						=> $_POST["Name_hira"],
-					'Name_kana' 						=> $_POST["Name_kana"],
-					'Recipient_number' 					=> $_POST["Recipient_number"],
-					'Supply_municipalitie' 				=> $_POST["Supply_municipalitie"],
-					'Disability_support_type' 			=> $_POST["Disability_support_type"],
-					'Business_up_limit' 				=> $_POST["Business_up_limit"],
-					'Business_exemption_amount' 		=> $_POST["Business_exemption_amount"],
-					'Service_start_date' 				=> $_POST["Service_start_date"],
-					'Service_end_date' 					=> $_POST["Service_end_date"],
-					'Contract_field_number' 			=> $_POST["Contract_field_number"],
-					'Contract_date' 					=> $_POST["Contract_date"],
-					'Contract_end_date' 				=> $_POST["Contract_end_date"],
-					'Contract_payment_amount' 			=> $_POST["Contract_payment_amount"],
-					'Initial_addition' 					=> $_POST["Initial_addition"],
-					'Nursing_plan_notcreated' 			=> $_POST["Nursing_plan_notcreated"],
-					'Pick_drop_same_site' 				=> $_POST["Pick_drop_same_site"],
-					'Max_mgmt_office_number' 			=> $_POST["Max_mgmt_office_number"],
-					'Max_mgmt_office_name' 				=> $_POST["Max_mgmt_office_name"],
-					'Max_mgmt_result' 					=> $_POST["Max_mgmt_result"],
-					'Max_mgmt_after_user_burden' 		=> $_POST["Max_mgmt_after_user_burden"],
-					'Max_mgmt_addition' 				=> $_POST["Max_mgmt_addition"],
-					'Special_use_start_date' 			=> $_POST["Special_use_start_date"],
-					'Special_use_end_date' 				=> $_POST["Special_use_end_date"],
-					'Special_use_year_principle' 		=> $_POST["Special_use_year_principle"],
-					'Special_use_month_day' 			=> $_POST["Special_use_month_day"],
-					'Special_use_each_month' 			=> $_POST["Special_use_each_month"],
-					'Structout_support_cumulative' 		=> $_POST["Structout_support_cumulative"],
-					'Rechargeable' 						=> $_POST["Rechargeable"],
-					'Other_compay_use_status' 			=> $_POST["Other_compay_use_status"],
-					'Office_name' 						=> $_POST["Office_name"],
-					'User_burden_limit_start' 			=> $_POST["User_burden_limit_start"],
-					'User_burden_limit_end' 			=> $_POST["User_burden_limit_end"],
+					'Businesser_number' 				=> $_SESSION['dataSS']["Businesser_number"],
+					'Name_hira' 						=> $_SESSION['dataSS']["Name_hira"],
+					'Name_kana' 						=> $_SESSION['dataSS']["Name_kana"],
+					'Recipient_number' 					=> $_SESSION['dataSS']["Recipient_number"],
+					'Supply_municipalitie' 				=> $_SESSION['dataSS']["Supply_municipalitie"],
+					'Disability_support_type' 			=> $_SESSION['dataSS']["Disability_support_type"],
+					'Business_up_limit' 				=> $_SESSION['dataSS']["Business_up_limit"],
+					'Business_exemption_amount' 		=> $_SESSION['dataSS']["Business_exemption_amount"],
+					'Service_start_date' 				=> $_SESSION['dataSS']["Service_start_date"],
+					'Service_end_date' 					=> $_SESSION['dataSS']["Service_end_date"],
+					'Contract_field_number' 			=> $_SESSION['dataSS']["Contract_field_number"],
+					'Contract_date' 					=> $_SESSION['dataSS']["Contract_date"],
+					'Contract_end_date' 				=> $_SESSION['dataSS']["Contract_end_date"],
+					'Contract_payment_amount' 			=> $_SESSION['dataSS']["Contract_payment_amount"],
+					'Initial_addition' 					=> $_SESSION['dataSS']["Initial_addition"],
+					'Nursing_plan_notcreated' 			=> $_SESSION['dataSS']["Nursing_plan_notcreated"],
+					'Pick_drop_same_site' 				=> $_SESSION['dataSS']["Pick_drop_same_site"],
+					'Max_mgmt_office_number' 			=> $_SESSION['dataSS']["Max_mgmt_office_number"],
+					'Max_mgmt_office_name' 				=> $_SESSION['dataSS']["Max_mgmt_office_name"],
+					'Max_mgmt_result' 					=> $_SESSION['dataSS']["Max_mgmt_result"],
+					'Max_mgmt_after_user_burden' 		=> $_SESSION['dataSS']["Max_mgmt_after_user_burden"],
+					'Max_mgmt_addition' 				=> $_SESSION['dataSS']["Max_mgmt_addition"],
+					'Special_use_start_date' 			=> $_SESSION['dataSS']["Special_use_start_date"],
+					'Special_use_end_date' 				=> $_SESSION['dataSS']["Special_use_end_date"],
+					'Special_use_year_principle' 		=> $_SESSION['dataSS']["Special_use_year_principle"],
+					'Special_use_month_day' 			=> $_SESSION['dataSS']["Special_use_month_day"],
+					'Special_use_each_month' 			=> $_SESSION['dataSS']["Special_use_each_month"],
+					'Structout_support_cumulative' 		=> $_SESSION['dataSS']["Structout_support_cumulative"],
+					'Rechargeable' 						=> $_SESSION['dataSS']["Rechargeable"],
+					'Other_compay_use_status' 			=> $_SESSION['dataSS']["Other_compay_use_status"],
+					'Office_name' 						=> $_SESSION['dataSS']["Office_name"],
+					'User_burden_limit_start' 			=> $_SESSION['dataSS']["User_burden_limit_start"],
+					'User_burden_limit_end' 			=> $_SESSION['dataSS']["User_burden_limit_end"],
 					'Usermanagement_type' 				=> 1
 				);
 				$database->insert($data);
-				header("Location: /fukushisystem/userMNMT/A");
+				// header("Location: /fukushisystem/userMNMT");
+				echo "<script>
+							urlBusiness();
+							function urlBusiness(){
+						        var result = alert('登録が終了しました。');
+						        	url = '/fukushisystem/userMNMT';
+						        	window.location.href = url;
+						    }
+
+						 </script>";
 			}else if(isset($_POST["btn_userMNMTUpdate"])) {
 				// echo "<script>alert('受給者番号：');</script>";
 				// exit();
@@ -222,6 +272,7 @@ class userMNMT extends controller{
 						echo "<script>alert('受給者番号：');";
 					}
 			}
+			require_once("./views/userMNMTA.html");
 		}else{
 			// echo "<script>alert('unit');</script>";
 			header("Location: /fukushisystem/unit");

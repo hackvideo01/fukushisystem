@@ -16,8 +16,8 @@
 	<style type="text/css">
         .panel-info {
             border-color: #bce8f1;
-            width: 1000px;
-            margin: auto;
+            width: 650px;
+            margin: auto auto 30px auto;
         }
         .logout{
             background: red;
@@ -55,20 +55,24 @@
         }
         table{
             border-collapse: collapse;
-            width: 1000px;
+            width: 650px;
             margin: 0 auto;
         }
         th {
-            border: solid 1px;
-            text-align: left;
-            background: skyblue;
-            color: white;
-            padding: 5px;
+            border: solid 1px #80808075;
+            text-align: center;
+            /* background: skyblue; */
+            color: black;
+            padding: 10px;
+            font-weight: 100;
         }
         td {
-            border: white solid 1px;
-            background: lightgray;
-            padding: 5px;
+            border: #80808075 solid 1px;
+            /*background: lightgray;*/
+            padding: 10px;
+        }
+        .panel-info>.panel-heading{
+            background: white;
         }
         /* Theme Name: NGUYEN LUC PRO
          * Description: テーマ
@@ -455,14 +459,7 @@
             height: 50px;
         }
     </style>
-    <div class="head-top">
-        <div class="head-top-title">
-            <p class="head-top-title-company">会社名のテキスト</p>
-        </div>
-        <div class="head-top-logo">
-            <img src="/fukushisystem/public/images/logo.png">
-        </div>
-    </div>
+    <?include './views/head.html';?>
     <!-- <nav class="navbar">
         <div class="max-width">
             <ul class="menu">
@@ -501,7 +498,7 @@
 	</div>
 	<table>
 		<tr>
-			<th>No.</th>
+			<th class="th-max-width" style="width: 60px;">No.</th>
             <th>事業所番号</th>
             <th>事業所名</th>
            <!--  <th>修正</th>
@@ -525,6 +522,7 @@
     <?}?>
 	</table>
     <?php include_once 'views/pagination.php'; ?>
+    <?include_once './views/footer.html';?>
 </body>
 </html>
 

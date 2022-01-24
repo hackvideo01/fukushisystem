@@ -4,7 +4,8 @@ class login extends controller{
 		$db = $this->model("database");
 		$_SESSION["usernameSS"]=NULL;
 		$access = $_GET['access'];
-
+		include_once './views/login.html';
+		
 		if (isset($_POST['login'])) {
 
 			if($_SESSION["usernameSS"]==NULL){
@@ -25,10 +26,10 @@ class login extends controller{
 							//         echo $item['Id'];
 							//     }
 							// }
-							
 							foreach ($list as $value) {
-								$_SESSION['usernameSS'] = $value['username'];
-								$_SESSION['role']		= $value['role'];
+								$_SESSION['usernameSS'] 	= $value['username'];
+								$_SESSION['role']			= $value['role'];
+								$_SESSION['CompanyName']	= $value['CompanyName'];
 							}
 							if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==1) {
 								header('Location: ./userMNMT');
@@ -38,12 +39,7 @@ class login extends controller{
 							
 							return true;
 						}else{
-							$error_info = "ユーザ名、パスワードが間違っています。";
-							echo '
-								<div style="text-align:center;color:white;font-weight:bold;">
-									<span>'.$error_info.'</span>
-								</div>	
-							 	';
+							echo '<script>document.getElementById("id-password").style.display = "block";</script>';
 							// return false;
 						}
 				}
@@ -131,7 +127,6 @@ class login extends controller{
 		if($_SESSION["usernameSS2"]!=NULL ){
 			header('Location: ./municipality');
 		}
-		include_once './views/login.html';
 	}
 }
 ?>

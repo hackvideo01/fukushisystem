@@ -407,7 +407,7 @@ class display_data extends controller{
 
 	}
 	function historyExport(){
-		require_once("./views/head.html");
+		// require_once("./views/head.html");
 		require_once("./libs/Pagination.php");
 		
 		if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==1){

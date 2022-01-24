@@ -1,44 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="./public/css/menu.css?v=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="/fukushisystem/public/images/logo.png">
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-	<title>会員マスタ</title>
+    <title>パスワード変更</title>
 </head>
+
 <body>
-	<style type="text/css">
-        .panel-info {
-            border-color: #bce8f1;
-            width: 1000px;
-            margin: auto auto 30px auto;
+    <style>
+        table{
+            padding: 25px;
+            margin: 0 auto;
+            /*border: 1px solid gray;*/
+            width: 700px;
+            border-collapse: separate;
+            border-spacing: 0 1em;
         }
-        .logout{
-            background: red;
-            color: white;
-            font-weight: bold;
+        table th{
+            color: black;
+            padding: 10px 10px;
+            background-color: #D8D8D8;
+            text-align: left;
+            border-radius: 6px;
+            width: 50%;
+            font-weight: 100;
         }
-        .unit{
-            background: green;
-            color: white;
+        table td{
+            width: 50%;
+            padding-left: 10px;
+        }
+        input{
+            padding: 13px;
+            border: 1px solid #a5a2a2;
+            background: #FBFBFB;
+        }
+        input, textarea{
+            /*border: solid 1px #ddd;*/
+            /*padding: 5px 20px;*/
+            width: 100%;
+            border-radius: 6px;
+        }
+        input[type="submit"]{
+            width: auto;
+            color:#fff;
+            cursor: pointer;
+        }
+        .submit-btn-forget-pass{
+            padding: 10px 20px !important;
+            display: block;
+            margin: 30px auto 0px auto;
+            /* background: radial-gradient(#3b6c95, #003969f2); */
+            background: #25305C;
+            width: 250px !important;
+        }
+        h1{
+            text-align: center;
         }
         .btn-unit{
             text-align: center;
         }
         .btn-unit button{
-            background-color: #666666;
+            background: radial-gradient(#555555, #b5b5b5);
             color: white;
-            padding: 10px 20px;
+            padding: 10px 30px;
+            border: none;
+            cursor: pointer;
         }
         .btn-unit {
             text-align: right;
-            margin-right: 23%;
+            margin-right: 30%;
             margin-bottom: 10px;
         }
         @media (max-width: 1024px) {
@@ -47,34 +80,16 @@
                 margin-right: 1%;
             }
         }
-        h1{
-            text-align: center;
+        .logout{
+            background: red;
+            color: white;
+            font-weight: bold;
         }
-        .activeRecord{
-            text-align: center;
+        .important{
+            background: red;
+            color: white;
         }
-        table{
-            border-collapse: collapse;
-            width: 1000px;
-            margin: 0 auto;
-        }
-        th {
-            border: solid 1px #80808075;
-            text-align: center;
-            /* background: skyblue; */
-            color: black;
-            padding: 10px;
-            font-weight: 100;
-        }
-        td {
-            border: #80808075 solid 1px;
-            /*background: lightgray;*/
-            padding: 10px;
-        }
-        .panel-info>.panel-heading{
-            background: white;
-        }
-    	/* Theme Name: NGUYEN LUC PRO
+         /* Theme Name: NGUYEN LUC PRO
          * Description: テーマ
          * Theme URI: https://lucnguyen.com/
          * Version: 1.0
@@ -441,159 +456,162 @@
                 line-height: 38px;
             }
         }
-        .head-top{
-            display: flex;
-            padding: 10px;
+        .tab{
+            height: 80px;
+            background-color: #131A44;
         }
-        .head-top-title{
-            width: 92%;
-        }
-        .head-top-title-company{
-            margin: 20px 0 0 100px;
+        .login-title{
+            color: white;
+            font-size: 23px;
+            margin: 28px;
             position: absolute;
         }
-        .head-top-logo{
-            width: 8%;
-        }
-        .head-top-logo img{
-            height: 50px;
-        }
-        
     </style>
-    <?include './views/head.html';?>
-    <!-- <nav class="navbar">
-        <div class="max-width">
-            <ul class="menu">
-                <li class=""><a href="/fukushisystem/municipality" class="menu-btn">市町村マスタ</a></li>
-                <li class=""><a href="/fukushisystem/unit" class="menu-btn">単価マスタ</a></li>
-                <li class=""><a href="/fukushisystem/memberMaster" class="menu-btn">会員マスタ</a></li>
-            </ul>
-            <div class="menu-btn">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-    </nav> -->
 
-    <?include './views/menuOffice.html';?>
-
-	<!-- <button type="button" class="logout" onclick="location.href='/fukushisystem/logout'">ログアウト</button> -->
-	<!-- <button type="button" onclick="location.href='/fukushisystem/userMNMT'">利用者管理</button>
-	<button type="button" onclick="location.href='/fukushisystem/business'">事業所マスタ</button>
-	<button type="button" onclick="location.href='/fukushisystem/display_data'">印刷画面</button> -->
-	<!-- <button type="button" class="unit" onclick="location.href='/fukushisystem/unit'">単位</button> -->
-
-	<h1>会員マスタ</h1>
-    
-    <div class="btn-unit">
-        <button type="button" onclick="location.href='/fukushisystem/memberMaster/Update'">新規追加</button>
-    </div>
-    
-	<table>
-		<tr>
-			<th class="th-max-width" style="width: 60px;">No.</th>
-			<th>会社名</th>
-			<th>住　所</th>
-            <th>電話番号</th>
-			<th>修正</th>
-			<th>削除</th>
-		</tr>
-	<?
-        if(isset($_GET['page'])){
-            $i = ($_GET['page']-1)*10+1;
-        }else{
-            $i = 1;
-        }
-        foreach ($listItem as $item) {
-    ?>
+<div class="tab">
+  <!-- <button class="tablinks" onclick="openCity(event, 'Operation')">運営</button>
+  <button class="tablinks" onclick="openCity(event, 'Office')">事業所</button> -->
+    <!-- <a href="/fukushisystem/newSignUp" style="padding: 6px;background-color: #f5ba1a;border-radius: 5px;color: black;">新規登録</a> -->
+    <a href="/fukushisystem/login"><p class="login-title">ログイン</p></a>
+</div>
+<h1 style="margin-top: 30px;margin-bottom: 30px;font-weight: 100;">パスワード変更</h1>
+<!-- <div id="password-empty" style = "text-align:center; color: red; margin-top: 30px; display:none;">パスワードを入力してください！</div> -->
+<form method="post">
+    <table>
         <tr>
-            <td><?echo $i++;?>.</td>
-            <td><?php echo $item['CompanyName'];?></td>
-            <td><?php echo $item['Address'];?></td>
-            <td><?php echo $item['TelephoneNumber'];?></td>
-            <td><button onclick="javascript:update(`<?php echo $item['Id'];?>`)">修正</button></td>
-            <td><button onclick="javascript:deleteItem(`<?php echo $item['Id'];?>`)">削除</button></td>
+            <th>新しいパスワード入力</th>
+            <td>
+                <input type="password" id="password" name="password"/>
+            </td>
         </tr>
-    <?}?>
-	</table>
-    <?php include_once 'views/pagination.php'; ?>
-    <?include_once './views/footer.html';?>
+        <tr>
+            <td><span id='messagePASS'></span></td>
+        </tr>
+        <tr>
+            <td><span id='message'></span></td>
+        </tr>
+        <tr>
+            <th>新しいパスワード再度入力</th>
+            <td>
+                <input type="password" id="confirm_password" name="confirm_password"/>
+            </td>
+        </tr>
+        <tr>
+            <td><span id='messagePASSCOMFIRM'></span></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input class="submit-btn-forget-pass" name="forgetPass" id="forgetPass" type="submit" value="送信"/>
+            </td>
+        </tr>
+    </table>
+</form>
+<?include_once './views/footer.html';?>
 </body>
 </html>
-
 <script type="text/javascript">
-    //Delete
-    function deleteItem(id){
-        // var flag = confirm('削除ですか ?');
-        // if(flag == true){
-        //     var url = 'delete.php?Activity_record_id=' + id;
-        //     window.location.href = url;
-        // }else{
-        //     return false;
-        // }
+    $('#password, #confirm_password').on('keyup', function () {
+        if ($('#password').val() == $('#confirm_password').val()) {
+          $('#message').html('パスワードが一致します。').css('color', 'green');
+          $('#forgetPass').prop('disabled', false);
+        } else {
+          $('#message').html('パスワードが一致しません。').css('color', 'red');
+          $('#forgetPass').prop('disabled', true);
+        }
+      });
 
-        var result = confirm(id+"　削除したいですか?");
-        if (result) {
-            var action = "deleteMember";
-           $.post("./controllers/delete.php",
-            {
-              changestatus: status.value,
-              id: id,
-              action:action
-            },
-            function(data,status){
-              if(status=="success"){
-                alert("削除されました。");
-                location.reload();
-              }else{
-                alert("削除できませんでした。");
-              }
+    $('#password').on('keyup', function () {
+        if ($('#password').val().length > 5) {
+          $('#messagePASS').html('正しいです。').css('color', 'green');
+          $('#forgetPass').prop('disabled', false);
+        } else {
+          $('#messagePASS').html('５文字以上で入力してください。').css('color', 'red');
+          $('#forgetPass').prop('disabled', true);
+        }
+        if ($('#password').val().match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {
+          $('#messagePASS').html('半角英数で入力してください。').css('color', 'red');
+          $('#forgetPass').prop('disabled', true);
+        }
+      });
+
+    $('#confirm_password').on('keyup', function () {
+        if ($('#confirm_password').val().length > 5) {
+          $('#messagePASSCOMFIRM').html('正しいです。').css('color', 'green');
+          $('#forgetPass').prop('disabled', false);
+        } else {
+          $('#messagePASSCOMFIRM').html('５文字以上で入力してください。').css('color', 'red');
+          $('#forgetPass').prop('disabled', true);
+        }
+        if ($('#confirm_password').val().match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {
+          $('#messagePASSCOMFIRM').html('半角英数で入力してください。').css('color', 'red');
+          $('#forgetPass').prop('disabled', true);
+        }
+      });
+
+    $('input[type="date"]').on('change', function() {
+        var days = ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'];
+        var d = new Date(document.getElementById("Date").value);
+        var dayName = days[d.getDay()];
+        document.getElementById('Day').value = dayName;
+    });
+
+     $(document).ready(function () {
+        $('#bt').click(function () {
+            $('#Start_time').prop('disabled', function (index, value) {   // Passing "function()" as parameter to .prop().
+                // if (value) {
+                //     $('#msg').html('dropdown list <b>enabled</b>');
+                // }
+                // else {
+                //     $('#msg').html('dropdown list <b>disabled</b>');
+                // }
+
+                return !value;  // return true or false
+            });
+            $('#End_time').prop('disabled', function (index, value) {   // Passing "function()" as parameter to .prop().
+                // if (value) {
+                //     $('#msg').html('dropdown list <b>enabled</b>');
+                // }
+                // else {
+                //     $('#msg').html('dropdown list <b>disabled</b>');
+                // }
+
+                return !value;  // return true or false
+            });
+        });
+    });
+
+    function outputSelectedValueAndText(obj)
+    {
+        /* 
+         * obj は select タグであり、selectedIndex プロパティには
+         * 変更後の選択項目のインデックスが格納されています
+         */
+        var idx = obj.selectedIndex;
+        var value = obj.options[idx].value; // 値
+        var text  = obj.options[idx].text;  // 表示テキスト
+        if (text=="欠席") {
+            $('#Start_time').prop('disabled', function (index, value) {   // Passing "function()" as parameter to .prop().
+                // if (value) {
+                //     $('#msg').html('dropdown list <b>enabled</b>');
+                // }
+                // else {
+                //     $('#msg').html('dropdown list <b>disabled</b>');
+                // }
+
+                return !value;  // return true or false
+            });
+            $('#End_time').prop('disabled', function (index, value) {   // Passing "function()" as parameter to .prop().
+                // if (value) {
+                //     $('#msg').html('dropdown list <b>enabled</b>');
+                // }
+                // else {
+                //     $('#msg').html('dropdown list <b>disabled</b>');
+                // }
+
+                return !value;  // return true or false
             });
         }
+        // 値とテキストをコンソールに出力
+        // console.log('value = ' + value + ', ' + 'text = ' + text);
     }
-
-    //Update
-    function update(id){
-        // var flag = confirm('削除ですか ?');
-        // if(flag == true){
-        //     var url = 'delete.php?Activity_record_id=' + id;
-        //     window.location.href = url;
-        // }else{
-        //     return false;
-        // }
-
-        var result = confirm(id+"　編集したいですか？");
-        if (result) {
-            var action = "updateMemberMaster";
-           $.post("./controllers/memberMaster.php",
-            {
-              changestatus: status.value,
-              id: id,
-              action:action
-            },
-            function(data,status){
-              if(status=="success"){
-                // alert("編集されました。");
-                // // location.reload();
-                location.href="./memberMaster/Update/"+id;
-
-              // }else{
-              //   alert("編集できませんでした。");
-              }
-            });
-        }
-    }
-
-    // function setParam(href, key, value){
-    //     var url = new URL(href);
-
-    //     url.searchParams.set(key, value);
-    //     return url.href;
-    // }
-
-    function changeMemberMaster(page){
-        url = "/fukushisystem/memberMaster&page="+page;
-        window.location.href = url;
-    }
-
-    
 </script>
