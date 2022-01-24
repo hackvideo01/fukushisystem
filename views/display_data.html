@@ -6,7 +6,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="./public/css/menu.css?v=1">
-    <link rel="icon" href="/fukushisystem/public/images/logo.png">
+     <?include_once './views/headLink.html';?>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<title>印刷画面</title>
 </head>
@@ -556,7 +556,7 @@
     <?include './views/menuOperation.html';?>
 
 	<!-- <button type="button" class="logout" onclick="location.href='/fukushisystem/logout'">ログアウト</button> -->
-    <a style="background-color: gray;color: white;padding: 5px;" href="/fukushisystem/display_data/historyExport">エクスポート履歴画面</a>
+    <a style="background-color: gray;color: white;padding: 5px;" href="<?=WEB_URL?>display_data/historyExport">エクスポート履歴画面</a>
 	<!-- <button type="button" onclick="location.href='/fukushisystem/activeRecord'">活動記録</button>
 	<button type="button" onclick="location.href='/fukushisystem/userMNMT'">利用者管理</button>
 	<button type="button" onclick="location.href='/fukushisystem/business'">事業所マスタ</button> -->
@@ -590,7 +590,7 @@
 <div class="exportData-form">
     <div class="form2">
         <div class="form2-children">
-            <form method="post" action="/fukushisystem/display_data/exportData">
+            <form method="post" action="<?=WEB_URL?>display_data/exportData">
                 <h1>SVファイル</h1>
                 <label class="select" for="pet-select">年　度</label>
                 <select name="year" required>
@@ -628,7 +628,7 @@
     </div>
     <div class="form1">
         <div class="form1-children">
-            <form method="post" action="/fukushisystem/display_data/exportDataSE">
+            <form method="post" action="<?=WEB_URL?>display_data/exportDataSE">
                 <h1>SEファイル</h1>
                 <label class="select" for="pet-select">年　度</label>
                 <select name="year" required>
@@ -675,7 +675,7 @@
 
 <script type="text/javascript">
     function changePageDisplay_data(page){
-        url = "/fukushisystem/display_data&page="+page;
+        url = "<?=WEB_URL?>display_data&page="+page;
         window.location.href = url;
     }
 </script>

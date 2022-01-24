@@ -525,7 +525,7 @@
     <?if($comfirm == 1){?>
         <button onclick="history.back()">戻る</button>
     <?}else{?>
-        <button type="button" onclick="location.href='/fukushisystem/userMNMT'">一覧へ戻る</button>
+        <button type="button" onclick="location.href='<?=WEB_URL?>userMNMT'">一覧へ戻る</button>
     <?}?>
 </div>
 <form method="post" name="myForm" onsubmit="return validateForm()" required>

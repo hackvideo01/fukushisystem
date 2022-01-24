@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" href="/fukushisystem/public/images/logo.png">
+    <link rel="icon" href="<?=WEB_URL?>public/images/logo.png">
     <title>会員マスタ</title>
 </head>
 
@@ -513,7 +513,7 @@
 
 <h1 style="margin-top: 30px;font-weight: 100;">新規会員登録</h1>
 <div class="btn-unit">
-    <button type="button" onclick="location.href='/fukushisystem/memberMaster'">一覧へ戻る</button>
+    <button type="button" onclick="location.href='<?=WEB_URL?>memberMaster'">一覧へ戻る</button>
 </div>
     <div id="email-duplicate" style = "text-align:center; color: red; margin-top: 30px;display: none;">このメールアドレスが使われています。</div>
     <h3 id="acount-email-haved" style="text-align:center; color:red;margin-top:30px;display: none;">アカウントが登録されました。他のアカウントを入力して下さい。</h3>

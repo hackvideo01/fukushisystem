@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./public/css/reset.css">
     <link rel="stylesheet" href="./public/css/login.css?v=4">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
-    <link rel="icon" href="/fukushisystem/public/images/logo.png">
+    <?include_once './views/headLink.html';?>
     <title>福祉システム</title>
 </head>
 <body>
@@ -19,13 +19,13 @@
 </div>
 
 <div class="logo-cover">
-    <img src="/fukushisystem/public/images/logo.png">
+    <img src="<?=WEB_URL?>public/images/logo.png">
 </div>
 
 <?if($access == 1){?>
 <div id="Operation" class="tabcontent">
   <div id="wrapper">
-        <form id="form-login" method="post">
+        <form id="form-login" method="post" name="myForm" onsubmit="return validateForm()" required>
             <!-- <h1 class="form-heading">ログイン - 運営</h1> -->
             <div class="form-group">
                 <!-- <i class="far fa-user"></i> -->
@@ -47,7 +47,7 @@
 <div id="id-password" style="text-align:center;color:red;font-weight:bold;display: none;margin-top: 30px;">ユーザーIDまたはパスワードが正しくありません。</div>
 <div id="Office" class="tabcontent">
     <div id="wrapper">
-        <form id="form-login" method="post">
+        <form id="form-login" method="post" name="myForm" onsubmit="return validateForm()" required>
             <!-- <h1 class="form-heading">ログイン - 事業所</h1> -->
             <div class="form-group">
                 <!-- <i class="far fa-user"></i> -->
@@ -65,9 +65,9 @@
             <!-- <input name="login-office" type="submit" value="ログイン" class="form-submit"> -->
             <input name="login" type="submit" value="ログイン" class="form-submit">
             <div class="forget-pass">
-                <a class="forget-pass-a" href="/fukushisystem/forget_pass">パスワードを忘れの場合</a>
+                <a class="forget-pass-a" href="<?=WEB_URL?>forget_pass">パスワードを忘れの場合</a>
                 <span>又は</span>
-                <a class="register" href="/fukushisystem/newSignUp">会員登録</a>
+                <a class="register" href="<?=WEB_URL?>newSignUp">会員登録</a>
             </div>
         </form>
     </div>
@@ -98,25 +98,22 @@
 <script src="public/js/passwordShowHide.js?v=2"></script>
 <script>
      $('#username').on('keyup', function () {
-        if ($('#username').val().length > 0) {
+        if ($('#username').val().length > 5) {
           $('#messageID').html('').css('color', 'green');
-          // $('#login').prop('disabled', false);
         } else {
-          $('#messageID').html('ユーザーIDを入力してください。').css('color', 'red');
-          $('#login').prop('disabled', true);
+          $('#messageID').html('５文字以上で入力してください。').css('color', 'red');
         }
-        // if ($('#username').val().match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {
-        //   $('#messageID').html('半角英数で入力してください。').css('color', 'red');
-        //   $('#login').prop('disabled', true);
-        // }
+        if ($('#username').val().match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {
+          $('#messageID').html('半角英数で入力してください。').css('color', 'red');
+        }
       });
 
     $('#password').on('keyup', function () {
-        if ($('#password').val().length > 0) {
+        if ($('#password').val().length > 5) {
           $('#messagePASS').html('').css('color', 'green');
           $('#login').prop('disabled', false);
         } else {
-          $('#messagePASS').html('パスワードを入力してください。').css('color', 'red');
+          $('#messagePASS').html('５文字以上で入力してください。').css('color', 'red');
           $('#login').prop('disabled', true);
         }
         // if ($('#password').val().match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {
@@ -137,6 +134,20 @@
       }
       document.getElementById(cityName).style.display = "block";
       evt.currentTarget.className += " active";
+    }
+
+    function validateForm() {
+      var username = document.forms["myForm"]["username"].value;
+      var password = document.forms["myForm"]["password"].value;
+    　if (username == "" || username == null) {
+        alert("ユーザーIDを入力して下さい。");
+        return false;
+      }
+      if (password == "" || password == null) {
+        alert("パスワードを入力してください。");
+        return false;
+      }
+       
     }
 </script>
 </html>

@@ -478,7 +478,7 @@
 	<h1>単位マスタ</h1>
     
     <div class="btn-unit">
-        <button type="button" onclick="location.href='/fukushisystem/unit/Update'">新規追加</button>
+        <button type="button" onclick="location.href='<?=WEB_URL?>unit/Update'">新規追加</button>
     </div>
 	<table>
 		<tr>
@@ -583,7 +583,7 @@
     // }
 
     function changePageUnit(page){
-        url = "/fukushisystem/unit&page="+page;
+        url = "<?=WEB_URL?>unit&page="+page;
         window.location.href = url;
     }
 

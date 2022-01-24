@@ -1,4 +1,5 @@
 <? 
+require './config/define.php';
 class unit extends controller{
 	function welcome(){
 		require_once("./libs/Pagination.php");
@@ -48,7 +49,7 @@ class unit extends controller{
 			require_once("./views/unitMNMT.html");
 		}else{
 			// echo "<script>alert('unit');</script>";
-			header("Location: /fukushisystem/userMNMT");
+			header("Location: ".WEB_URL."userMNMT");
 		}
 	}
 	function Update(){
@@ -88,7 +89,7 @@ class unit extends controller{
 						'Unit_price' 				=> $_POST["Unit_price"]
 					);
 				$database->insert($data);
-				header("Location: /fukushisystem/unit");
+				header("Location: ".WEB_URL."unit");
 				}else{
 					echo "<script>alert('サービスコードはありました。');</script>";
 				}
@@ -119,7 +120,7 @@ class unit extends controller{
 							function UpdateUnit(){
 						        var result = confirm('修正されました。');
 						        if (result) {
-						        	url = '/fukushisystem/unit/Update/".$arr[2]."';
+						        	url = '".WEB_URL."/unit/Update/".$arr[2]."';
 						        	window.location.href = url;
 						        }
 						    }
@@ -130,9 +131,10 @@ class unit extends controller{
 						echo "<script>alert('受給者番号：');";
 					}
 			}
+
 		}else{
 			// echo "<script>alert('unit');</script>";
-			header("Location: /fukushisystem/unit");
+			header("Location: ".WEB_URL."unit");
 		}
 	}
 	function UrlProcess(){

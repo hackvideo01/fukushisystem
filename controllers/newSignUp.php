@@ -5,6 +5,7 @@
 		require './PHPMailer/src/Exception.php';
 	    require './PHPMailer/src/PHPMailer.php';
 	    require './PHPMailer/src/SMTP.php';
+	    require './config/define.php';
 	    
 class newSignUp extends controller{
 	public function welcome(){
@@ -43,10 +44,10 @@ class newSignUp extends controller{
 			$_SESSION['email'] = $_POST['email'];
 
 		    if ($_POST['email']!=""&&$_POST['username']!=""&&$_POST['password']!=""&&$_POST['CompanyName']!="") {
-				$queryCount =  'SELECT COUNT(*) AS `total` FROM `users` WHERE `username` = "'.$_REQUEST["username"].'"';
+				$queryCount =  "SELECT COUNT(*) AS `total` FROM `users` WHERE `username` = '".$_REQUEST["username"]."'";
 				$countItem = $database->fetchRow($queryCount)['total'];
 
-				$queryCountEmail =  'SELECT COUNT(*) AS `total` FROM `users` WHERE `email` = "'.$_REQUEST["email"].'"';
+				$queryCountEmail =  "SELECT COUNT(*) AS `total` FROM `users` WHERE `email` = '".$_REQUEST["email"]."'";
 				$countItemEmail = $database->fetchRow($queryCountEmail)['total'];
 
 				if ($countItem == 0 && $countItemEmail == 0) {
@@ -61,7 +62,7 @@ class newSignUp extends controller{
 							'TelephoneNumber' 			=> $_POST["TelephoneNumber"],
 							'PersonChargeName' 			=> $_POST["PersonChargeName"],
 							'PersonChargeInformation' 	=> $_POST["PersonChargeInformation"],
-						'role' 						=> 1
+							'role' 						=> 1
 					);
 					$database->insert($data);
 
@@ -103,7 +104,7 @@ class newSignUp extends controller{
 
 			        $mailguest->send();
 			        //echo 'Message has been sent';
-			        header("Location: /fukushisystem/newSignUp/Success");
+			        header("Location: ".WEB_URL."newSignUp/Success");
 			        
 			    } catch (Exception $e) {
 			        echo 'Message could not be sent.';

@@ -1,4 +1,5 @@
 <? 
+require './config/define.php';
 class display_data extends controller{
 	function welcome(){
 		require_once("./libs/Pagination.php");
@@ -53,9 +54,9 @@ class display_data extends controller{
 		}else{
 			// echo "<script>alert('unit');</script>";
 			if (isset($_SESSION['usernameSS2'])) {
-				header("Location: /fukushisystem/unit");
+				header("Location: ".WEB_URL."unit");
 			}else{
-				header("Location: /fukushisystem/login");
+				header("Location: ".WEB_URL."login");
 			}
 		}
 		// require_once("./views/display_data.html");
@@ -445,7 +446,7 @@ class display_data extends controller{
 			require_once("./views/historyEX.html");
 		}else{
 			// echo "<script>alert('unit');</script>";
-			header("Location: /fukushisystem/unit");
+			header("Location: ".WEB_URL."unit");
 		}
 	}
 }

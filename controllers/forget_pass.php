@@ -17,7 +17,7 @@ class forget_pass extends controller{
 		$token_after = '';
 		$link = '';
 		$username = '';
-		$PATH_PASS = PATH_PASS;
+		$PATH_PASS = WEB_URL;
 		if (isset($_POST['forgetPass'])) {
 			$_SESSION['email'] = $_POST['email'];
 
@@ -51,7 +51,7 @@ class forget_pass extends controller{
 						}
 					}
 				$pass_verify = password_verify($token_before , $token_after);
-				$link = "fukushisystem/forget_pass/forget_pass_reset&username=".$username."&email=".$_POST['email']."&token=".$token_after;
+				$link = "forget_pass/forget_pass_reset&username=".$username."&email=".$_POST['email']."&token=".$token_after;
 			    $mailguest = new PHPMailer(true);                              // Passing `true` enables exceptions
 			    try {
 			        //Server settings
@@ -191,7 +191,7 @@ class forget_pass extends controller{
 				'password' 		=> $_POST["password"]
 			);
 			$list =  $database->update($data, array(['username', $_GET['username']]));
-			header("Location: /fukushisystem/forget_pass/Success_NewPass");
+			header("Location: ".WEB_URL."forget_pass/Success_NewPass");
 		}else{
 			 echo '<script>document.getElementById("password-empty").style.display = "block";</script>';
 		}

@@ -5,6 +5,7 @@
 		require './PHPMailer/src/Exception.php';
 	    require './PHPMailer/src/PHPMailer.php';
 	    require './PHPMailer/src/SMTP.php';
+	    require './config/define.php';
 class memberMaster extends controller{
 	function welcome(){
 		require_once("./libs/Pagination.php");
@@ -56,7 +57,7 @@ class memberMaster extends controller{
 			require_once("./views/memberMasterMNMT.html");
 		}else{
 			// echo "<script>alert('unit');</script>";
-			header("Location: /fukushisystem/userMNMT");
+			header("Location: ".WEB_URL."userMNMT");
 		}
 	}
 	function Update(){
@@ -83,27 +84,6 @@ class memberMaster extends controller{
 			if (isset($_POST["btn_memberMaster"])) {
 				$databaseUsers = new Database();
 				$databaseUsers->setTable("users");
-				// $queryList = "SELECT  COUNT(`MemberMaster_Id`) AS `total` FROM membermaster WHERE MemberMaster_Id ="."'".$_POST["MemberMaster_Id"]."'";
-				// // $queryList = implode(" ", $queryList);
-				// $listItem = $database->fetchRow($queryList)['total'];
-				// // print_r($listItem);
-				// // echo $listItem;
-				// // exit();
-				// if ($listItem==0) {
-				// 	$data = array(
-				// 		'CompanyName' 				=> $_POST["CompanyName"],
-				// 		'PostCode' 					=> $_POST["PostCode"],
-				// 		'Address' 					=> $_POST["Address"],
-				// 		'TelephoneNumber' 			=> $_POST["TelephoneNumber"],
-				// 		'PersonChargeName' 			=> $_POST["PersonChargeName"],
-				// 		'PersonChargeInformation' 	=> $_POST["PersonChargeInformation"],
-				// 		'email' 					=> $_POST["email"]
-				// 	);
-				// $database->insert($data);
-				// header("Location: /fukushisystem/memberMaster");
-				// }else{
-				// 	echo "<script>alert('サービスコードはありました。');</script>";
-				// }
 
 				$_SESSION['email'] = $_POST['email'];
 
@@ -168,7 +148,7 @@ class memberMaster extends controller{
 
 			        $mailguest->send();
 			        //echo 'Message has been sent';
-			        header("Location: /fukushisystem/memberMaster/MemberSuccess");
+			        header("Location: ".WEB_URL."memberMaster/MemberSuccess");
 			        
 			    } catch (Exception $e) {
 			        echo 'Message could not be sent.';
@@ -268,7 +248,7 @@ class memberMaster extends controller{
 								function UpdateMemberMaster(){
 							        var result = confirm('修正されました。メールへユーザー名とパスワードを送っていました。');
 							        if (result) {
-							        	url = '/fukushisystem/memberMaster/Update/".$arr[2]."';
+							        	url = '".WEB_URL."memberMaster/Update/".$arr[2]."';
 							        	window.location.href = url;
 							        }
 							    }
@@ -284,7 +264,7 @@ class memberMaster extends controller{
 			}
 		}else{
 			// echo "<script>alert('unit');</script>";
-			header("Location: /fukushisystem/memberMaster");
+			header("Location: ".WEB_URL."memberMaster");
 		}
 	}
 	function MemberSuccess(){

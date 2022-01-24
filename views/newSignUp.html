@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" href="/fukushisystem/public/images/logo.png">
+    <link rel="icon" href="<?=WEB_URL?>public/images/logo.png">
     <title>会員登録</title>
 </head>
 
@@ -475,7 +475,7 @@
   <!-- <button class="tablinks" onclick="openCity(event, 'Operation')">運営</button>
   <button class="tablinks" onclick="openCity(event, 'Office')">事業所</button> -->
     <!-- <a href="/fukushisystem/newSignUp" style="padding: 6px;background-color: #f5ba1a;border-radius: 5px;color: black;">新規登録</a> -->
-    <a href="/fukushisystem/login"><p class="login-title">ログイン</p></a>
+    <a href="<?=WEB_URL?>login"><p class="login-title">ログイン</p></a>
 </div>
 <h1 style="margin-top: 30px;margin-bottom: 30px;font-weight: 100;">新規会員登録</h1>
 <div class="btn-unit">
@@ -546,7 +546,7 @@
             <tr>
                 <th>パスワード<span class="need-input">（必須）</span></th>
                 <td>
-                    <input type="password" id="password" name="password" value="<?=$listItem['password'];?>" readonly="readonly" minlength="5/>
+                    <input type="password" id="password" name="password" value="<?=$listItem['password'];?>" readonly="readonly" minlength="5"/>
                 </td>
             </tr>
         <?}else{?>
@@ -593,6 +593,9 @@
             </td>
         </tr>
         <tr>
+            <td><span id='messageEmail'></span></td>
+        </tr>
+        <tr>
             <th>ユーザーID<span class="need-input">（必須）</span></th>
             <td>
                 <input type="text" id="username" name="username" value="<?=$listItem['username'];?>"/>
@@ -629,7 +632,7 @@
 <script type="text/javascript">
     $('#username').on('keyup', function () {
         if ($('#username').val().length > 5) {
-          $('#messageID').html('正しいです。').css('color', 'green');
+          $('#messageID').html('').css('color', 'green');
           $('#newSignUpCheck').prop('disabled', false);
         } else {
           $('#messageID').html('５文字以上で入力してください。').css('color', 'red');
@@ -643,7 +646,7 @@
 
     $('#password').on('keyup', function () {
         if ($('#password').val().length > 5) {
-          $('#messagePASS').html('正しいです。').css('color', 'green');
+          $('#messagePASS').html('').css('color', 'green');
           $('#newSignUpCheck').prop('disabled', false);
         } else {
           $('#messagePASS').html('５文字以上で入力してください。').css('color', 'red');
@@ -652,6 +655,23 @@
         if ($('#password').val().match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {
           $('#messagePASS').html('半角英数で入力してください。').css('color', 'red');
           $('#newSignUpCheck').prop('disabled', true);
+        }
+      });
+
+    $('#email').on('keyup', function () {
+        // if ($('#email').val().length > 5) {
+        //   $('#messagePASS').html('').css('color', 'green');
+        //   $('#newSignUpCheck').prop('disabled', false);
+        // } else {
+        //   $('#messagePASS').html('５文字以上で入力してください。').css('color', 'red');
+        //   $('#newSignUpCheck').prop('disabled', true);
+        // }
+        if ($('#email').val().match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {
+          $('#messageEmail').html('半角英数で入力してください。').css('color', 'red');
+          $('#newSignUpCheck').prop('disabled', true);
+        }else{
+          $('#messageEmail').html('').css('color', 'red');
+          $('#newSignUpCheck').prop('disabled', false);
         }
       });
 

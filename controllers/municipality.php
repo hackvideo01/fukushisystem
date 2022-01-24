@@ -1,4 +1,5 @@
 <? 
+require './config/define.php';
 class municipality extends controller{
 	function welcome(){
 		require_once("./libs/Pagination.php");
@@ -37,7 +38,7 @@ class municipality extends controller{
 			require_once("./views/municipalityMNMT.html");
 		}else{
 			// echo "<script>alert('unit');</script>";
-			header("Location: /fukushisystem/userMNMT");
+			header("Location: ".WEB_URL."userMNMT");
 		}
 	}
 	function Update(){
@@ -82,7 +83,7 @@ class municipality extends controller{
 						'Municipality_number' 		=> $_SESSION['Municipality']
 					);
 				$database->insert($data);
-				header("Location: /fukushisystem/municipality");
+				header("Location: ".WEB_URL."municipality");
 				}else{
 					echo "<script>alert('サービスコードはありました。');</script>";
 				}
@@ -111,7 +112,7 @@ class municipality extends controller{
 							function UpdateMunicipality(){
 						        var result = confirm('修正されました。');
 						        if (result) {
-						        	url = '/fukushisystem/municipality/Update/".$arr[2]."';
+						        	url = '".WEB_URL."municipality/Update/".$arr[2]."';
 						        	window.location.href = url;
 						        }
 						    }
@@ -125,7 +126,7 @@ class municipality extends controller{
 			require_once("./views/municipalityNew.html");
 		}else{
 			// echo "<script>alert('unit');</script>";
-			header("Location: /fukushisystem/municipality");
+			header("Location: ".WEB_URL."municipality");
 		}
 	}
 	function UrlProcess(){

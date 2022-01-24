@@ -1,4 +1,5 @@
 <? 
+require './config/define.php';
 class business extends controller{
 	function welcome(){
 		require_once("./libs/Pagination.php");
@@ -38,9 +39,9 @@ class business extends controller{
 		}else{
 			// echo "<script>alert('unit');</script>";
 			if (isset($_SESSION['usernameSS2'])) {
-				header("Location: /fukushisystem/unit");
+				header("Location: ".WEB_URL."unit");
 			}else{
-				header("Location: /fukushisystem/login");
+				header("Location: ".WEB_URL."login");
 			}
 		}
 	}
@@ -245,7 +246,7 @@ class business extends controller{
 							UpdateBusiness();
 							function UpdateBusiness(){
 						        var result = alert('修正完了しました。');
-						        	url = '/fukushisystem/business/A/".$arr[2]."';
+						        	url = '".WEB_URL."business/A/".$arr[2]."';
 						        	window.location.href = url;
 						    }
 						 </script>";
@@ -257,7 +258,7 @@ class business extends controller{
 			
 		}else{
 			// echo "<script>alert('unit');</script>";
-			header("Location: /fukushisystem/unit");
+			header("Location: ".WEB_URL."unit");
 		}
 	}
 	function B(){
@@ -318,11 +319,11 @@ class business extends controller{
 					'Business_type' 				=> 2
 				);
 				$database->insert($data);
-				header("Location: /fukushisystem/business/B");
+				header("Location: ".WEB_URL."business/B");
 			}
 		}else{
 			// echo "<script>alert('unit');</script>";
-			header("Location: /fukushisystem/unit");
+			header("Location: ".WEB_URL."unit");
 		}
 	}
 	function migration(){
@@ -376,11 +377,11 @@ class business extends controller{
 					'Business_type' 					=> 3
 				);
 				$database->insert($data);
-				header("Location: /fukushisystem/business/Migration");
+				header("Location: ".WEB_URL."business/Migration");
 			}
 		}else{
 			// echo "<script>alert('unit');</script>";
-			header("Location: /fukushisystem/unit");
+			header("Location: ".WEB_URL."unit");
 		}
 	}
 	// function management(){

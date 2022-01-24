@@ -489,7 +489,7 @@
 	<h1>事業所一覧</h1>
 
     <div class="btn-unit">
-        <button type="button" onclick="location.href='/fukushisystem/userMNMT/A'">利用者追加</button>
+        <button type="button" onclick="location.href='<?=WEB_URL?>userMNMT/A'">利用者追加</button>
     </div>
 	<div class="business">
 		<!-- <button type="button" onclick="location.href='/fukushisystem/business/A'">A</button>
@@ -514,7 +514,7 @@
     ?>
         <tr>
             <td><?php echo $i++;?>.</td>
-            <td><a href="/fukushisystem/userMNMT/List&Businesser_number=<?echo $item['Businesser_number'];?>&Businesser_name=<?echo $item['Businesser_name'];?>"><?php echo $item['Businesser_number'];?></a></td>
+            <td><a href="<?=WEB_URL?>userMNMT/List&Businesser_number=<?echo $item['Businesser_number'];?>&Businesser_name=<?echo $item['Businesser_name'];?>"><?php echo $item['Businesser_number'];?></a></td>
             <td><?php echo $item['Businesser_name'];?></td>
            <!--  <td><button onclick="javascript:update(`<?php echo $item['Business_id'];?>`)">修正</button></td>
             <td><button onclick="javascript:deleteItem(`<?php echo $item['Business_id'];?>`)">削除</button></td> -->
@@ -590,7 +590,7 @@
     // }
 
     function changePageUserMNMT(page){
-        url = "/fukushisystem/userMNMT&page="+page;
+        url = "<?=WEB_URL?>userMNMT&page="+page;
         window.location.href = url;
     }
 </script>

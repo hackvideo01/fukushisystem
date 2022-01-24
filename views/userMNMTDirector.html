@@ -640,7 +640,7 @@
     // }
 
     function changePageList(page){
-        url = "/fukushisystem/userMNMT/List&Businesser_number=<?echo $item['Businesser_number'];?>&Businesser_name=<?echo $_GET['Businesser_name'];?>&page="+page;
+        url = "<?=WEB_URL?>userMNMT/List&Businesser_number=<?echo $item['Businesser_number'];?>&Businesser_name=<?echo $_GET['Businesser_name'];?>&page="+page;
         window.location.href = url;
     }
 </script>

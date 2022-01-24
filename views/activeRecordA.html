@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="./public/css/menu.css">
-    <link rel="icon" href="/fukushisystem/public/images/logo.png">
+    <link rel="stylesheet" type="text/css" href="<?=WEB_URL?>public/css/menu.css">
+    <?include_once './views/headLink.html';?>
     <title>活動記録</title>
 </head>
 
@@ -534,7 +534,7 @@
     <button type="button" onclick="location.href='/fukushisystem/activeRecord'">メイン画面</button> -->
 </div>
 <div class="btn-unit">
-    <button type="button" onclick="location.href='/fukushisystem/activeRecord'">一覧へ戻る</button>
+    <button type="button" onclick="location.href='<?=WEB_URL?>activeRecord'">一覧へ戻る</button>
 </div>
 <p style="text-align:center;color: red;font-weight: bold;">受給者証番号：<?=$_GET['Recipient_number']?></p>
 <form method="post">

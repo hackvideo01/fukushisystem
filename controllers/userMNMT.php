@@ -1,5 +1,5 @@
 <? 
-
+require './config/define.php';
 class userMNMT extends controller{
 	function welcome(){
 		require_once("./libs/Pagination.php");
@@ -85,9 +85,9 @@ class userMNMT extends controller{
 		}else{
 			// echo "<script>alert('unit');</script>";
 			if (isset($_SESSION['usernameSS2'])) {
-				header("Location: /fukushisystem/unit");
+				header("Location: ".WEB_URL."unit");
 			}else{
-				header("Location: /fukushisystem/login");
+				header("Location: ".WEB_URL."login");
 			}
 		}
 	}
@@ -201,7 +201,7 @@ class userMNMT extends controller{
 							urlBusiness();
 							function urlBusiness(){
 						        var result = alert('登録が終了しました。');
-						        	url = '/fukushisystem/userMNMT';
+						        	url = '".WEB_URL."userMNMT';
 						        	window.location.href = url;
 						    }
 
@@ -261,7 +261,7 @@ class userMNMT extends controller{
 							function UpdateUserMNMT(){
 						        var result = confirm('修正されました。');
 						        if (result) {
-						        	url = '/fukushisystem/userMNMT/A/".$arr[2]."';
+						        	url = './userMNMT/A/".$arr[2]."';
 						        	window.location.href = url;
 						        }
 						    }
@@ -275,7 +275,7 @@ class userMNMT extends controller{
 			require_once("./views/userMNMTA.html");
 		}else{
 			// echo "<script>alert('unit');</script>";
-			header("Location: /fukushisystem/unit");
+			header("Location: ".WEB_URL."unit");
 		}
 	}
 	function B(){
@@ -321,11 +321,11 @@ class userMNMT extends controller{
 					'Usermanagement_type' 				=> 2
 				);
 				$database->insert($data);
-				header("Location: /fukushisystem/userMNMT/B");
+				header("Location: ".WEB_URL."userMNMT/B");
 			}
 		}else{
 			// echo "<script>alert('unit');</script>";
-			header("Location: /fukushisystem/unit");
+			header("Location: ".WEB_URL."unit");
 		}
 	}
 	function migration(){
@@ -371,11 +371,11 @@ class userMNMT extends controller{
 					'Usermanagement_type' 				=> 3
 				);
 				$database->insert($data);
-				header("Location: /fukushisystem/userMNMT/migration");
+				header("Location: ".WEB_URL."userMNMT/migration");
 			}
 		}else{
 			// echo "<script>alert('unit');</script>";
-			header("Location: /fukushisystem/unit");
+			header("Location: ".WEB_URL."unit");
 		}
 	}
 	function List(){
@@ -421,10 +421,10 @@ class userMNMT extends controller{
 		}else{
 			// echo "<script>alert('unit');</script>";
 			
-			if (isset($_SESSION['usernameSS2'])) {
-				header("Location: /fukushisystem/unit");
+			if (isset($_SESSION['usernameSS'] )&& $_SESSION['role']==0) {
+				header("Location: ".WEB_URL."unit");
 			}else{
-				header("Location: /fukushisystem/login");
+				header("Location: ".WEB_URL."login");
 			}
 		}
 	}

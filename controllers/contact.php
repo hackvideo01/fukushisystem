@@ -1,4 +1,5 @@
 <? 
+require './config/define.php';
 class contact extends controller{
 	function welcome(){
 		// // Load the database configuration file 

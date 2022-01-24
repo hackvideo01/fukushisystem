@@ -8,5 +8,7 @@
 
 	define('PATH_ROOT'	, dirname(__FILE__));
 	define('PATH_DATABASE'	, PATH_ROOT.'/'.'database');
-	define('PATH_PASS' ,'http://localhost/');
+	// define('PATH_PASS' ,'http://localhost/');
+	// define('WEB_URL','https://logwell.jp/');
+	define('WEB_URL','http://localhost/fukushisystem/');
 ?>

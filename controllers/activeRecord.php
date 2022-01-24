@@ -1,4 +1,5 @@
 <? 
+require './config/define.php';
 class activeRecord extends controller{
 	function welcome(){
 		require_once("./libs/Pagination.php");
@@ -68,9 +69,9 @@ class activeRecord extends controller{
 		}else{
 			// echo "<script>alert('unit');</script>";
 			if (isset($_SESSION['usernameSS2'])) {
-				header("Location: /fukushisystem/unit");
+				header("Location: ".WEB_URL."unit");
 			}else{
-				header("Location: /fukushisystem/login");
+				header("Location: ".WEB_URL."login");
 			}
 		}
 	}
@@ -158,7 +159,7 @@ class activeRecord extends controller{
 							'ActiveRecord_type' 		=> 1
 						);
 					$database->insert($data);
-					header("Location: /fukushisystem/activeRecord/A");
+					header("Location: ".WEB_URL."activeRecord/A");
 					}else{
 						$dateElements = explode('-', $_POST["Date"]);
 						$al1 = "'は'+".$dateElements[0].$dateElements[1]."";
@@ -208,7 +209,7 @@ class activeRecord extends controller{
 							function UpdateActiveRecord(page){
 						        var result = confirm('修正されました。');
 						        if (result) {
-						        	url = '/fukushisystem/activeRecord/A/".$arr[2]."';
+						        	url = '".WEB_URL."activeRecord/A/".$arr[2]."';
 						        	window.location.href = url;
 						        }
 						    }
@@ -221,7 +222,7 @@ class activeRecord extends controller{
 			}
 		}else{
 			// echo "<script>alert('unit');</script>";
-			header("Location: /fukushisystem/userMNMT");
+			header("Location: ".WEB_URL."userMNMT");
 		}
 	}
 	function B(){
@@ -257,11 +258,11 @@ class activeRecord extends controller{
 					'ActiveRecord_type' 		=> 2
 				);
 				$database->insert($data);
-				header("Location: /fukushisystem/activeRecord/B");
+				header("Location: ".WEB_URL."activeRecord/B");
 			}
 		}else{
 			// echo "<script>alert('unit');</script>";
-			header("Location: /fukushisystem/unit");
+			header("Location: ".WEB_URL."unit");
 		}
 	}
 	function migration(){
@@ -299,11 +300,11 @@ class activeRecord extends controller{
 					'ActiveRecord_type' 		=> 3
 				);
 				$database->insert($data);
-				header("Location: /fukushisystem/activeRecord/Migration");
+				header("Location: ".WEB_URL."activeRecord/Migration");
 			}
 		}else{
 			// echo "<script>alert('unit');</script>";
-			header("Location: /fukushisystem/unit");
+			header("Location: ".WEB_URL."unit");
 		}
 	}
 	function UrlProcess(){

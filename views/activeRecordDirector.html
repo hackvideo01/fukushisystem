@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="./public/css/menu.css?v=1">
-    <link rel="icon" href="/fukushisystem/public/images/logo.png">
+    <?include_once './views/headLink.html';?>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -520,7 +520,7 @@
 
 	<h1>活動記録入力</h1>
     <div class="btn-unit">
-        <button type="button" onclick="location.href='/fukushisystem/activeRecord/A'">新規追加</button>
+        <button type="button" onclick="location.href='<?=WEB_URL?>activeRecord/A'">新規追加</button>
     </div>
 	<div class="activeRecord">
 		<!-- <button type="button" onclick="location.href='/fukushisystem/activeRecord/A'">A</button>
@@ -543,7 +543,7 @@
     {?>
         <tr>
             <td><?echo $i++;?>.</td>
-            <td><a href="/fukushisystem/activeRecord/A&Recipient_number=<?echo $item['Recipient_number'];?>"><?php echo $item['Recipient_number'];?></a></td>
+            <td><a href="<?=WEB_URL?>activeRecord/A&Recipient_number=<?echo $item['Recipient_number'];?>"><?php echo $item['Recipient_number'];?></a></td>
             <td><?php echo $item['Name_hira'];?></td>
         </tr>
     <?}?>
@@ -624,7 +624,7 @@
     // }
 
     function changePageActiveRecord(page){
-        url = "/fukushisystem/activeRecord&page="+page;
+        url = "<?=WEB_URL?>activeRecord&page="+page;
         window.location.href = url;
     }
 
