@@ -200,7 +200,7 @@ class userMNMT extends controller{
 				echo "<script>
 							urlBusiness();
 							function urlBusiness(){
-						        var result = alert('登録が終了しました。');
+						        var result = alert('登録が完了しました。');
 						        	url = '".WEB_URL."userMNMT';
 						        	window.location.href = url;
 						    }
@@ -259,9 +259,9 @@ class userMNMT extends controller{
 					echo "<script>
 							UpdateUserMNMT();
 							function UpdateUserMNMT(){
-						        var result = confirm('修正されました。');
+						        var result = confirm('修正完了しました。');
 						        if (result) {
-						        	url = './userMNMT/A/".$arr[2]."';
+						        	url = '".WEB_URL."userMNMT/A/".$arr[2]."';
 						        	window.location.href = url;
 						        }
 						    }

@@ -563,6 +563,9 @@
             </td>
         </tr>
         <tr>
+            <td><span id='messagePost'></span></td>
+        </tr>
+        <tr>
             <th>住所</th>
             <td>
                 <input type="text" id="Address" name="Address" value="<?=$listItem['Address'];?>"/>
@@ -633,28 +636,22 @@
     $('#username').on('keyup', function () {
         if ($('#username').val().length > 5) {
           $('#messageID').html('').css('color', 'green');
-          $('#newSignUpCheck').prop('disabled', false);
         } else {
           $('#messageID').html('５文字以上で入力してください。').css('color', 'red');
-          $('#newSignUpCheck').prop('disabled', true);
         }
         if ($('#username').val().match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {
           $('#messageID').html('半角英数で入力してください。').css('color', 'red');
-          $('#newSignUpCheck').prop('disabled', true);
         }
       });
 
     $('#password').on('keyup', function () {
         if ($('#password').val().length > 5) {
           $('#messagePASS').html('').css('color', 'green');
-          $('#newSignUpCheck').prop('disabled', false);
         } else {
           $('#messagePASS').html('５文字以上で入力してください。').css('color', 'red');
-          $('#newSignUpCheck').prop('disabled', true);
         }
         if ($('#password').val().match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {
           $('#messagePASS').html('半角英数で入力してください。').css('color', 'red');
-          $('#newSignUpCheck').prop('disabled', true);
         }
       });
 
@@ -668,10 +665,31 @@
         // }
         if ($('#email').val().match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {
           $('#messageEmail').html('半角英数で入力してください。').css('color', 'red');
-          $('#newSignUpCheck').prop('disabled', true);
         }else{
           $('#messageEmail').html('').css('color', 'red');
+        }
+      });
+
+    $('#PostCode').on('keyup', function () {
+        if ($('#PostCode').val().match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {
+          $('#messagePost').html('半角英数で入力してください。').css('color', 'red');
+        }else{
+          $('#messagePost').html('').css('color', 'red');
+        }
+      });
+
+    $('#PostCode,#email,#password,#username').on('keyup', function () {
+        if (!$('#PostCode').val().match(/^[^\x01-\x7E\xA1-\xDF]+$/) && 
+            !$('#email').val().match(/^[^\x01-\x7E\xA1-\xDF]+$/) && 
+            !$('#username').val().match(/^[^\x01-\x7E\xA1-\xDF]+$/) &&
+            $('#username').val().length > 5 &&
+            $('#password').val().length > 5
+            ) {
+
           $('#newSignUpCheck').prop('disabled', false);
+
+        }else{
+          $('#newSignUpCheck').prop('disabled', true);
         }
       });
 
@@ -686,10 +704,10 @@
       }
     }
 
-    jQuery(document).on('keyup', '#PostCode', function(e){
-      if(e.keyCode === 9 || e.keyCode === 16) return;
-      this.value = this.value.replace(/[^0-9a-zA-Z]+/i,'');
-    });
+    // jQuery(document).on('keyup', '#PostCode', function(e){
+    //   if(e.keyCode === 9 || e.keyCode === 16) return;
+    //   this.value = this.value.replace(/[^0-9a-zA-Z]+/i,'');
+    // });
 
     // jQuery(document).on('keyup', '#email', function(e){
     //   if(e.keyCode === 9 || e.keyCode === 16) return;

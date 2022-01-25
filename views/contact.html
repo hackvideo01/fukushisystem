@@ -792,7 +792,7 @@ if (isset($_POST["send"])) {
         $mailmanager->send();
         //echo 'Message has been sent';
 
-        header("Location: /fukushisystem/contact/ThanksYou");
+        header("Location: ".WEB_URL."contact/ThanksYou");
         exit();
         
     } catch (Exception $e) {

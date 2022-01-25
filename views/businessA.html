@@ -517,7 +517,7 @@
     <?if($comfirm == 1){?>
         <button onclick="history.back()">戻る</button>
     <?}else{?>
-        <button type="button" onclick="location.href='/fukushisystem/business'">一覧へ戻る</button>
+        <button type="button" onclick="location.href='<?=WEB_URL?>business'">一覧へ戻る</button>
     <?}?>
 </div>
 <form method="post" name="myForm" onsubmit="return validateForm()" required>
@@ -839,8 +839,12 @@
         <tr>
             <th class="important">事業者番号<span class="need-input">（必須）</span></th>
             <td>
-                <input type="text" value="<?=$listItem['Businesser_number'];?>" name="Businesser_number" maxlength="10" onkeypress="return isNumber(event)"/>
+                <input type="text" value="<?=$listItem['Businesser_number'];?>" id="Businesser_number" name="Businesser_number" maxlength="10" onkeypress="return isNumber(event)"/>
             </td>
+        </tr>
+        <tr>
+            <th style="background-color: white;"></th>
+            <td><span id='messageNumberic'></span></td>
         </tr>
         <tr>
             <th>郵便番号<span class="need-input">（必須）</span></th>
@@ -1065,7 +1069,7 @@
                 <?}else if($comfirm == 1){?>
                     <input class="submit-btn-New" id="btn_business" name="btn_business" type="submit" value="登録" />
                 <?}else{?>
-                    <input class="submit-btn-New" name="btn_businessCheck" type="submit" value="確 認 画 面 へ"/>
+                    <input class="submit-btn-New" id="btn_businessCheck" name="btn_businessCheck" type="submit" value="確 認 画 面 へ"/>
                 <?}?>
             </td>
             <td></td>
@@ -1115,9 +1119,33 @@
         || Capacity == "" || Capacity == null
         ) {
         alert("必須項目を入力してください。");
+
+        // var x = document.forms["myForm"]["Businesser_number"].value;
+        //   if (isNaN(x)) 
+        //   {
+        //     alert("１０桁の数字を入力してください。");
+        //     $('#btn_businessCheck').prop('disabled', true);
+        //   }
         return false;
       }
     }
+
+    $('#Businesser_number').on('keyup', function () {
+       var x = document.forms["myForm"]["Businesser_number"].value;
+          if (isNaN(x)) 
+          {
+            alert("１０桁の数字を入力してください。");
+            $('#messageNumberic').html('１０桁の数字を入力してください。').css('color', 'red');
+            $('#btn_businessCheck').prop('disabled', true);
+          }else{
+            $('#btn_businessCheck').prop('disabled', false);
+          }
+      });
+
+    jQuery(document).on('keyup', '#Businesser_number', function(e){
+      if(e.keyCode === 9 || e.keyCode === 16) return;
+      this.value = this.value.replace(/[^0-9a-zA-Z]+/i,'');
+    });
     
     function isNumber(evt) {
         evt = (evt) ? evt : window.event;

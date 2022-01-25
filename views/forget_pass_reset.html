@@ -476,7 +476,7 @@
 </div>
 <h1 style="margin-top: 30px;margin-bottom: 30px;font-weight: 100;">パスワード変更</h1>
 <!-- <div id="password-empty" style = "text-align:center; color: red; margin-top: 30px; display:none;">パスワードを入力してください！</div> -->
-<form method="post">
+<form method="post" name="myForm" onsubmit="return validateForm()" required>
     <table>
         <tr>
             <th>新しいパスワード入力</th>
@@ -512,41 +512,57 @@
 <script type="text/javascript">
     $('#password, #confirm_password').on('keyup', function () {
         if ($('#password').val() == $('#confirm_password').val()) {
-          $('#message').html('パスワードが一致します。').css('color', 'green');
-          $('#forgetPass').prop('disabled', false);
+          $('#message').html('').css('color', 'green');
+          // $('#forgetPass').prop('disabled', false);
         } else {
           $('#message').html('パスワードが一致しません。').css('color', 'red');
+          // $('#forgetPass').prop('disabled', true);
+        }
+
+        if (($('#password').val() == $('#confirm_password').val()) && ($('#password').val().length > 5) && ($('#confirm_password').val().length > 5)){
+          // $('#message').html('').css('color', 'green');
+          $('#forgetPass').prop('disabled', false);
+        } else {
+          // $('#message').html('パスワードが一致しません。').css('color', 'red');
           $('#forgetPass').prop('disabled', true);
         }
+
       });
 
     $('#password').on('keyup', function () {
         if ($('#password').val().length > 5) {
           $('#messagePASS').html('').css('color', 'green');
-          $('#forgetPass').prop('disabled', false);
         } else {
           $('#messagePASS').html('５文字以上で入力してください。').css('color', 'red');
-          $('#forgetPass').prop('disabled', true);
         }
         if ($('#password').val().match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {
           $('#messagePASS').html('半角英数で入力してください。').css('color', 'red');
-          $('#forgetPass').prop('disabled', true);
         }
       });
 
     $('#confirm_password').on('keyup', function () {
         if ($('#confirm_password').val().length > 5) {
           $('#messagePASSCOMFIRM').html('').css('color', 'green');
-          $('#forgetPass').prop('disabled', false);
         } else {
           $('#messagePASSCOMFIRM').html('５文字以上で入力してください。').css('color', 'red');
-          $('#forgetPass').prop('disabled', true);
         }
         if ($('#confirm_password').val().match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {
           $('#messagePASSCOMFIRM').html('半角英数で入力してください。').css('color', 'red');
-          $('#forgetPass').prop('disabled', true);
         }
       });
+
+    function validateForm() {
+      var confirm_password = document.forms["myForm"]["confirm_password"].value;
+      var password = document.forms["myForm"]["password"].value;
+      if (password == "" || password == null) {
+        alert("パスワードを入力してください。");
+        return false;
+      }
+      if (confirm_password == "" || confirm_password == null) {
+        alert("パスワード再度入力を入力してください。");
+        return false;
+      }
+    }
 
     $('input[type="date"]').on('change', function() {
         var days = ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'];

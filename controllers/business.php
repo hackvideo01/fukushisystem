@@ -38,7 +38,7 @@ class business extends controller{
 			require_once("./views/businessDirector.html");
 		}else{
 			// echo "<script>alert('unit');</script>";
-			if (isset($_SESSION['usernameSS2'])) {
+			if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==0) {
 				header("Location: ".WEB_URL."unit");
 			}else{
 				header("Location: ".WEB_URL."login");
@@ -176,7 +176,7 @@ class business extends controller{
 							urlBusiness();
 							function urlBusiness(){
 						        var result = alert('登録が終了しました。');
-						        	url = '/fukushisystem/business';
+						        	url = '".WEB_URL."/business';
 						        	window.location.href = url;
 						    }
 
