@@ -703,6 +703,20 @@
         return true;
     }
          $("#recordForm").on('submit', function(event){
+            var Tsusho = document.getElementsByName("Tsusho[]");
+            var countTsusho = 0;
+            if(Tsusho !=null){
+                for (var i = 0; i < Tsusho.length; i++) {
+                    var a = Tsusho[i];
+                    if(a.value == 2){
+                        countTsusho ++;
+                    }
+                    if(countTsusho>=5){
+                        alert("「欠席対応」は１月に４回までです。"); 
+                        return false;
+                    }
+                }
+            }
                 event.preventDefault();
                 $('#save').attr('disabled','disabled');
                 // var formData = $(this).serialize();
