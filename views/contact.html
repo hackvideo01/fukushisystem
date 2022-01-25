@@ -870,7 +870,7 @@ if (isset($_POST["send"])) {
 <span>メールアドレス</span><span class="haveto">必須</span>
 </th>
 <td>
-    <input type="text" name="email" placeholder="tanakataro@gmail.com" required="" oninvalid="this.setCustomValidity('ご連絡先メールアドレスを入力してください')" oninput="setCustomValidity('')">
+    <input type="text" name="email" placeholder="tanakataro@gmail.com" required="" oninvalid="this.setCustomValidity('ご連絡先メールアドレスを入力してください')" oninput="setCustomValidity('')" pattern="^[a-zA-Z0-9.!#$&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$">
 </td>
 </tr>
 
