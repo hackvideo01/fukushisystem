@@ -82,6 +82,46 @@ class activeRecord extends controller{
 		if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==1){
 
 		$arr = $this->UrlProcess();
+		//get request month 
+		$ym = date("Y-m");
+		if(isset($_REQUEST['ym'])){
+			$ym = $_REQUEST['ym'];
+		}
+		// 月の日数
+		$year = substr($ym, 0,4);
+		$month = substr($ym,strpos($ym, "-")+1,strlen($ym));
+		$numberOfDay = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+		// get all item by Recipient_number and date
+		$queryList = "SELECT * FROM activityrecord WHERE `Recipient_number` = '".$_REQUEST['Recipient_number']."' and DATE_FORMAT(date, '%Y-%m') = '".$ym."'";
+		// echo $queryList;
+		$recRecord = $database->fetchAll($queryList);
+		$days = array('日', '月', '火', '水', '木', '金', '土');
+		// data 
+		$dataRecord  =[];
+		if(is_array($recRecord)){
+			
+			for($j = 1;$j<=$numberOfDay; $j++){
+				$currentDate = $ym."-".$j;
+				$date = strtotime($currentDate);
+				$tmp = [];
+				$tmp["ID"] = $j;
+				$tmp["dateview"] = $month."月".$j."日(".$days[date('w', $date)]."曜日)";
+				$tmp["Date"] = $currentDate;
+				foreach($recRecord as $val){
+					if($currentDate ==$val["Date"]){
+						$tmp["Activity_record_id"] = $val["Activity_record_id"];
+						$tmp["Start_time"] = $val["Start_time"];
+						$tmp["End_time"] = $val["End_time"];
+						$tmp["Tsusho"] = $val["Tsusho"];
+						$tmp["Pick_drop"] = $val["Pick_drop"];
+						$tmp["Remark"] = $val["Remark"];
+						break;
+					}
+				}
+				array_push($dataRecord, $tmp);
+			}
+		}
+		// print_r($dataRecord);
 		$countItem;
 			// echo $arr[2];
 			if (isset($arr[2])) {
@@ -305,6 +345,39 @@ class activeRecord extends controller{
 		}else{
 			// echo "<script>alert('unit');</script>";
 			header("Location: ".WEB_URL."unit");
+		}
+	}
+	function insertOrUpdateActiveRecord(){
+		try{
+			$db = $this->model("database");
+			$database = new Database();
+			$database->setTable("activityrecord");
+			$date = $_REQUEST['Date'];
+			if(!is_array($date)){
+				exit();
+			}
+			foreach($date as $key=> $val){
+				$data = array(
+					'Recipient_number' 			=> $_REQUEST["Recipient_number"],
+					'Date' 						=> $_REQUEST["Date"][$key],
+					'Tsusho' 					=> $_REQUEST["Tsusho"][$key],
+					'Start_time' 				=> $_REQUEST["Start_time"][$key],
+					'End_time' 					=> $_REQUEST["End_time"][$key],
+					'Pick_drop' 				=> $_REQUEST["Pick_drop"][$key],
+					'Remark' 					=> $_REQUEST["Remark"][$key]
+				);
+				if(!empty($_REQUEST["Activity_record_id"][$key])){
+					$database->update($data, array(['Activity_record_id', $_REQUEST["Activity_record_id"][$key]]));
+				}else{
+					$database->insert($data);	
+				}
+				
+			}
+			echo 1;
+			return;
+		}catch(Exception $ex){
+			echo $ex;
+			return;
 		}
 	}
 	function UrlProcess(){

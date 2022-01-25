@@ -68,6 +68,7 @@
         }
         .btn-unit{
             text-align: center;
+            display: flex;
         }
         .btn-unit button{
             background: radial-gradient(#555555, #b5b5b5);
@@ -91,6 +92,10 @@
             background: red;
             color: white;
             font-weight: bold;
+        }
+        .search-by-month{
+            width: 40%;
+            margin: auto;
         }
        /* .important{
             background: red;
@@ -534,58 +539,74 @@
     <button type="button" onclick="location.href='/fukushisystem/activeRecord'">メイン画面</button> -->
 </div>
 <div class="btn-unit">
+    <input type="month" name="monthrecord" class="search-by-month" value="<?=$ym?>" onchange="changeMonth(this)">
     <button type="button" onclick="location.href='<?=WEB_URL?>activeRecord'">一覧へ戻る</button>
 </div>
 <p style="text-align:center;color: red;font-weight: bold;">受給者証番号：<?=$_GET['Recipient_number']?></p>
-<form method="post">
+<form method="post"  id="recordForm">
     <table>
         <tr>
             <th class="important">利 用 日</th>
             <th class="important">開 始</th>
             <th class="important">終 了</th>
-            <th class="important">欠 席</th>
-            <th class="important">送 迎（迎え）</th>
-            <th class="important">送 迎（送り）</th>
-            <th class="important">コメント</th>
+            <th class="important">出欠</th>
+            <th class="important">送 迎</th>
+            <!-- <th class="important">送 迎（送り）</th> -->
+            <th class="important">備考</th>
+            <input class="date-input" type="text" value="<?=$_REQUEST['Recipient_number']?>" name="Recipient_number" hidden/>
         </tr>
-        <?for($i=1;$i<=31;$i++){?>
-            <tr>
+        <?foreach($dataRecord as $val){?>
+           <tr>
                 <td class="normal-td">
-                    <input class="date-input" type="text" value="1月<?=$i?>日(曜日)" name="Life_home"/>
+                    <input class="date-input" type="text" value="<?=$val['dateview']?>" name="DateView"/>
+                    <input class="date-input" type="text" value="<?=$val['Date']?>" name="Date[]" hidden/>
+                    <input class="date-input" type="text" value="<?=$val['Activity_record_id']?>" name="Activity_record_id[]" hidden/>
                 </td>
                 <td class="hour-td">
                     <!-- <input type="text" value="" name="Life_home"/> -->
-                    <select class="select-hour" name="Businesser_number" required>
+                    <select class="select-hour" name="Start_time[]" >
                         <option value="">--選択してください--</option>
                         <?for($j=1;$j<=24;$j++){?>
-                            <option value="<?=$j?>"><?=$j?></option>
+                            <?if($val["Start_time"] == $j){?>
+                                <option value="<?=$j?>" selected><?=$j?></option>
+                            <?}else{?>
+                                <option value="<?=$j?>" ><?=$j?></option>
+                            <?}?>
                         <?}?>
                     </select>
                 </td>
                 <td class="hour-td">
                     <!-- <input type="text" value="" name="Life_home"/> -->
-                    <select class="select-hour" name="Businesser_number" required>
+                    <select class="select-hour" name="End_time[]" >
                         <option value="">--選択してください--</option>
                         <?for($j=1;$j<=24;$j++){?>
-                            <option value="<?=$j?>"><?=$j?></option>
+                             <?if($val["End_time"] == $j){?>
+                                 <option value="<?=$j?>" selected><?=$j?></option>
+                            <?}else{?>
+                                 <option value="<?=$j?>"><?=$j?></option>
+                            <?}?>
                         <?}?>
                     </select>
                 </td>
                 <td class="normal-td">
-                    <select class="select-hour" name="Businesser_number" required>
+                    <select class="select-hour" name="Tsusho[]" >
                         <option value="">--選択してください--</option>
-                        <option value="<?=$j?>">出席</option>
-                        <option value="<?=$j?>">欠席</option>
+                        <option value="1" <?if($val['Tsusho']==1) echo 'selected';?>>出席</option>
+                        <option value="2" <?if($val['Tsusho']==2) echo 'selected';?>>欠席</option>
                     </select>
                 </td>
                 <td class="normal-td">
-                    <input type="text" value="" name="Life_home"/>
+                     <select class="select-hour" name="Pick_drop[]" >
+                        <option value="">--選択してください--</option>
+                        <option value="2" <?if($val['Pick_drop']==1) echo 'selected';?>>往復</option>
+                        <option value="1" <?if($val['Pick_drop']==2) echo 'selected';?>>片道</option>
+                    </select>
                 </td>
-                <td class="normal-td">
+                <!-- <td class="normal-td">
                     <input type="text" value="" name="Life_home"/>
-                </td>
+                </td> -->
                 <td class="coment">
-                    <input type="text" value="" name="Life_home"/>
+                    <input type="text" value="<?=$val["Remark"]?>" name="Remark[]"/>
                 </td>
             </tr>
         <?}?>
@@ -680,5 +701,33 @@
         }
         return true;
     }
-
+         $("#recordForm").on('submit', function(event){
+                event.preventDefault();
+                $('#save').attr('disabled','disabled');
+                // var formData = $(this).serialize();
+                var formData = new FormData($("#recordForm")[0]);
+                $.ajax({
+                    url:"<?=WEB_URL?>/activeRecord/insertOrUpdateActiveRecord",
+                    method:"POST",
+                    processData: false,
+                    contentType: false,
+                    data:formData,
+                    success:function(data){   
+                        if(data==1){
+                            alert("活動記録を設定しました。"); 
+                        }else{
+                            alert("更新できません、管理者がご連絡ください。");
+                        }
+                    }
+                    ,
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert("更新できません、管理者がご連絡ください。");
+                         return false;
+                    }
+                })
+            }); 
+         function changeMonth($this){
+            var url = "<?=WEB_URL.'/activeRecord/A&Recipient_number='.$_REQUEST['Recipient_number']?>&ym="+$this.value;
+            window.location.href = url;
+         }
 </script>

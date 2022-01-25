@@ -1,0 +1,1 @@
+ALTER TABLE `activityrecord` CHANGE `Recipient_number` `Recipient_number` VARCHAR(10) NOT NULL;
