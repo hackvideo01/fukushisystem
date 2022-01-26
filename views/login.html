@@ -101,7 +101,7 @@
         if ($('#username').val().length > 5) {
           $('#messageID').html('').css('color', 'green');
         } else {
-          $('#messageID').html('５文字以上で入力してください。').css('color', 'red');
+          $('#messageID').html('6文字以上で入力してください。').css('color', 'red');
         }
         if ($('#username').val().match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {
           $('#messageID').html('半角英数で入力してください。').css('color', 'red');
@@ -113,7 +113,7 @@
           $('#messagePASS').html('').css('color', 'green');
           $('#login').prop('disabled', false);
         } else {
-          $('#messagePASS').html('５文字以上で入力してください。').css('color', 'red');
+          $('#messagePASS').html('6文字以上で入力してください。').css('color', 'red');
           $('#login').prop('disabled', true);
         }
         // if ($('#password').val().match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {

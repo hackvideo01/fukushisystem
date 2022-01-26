@@ -634,10 +634,10 @@
 </html>
 <script type="text/javascript">
     $('#username').on('keyup', function () {
-        if ($('#username').val().length > 5) {
+        if ($('#username').val().length >= 6) {
           $('#messageID').html('').css('color', 'green');
         } else {
-          $('#messageID').html('５文字以上で入力してください。').css('color', 'red');
+          $('#messageID').html('6文字以上で入力してください。').css('color', 'red');
         }
         if ($('#username').val().match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {
           $('#messageID').html('半角英数で入力してください。').css('color', 'red');
@@ -645,10 +645,10 @@
       });
 
     $('#password').on('keyup', function () {
-        if ($('#password').val().length > 5) {
+        if ($('#password').val().length >= 6) {
           $('#messagePASS').html('').css('color', 'green');
         } else {
-          $('#messagePASS').html('５文字以上で入力してください。').css('color', 'red');
+          $('#messagePASS').html('6文字以上で入力してください。').css('color', 'red');
         }
         if ($('#password').val().match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {
           $('#messagePASS').html('半角英数で入力してください。').css('color', 'red');
@@ -682,8 +682,8 @@
         if (!$('#PostCode').val().match(/^[^\x01-\x7E\xA1-\xDF]+$/) && 
             !$('#email').val().match(/^[^\x01-\x7E\xA1-\xDF]+$/) && 
             !$('#username').val().match(/^[^\x01-\x7E\xA1-\xDF]+$/) &&
-            $('#username').val().length > 5 &&
-            $('#password').val().length > 5
+            $('#username').val().length >= 6 &&
+            $('#password').val().length >= 6
             ) {
 
           $('#newSignUpCheck').prop('disabled', false);
