@@ -722,7 +722,7 @@
                 // var formData = $(this).serialize();
                 var formData = new FormData($("#recordForm")[0]);
                 $.ajax({
-                    url:"<?=WEB_URL?>/activeRecord/insertOrUpdateActiveRecord",
+                    url:"<?=WEB_URL?>activeRecord/insertOrUpdateActiveRecord",
                     method:"POST",
                     processData: false,
                     contentType: false,
@@ -742,7 +742,7 @@
                 })
             }); 
          function changeMonth($this){
-            var url = "<?=WEB_URL.'/activeRecord/A&Recipient_number='.$_REQUEST['Recipient_number']?>&ym="+$this.value;
+            var url = "<?=WEB_URL.'activeRecord/A&Recipient_number='.$_REQUEST['Recipient_number']?>&ym="+$this.value;
             window.location.href = url;
          }
 </script>

@@ -25,10 +25,11 @@ class activeRecord extends controller{
 			$paramsCurrentPage  = (!empty($_GET['page'])) ?  $_GET['page'] : 1;
 
 			// Fetch records from database 
-			$queryList[] = "SELECT * FROM usermanagement ORDER BY Name_hira ASC";
+			$queryList[] = "SELECT * FROM usermanagement WHERE username = '".$_SESSION['usernameSS']."' ORDER BY Name_hira ASC";
 
 			// Query Count
 			$queryCount[] =  "SELECT COUNT(*) AS `total` FROM `usermanagement` WHERE `Usermanagement_id` > 0";
+			$queryCount[] = "AND username = '".$_SESSION['usernameSS']."'";
 
 			// Filter Search
 			// if($paramsSearch != '')  {
@@ -92,8 +93,9 @@ class activeRecord extends controller{
 			$month = substr($ym,strpos($ym, "-")+1,strlen($ym));
 			$numberOfDay = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 			// get all item by Recipient_number and date
-			$queryList = "SELECT * FROM activityrecord WHERE `Recipient_number` = '".$_REQUEST['Recipient_number']."' and DATE_FORMAT(date, '%Y-%m') = '".$ym."'";
+			$queryList = "SELECT * FROM activityrecord WHERE `Recipient_number` = '".$_REQUEST['Recipient_number']."' and DATE_FORMAT(date, '%Y-%m') = '".$ym."' AND `username` = '".$_SESSION['usernameSS']."'";
 			// echo $queryList;
+			
 			$recRecord = $database->fetchAll($queryList);
 			$days = array('日', '月', '火', '水', '木', '金', '土');
 			// data 
@@ -366,7 +368,8 @@ class activeRecord extends controller{
 					'Start_time' 				=> $_REQUEST["Start_time"][$key],
 					'End_time' 					=> $_REQUEST["End_time"][$key],
 					'Pick_drop' 				=> $_REQUEST["Pick_drop"][$key],
-					'Remark' 					=> $_REQUEST["Remark"][$key]
+					'Remark' 					=> $_REQUEST["Remark"][$key],
+					'username'					=> $_SESSION['usernameSS']
 				);
 				if(!empty($_REQUEST["Activity_record_id"][$key])){
 					$database->update($data, array(['Activity_record_id', $_REQUEST["Activity_record_id"][$key]]));

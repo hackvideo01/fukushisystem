@@ -519,7 +519,7 @@
           // $('#forgetPass').prop('disabled', true);
         }
 
-        if (($('#password').val() == $('#confirm_password').val()) && ($('#password').val().length > 5) && ($('#confirm_password').val().length > 5)){
+        if (($('#password').val() == $('#confirm_password').val()) && ($('#password').val().length >= 6) && ($('#confirm_password').val().length >= 6)){
           // $('#message').html('').css('color', 'green');
           $('#forgetPass').prop('disabled', false);
         } else {
@@ -530,10 +530,10 @@
       });
 
     $('#password').on('keyup', function () {
-        if ($('#password').val().length > 5) {
+        if ($('#password').val().length >= 6) {
           $('#messagePASS').html('').css('color', 'green');
         } else {
-          $('#messagePASS').html('５文字以上で入力してください。').css('color', 'red');
+          $('#messagePASS').html('６文字以上で入力してください。').css('color', 'red');
         }
         if ($('#password').val().match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {
           $('#messagePASS').html('半角英数で入力してください。').css('color', 'red');
@@ -541,10 +541,10 @@
       });
 
     $('#confirm_password').on('keyup', function () {
-        if ($('#confirm_password').val().length > 5) {
+        if ($('#confirm_password').val().length >= 6) {
           $('#messagePASSCOMFIRM').html('').css('color', 'green');
         } else {
-          $('#messagePASSCOMFIRM').html('５文字以上で入力してください。').css('color', 'red');
+          $('#messagePASSCOMFIRM').html('６文字以上で入力してください。').css('color', 'red');
         }
         if ($('#confirm_password').val().match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {
           $('#messagePASSCOMFIRM').html('半角英数で入力してください。').css('color', 'red');

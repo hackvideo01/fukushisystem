@@ -13,14 +13,14 @@ class business extends controller{
 			$paramsCurrentPage  = (!empty($_GET['page'])) ?  $_GET['page'] : 1;
 
 			// Query Count
-			$queryCount =  "SELECT COUNT(*) AS `total` FROM `business` WHERE `Business_id` > 0";
+			$queryCount =  "SELECT COUNT(*) AS `total` FROM `business` WHERE `Business_id` > 0 AND `username` = '".$_SESSION['usernameSS']."'";
 
 			$totalItem = $database->fetchRow($queryCount)['total'];
 			$configPagination = ['totalItemsPerPage'	=> 10, 'pageRange' => 3, 'currentPage' => $paramsCurrentPage];
 			$objPagination 	 = new Pagination($totalItem, $configPagination);
 
-			$queryList[] = "SELECT * FROM business ORDER BY Model_number ASC";
-
+			$queryList[] = "SELECT * FROM business WHERE username = '".$_SESSION['usernameSS']."' ORDER BY Model_number ASC";
+			
 			// Pagination
 			if($objPagination->getTotalPage() > 1)  {
 				$totalPage		= $configPagination['totalItemsPerPage'];
@@ -29,7 +29,7 @@ class business extends controller{
 			}
 
 			$queryList = implode(" ", $queryList);
-
+			
 			$listItem = $database->fetchAll($queryList);
 			// foreach ($listItem as $item) {
 			// 	// print_r($item);
@@ -58,12 +58,16 @@ class business extends controller{
 			// echo $arr[2];
 			if (isset($arr[2])) {
 				// Query Count
-				$queryCount =  "SELECT COUNT(*) AS `total` FROM `business` WHERE `Business_id` = ".$arr[2];
+				$queryCount[] =  "SELECT COUNT(*) AS `total` FROM `business` WHERE `Business_id` = ".$arr[2];
+				$queryCount[] = "AND username = '".$_SESSION['usernameSS']."'";
+				$queryCount = implode(" ",$queryCount);
 				$countItem = $database->fetchRow($queryCount)['total'];
 			}
 
 			if ($countItem != 0) {
-				$queryList = "SELECT * FROM business WHERE `Business_id` = ".$arr[2];
+				$queryList[] = "SELECT * FROM business WHERE `Business_id` = ".$arr[2];
+				$queryList[] = "AND username = '".$_SESSION['usernameSS']."'";
+				$queryList = implode(" ",$queryList);
 				$listItem = $database->fetchRow($queryList);
 			}
 			if (isset($_POST["btn_businessCheck"])) {
@@ -112,6 +116,7 @@ class business extends controller{
 					'User_invoice_remark' 			=> $_POST["User_invoice_remark"],
 					'Actual_cost1' 					=> $_POST["Actual_cost1"],
 					'Actual_cost2' 					=> $_POST["Actual_cost2"],
+					'username'						=> $_SESSION['usernameSS']
 				);
 			$_SESSION['dataSS'] = $dataSave;
 			$listItem = $_SESSION['dataSS'];
@@ -168,7 +173,8 @@ class business extends controller{
 					'User_invoice_remark' 			=> $_SESSION['dataSS']["User_invoice_remark"],
 					'Actual_cost1' 					=> $_SESSION['dataSS']["Actual_cost1"],
 					'Actual_cost2' 					=> $_SESSION['dataSS']["Actual_cost2"],
-					'Business_type' 				=> 1
+					'Business_type' 				=> 1,
+					'username'						=> $_SESSION['usernameSS']
 				);
 				$database->insert($data);
 				// header("Location: /fukushisystem/business");
@@ -230,7 +236,8 @@ class business extends controller{
 							'User_invoice_remark' 			=> $_POST["User_invoice_remark"],
 							'Actual_cost1' 					=> $_POST["Actual_cost1"],
 							'Actual_cost2' 					=> $_POST["Actual_cost2"],
-							'Business_type' 				=> 1
+							'Business_type' 				=> 1,
+							'username'						=> $_SESSION['usernameSS']
 						);
 					// echo $arr[2];
 					// $data = array(['Activity_record_id', $arr[2] ]);

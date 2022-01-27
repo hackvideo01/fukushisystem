@@ -59,13 +59,13 @@ class userMNMT extends controller{
 			$paramsCurrentPage  = (!empty($_GET['page'])) ?  $_GET['page'] : 1;
 
 			// Query Count
-			$queryCount =  "SELECT COUNT(*) AS `total` FROM `business` WHERE `Business_id` > 0";
+			$queryCount =  "SELECT COUNT(*) AS `total` FROM `business` WHERE `Business_id` > 0 AND `username` = '".$_SESSION['usernameSS']."'";
 
 			$totalItem = $database->fetchRow($queryCount)['total'];
 			$configPagination = ['totalItemsPerPage'	=> 10, 'pageRange' => 3, 'currentPage' => $paramsCurrentPage];
 			$objPagination 	 = new Pagination($totalItem, $configPagination);
 
-			$queryList[] = "SELECT * FROM business ORDER BY Model_number ASC";
+			$queryList[] = "SELECT * FROM business WHERE username = '".$_SESSION['usernameSS']."' ORDER BY Model_number ASC";
 
 			// Pagination
 			if($objPagination->getTotalPage() > 1)  {
@@ -99,7 +99,7 @@ class userMNMT extends controller{
 		$_SESSION['dataSS'];
 		$dataSave = [];
 		if (isset($_SESSION['usernameSS'])&&$_SESSION['role']==1){
-			$queryListBusiness[] = "SELECT Businesser_number FROM business ORDER BY Businesser_number ASC";
+			$queryListBusiness[] = "SELECT Businesser_number FROM business WHERE username = '".$_SESSION['usernameSS']."' ORDER BY Businesser_number ASC";
 			$queryListBusiness = implode(" ", $queryListBusiness);
 			$listItemBusiness = $database->fetchAll($queryListBusiness);
 			// print_r($listItem);
@@ -109,12 +109,16 @@ class userMNMT extends controller{
 				// echo $arr[2];
 				if (isset($arr[2])) {
 					// Query Count
-					$queryCount =  "SELECT COUNT(*) AS `total` FROM `usermanagement` WHERE `Usermanagement_id` = ".$arr[2];
+					$queryCount[] =  "SELECT COUNT(*) AS `total` FROM `usermanagement` WHERE `Usermanagement_id` = ".$arr[2];
+					$queryCount[] = "AND username = '".$_SESSION['usernameSS']."'";
+					$queryCount = implode(" ",$queryCount);
 					$countItem = $database->fetchRow($queryCount)['total'];
 				}
 
 				if ($countItem != 0) {
-					$queryList = "SELECT * FROM usermanagement WHERE `Usermanagement_id` = ".$arr[2];
+					$queryList[] = "SELECT * FROM usermanagement WHERE `Usermanagement_id` = ".$arr[2];
+					$queryList[] = "AND username = '".$_SESSION['usernameSS']."'";
+					$queryList = implode(" ",$queryList);
 					$listItem = $database->fetchRow($queryList);
 				}
 				if (isset($_POST["btn_userMNMTCheck"])) {
@@ -152,6 +156,7 @@ class userMNMT extends controller{
 						'Office_name' 						=> $_POST["Office_name"],
 						'User_burden_limit_start' 			=> $_POST["User_burden_limit_start"],
 						'User_burden_limit_end' 			=> $_POST["User_burden_limit_end"],
+						'username'							=> $_SESSION['usernameSS']
 					);
 				$_SESSION['dataSS'] = $dataSave;
 				$listItem = $_SESSION['dataSS'];
@@ -193,7 +198,8 @@ class userMNMT extends controller{
 					'Office_name' 						=> $_SESSION['dataSS']["Office_name"],
 					'User_burden_limit_start' 			=> $_SESSION['dataSS']["User_burden_limit_start"],
 					'User_burden_limit_end' 			=> $_SESSION['dataSS']["User_burden_limit_end"],
-					'Usermanagement_type' 				=> 1
+					'Usermanagement_type' 				=> 1,
+					'username'							=> $_SESSION['usernameSS']
 				);
 				$database->insert($data);
 				// header("Location: /fukushisystem/userMNMT");
@@ -244,7 +250,8 @@ class userMNMT extends controller{
 							'Office_name' 						=> $_POST["Office_name"],
 							'User_burden_limit_start' 			=> $_POST["User_burden_limit_start"],
 							'User_burden_limit_end' 			=> $_POST["User_burden_limit_end"],
-							'Usermanagement_type' 				=> 1
+							'Usermanagement_type' 				=> 1,
+							'username'							=> $_SESSION['usernameSS']
 						);
 					// echo $arr[2];
 					// $data = array(['Activity_record_id', $arr[2] ]);

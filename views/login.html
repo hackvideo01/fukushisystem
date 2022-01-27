@@ -98,7 +98,7 @@
 <script src="public/js/passwordShowHide.js?v=2"></script>
 <script>
      $('#username').on('keyup', function () {
-        if ($('#username').val().length > 5) {
+        if ($('#username').val().length >= 6) {
           $('#messageID').html('').css('color', 'green');
         } else {
           $('#messageID').html('6文字以上で入力してください。').css('color', 'red');
@@ -109,7 +109,7 @@
       });
 
     $('#password').on('keyup', function () {
-        if ($('#password').val().length > 5) {
+        if ($('#password').val().length >= 6) {
           $('#messagePASS').html('').css('color', 'green');
           $('#login').prop('disabled', false);
         } else {

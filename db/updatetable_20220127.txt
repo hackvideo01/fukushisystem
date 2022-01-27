@@ -1,0 +1,5 @@
+ALTER TABLE `business` ADD `username` VARCHAR(255) NOT NULL AFTER `Business_type`;
+
+ALTER TABLE `usermanagement` ADD `username` VARCHAR(255) NOT NULL AFTER `Usermanagement_type`;
+
+ALTER TABLE `activityrecord` ADD `username` VARCHAR(255) NOT NULL AFTER `ActiveRecord_type`;
